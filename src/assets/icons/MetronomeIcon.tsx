@@ -10,7 +10,7 @@ const MetronomeIcon = () => {
       y="0px"
       width="100%"
       viewBox="0 0 1024 1024"
-      enable-background="new 0 0 1024 1024"
+      enableBackground="new 0 0 1024 1024"
       xmlSpace="preserve"
     >
       <path

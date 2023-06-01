@@ -12,7 +12,7 @@ function NumberInput({ logo, wrapperName, inputName, spanName, count }: Props) {
   return (
     <div className={wrapperName}>
       {logo}
-      <input type="number" className={inputName} value={count} />
+      <input type="number" className={inputName} defaultValue={count} />
       <span className={inputName}>{spanName}</span>
     </div>
   );
