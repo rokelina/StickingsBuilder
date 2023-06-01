@@ -1,25 +1,21 @@
 import NavBar from '../NavBar/NavBar';
 import NumberInput from './NumberInput';
 import './TopNavBar.css';
-import { ReactComponent as MetronomeIcon } from 'src/assets/icons/metronome.svg';
-
-/* TopNavBar components
-- MetronomeBpm
-- Repeats
- */
+import MetronomeIcon from '../../assets/icons/MetronomeIcon';
+import RepeatIcon from '../../assets/icons/RepeatIcon';
 
 function TopNavBar() {
   return (
     <NavBar classname="metronome-options">
-      <MetronomeIcon />
       <NumberInput
+        logo={<MetronomeIcon></MetronomeIcon>}
         wrapperName="metronome"
         inputName="met-input"
         spanName="BPM"
         count={90}
       ></NumberInput>
       <NumberInput
-        // children="Repeats"
+        logo={<RepeatIcon></RepeatIcon>}
         wrapperName="repeat"
         inputName="rep-input"
         spanName="Repeats"
