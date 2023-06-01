@@ -28,4 +28,7 @@
   .nav-item {
     width: 100%;
     text-align: start;
+    color: white;
+    font-size: 1rem;
+    padding: 1rem
   }
