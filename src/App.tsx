@@ -1,10 +1,18 @@
-import './App.css'
+import './App.css';
+import MainWrapper from './components/MainWrapper/MainWrapper';
+import SideNavBar from './components/SideNavBar/SideNavBar';
 
+/* App components: 
+- MainWrapper
+- SideNavBar
+*/
 function App() {
-
   return (
-    <h1>Hello World</h1>
-  )
+    <>
+      <SideNavBar />
+      <MainWrapper />
+    </>
+  );
 }
 
-export default App
+export default App;
