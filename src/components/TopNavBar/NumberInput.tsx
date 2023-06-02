@@ -1,19 +1,25 @@
 import { ReactNode } from 'react';
 
 interface Props {
-  logo: ReactNode;
+  icon: ReactNode;
   wrapperName: string;
   inputName: string;
-  spanName: string;
-  count?: number;
+  spanText: string;
+  defaultCount?: number;
 }
 
-function NumberInput({ logo, wrapperName, inputName, spanName, count }: Props) {
+function NumberInput({
+  icon,
+  wrapperName,
+  inputName,
+  spanText,
+  defaultCount,
+}: Props) {
   return (
     <div className={wrapperName}>
-      {logo}
-      <input type="number" className={inputName} defaultValue={count} />
-      <span className={inputName}>{spanName}</span>
+      {icon}
+      <input type="number" className={inputName} defaultValue={defaultCount} />
+      <span className={inputName}>{spanText}</span>
     </div>
   );
 }

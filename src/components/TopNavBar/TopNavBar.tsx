@@ -8,18 +8,18 @@ function TopNavBar() {
   return (
     <NavBar classname="metronome-options">
       <NumberInput
-        logo={<MetronomeIcon></MetronomeIcon>}
+        icon={<MetronomeIcon></MetronomeIcon>}
         wrapperName="metronome"
         inputName="met-input"
-        spanName="BPM"
-        count={90}
+        spanText="BPM"
+        defaultCount={90}
       ></NumberInput>
       <NumberInput
-        logo={<RepeatIcon></RepeatIcon>}
+        icon={<RepeatIcon></RepeatIcon>}
         wrapperName="repeat"
         inputName="rep-input"
-        spanName="Repeats"
-        count={4}
+        spanText="Repeats"
+        defaultCount={4}
       ></NumberInput>
     </NavBar>
   );
