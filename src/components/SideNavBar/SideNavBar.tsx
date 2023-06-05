@@ -1,7 +1,6 @@
 import EightNotesIcon from '../../assets/icons/EightNotesIcon';
 import RandomIcon from '../../assets/icons/RandomIcon';
 import TripletsIcon from '../../assets/icons/TripletsIcon';
-// import NavBar from '../NavBar/NavBar';
 import LiComponent from './LiComponent';
 import './SideNavBar.css';
 

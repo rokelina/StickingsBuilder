@@ -22,3 +22,7 @@ button:hover{
   cursor: pointer;
 }
 
+nav{
+  display: flex;
+  background-color: #333;
+}

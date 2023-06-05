@@ -1,4 +1,3 @@
-import NavBar from '../NavBar/NavBar';
 import NumberInput from './NumberInput';
 import './TopNavBar.css';
 import MetronomeIcon from '../../assets/icons/MetronomeIcon';
@@ -6,7 +5,7 @@ import RepeatIcon from '../../assets/icons/RepeatIcon';
 
 function TopNavBar() {
   return (
-    <NavBar classname="metronome-options">
+    <nav className="metronome-options">
       <NumberInput
         icon={<MetronomeIcon></MetronomeIcon>}
         wrapperName="metronome"
@@ -23,7 +22,7 @@ function TopNavBar() {
         spanText="Repeats"
         defaultCount={4}
       ></NumberInput>
-    </NavBar>
+    </nav>
   );
 }
 
