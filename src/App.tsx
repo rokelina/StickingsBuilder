@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import './App.css';
 import MainWrapper from './components/MainWrapper/MainWrapper';
 import SideNavBar from './components/SideNavBar/SideNavBar';
@@ -7,10 +8,17 @@ import SideNavBar from './components/SideNavBar/SideNavBar';
 - SideNavBar
 */
 function App() {
+  const [showMenu, setShowMenu] = useState('eight-notes');
+
+  function handleNavClick(id: string): void {
+    setShowMenu(id);
+  }
+
   return (
     <>
-      <SideNavBar />
+      <SideNavBar onNavClick={handleNavClick} />
       <MainWrapper />
+      {console.log(showMenu)}
     </>
   );
 }
