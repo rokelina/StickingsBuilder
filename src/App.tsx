@@ -4,21 +4,21 @@ import MainWrapper from './components/MainWrapper/MainWrapper';
 import SideNavBar from './components/SideNavBar/SideNavBar';
 
 /* App components: 
-- MainWrapper
-- SideNavBar
+- MainWrapper 
+- SideNavBar ✔️
 */
 function App() {
-  const [showMenu, setShowMenu] = useState('eight-notes');
+  const [showMenu, setShowMenu] = useState('eighth-notes');
 
-  function handleNavClick(id: string): void {
+  const handleNavClick = (id: string): void => {
     setShowMenu(id);
-  }
+    console.log('Hello');
+  };
 
   return (
     <>
       <SideNavBar onNavClick={handleNavClick} />
-      <MainWrapper />
-      {console.log(showMenu)}
+      <MainWrapper displayMenu={showMenu} />
     </>
   );
 }
