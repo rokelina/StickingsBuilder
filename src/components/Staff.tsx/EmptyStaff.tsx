@@ -6,7 +6,9 @@ function EmptyStaff() {
   const notesGraphRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    drawStaff(notesGraphRef.current as HTMLDivElement);
+    if (!notesGraphRef.current?.hasChildNodes()) {
+      drawStaff(notesGraphRef.current as HTMLDivElement);
+    }
   }, []);
 
   return (
