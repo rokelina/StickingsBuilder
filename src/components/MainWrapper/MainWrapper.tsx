@@ -1,6 +1,7 @@
 import PlaybackControls from '../PlaybackControls/PlaybackControls';
 import EighthNoteStaff from '../Staff.tsx/EighthNoteStaff';
 import EmptyStaff from '../Staff.tsx/EmptyStaff';
+import TripletsStaff from '../Staff.tsx/TripletsStaff';
 import TopNavBar from '../TopNavBar/TopNavBar';
 import './MainWrapper.css';
 
@@ -20,7 +21,7 @@ function MainWrapper({ displayMenu }: Props) {
       <TopNavBar />
       <PlaybackControls />
       {displayMenu === 'eighth-notes' && <EighthNoteStaff />}
-      {displayMenu === 'triplet-notes' && <h1>Triplets notes</h1>}
+      {displayMenu === 'triplet-notes' && <TripletsStaff />}
       {displayMenu === 'random-stickings' && <EmptyStaff />}
     </main>
   );
