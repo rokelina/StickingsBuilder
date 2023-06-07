@@ -12,7 +12,6 @@ function App() {
 
   const handleNavClick = (id: string): void => {
     setShowMenu(id);
-    console.log('Hello');
   };
 
   return (

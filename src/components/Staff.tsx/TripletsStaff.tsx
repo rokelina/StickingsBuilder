@@ -1,26 +1,15 @@
 import { useEffect, useRef } from 'react';
-import { Vex } from 'vexflow';
-
+import { RenderContext, Stave, Vex } from 'vexflow';
+import drawStaff from './helpers/drawStaff';
 function TripletsStaff() {
   const notesGraphRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     if (!notesGraphRef.current?.hasChildNodes()) {
-      const { Renderer, Stave, StaveNote, Beam, Formatter, Tuplet } = Vex.Flow;
-
-      const renderer = new Renderer(
-        notesGraphRef.current as HTMLDivElement,
-        Renderer.Backends.SVG
+      const { StaveNote, Beam, Formatter, Tuplet } = Vex.Flow;
+      const [vexContext, vexStave] = drawStaff(
+        notesGraphRef.current as HTMLDivElement
       );
-      renderer.resize(650, 200);
-      const context = renderer.getContext();
-      context.setFont('Arial', 10);
-
-      const stave = new Stave(25, 40, 600);
-
-      stave.addClef('percussion').addTimeSignature('4/4');
-      // Render the stave
-      stave.setContext(context).draw();
 
       //   let notes1;
       //   let notes2;
@@ -100,14 +89,18 @@ function TripletsStaff() {
         new Tuplet(notes4),
       ];
 
-      Formatter.FormatAndDraw(context, stave, allNotes);
+      Formatter.FormatAndDraw(
+        vexContext as RenderContext,
+        vexStave as Stave,
+        allNotes
+      );
 
       // Draw the beams and stems.
       beams.forEach((b) => {
-        b.setContext(context).draw();
+        b.setContext(vexContext as RenderContext).draw();
       });
 
-      tuplets.forEach((t) => t.setContext(context).draw());
+      tuplets.forEach((t) => t.setContext(vexContext as RenderContext).draw());
     }
   }, []);
 
