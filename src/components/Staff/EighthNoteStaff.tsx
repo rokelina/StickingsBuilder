@@ -1,7 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { RenderContext, Stave, Vex } from 'vexflow';
 import drawStaff from './helpers/drawStaff';
-import './Staff.css';
 
 function EighthNoteStaff() {
   const notesGraphRef = useRef<HTMLDivElement | null>(null);
@@ -81,11 +80,7 @@ function EighthNoteStaff() {
     }
   }, []);
 
-  return (
-    <div className="notes-container">
-      <div className="notes-graph" ref={notesGraphRef}></div>
-    </div>
-  );
+  return <div className="notes-graph" ref={notesGraphRef}></div>;
 }
 
 export default EighthNoteStaff;

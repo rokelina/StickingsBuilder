@@ -11,11 +11,7 @@ function EmptyStaff() {
     }
   }, []);
 
-  return (
-    <div className="notes-container">
-      <div className="notes-graph" ref={notesGraphRef}></div>
-    </div>
-  );
+  return <div className="notes-graph" ref={notesGraphRef}></div>;
 }
 
 export default EmptyStaff;
