@@ -3,23 +3,23 @@ import { ReactNode } from 'react';
 interface WrapperProps {
   displayMenu: string;
   divClassName: string;
-  onEighthNotes: ReactNode;
-  onTripletNotes: ReactNode;
-  onRandomNotes: ReactNode;
+  eighthNotes: ReactNode;
+  tripletNotes: ReactNode;
+  randomNotes: ReactNode;
 }
 
 function NotesWrapper({
   displayMenu,
   divClassName,
-  onEighthNotes,
-  onTripletNotes,
-  onRandomNotes,
+  eighthNotes,
+  tripletNotes,
+  randomNotes,
 }: WrapperProps) {
   return (
     <div className={divClassName}>
-      {displayMenu === 'eighth-notes' && onEighthNotes}
-      {displayMenu === 'triplet-notes' && onTripletNotes}
-      {displayMenu === 'random-stickings' && onRandomNotes}
+      {displayMenu === 'eighth-notes' && eighthNotes}
+      {displayMenu === 'triplet-notes' && tripletNotes}
+      {displayMenu === 'random-stickings' && randomNotes}
     </div>
   );
 }

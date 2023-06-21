@@ -25,16 +25,16 @@ function MainWrapper({ displayMenu }: Props) {
       <NotesWrapper
         displayMenu={displayMenu}
         divClassName="staff-container"
-        onEighthNotes={<EighthNoteStaff></EighthNoteStaff>}
-        onTripletNotes={<TripletsStaff></TripletsStaff>}
-        onRandomNotes={<EmptyStaff></EmptyStaff>}
+        eighthNotes={<EighthNoteStaff></EighthNoteStaff>}
+        tripletNotes={<TripletsStaff></TripletsStaff>}
+        randomNotes={<EmptyStaff></EmptyStaff>}
       ></NotesWrapper>
       <NotesWrapper
         displayMenu={displayMenu}
         divClassName="menu-container"
-        onEighthNotes={<h1>Eighths</h1>}
-        onTripletNotes={<h1>Triplets</h1>}
-        onRandomNotes={<h1>Random</h1>}
+        eighthNotes={<h1>Eighths</h1>}
+        tripletNotes={<h1>Triplets</h1>}
+        randomNotes={<h1>Random</h1>}
       ></NotesWrapper>
 
       {/* <StaffWrapper displayMenu={displayMenu} />
