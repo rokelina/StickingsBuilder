@@ -9,7 +9,7 @@ interface Props {
 
 function StaffWrapper({ displayMenu }: Props) {
   return (
-    <div className="notes-container">
+    <div className="staff-container">
       {displayMenu === 'eighth-notes' && <EighthNoteStaff />}
       {displayMenu === 'triplet-notes' && <TripletsStaff />}
       {displayMenu === 'random-stickings' && <EmptyStaff />}
