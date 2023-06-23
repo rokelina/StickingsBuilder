@@ -10,8 +10,10 @@ import './MainWrapper.css';
 /* MainWrapper components:
 - TopNavBar ✔️
 - PlaybackControls ✔️
-- VexflowNotes
-_ Stickings Menu
+-Notes Wrapper ✔️
+  - Staff
+-Notes Wrapper
+  _ Stickings Menu
  */
 
 interface Props {
@@ -31,14 +33,11 @@ function MainWrapper({ displayMenu }: Props) {
       ></NotesWrapper>
       <NotesWrapper
         displayMenu={displayMenu}
-        divClassName="menu-container"
+        divClassName="menu"
         eighthNotes={<h1>Eighths</h1>}
         tripletNotes={<h1>Triplets</h1>}
         randomNotes={<h1>Random</h1>}
       ></NotesWrapper>
-
-      {/* <StaffWrapper displayMenu={displayMenu} />
-      <MenuWrapper displayMenu={displayMenu} /> */}
     </main>
   );
 }

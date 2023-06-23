@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { RenderContext, Stave, Vex } from 'vexflow';
+import annotate from './helpers/annotate';
 import drawStaff from './helpers/drawStaff';
 
 function EighthNoteStaff() {
@@ -12,30 +13,25 @@ function EighthNoteStaff() {
         notesGraphRef.current as HTMLDivElement
       );
 
-      //   let notes1;
-      //   let notes2;
-      //   let notes3;
-      //   let notes4;
-
       const notes1 = [
         new StaveNote({
           keys: ['A/4'],
           duration: '8',
-        }),
+        }).addModifier(annotate('R')),
         new StaveNote({
           keys: ['A/4'],
           duration: '8',
-        }),
+        }).addModifier(annotate('')),
       ];
       const notes2 = [
         new StaveNote({
           keys: ['A/4'],
           duration: '8',
-        }),
+        }).addModifier(annotate('L')),
         new StaveNote({
           keys: ['A/4'],
           duration: '8',
-        }),
+        }).addModifier(annotate('L')),
       ];
       const notes3 = [
         new StaveNote({
