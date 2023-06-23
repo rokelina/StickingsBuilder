@@ -1,0 +1,55 @@
+.menu {
+  display: flex;
+  justify-content: center;
+}
+
+.menu-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 0.5rem 0.5rem 0.5rem;
+}
+
+.menu-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #333;
+  border-radius: 20px;
+  padding: 0.5rem 1rem;
+  min-width: 40vw;
+}
+
+.sticking, .select-row {
+  padding: 0.5rem 0.3rem;
+}
+
+.menu {
+  display: flex;
+  justify-content: center;
+}
+
+.menu-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 0.5rem 0.5rem 0.5rem;
+}
+
+.menu-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #333;
+  border-radius: 20px;
+  padding: 0.5rem 1rem;
+  min-width: 40vw;
+}
+
+.stickings,
+.select-row {
+  padding: 0.5rem 0.3rem;
+}
+
+.menu-options {
+  display: flex;
+  justify-content: center;
+  padding: 0.5rem;
+  align-items: center;
+}

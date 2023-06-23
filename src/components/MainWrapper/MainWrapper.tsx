@@ -4,6 +4,11 @@ import EighthNoteStaff from '../Staff/EighthNoteStaff';
 import EmptyStaff from '../Staff/EmptyStaff';
 import TripletsStaff from '../Staff/TripletsStaff';
 import NotesWrapper from '../NotesWrapper/NotesWrapper';
+import StickingsMenu from '../Menu/StickingsMenu';
+import {
+  eightNotesPermutations,
+  tripletPermutations,
+} from '../Menu/permutations.ts';
 import '../Staff/Staff.css';
 import './MainWrapper.css';
 
@@ -34,8 +39,12 @@ function MainWrapper({ displayMenu }: Props) {
       <NotesWrapper
         displayMenu={displayMenu}
         divClassName="menu"
-        eighthNotes={<h1>Eighths</h1>}
-        tripletNotes={<h1>Triplets</h1>}
+        eighthNotes={
+          <StickingsMenu permutations={eightNotesPermutations}></StickingsMenu>
+        }
+        tripletNotes={
+          <StickingsMenu permutations={tripletPermutations}></StickingsMenu>
+        }
         randomNotes={<h1>Random</h1>}
       ></NotesWrapper>
     </main>
