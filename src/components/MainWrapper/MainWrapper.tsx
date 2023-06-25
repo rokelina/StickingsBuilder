@@ -1,15 +1,7 @@
-import PlaybackControls from '../PlaybackControls/PlaybackControls';
 import TopNavBar from '../TopNavBar/TopNavBar';
-import EighthNoteStaff from '../Staff/EighthNoteStaff';
-import EmptyStaff from '../Staff/EmptyStaff';
-import TripletsStaff from '../Staff/TripletsStaff';
-import NotesWrapper from '../NotesWrapper/NotesWrapper';
-import StickingsMenu from '../Menu/StickingsMenu';
-import {
-  eightNotesPermutations,
-  tripletPermutations,
-} from '../Menu/permutations.ts';
-import '../Staff/Staff.css';
+import PlaybackControls from '../PlaybackControls/PlaybackControls';
+import StaffWrapper from '../Staff/StaffWrapper.tsx';
+import MenuWrapper from '../Menu/MenuWrapper.tsx';
 import './MainWrapper.css';
 
 /* MainWrapper components:
@@ -29,7 +21,10 @@ function MainWrapper({ displayMenu }: Props) {
     <main>
       <TopNavBar />
       <PlaybackControls />
-      <NotesWrapper
+      <StaffWrapper displayMenu={displayMenu} />
+      <MenuWrapper displayMenu={displayMenu} />
+
+      {/* <NotesWrapper
         displayMenu={displayMenu}
         divClassName="staff-container"
         eighthNotes={<EighthNoteStaff></EighthNoteStaff>}
@@ -46,7 +41,7 @@ function MainWrapper({ displayMenu }: Props) {
           <StickingsMenu permutations={tripletPermutations}></StickingsMenu>
         }
         randomNotes={<h1>Random</h1>}
-      ></NotesWrapper>
+      ></NotesWrapper> */}
     </main>
   );
 }
