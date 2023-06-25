@@ -12,9 +12,9 @@ export function MenuInput({
   labelFor,
 }: InputProps) {
   return (
-    <div className="stickings">
+    <label className="stickings" htmlFor={labelFor}>
       <input type={inputType} id={labelFor} name={beatName} />
-      <label htmlFor={labelFor}>{children}</label>
-    </div>
+      {children}
+    </label>
   );
 }

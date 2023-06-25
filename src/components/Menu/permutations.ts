@@ -1,19 +1,19 @@
 const eightNotesPermutations = Object.freeze({
-    rl: ['R', 'L'],
-    lr: ['L', 'R'],
-    rr: ['R', 'R'],
-    ll: ['L', 'L'],
+    rl: ['rl', '1'],
+    lr: ['lr', '2'],
+    rr: ['rr', '3'],
+    ll: ['ll', '4'],
   });
   
   const tripletPermutations = Object.freeze({
-    rlr: ['R', 'L', 'R'],
-    lrl: ['L', 'R', 'L'],
-    rrl: ['R', 'R', 'L'],
-    llr: ['L', 'L', 'R'],
-    rll: ['R', 'L', 'L'],
-    lrr: ['L', 'R', 'R'],
-    rrr: ['R', 'R', 'R'],
-    lll: ['L', 'L', 'L'],
+    rlr: ['rlr', '1'],
+    lrl: ['lrl', '2'],
+    rrl: ['rrl', '3'],
+    llr: ['llr', '4'],
+    rll: ['rll', '5'],
+    lrr: ['lrr', '6'],
+    rrr: ['rrr', '7'],
+    lll: ['lll', '8'],
   });
   
   export { eightNotesPermutations, tripletPermutations };

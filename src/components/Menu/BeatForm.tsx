@@ -11,13 +11,13 @@ function BeatForm({ beatName, children, permutations }: BeatProps) {
     <form action="">
       <fieldset id={beatName} name={beatName}>
         <legend>{children}</legend>
-        {Object.keys(permutations).map((perm, index) => (
+        {Object.values(permutations).map((value) => (
           <MenuInput
-            children={perm.toUpperCase()}
+            children={value[0].toUpperCase()}
             beatName={beatName}
             inputType="radio"
-            key={index}
-            labelFor={perm + index}
+            key={value[0] + value[1]}
+            labelFor={value[0] + value[1]}
           />
         ))}
       </fieldset>

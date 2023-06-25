@@ -1,4 +1,5 @@
 import BeatForm from './BeatForm';
+import RowForm from './RowForm';
 import Button from '../Button/Button';
 import './Menu.css';
 
@@ -30,6 +31,7 @@ function StickingsMenu({ permutations }: MenuProps) {
           permutations={permutations}
         />
       </div>
+      <RowForm />
       <div className="menu-options">
         <Button idName="reset-button" children="Reset" />
       </div>
