@@ -7,9 +7,9 @@ import './MainWrapper.css';
 /* MainWrapper components:
 - TopNavBar ✔️
 - PlaybackControls ✔️
--Notes Wrapper ✔️
+-Staff Wrapper ✔️
   - Staff
--Notes Wrapper
+-Menu Wrapper ✔️
   _ Stickings Menu
  */
 
@@ -23,25 +23,6 @@ function MainWrapper({ displayMenu }: Props) {
       <PlaybackControls />
       <StaffWrapper displayMenu={displayMenu} />
       <MenuWrapper displayMenu={displayMenu} />
-
-      {/* <NotesWrapper
-        displayMenu={displayMenu}
-        divClassName="staff-container"
-        eighthNotes={<EighthNoteStaff></EighthNoteStaff>}
-        tripletNotes={<TripletsStaff></TripletsStaff>}
-        randomNotes={<EmptyStaff></EmptyStaff>}
-      ></NotesWrapper>
-      <NotesWrapper
-        displayMenu={displayMenu}
-        divClassName="menu"
-        eighthNotes={
-          <StickingsMenu permutations={eightNotesPermutations}></StickingsMenu>
-        }
-        tripletNotes={
-          <StickingsMenu permutations={tripletPermutations}></StickingsMenu>
-        }
-        randomNotes={<h1>Random</h1>}
-      ></NotesWrapper> */}
     </main>
   );
 }
