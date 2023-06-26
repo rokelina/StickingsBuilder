@@ -1,4 +1,4 @@
-import NumberInput from './NumberInput';
+import NumberInput from './TopNavInput/TopNavInput';
 import './TopNavBar.css';
 import MetronomeIcon from '../../assets/icons/MetronomeIcon';
 import RepeatIcon from '../../assets/icons/RepeatIcon';

@@ -1,48 +1,37 @@
 import { useEffect, useRef } from 'react';
 import { RenderContext, Stave, Vex } from 'vexflow';
-import drawStaff from './helpers/drawStaff';
-function TripletsStaff() {
+import annotate from '../utils/annotate';
+import drawStaff from '../utils/drawStaff';
+
+function EighthNoteStaff() {
   const notesGraphRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     if (!notesGraphRef.current?.hasChildNodes()) {
-      const { StaveNote, Beam, Formatter, Tuplet } = Vex.Flow;
+      const { StaveNote, Beam, Formatter } = Vex.Flow;
       const [vexContext, vexStave] = drawStaff(
         notesGraphRef.current as HTMLDivElement
       );
-
-      //   let notes1;
-      //   let notes2;
-      //   let notes3;
-      //   let notes4;
 
       const notes1 = [
         new StaveNote({
           keys: ['A/4'],
           duration: '8',
-        }),
+        }).addModifier(annotate('R')),
         new StaveNote({
           keys: ['A/4'],
           duration: '8',
-        }),
-        new StaveNote({
-          keys: ['A/4'],
-          duration: '8',
-        }),
+        }).addModifier(annotate('')),
       ];
       const notes2 = [
         new StaveNote({
           keys: ['A/4'],
           duration: '8',
-        }),
+        }).addModifier(annotate('L')),
         new StaveNote({
           keys: ['A/4'],
           duration: '8',
-        }),
-        new StaveNote({
-          keys: ['A/4'],
-          duration: '8',
-        }),
+        }).addModifier(annotate('L')),
       ];
       const notes3 = [
         new StaveNote({
@@ -53,16 +42,8 @@ function TripletsStaff() {
           keys: ['A/4'],
           duration: '8',
         }),
-        new StaveNote({
-          keys: ['A/4'],
-          duration: '8',
-        }),
       ];
       const notes4 = [
-        new StaveNote({
-          keys: ['A/4'],
-          duration: '8',
-        }),
         new StaveNote({
           keys: ['A/4'],
           duration: '8',
@@ -82,13 +63,6 @@ function TripletsStaff() {
         new Beam(notes4),
       ];
 
-      const tuplets = [
-        new Tuplet(notes1),
-        new Tuplet(notes2),
-        new Tuplet(notes3),
-        new Tuplet(notes4),
-      ];
-
       Formatter.FormatAndDraw(
         vexContext as RenderContext,
         vexStave as Stave,
@@ -99,11 +73,10 @@ function TripletsStaff() {
       beams.forEach((b) => {
         b.setContext(vexContext as RenderContext).draw();
       });
-
-      tuplets.forEach((t) => t.setContext(vexContext as RenderContext).draw());
     }
   }, []);
 
   return <div className="notes-graph" ref={notesGraphRef}></div>;
 }
-export default TripletsStaff;
+
+export default EighthNoteStaff;

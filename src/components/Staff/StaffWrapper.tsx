@@ -1,6 +1,6 @@
-import EighthNoteStaff from './EighthNoteStaff';
-import EmptyStaff from './EmptyStaff';
-import TripletsStaff from './TripletsStaff';
+import EighthNoteStaff from './EighthNoteStaff/EighthNoteStaff';
+import EmptyStaff from './EmptyStaff/EmptyStaff';
+import TripletsStaff from './TripletsStaff/TripletsStaff';
 import './Staff.css';
 
 interface Props {

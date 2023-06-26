@@ -1,7 +1,7 @@
 import EightNotesIcon from '../../assets/icons/EightNotesIcon';
 import RandomIcon from '../../assets/icons/RandomIcon';
 import TripletsIcon from '../../assets/icons/TripletsIcon';
-import LiComponent from './LiComponent';
+import LiComponent from './LiComponent/LiComponent';
 import './SideNavBar.css';
 
 interface Props {
