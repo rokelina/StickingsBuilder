@@ -29,8 +29,8 @@ function StickingsMenu({ permutations }: MenuProps) {
           children="Beat 4"
           permutations={permutations}
         />
+        <RowForm permutations={permutations} />
       </div>
-      <RowForm />
       <div className="menu-options">
         <Button idName="reset-button" children="Reset" />
       </div>
