@@ -43,8 +43,12 @@
 }
 
 .stickings,
-.select-row {
+.row-input {
   padding: 0.5rem 0.3rem;
+}
+
+.rows {
+  justify-items: center;
 }
 
 .menu-options {

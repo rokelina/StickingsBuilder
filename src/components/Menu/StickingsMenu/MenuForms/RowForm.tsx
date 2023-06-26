@@ -7,7 +7,7 @@ interface RowProps {
 function RowForm({ permutations }: RowProps) {
   return (
     <form action="">
-      <fieldset id="rows">
+      <fieldset id="rows" className="rows">
         <legend>Row</legend>
         {Object.values(permutations).map((value) => (
           <RowInput
