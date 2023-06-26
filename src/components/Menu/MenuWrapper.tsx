@@ -1,5 +1,6 @@
-import StickingsMenu from './StickingsMenu';
+import StickingsMenu from './StickingsMenu/StickingsMenu.tsx';
 import { eightNotesPermutations, tripletPermutations } from './permutations.ts';
+import './Menu.css';
 
 interface Props {
   displayMenu: string;

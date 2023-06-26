@@ -1,7 +1,6 @@
-import BeatForm from './BeatForm';
-import RowForm from './RowForm';
-import Button from '../Button/Button';
-import './Menu.css';
+import BeatForm from './MenuForms/BeatForm';
+import RowForm from './MenuForms/RowForm';
+import Button from '../../Button/Button';
 
 interface MenuProps {
   permutations: { [key: string]: string[] };
