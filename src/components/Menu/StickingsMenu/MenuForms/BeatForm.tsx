@@ -4,9 +4,15 @@ interface BeatProps {
   beatName: string;
   children: string;
   permutations: { [key: string]: string[] };
+  onFormChange: (beatName: string, children: string) => void;
 }
 
-function BeatForm({ beatName, children, permutations }: BeatProps) {
+function BeatForm({
+  beatName,
+  children,
+  permutations,
+  onFormChange,
+}: BeatProps) {
   return (
     <form action="">
       <fieldset id={beatName} name={beatName}>
@@ -18,6 +24,7 @@ function BeatForm({ beatName, children, permutations }: BeatProps) {
             inputType="radio"
             key={value[0] + value[1]}
             labelFor={value[0] + value[1]}
+            onFormChange={onFormChange}
           />
         ))}
       </fieldset>

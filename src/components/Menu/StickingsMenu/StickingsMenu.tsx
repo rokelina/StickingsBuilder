@@ -4,8 +4,9 @@ import Button from '../../Button/Button';
 
 interface MenuProps {
   permutations: { [key: string]: string[] };
+  onFormChange: (beatName: string, children: string) => void;
 }
-function StickingsMenu({ permutations }: MenuProps) {
+function StickingsMenu({ permutations, onFormChange }: MenuProps) {
   return (
     <div className="menu-card">
       <div className="menu-container">
@@ -13,21 +14,25 @@ function StickingsMenu({ permutations }: MenuProps) {
           beatName="beat-1"
           children="Beat 1"
           permutations={permutations}
+          onFormChange={onFormChange}
         />
         <BeatForm
           beatName="beat-2"
           children="Beat 2"
           permutations={permutations}
+          onFormChange={onFormChange}
         />
         <BeatForm
           beatName="beat-3"
           children="Beat 3"
           permutations={permutations}
+          onFormChange={onFormChange}
         />
         <BeatForm
           beatName="beat-4"
           children="Beat 4"
           permutations={permutations}
+          onFormChange={onFormChange}
         />
         <RowForm permutations={permutations} />
       </div>

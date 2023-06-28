@@ -3,6 +3,7 @@ interface InputProps {
   beatName: string;
   inputType: string;
   labelFor: string;
+  onFormChange: (beatName: string, children: string) => void;
 }
 
 export function MenuInput({
@@ -10,10 +11,16 @@ export function MenuInput({
   beatName,
   inputType,
   labelFor,
+  onFormChange,
 }: InputProps) {
   return (
     <label className="stickings" htmlFor={labelFor}>
-      <input type={inputType} id={labelFor} name={beatName} />
+      <input
+        type={inputType}
+        id={labelFor}
+        name={beatName}
+        onChange={() => onFormChange(beatName, children)}
+      />
       {children}
     </label>
   );
