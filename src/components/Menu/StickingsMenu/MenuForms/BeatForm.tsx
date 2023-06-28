@@ -3,7 +3,7 @@ import { MenuInput } from './MenuInputs/MenuInput';
 interface BeatProps {
   beatName: string;
   children: string;
-  permutations: { [key: string]: string[] };
+  permutations: { [key: string]: string };
   onFormChange: (beatName: string, children: string) => void;
 }
 
@@ -19,12 +19,13 @@ function BeatForm({
         <legend>{children}</legend>
         {Object.values(permutations).map((value) => (
           <MenuInput
-            children={value[0].toUpperCase()}
+            children={value.toUpperCase()}
             beatName={beatName}
             inputType="radio"
-            key={value[0] + value[1]}
-            labelFor={value[0] + value[1]}
+            key={value + '-' + beatName}
+            labelFor={value + '-' + beatName}
             onFormChange={onFormChange}
+            value={value}
           />
         ))}
       </fieldset>

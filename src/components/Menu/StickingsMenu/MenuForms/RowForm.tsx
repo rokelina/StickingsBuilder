@@ -1,7 +1,7 @@
 import RowInput from './MenuInputs/RowInput';
 
 interface RowProps {
-  permutations: { [key: string]: string[] };
+  permutations: { [key: string]: string };
 }
 
 function RowForm({ permutations }: RowProps) {
@@ -12,8 +12,8 @@ function RowForm({ permutations }: RowProps) {
         {Object.values(permutations).map((value) => (
           <RowInput
             inputType="radio"
-            key={value[0] + value[1]}
-            labelFor={value[0] + value[1]}
+            key={value + '-' + 'row'}
+            labelFor={value}
           />
         ))}
       </fieldset>

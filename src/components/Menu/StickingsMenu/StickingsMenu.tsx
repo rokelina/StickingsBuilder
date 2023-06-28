@@ -3,7 +3,7 @@ import RowForm from './MenuForms/RowForm';
 import Button from '../../Button/Button';
 
 interface MenuProps {
-  permutations: { [key: string]: string[] };
+  permutations: { [key: string]: string };
   onFormChange: (beatName: string, children: string) => void;
 }
 function StickingsMenu({ permutations, onFormChange }: MenuProps) {

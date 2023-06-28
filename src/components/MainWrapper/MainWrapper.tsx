@@ -19,14 +19,14 @@ interface Props {
 }
 function MainWrapper({ displayMenu }: Props) {
   const [selectedSticking, setSelectedSticking] = useState<
-    { beatName: string; children: string }[]
-  >([]);
+    Record<string, string>
+  >({});
 
   const handleFormChange = (beatName: string, children: string) => {
-    setSelectedSticking([
-      ...selectedSticking,
-      { beatName: beatName, children: children },
-    ]);
+    setSelectedSticking((prevSticking) => ({
+      ...prevSticking,
+      [beatName]: children,
+    }));
   };
 
   console.log(selectedSticking);
