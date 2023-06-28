@@ -5,28 +5,20 @@ import MenuWrapper from '../Menu/MenuWrapper.tsx';
 import './MainWrapper.css';
 import { useState } from 'react';
 
-/* MainWrapper components:
-- TopNavBar ✔️
-- PlaybackControls ✔️
--Staff Wrapper ✔️
-  - Staff
--Menu Wrapper ✔️
-  _ Stickings Menu
- */
-
 interface Props {
   displayMenu: string;
 }
+
 function MainWrapper({ displayMenu }: Props) {
   const [selectedSticking, setSelectedSticking] = useState<
     Record<string, string>
   >({});
 
   const handleFormChange = (beatName: string, children: string) => {
-    setSelectedSticking((prevSticking) => ({
-      ...prevSticking,
+    setSelectedSticking({
+      ...selectedSticking,
       [beatName]: children,
-    }));
+    });
   };
 
   console.log(selectedSticking);
