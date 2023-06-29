@@ -7,9 +7,15 @@ interface Props {
   displayMenu: string;
   onFormChange: (beatName: string, children: string) => void;
   onReset: () => void;
+  selectedStickings: { [key: string]: string };
 }
 
-function MenuWrapper({ displayMenu, onFormChange, onReset }: Props) {
+function MenuWrapper({
+  displayMenu,
+  onFormChange,
+  onReset,
+  selectedStickings,
+}: Props) {
   return (
     <div className="menu">
       {displayMenu === 'eighth-notes' && (
@@ -17,6 +23,7 @@ function MenuWrapper({ displayMenu, onFormChange, onReset }: Props) {
           permutations={eightNotesPermutations}
           onFormChange={onFormChange}
           onReset={onReset}
+          selectedStickings={selectedStickings}
         />
       )}
       {displayMenu === 'triplet-notes' && (
@@ -24,6 +31,7 @@ function MenuWrapper({ displayMenu, onFormChange, onReset }: Props) {
           permutations={tripletPermutations}
           onFormChange={onFormChange}
           onReset={onReset}
+          selectedStickings={selectedStickings}
         />
       )}
       {displayMenu === 'random-stickings' && <RandomMenu />}

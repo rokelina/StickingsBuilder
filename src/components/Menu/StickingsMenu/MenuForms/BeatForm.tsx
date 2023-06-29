@@ -3,19 +3,17 @@ import { MenuInput } from './MenuInputs/MenuInput';
 interface BeatProps {
   beatName: string;
   children: string;
-  checkedRadio: { [key: string]: string };
   permutations: { [key: string]: string };
   onFormChange: (beatName: string, children: string) => void;
-  onCheckedRadio: (labelFor: string) => void;
+  selectedStickings: { [key: string]: string };
 }
 
 function BeatForm({
   beatName,
   children,
-  checkedRadio,
   permutations,
   onFormChange,
-  onCheckedRadio,
+  selectedStickings,
 }: BeatProps) {
   return (
     <form action="">
@@ -25,12 +23,11 @@ function BeatForm({
           <MenuInput
             children={value.toUpperCase()}
             beatName={beatName}
-            checkedRadio={checkedRadio}
             inputType="radio"
             key={value + '-' + beatName}
             labelFor={value + '-' + beatName}
             onFormChange={onFormChange}
-            onCheckRadio={onCheckedRadio}
+            selectedStickings={selectedStickings}
             value={value}
           />
         ))}

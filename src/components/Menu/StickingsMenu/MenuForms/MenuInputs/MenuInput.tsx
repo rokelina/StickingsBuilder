@@ -1,36 +1,43 @@
 interface InputProps {
   children: string;
-  checkedRadio: { [key: string]: string };
   beatName: string;
   inputType: string;
   labelFor: string;
   onFormChange: (beatName: string, children: string) => void;
-  onCheckRadio: (labelFor: string) => void;
+  selectedStickings: { [key: string]: string };
   value: string;
 }
 
 export function MenuInput({
   children,
-  checkedRadio,
   beatName,
   inputType,
   labelFor,
   onFormChange,
-  onCheckRadio,
+  selectedStickings,
   value,
 }: InputProps) {
-  const { isChecked } = checkedRadio;
+  const isChecked = (
+    selectedStickings: { [key: string]: string },
+    beatName: string,
+    children: string
+  ) => {
+    for (const [key, value] of Object.entries(selectedStickings)) {
+      if (key === beatName && value === children) {
+        return true;
+      }
+    }
+    return false;
+  };
 
   return (
     <label className="stickings" htmlFor={labelFor}>
       <input
         type={inputType}
         id={labelFor}
-        checked={isChecked === labelFor}
         name={beatName}
-        onChange={() => {
-          onFormChange(beatName, children), onCheckRadio(labelFor);
-        }}
+        checked={isChecked(selectedStickings, beatName, children)}
+        onChange={() => onFormChange(beatName, children)}
         value={value}
       />
       {children}
