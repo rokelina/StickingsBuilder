@@ -10,22 +10,22 @@ interface Props {
 }
 
 function MainWrapper({ displayMenu }: Props) {
-  const [selectedSticking, setSelectedSticking] = useState<
+  const [selectedStickings, setSelectedStickings] = useState<
     Record<string, string>
   >({});
 
   const handleFormChange = (beatName: string, children: string) => {
-    setSelectedSticking({
-      ...selectedSticking,
+    setSelectedStickings({
+      ...selectedStickings,
       [beatName]: children,
     });
   };
 
   const handleResetClick = () => {
-    setSelectedSticking({});
+    setSelectedStickings({});
   };
 
-  console.log(selectedSticking);
+  console.log(selectedStickings);
 
   return (
     <main>
@@ -35,6 +35,7 @@ function MainWrapper({ displayMenu }: Props) {
       <MenuWrapper
         displayMenu={displayMenu}
         onFormChange={handleFormChange}
+        selectedStickings={selectedStickings}
         onReset={handleResetClick}
       />
     </main>

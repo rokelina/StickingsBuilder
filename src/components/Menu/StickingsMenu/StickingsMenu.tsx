@@ -6,8 +6,14 @@ interface MenuProps {
   permutations: { [key: string]: string };
   onFormChange: (beatName: string, children: string) => void;
   onReset: () => void;
+  selectedStickings: { [key: string]: string };
 }
-function StickingsMenu({ permutations, onFormChange, onReset }: MenuProps) {
+function StickingsMenu({
+  permutations,
+  onFormChange,
+  onReset,
+  selectedStickings,
+}: MenuProps) {
   return (
     <div className="menu-card">
       <div className="menu-container">
@@ -16,24 +22,28 @@ function StickingsMenu({ permutations, onFormChange, onReset }: MenuProps) {
           children="Beat 1"
           permutations={permutations}
           onFormChange={onFormChange}
+          selectedStickings={selectedStickings}
         />
         <BeatForm
           beatName="beat-2"
           children="Beat 2"
           permutations={permutations}
           onFormChange={onFormChange}
+          selectedStickings={selectedStickings}
         />
         <BeatForm
           beatName="beat-3"
           children="Beat 3"
           permutations={permutations}
           onFormChange={onFormChange}
+          selectedStickings={selectedStickings}
         />
         <BeatForm
           beatName="beat-4"
           children="Beat 4"
           permutations={permutations}
           onFormChange={onFormChange}
+          selectedStickings={selectedStickings}
         />
         <RowForm permutations={permutations} />
       </div>

@@ -1,10 +1,11 @@
-import { MenuInput } from './MenuInputs/MenuInput';
+import MenuInput from './MenuInputs/MenuInput';
 
 interface BeatProps {
   beatName: string;
   children: string;
   permutations: { [key: string]: string };
   onFormChange: (beatName: string, children: string) => void;
+  selectedStickings: { [key: string]: string };
 }
 
 function BeatForm({
@@ -12,6 +13,7 @@ function BeatForm({
   children,
   permutations,
   onFormChange,
+  selectedStickings,
 }: BeatProps) {
   return (
     <form action="">
@@ -25,6 +27,7 @@ function BeatForm({
             key={value + '-' + beatName}
             labelFor={value + '-' + beatName}
             onFormChange={onFormChange}
+            selectedStickings={selectedStickings}
             value={value}
           />
         ))}
