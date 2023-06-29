@@ -21,6 +21,10 @@ function MainWrapper({ displayMenu }: Props) {
     });
   };
 
+  const handleResetClick = () => {
+    setSelectedSticking({});
+  };
+
   console.log(selectedSticking);
 
   return (
@@ -28,7 +32,11 @@ function MainWrapper({ displayMenu }: Props) {
       <TopNavBar />
       <PlaybackControls />
       <StaffWrapper displayMenu={displayMenu} />
-      <MenuWrapper displayMenu={displayMenu} onFormChange={handleFormChange} />
+      <MenuWrapper
+        displayMenu={displayMenu}
+        onFormChange={handleFormChange}
+        onReset={handleResetClick}
+      />
     </main>
   );
 }

@@ -1,5 +1,6 @@
 interface RowInputProps {
   inputType: string;
+  // isChecked: boolean;
   labelFor: string;
 }
 

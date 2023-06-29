@@ -2,6 +2,7 @@ import RowInput from './MenuInputs/RowInput';
 
 interface RowProps {
   permutations: { [key: string]: string };
+  // selectedSticking: { [key: string]: string };
 }
 
 function RowForm({ permutations }: RowProps) {
@@ -12,6 +13,7 @@ function RowForm({ permutations }: RowProps) {
         {Object.values(permutations).map((value) => (
           <RowInput
             inputType="radio"
+            // isChecked={!Object.values(selectedSticking) && false}
             key={value + '-' + 'row'}
             labelFor={value}
           />

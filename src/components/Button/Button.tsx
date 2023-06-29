@@ -7,9 +7,9 @@ interface Props {
   onBtnClick?: () => void;
 }
 
-function Button({ idName, children }: Props) {
+function Button({ idName, children, onBtnClick }: Props) {
   return (
-    <button className="controls-button" id={idName}>
+    <button className="controls-button" id={idName} onClick={onBtnClick}>
       {children}
     </button>
   );
