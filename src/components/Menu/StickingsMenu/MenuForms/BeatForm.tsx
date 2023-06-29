@@ -1,4 +1,4 @@
-import { MenuInput } from './MenuInputs/MenuInput';
+import MenuInput from './MenuInputs/MenuInput';
 
 interface BeatProps {
   beatName: string;

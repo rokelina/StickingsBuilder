@@ -8,7 +8,7 @@ interface InputProps {
   value: string;
 }
 
-export function MenuInput({
+function MenuInput({
   children,
   beatName,
   inputType,
@@ -21,7 +21,7 @@ export function MenuInput({
     selectedStickings: { [key: string]: string },
     beatName: string,
     children: string
-  ) => {
+  ): boolean => {
     for (const [key, value] of Object.entries(selectedStickings)) {
       if (key === beatName && value === children) {
         return true;
@@ -44,3 +44,5 @@ export function MenuInput({
     </label>
   );
 }
+
+export default MenuInput;
