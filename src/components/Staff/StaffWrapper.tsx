@@ -14,7 +14,9 @@ function StaffWrapper({ displayMenu, selectedStickings }: Props) {
       {displayMenu === 'eighth-notes' && (
         <EighthNoteStaff selectedStickings={selectedStickings} />
       )}
-      {displayMenu === 'triplet-notes' && <TripletsStaff />}
+      {displayMenu === 'triplet-notes' && (
+        <TripletsStaff selectedStickings={selectedStickings} />
+      )}
       {displayMenu === 'random-stickings' && <EmptyStaff />}
     </div>
   );

@@ -1,110 +1,60 @@
 import { useEffect, useRef } from 'react';
-import { RenderContext, Stave, Vex } from 'vexflow';
+import { RenderContext, Stave, Beam, Formatter, Tuplet } from 'vexflow';
 import drawStaff from '../utils/drawStaff';
+import drawTripletNotes from '../utils/drawTriplets';
 
-function TripletsStaff() {
+interface Props {
+  selectedStickings: { [key: string]: string };
+}
+
+function TripletsStaff({ selectedStickings }: Props) {
   const notesGraphRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    if (!notesGraphRef.current?.hasChildNodes()) {
-      const { StaveNote, Beam, Formatter, Tuplet } = Vex.Flow;
-      const [vexContext, vexStave] = drawStaff(
-        notesGraphRef.current as HTMLDivElement
-      );
+    const notesGraph = notesGraphRef.current;
 
-      //   let notes1;
-      //   let notes2;
-      //   let notes3;
-      //   let notes4;
-
-      const notes1 = [
-        new StaveNote({
-          keys: ['A/4'],
-          duration: '8',
-        }),
-        new StaveNote({
-          keys: ['A/4'],
-          duration: '8',
-        }),
-        new StaveNote({
-          keys: ['A/4'],
-          duration: '8',
-        }),
-      ];
-      const notes2 = [
-        new StaveNote({
-          keys: ['A/4'],
-          duration: '8',
-        }),
-        new StaveNote({
-          keys: ['A/4'],
-          duration: '8',
-        }),
-        new StaveNote({
-          keys: ['A/4'],
-          duration: '8',
-        }),
-      ];
-      const notes3 = [
-        new StaveNote({
-          keys: ['A/4'],
-          duration: '8',
-        }),
-        new StaveNote({
-          keys: ['A/4'],
-          duration: '8',
-        }),
-        new StaveNote({
-          keys: ['A/4'],
-          duration: '8',
-        }),
-      ];
-      const notes4 = [
-        new StaveNote({
-          keys: ['A/4'],
-          duration: '8',
-        }),
-        new StaveNote({
-          keys: ['A/4'],
-          duration: '8',
-        }),
-        new StaveNote({
-          keys: ['A/4'],
-          duration: '8',
-        }),
-      ];
-      const allNotes = notes1.concat(notes2).concat(notes3).concat(notes4);
-
-      // This hides the normal stems and flags.
-      const beams = [
-        new Beam(notes1),
-        new Beam(notes2),
-        new Beam(notes3),
-        new Beam(notes4),
-      ];
-
-      const tuplets = [
-        new Tuplet(notes1),
-        new Tuplet(notes2),
-        new Tuplet(notes3),
-        new Tuplet(notes4),
-      ];
-
-      Formatter.FormatAndDraw(
-        vexContext as RenderContext,
-        vexStave as Stave,
-        allNotes
-      );
-
-      // Draw the beams and stems.
-      beams.forEach((b) => {
-        b.setContext(vexContext as RenderContext).draw();
-      });
-
-      tuplets.forEach((t) => t.setContext(vexContext as RenderContext).draw());
+    while (notesGraph?.firstChild) {
+      notesGraph.removeChild(notesGraph.firstChild);
     }
-  }, []);
+
+    const [vexContext, vexStave] = drawStaff(notesGraph as HTMLDivElement);
+
+    const notes1 = drawTripletNotes(selectedStickings, 'beat-1');
+    const notes2 = drawTripletNotes(selectedStickings, 'beat-2');
+    const notes3 = drawTripletNotes(selectedStickings, 'beat-3');
+    const notes4 = drawTripletNotes(selectedStickings, 'beat-4');
+    const allNotes = notes1.concat(notes2).concat(notes3).concat(notes4);
+
+    // This hides the normal stems and flags.
+    const beams = [
+      new Beam(notes1),
+      new Beam(notes2),
+      new Beam(notes3),
+      new Beam(notes4),
+    ];
+
+    const tuplets = [
+      new Tuplet(notes1),
+      new Tuplet(notes2),
+      new Tuplet(notes3),
+      new Tuplet(notes4),
+    ];
+
+    Formatter.FormatAndDraw(
+      vexContext as RenderContext,
+      vexStave as Stave,
+      allNotes
+    );
+
+    // Draw the beams and stems.
+    beams.forEach((b) => {
+      b.setContext(vexContext as RenderContext).draw();
+    });
+
+    tuplets.forEach((t) => t.setContext(vexContext as RenderContext).draw());
+  }, [selectedStickings]);
 
   return <div className="notes-graph" ref={notesGraphRef}></div>;
 }
+
 export default TripletsStaff;

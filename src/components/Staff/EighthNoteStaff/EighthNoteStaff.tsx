@@ -12,6 +12,7 @@ function EighthNoteStaff({ selectedStickings }: Props) {
 
   useEffect(() => {
     const notesGraph = notesGraphRef.current;
+
     while (notesGraph?.firstChild) {
       notesGraph.removeChild(notesGraph.firstChild);
     }
