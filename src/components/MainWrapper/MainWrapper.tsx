@@ -40,7 +40,10 @@ function MainWrapper({ displayMenu }: Props) {
     <main>
       <TopNavBar />
       <PlaybackControls />
-      <StaffWrapper displayMenu={displayMenu} />
+      <StaffWrapper
+        displayMenu={displayMenu}
+        selectedStickings={selectedStickings}
+      />
       <MenuWrapper
         displayMenu={displayMenu}
         onFormChange={handleFormChange}

@@ -5,12 +5,15 @@ import './Staff.css';
 
 interface Props {
   displayMenu: string;
+  selectedStickings: { [key: string]: string };
 }
 
-function StaffWrapper({ displayMenu }: Props) {
+function StaffWrapper({ displayMenu, selectedStickings }: Props) {
   return (
     <div className="staff-container">
-      {displayMenu === 'eighth-notes' && <EighthNoteStaff />}
+      {displayMenu === 'eighth-notes' && (
+        <EighthNoteStaff selectedStickings={selectedStickings} />
+      )}
       {displayMenu === 'triplet-notes' && <TripletsStaff />}
       {displayMenu === 'random-stickings' && <EmptyStaff />}
     </div>
