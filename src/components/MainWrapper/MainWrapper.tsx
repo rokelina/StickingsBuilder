@@ -3,39 +3,20 @@ import PlaybackControls from '../PlaybackControls/PlaybackControls';
 import StaffWrapper from '../Staff/StaffWrapper.tsx';
 import MenuWrapper from '../Menu/MenuWrapper.tsx';
 import './MainWrapper.css';
-import { useState } from 'react';
 
 interface Props {
   displayMenu: string;
+  onFormChange: (beatName: string, children: string) => void;
+  onReset: () => void;
+  selectedStickings: { [key: string]: string };
 }
 
-function MainWrapper({ displayMenu }: Props) {
-  const [selectedStickings, setSelectedStickings] = useState<
-    Record<string, string>
-  >({});
-
-  const handleFormChange = (beatName: string, children: string) => {
-    if (beatName === 'row') {
-      setSelectedStickings({
-        'beat-1': children,
-        'beat-2': children,
-        'beat-3': children,
-        'beat-4': children,
-      });
-      return;
-    }
-    setSelectedStickings({
-      ...selectedStickings,
-      [beatName]: children,
-    });
-  };
-
-  const handleResetClick = () => {
-    setSelectedStickings({});
-  };
-
-  console.log(selectedStickings);
-
+function MainWrapper({
+  displayMenu,
+  onFormChange,
+  onReset,
+  selectedStickings,
+}: Props) {
   return (
     <main>
       <TopNavBar />
@@ -46,9 +27,9 @@ function MainWrapper({ displayMenu }: Props) {
       />
       <MenuWrapper
         displayMenu={displayMenu}
-        onFormChange={handleFormChange}
+        onFormChange={onFormChange}
         selectedStickings={selectedStickings}
-        onReset={handleResetClick}
+        onReset={onReset}
       />
     </main>
   );
