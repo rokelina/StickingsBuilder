@@ -45,7 +45,11 @@ function StickingsMenu({
           onFormChange={onFormChange}
           selectedStickings={selectedStickings}
         />
-        <RowForm permutations={permutations} />
+        <RowForm
+          permutations={permutations}
+          onFormChange={onFormChange}
+          selectedStickings={selectedStickings}
+        />
       </div>
       <div className="menu-options">
         <Button
