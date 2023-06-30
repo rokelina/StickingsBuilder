@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { RenderContext, Stave, Vex } from 'vexflow';
+import { RenderContext, Stave, Beam, Formatter } from 'vexflow';
 import drawStaff from '../utils/drawStaff';
 import drawEighthNotes from '../utils/drawEighthNotes';
 
@@ -11,8 +11,6 @@ function EighthNoteStaff({ selectedStickings }: Props) {
   const notesGraphRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    const { Beam, Formatter } = Vex.Flow;
-
     const notesGraph = notesGraphRef.current;
     while (notesGraph?.firstChild) {
       notesGraph.removeChild(notesGraph.firstChild);

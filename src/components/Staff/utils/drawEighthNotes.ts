@@ -1,9 +1,8 @@
-import { StaveNote, Vex } from "vexflow";
+import { StaveNote } from "vexflow";
 import annotate from "./annotate";
 
 
 const drawEighthNotes = (selectedStickings: { [key:string]:string }, beatName:string): StaveNote[] => {
-  const {StaveNote} = Vex.Flow
   const objKeys = Object.keys(selectedStickings)
   const value = selectedStickings[beatName]
 
