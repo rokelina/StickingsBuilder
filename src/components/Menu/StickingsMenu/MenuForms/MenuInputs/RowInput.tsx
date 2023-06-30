@@ -11,6 +11,7 @@ function RowInput({
   onFormChange,
   selectedStickings,
 }: RowInputProps) {
+  // to match menuInput children format
   const children: string = rowName.toUpperCase();
 
   const isChecked = (
@@ -38,7 +39,7 @@ function RowInput({
         type={inputType}
         id={rowName}
         checked={isChecked(selectedStickings, children)}
-        name="rows"
+        name="row"
         onChange={() => onFormChange('row', children)}
       />
     </label>

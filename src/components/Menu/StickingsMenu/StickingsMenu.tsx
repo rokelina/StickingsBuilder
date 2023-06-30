@@ -8,6 +8,7 @@ interface MenuProps {
   onReset: () => void;
   selectedStickings: { [key: string]: string };
 }
+
 function StickingsMenu({
   permutations,
   onFormChange,
