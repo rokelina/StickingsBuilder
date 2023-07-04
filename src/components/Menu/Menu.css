@@ -1,6 +1,8 @@
 .menu {
   display: flex;
   justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .menu-container {
@@ -12,34 +14,13 @@
 .menu-card {
   display: flex;
   flex-direction: column;
-  border: 1px solid #333;
-  border-radius: 20px;
-  padding: 0.5rem 1rem;
+  width: fit-content;
   min-width: 40vw;
+  padding: 1rem 1rem;
 }
 
 .sticking, .select-row {
   padding: 0.5rem 0.3rem;
-}
-
-.menu {
-  display: flex;
-  justify-content: center;
-}
-
-.menu-container {
-  display: flex;
-  justify-content: space-between;
-  padding: 1rem 0.5rem 0.5rem 0.5rem;
-}
-
-.menu-card {
-  display: flex;
-  flex-direction: column;
-  border: 1px solid #333;
-  border-radius: 20px;
-  padding: 0.5rem 1rem;
-  min-width: 40vw;
 }
 
 .stickings,
