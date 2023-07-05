@@ -1,7 +1,8 @@
-import StickingsMenu from './StickingsMenu/StickingsMenu.tsx';
+import EighthNotesMenu from './EighthNotesMenu.tsx';
 import RandomMenu from './RandomMenu/RandomMenu.tsx';
-import { eightNotesPermutations, tripletPermutations } from './permutations.ts';
+import TripletNotesMenu from './TripletNotesMenu.tsx';
 import './Menu.css';
+import '../Staff/Staff.css';
 
 interface Props {
   displayMenu: string;
@@ -19,16 +20,14 @@ function MenuWrapper({
   return (
     <div className="menu">
       {displayMenu === 'eighth-notes' && (
-        <StickingsMenu
-          permutations={eightNotesPermutations}
+        <EighthNotesMenu
           onFormChange={onFormChange}
           onReset={onReset}
           selectedStickings={selectedStickings}
         />
       )}
       {displayMenu === 'triplet-notes' && (
-        <StickingsMenu
-          permutations={tripletPermutations}
+        <TripletNotesMenu
           onFormChange={onFormChange}
           onReset={onReset}
           selectedStickings={selectedStickings}

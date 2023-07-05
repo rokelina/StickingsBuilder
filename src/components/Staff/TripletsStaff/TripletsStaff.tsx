@@ -54,7 +54,7 @@ function TripletsStaff({ selectedStickings }: Props) {
     tuplets.forEach((t) => t.setContext(vexContext as RenderContext).draw());
   }, [selectedStickings]);
 
-  return <div className="notes-graph" ref={notesGraphRef}></div>;
+  return <div className="staff-container" ref={notesGraphRef}></div>;
 }
 
 export default TripletsStaff;
