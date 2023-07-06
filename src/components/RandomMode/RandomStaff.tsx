@@ -23,9 +23,8 @@ function RandomStaff({ generatedStickings }: Props) {
     const notes2 = drawNotes(generatedStickings, 'beat-2');
     const notes3 = drawNotes(generatedStickings, 'beat-3');
     const notes4 = drawNotes(generatedStickings, 'beat-4');
-    const allNotes = notes1.concat(notes2).concat(notes3).concat(notes4);
+    const allNotes = [...notes1, ...notes2, ...notes3, ...notes4];
 
-    // This hides the normal stems and flags.
     const beams = [
       new Beam(notes1),
       new Beam(notes2),
@@ -33,16 +32,24 @@ function RandomStaff({ generatedStickings }: Props) {
       new Beam(notes4),
     ];
 
+    const allBeats = [notes1, notes2, notes3, notes4];
+    const tuplets: Tuplet[] = allBeats
+      .filter((notesArray) => notesArray.length === 3)
+      .map((notesArray) => new Tuplet(notesArray));
+
     Formatter.FormatAndDraw(
       vexContext as RenderContext,
       vexStave as Stave,
       allNotes
     );
 
-    // Draw the beams and stems.
     beams.forEach((b) => {
       b.setContext(vexContext as RenderContext).draw();
     });
+
+    if (tuplets.length) {
+      tuplets.forEach((t) => t.setContext(vexContext as RenderContext).draw());
+    }
   }, [generatedStickings]);
 
   return <div className="staff-container" ref={notesGraphRef}></div>;
