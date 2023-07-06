@@ -14,10 +14,10 @@ const generateStickings = (selectedOption: string) => {
 
   const generateOutput = (arr: string[]): { [key: string]: string } => {
     return {
-      'beat-1': arr[randomIndex(arr)],
-      'beat-2': arr[randomIndex(arr)],
-      'beat-3': arr[randomIndex(arr)],
-      'beat-4': arr[randomIndex(arr)],
+      'beat-1': arr[randomIndex(arr)].toUpperCase(),
+      'beat-2': arr[randomIndex(arr)].toUpperCase(),
+      'beat-3': arr[randomIndex(arr)].toUpperCase(),
+      'beat-4': arr[randomIndex(arr)].toUpperCase(),
     };
   };
 
