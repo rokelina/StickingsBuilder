@@ -1,13 +1,12 @@
 import { useState } from 'react';
 import MainWrapper from './components/MainWrapper/MainWrapper';
 import SideNavBar from './components/SideNavBar/SideNavBar';
-import './App.css';
 
 function App() {
   const [showMenu, setShowMenu] = useState('eighth-notes');
-  const [selectedStickings, setSelectedStickings] = useState<
-    Record<string, string>
-  >({});
+  const [selectedStickings, setSelectedStickings] = useState<{
+    [key: string]: string;
+  }>({});
 
   const handleNavClick = (id: string): void => {
     setShowMenu(id);

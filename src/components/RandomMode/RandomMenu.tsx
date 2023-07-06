@@ -1,27 +1,48 @@
+import { useState } from 'react';
 import Button from '../Button/Button';
 import EmptyStaff from '../Staff/EmptyStaff/EmptyStaff';
+import Options from './Options';
+import RandomStaff from './RandomStaff';
+import generateStickings from './utils/generateStickings';
 import './RandomMenu.css';
 
 function RandomMenu() {
+  const [selectedOption, setSelectedOption] = useState('');
+  const [generatedStickings, setGeneratedStickings] = useState<{
+    [key: string]: string;
+  }>({});
+  const [isEmpty, setIsEmpty] = useState(true);
+
+  const handleOptionsChange = (id: string): void => {
+    setSelectedOption(id);
+  };
+
+  const handleGenerateStickings = (selectedOption: string): void => {
+    const generated = generateStickings(selectedOption);
+    setGeneratedStickings(generated);
+    setIsEmpty(false);
+  };
+
+  console.log(generatedStickings);
+  console.log(isEmpty);
+
   return (
     <>
-      <EmptyStaff />
+      {isEmpty ? (
+        <EmptyStaff />
+      ) : (
+        <RandomStaff generatedStickings={generatedStickings} />
+      )}
       <div className="random-menu">
-        <div className="random-options">
-          <label htmlFor="combinations">
-            <input type="radio" id="combinations" name="options" />
-            Combinations
-          </label>
-          <label htmlFor="eighths">
-            <input type="radio" id="eighths" name="options" />
-            Eighth Notes
-          </label>
-          <label htmlFor="triplets">
-            <input type="radio" id="triplets" name="options" />
-            Triplets
-          </label>
-        </div>
-        <Button idName="generate-button" children="Generate" />
+        <Options
+          selectedOption={selectedOption}
+          onOptionsChange={handleOptionsChange}
+        />
+        <Button
+          idName="generate-button"
+          children="Generate"
+          onBtnClick={() => handleGenerateStickings(selectedOption)}
+        />
       </div>
     </>
   );
