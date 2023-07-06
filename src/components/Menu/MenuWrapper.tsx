@@ -1,5 +1,5 @@
 import EighthNotesMenu from './EighthNotesMenu.tsx';
-import RandomMenu from './RandomMenu/RandomMenu.tsx';
+import RandomMenu from '../RandomMode/RandomMenu.tsx';
 import TripletNotesMenu from './TripletNotesMenu.tsx';
 import './Menu.css';
 import '../Staff/Staff.css';
