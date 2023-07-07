@@ -38,11 +38,14 @@ function RandomMenu() {
           selectedOption={selectedOption}
           onOptionsChange={handleOptionsChange}
         />
-        <Button
-          idName="generate-button"
-          children="Generate"
-          onBtnClick={() => handleGenerateStickings(selectedOption)}
-        />
+        <div className="random-controls">
+          <Button
+            idName="generate-button"
+            children="Generate"
+            onBtnClick={() => handleGenerateStickings(selectedOption)}
+          />
+          <Button idName="save-button" children="Save" />
+        </div>
       </div>
     </>
   );
