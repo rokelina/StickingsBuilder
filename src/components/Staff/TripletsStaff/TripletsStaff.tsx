@@ -23,7 +23,7 @@ function TripletsStaff({ selectedStickings }: Props) {
     const notes2 = drawTripletNotes(selectedStickings, 'beat-2');
     const notes3 = drawTripletNotes(selectedStickings, 'beat-3');
     const notes4 = drawTripletNotes(selectedStickings, 'beat-4');
-    const allNotes = notes1.concat(notes2).concat(notes3).concat(notes4);
+    const allNotes = [...notes1, ...notes2, ...notes3, ...notes4];
 
     // This hides the normal stems and flags.
     const beams = [
@@ -46,7 +46,6 @@ function TripletsStaff({ selectedStickings }: Props) {
       allNotes
     );
 
-    // Draw the beams and stems.
     beams.forEach((b) => {
       b.setContext(vexContext as RenderContext).draw();
     });

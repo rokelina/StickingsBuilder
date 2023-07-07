@@ -23,7 +23,7 @@ function EighthNoteStaff({ selectedStickings }: Props) {
     const notes2 = drawEighthNotes(selectedStickings, 'beat-2');
     const notes3 = drawEighthNotes(selectedStickings, 'beat-3');
     const notes4 = drawEighthNotes(selectedStickings, 'beat-4');
-    const allNotes = notes1.concat(notes2).concat(notes3).concat(notes4);
+    const allNotes = [...notes1, ...notes2, ...notes3, ...notes4];
 
     // This hides the normal stems and flags.
     const beams = [
