@@ -1,5 +1,11 @@
-.controls{
-    display: flex;
-    justify-content: center;
-    margin-top: 4rem;
+.playback-controls{
+  display: flex;
+  justify-content: center;
+  margin-top: 4rem;
+}
+
+.sound-controls{
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
 }
