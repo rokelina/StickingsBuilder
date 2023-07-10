@@ -1,21 +1,23 @@
 import { ReactNode } from 'react';
 
 interface Props {
+  children: string;
   icon: ReactNode;
-  wrapperName: string;
   inputName: string;
   minValue: number;
-  spanText: string;
-  defaultCount?: number;
+  onValueChange: (value: string) => void;
+  value: string;
+  wrapperName: string;
 }
 
 function NumberInput({
   icon,
-  wrapperName,
   inputName,
   minValue,
-  spanText,
-  defaultCount,
+  onValueChange,
+  children,
+  value,
+  wrapperName,
 }: Props) {
   return (
     <div className={wrapperName}>
@@ -25,9 +27,10 @@ function NumberInput({
         name={inputName}
         min={minValue}
         className={inputName}
-        defaultValue={defaultCount}
+        onChange={(e) => onValueChange(e.target.value)}
+        value={value}
       />
-      <span className={inputName}>{spanText}</span>
+      <span className={inputName}>{children}</span>
     </div>
   );
 }

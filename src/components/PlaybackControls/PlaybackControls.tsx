@@ -1,7 +1,15 @@
 import Button from '../Button/Button';
 import './PlaybackControls.css';
 
-function PlaybackControls() {
+interface Props {
+  bpmValue: string;
+  repeatValue: string;
+}
+
+function PlaybackControls({ bpmValue, repeatValue }: Props) {
+  const bpm = +bpmValue;
+  const repeats = +repeatValue;
+
   return (
     <>
       <div className="playback-controls">
