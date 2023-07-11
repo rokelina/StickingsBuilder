@@ -1,9 +1,11 @@
 import Button from '../Button/Button';
+import * as Tone from 'tone';
 import './PlaybackControls.css';
 
 interface Props {
   bpmValue: string;
   repeatValue: string;
+  selectedStickings: { [key: string]: string };
 }
 
 function PlaybackControls({ bpmValue, repeatValue }: Props) {

@@ -36,7 +36,11 @@ function MainWrapper({
         onBpmChange={handleBpmChange}
         onRepeatChange={handleRepeatChange}
       />
-      <PlaybackControls bpmValue={bpm} repeatValue={repeats} />
+      <PlaybackControls
+        bpmValue={bpm}
+        repeatValue={repeats}
+        selectedStickings={selectedStickings}
+      />
       <MenuWrapper
         displayMenu={displayMenu}
         onFormChange={onFormChange}

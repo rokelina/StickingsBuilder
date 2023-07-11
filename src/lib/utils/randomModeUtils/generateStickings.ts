@@ -1,7 +1,4 @@
-import {
-  eightNotesPermutations,
-  tripletPermutations,
-} from '../../Menu/permutations';
+import { eightNotesPermutations, tripletPermutations } from '../permutations';
 
 const generateStickings = (selectedOption: string) => {
   const eighths = Object.values(eightNotesPermutations);

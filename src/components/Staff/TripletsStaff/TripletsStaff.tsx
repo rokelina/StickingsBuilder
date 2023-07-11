@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { RenderContext, Stave, Beam, Formatter, Tuplet } from 'vexflow';
-import drawStaff from '../utils/drawStaff';
-import drawTripletNotes from '../utils/drawTriplets';
+import drawStaff from '../../../lib/utils/staffUtils/drawStaff';
+import drawTripletNotes from '../../../lib/utils/staffUtils/drawTriplets';
 
 interface Props {
   selectedStickings: { [key: string]: string };

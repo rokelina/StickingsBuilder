@@ -1,6 +1,6 @@
 import StickingsMenu from './StickingsMenu/StickingsMenu';
 import TripletsStaff from '../Staff/TripletsStaff/TripletsStaff';
-import { tripletPermutations } from './permutations';
+import { tripletPermutations } from '../../lib/utils/permutations';
 
 interface Props {
   onFormChange: (beatName: string, children: string) => void;

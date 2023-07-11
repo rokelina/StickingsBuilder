@@ -3,7 +3,7 @@ import Button from '../Button/Button';
 import EmptyStaff from '../Staff/EmptyStaff/EmptyStaff';
 import Options from './Options';
 import RandomStaff from './RandomStaff';
-import generateStickings from './utils/generateStickings';
+import generateStickings from '../../lib/utils/randomModeUtils/generateStickings';
 import './RandomMenu.css';
 
 function RandomMenu() {

@@ -1,6 +1,6 @@
 import StickingsMenu from './StickingsMenu/StickingsMenu';
 import EighthNoteStaff from '../Staff/EighthNoteStaff/EighthNoteStaff';
-import { eightNotesPermutations } from './permutations';
+import { eightNotesPermutations } from '../../lib/utils/permutations';
 
 interface Props {
   onFormChange: (beatName: string, children: string) => void;

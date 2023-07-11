@@ -1,22 +1,23 @@
 import { StaveNote } from 'vexflow';
-import annotate from '../../Staff/utils/annotate';
+import annotate from './annotate';
 
-const drawNotes = (
-  generatedStickings: { [key: string]: string },
+const drawEighthNotes = (
+  selectedStickings: { [key: string]: string },
   beatName: string
 ): StaveNote[] => {
-  const value = generatedStickings[beatName];
+  const objKeys = Object.keys(selectedStickings);
+  const value = selectedStickings[beatName];
 
-  if (value.length === 2) {
+  if (!objKeys.includes(beatName) || value.length !== 2) {
     return [
       new StaveNote({
         keys: ['A/4'],
         duration: '8',
-      }).addModifier(annotate(value[0])),
+      }),
       new StaveNote({
         keys: ['A/4'],
         duration: '8',
-      }).addModifier(annotate(value[1])),
+      }),
     ];
   } else {
     return [
@@ -28,12 +29,8 @@ const drawNotes = (
         keys: ['A/4'],
         duration: '8',
       }).addModifier(annotate(value[1])),
-      new StaveNote({
-        keys: ['A/4'],
-        duration: '8',
-      }).addModifier(annotate(value[2])),
     ];
   }
 };
 
-export default drawNotes;
+export default drawEighthNotes;
