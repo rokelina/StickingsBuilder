@@ -7,42 +7,45 @@ import generateStickings from '../../lib/utils/randomModeUtils/generateStickings
 import './RandomMenu.css';
 
 function RandomMenu() {
-  const [selectedOption, setSelectedOption] = useState('');
+  const [selectedRandomOption, setSelectedRandomOption] = useState('');
   const [generatedStickings, setGeneratedStickings] = useState<{
     [key: string]: string;
   }>({});
-  const [isEmpty, setIsEmpty] = useState(true);
 
-  const handleOptionsChange = (id: string): void => {
-    setSelectedOption(id);
+  const handleRandomOptionsChange = (id: string): void => {
+    setSelectedRandomOption(id);
   };
 
   const handleGenerateStickings = (selectedOption: string): void => {
+    if (!selectedOption.length) {
+      alert('Select one option: Combinations, Eighth Notes or Triplet Notes');
+      return;
+    }
     const generated = generateStickings(selectedOption);
     setGeneratedStickings(generated);
-    setIsEmpty(false);
   };
 
-  console.log(generatedStickings);
-  console.log(isEmpty);
+  const isEmpty = (): boolean => {
+    return Object.keys(generatedStickings).length === 0;
+  };
 
   return (
     <>
-      {isEmpty ? (
+      {isEmpty() ? (
         <EmptyStaff />
       ) : (
         <RandomStaff generatedStickings={generatedStickings} />
       )}
       <div className="random-menu">
         <Options
-          selectedOption={selectedOption}
-          onOptionsChange={handleOptionsChange}
+          selectedOption={selectedRandomOption}
+          onOptionsChange={handleRandomOptionsChange}
         />
         <div className="random-controls">
           <Button
             idName="generate-button"
             children="Generate"
-            onBtnClick={() => handleGenerateStickings(selectedOption)}
+            onBtnClick={() => handleGenerateStickings(selectedRandomOption)}
           />
           <Button idName="save-button" children="Save" />
         </div>
