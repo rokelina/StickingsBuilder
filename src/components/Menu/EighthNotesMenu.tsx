@@ -21,4 +21,5 @@ function EighthNotesMenu({ onFormChange, onReset, selectedStickings }: Props) {
     </>
   );
 }
+
 export default EighthNotesMenu;
