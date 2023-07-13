@@ -8,17 +8,6 @@ interface Props {
 }
 
 function MainWrapper({ displayMenu }: Props) {
-  // const [bpm, setBpm] = useState('90');
-  // const [repeats, setRepeats] = useState('4');
-
-  // const handleBpmChange = (numberInput: string): void => {
-  //   setBpm(numberInput);
-  // };
-
-  // const handleRepeatChange = (numberInput: string): void => {
-  //   setRepeats(numberInput);
-  // };
-
   return (
     <main>
       {displayMenu === 'eighth-notes' && <EighthNotesMenu />}

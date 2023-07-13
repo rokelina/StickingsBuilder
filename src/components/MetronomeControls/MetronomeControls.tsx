@@ -1,6 +1,6 @@
 import Button from '../Button/Button';
 import * as Tone from 'tone';
-import './PlaybackControls.css';
+import './MetronomeControls.css';
 
 interface Props {
   bpmValue: string;
@@ -8,7 +8,7 @@ interface Props {
   selectedStickings: { [key: string]: string };
 }
 
-function PlaybackControls({ bpmValue, repeatValue }: Props) {
+function MetronomeControls({ bpmValue, repeatValue }: Props) {
   const bpm = +bpmValue;
   const repeats = +repeatValue;
 
@@ -36,4 +36,4 @@ function PlaybackControls({ bpmValue, repeatValue }: Props) {
     </>
   );
 }
-export default PlaybackControls;
+export default MetronomeControls;

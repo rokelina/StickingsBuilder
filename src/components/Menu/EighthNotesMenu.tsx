@@ -1,5 +1,6 @@
 import StickingsMenu from './StickingsMenu/StickingsMenu';
 import EighthNoteStaff from '../Staff/EighthNoteStaff/EighthNoteStaff';
+import MetronomeWrapper from '../MetronomeWrapper/MetronomeWrapper';
 import { eightNotesPermutations } from '../../lib/utils/permutations';
 import { useState } from 'react';
 import './Menu.css';
@@ -38,15 +39,18 @@ function EighthNotesMenu() {
   console.log(selectedStickings);
 
   return (
-    <div className="menu">
-      <EighthNoteStaff selectedStickings={selectedStickings} />
-      <StickingsMenu
-        permutations={eightNotesPermutations}
-        onFormChange={handleFormChange}
-        onReset={handleResetClick}
-        selectedStickings={selectedStickings}
-      />
-    </div>
+    <>
+      <MetronomeWrapper selectedStickings={selectedStickings} />
+      <div className="menu">
+        <EighthNoteStaff selectedStickings={selectedStickings} />
+        <StickingsMenu
+          permutations={eightNotesPermutations}
+          onFormChange={handleFormChange}
+          onReset={handleResetClick}
+          selectedStickings={selectedStickings}
+        />
+      </div>
+    </>
   );
 }
 

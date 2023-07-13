@@ -1,7 +1,7 @@
 import NumberInput from './NumberInput/NumberInput';
-import './TopNavBar.css';
 import MetronomeIcon from '../../assets/icons/MetronomeIcon';
 import RepeatIcon from '../../assets/icons/RepeatIcon';
+import './MetronomeOptions.css';
 
 interface Props {
   onBpmChange: (value: string) => void;
@@ -9,7 +9,7 @@ interface Props {
   bpmValue: string;
   repeatValue: string;
 }
-function TopNavBar({
+function MetronomeOptions({
   onBpmChange,
   onRepeatChange,
   bpmValue,
@@ -39,4 +39,4 @@ function TopNavBar({
   );
 }
 
-export default TopNavBar;
+export default MetronomeOptions;

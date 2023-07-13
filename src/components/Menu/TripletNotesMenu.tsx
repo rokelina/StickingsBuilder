@@ -1,5 +1,6 @@
 import StickingsMenu from './StickingsMenu/StickingsMenu';
 import TripletsStaff from '../Staff/TripletsStaff/TripletsStaff';
+import MetronomeWrapper from '../MetronomeWrapper/MetronomeWrapper';
 import { tripletPermutations } from '../../lib/utils/permutations';
 import { useState } from 'react';
 import './Menu.css';
@@ -37,15 +38,18 @@ function TripletNotesMenu() {
 
   console.log(selectedStickings);
   return (
-    <div className="menu">
-      <TripletsStaff selectedStickings={selectedStickings} />
-      <StickingsMenu
-        permutations={tripletPermutations}
-        onFormChange={handleFormChange}
-        onReset={handleResetClick}
-        selectedStickings={selectedStickings}
-      />
-    </div>
+    <>
+      <MetronomeWrapper selectedStickings={selectedStickings} />
+      <div className="menu">
+        <TripletsStaff selectedStickings={selectedStickings} />
+        <StickingsMenu
+          permutations={tripletPermutations}
+          onFormChange={handleFormChange}
+          onReset={handleResetClick}
+          selectedStickings={selectedStickings}
+        />
+      </div>
+    </>
   );
 }
 

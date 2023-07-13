@@ -4,7 +4,8 @@ import EmptyStaff from '../Staff/EmptyStaff/EmptyStaff';
 import Options from './Options';
 import RandomStaff from './RandomStaff';
 import generateStickings from '../../lib/utils/randomModeUtils/generateStickings';
-import './Menu.css';
+import MetronomeWrapper from '../MetronomeWrapper/MetronomeWrapper';
+import '../Menu/Menu.css';
 import './RandomMenu.css';
 
 function RandomMenu() {
@@ -31,27 +32,30 @@ function RandomMenu() {
   };
 
   return (
-    <div className="menu">
-      {isEmpty() ? (
-        <EmptyStaff />
-      ) : (
-        <RandomStaff generatedStickings={generatedStickings} />
-      )}
-      <div className="random-menu">
-        <Options
-          selectedOption={selectedRandomOption}
-          onOptionsChange={handleRandomOptionsChange}
-        />
-        <div className="random-controls">
-          <Button
-            idName="generate-button"
-            children="Generate"
-            onBtnClick={() => handleGenerateStickings(selectedRandomOption)}
+    <>
+      <MetronomeWrapper selectedStickings={generatedStickings} />
+      <div className="menu">
+        {isEmpty() ? (
+          <EmptyStaff />
+        ) : (
+          <RandomStaff generatedStickings={generatedStickings} />
+        )}
+        <div className="random-menu">
+          <Options
+            selectedOption={selectedRandomOption}
+            onOptionsChange={handleRandomOptionsChange}
           />
-          <Button idName="save-button" children="Save" />
+          <div className="random-controls">
+            <Button
+              idName="generate-button"
+              children="Generate"
+              onBtnClick={() => handleGenerateStickings(selectedRandomOption)}
+            />
+            <Button idName="save-button" children="Save" />
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 export default RandomMenu;
