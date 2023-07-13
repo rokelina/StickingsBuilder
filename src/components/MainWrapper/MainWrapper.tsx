@@ -1,20 +1,13 @@
-import MenuWrapper from '../Menu/MenuWrapper.tsx';
+import EighthNotesMenu from '../Menu/EighthNotesMenu';
+import TripletNotesMenu from '../Menu/TripletNotesMenu';
+import RandomMenu from '../RandomMode/RandomMenu';
 import './MainWrapper.css';
-import { useState } from 'react';
 
 interface Props {
   displayMenu: string;
-  onFormChange: (beatName: string, children: string) => void;
-  onReset: () => void;
-  selectedStickings: { [key: string]: string };
 }
 
-function MainWrapper({
-  displayMenu,
-  onFormChange,
-  onReset,
-  selectedStickings,
-}: Props) {
+function MainWrapper({ displayMenu }: Props) {
   // const [bpm, setBpm] = useState('90');
   // const [repeats, setRepeats] = useState('4');
 
@@ -28,12 +21,9 @@ function MainWrapper({
 
   return (
     <main>
-      <MenuWrapper
-        displayMenu={displayMenu}
-        onFormChange={onFormChange}
-        selectedStickings={selectedStickings}
-        onReset={onReset}
-      />
+      {displayMenu === 'eighth-notes' && <EighthNotesMenu />}
+      {displayMenu === 'triplet-notes' && <TripletNotesMenu />}
+      {displayMenu === 'random-stickings' && <RandomMenu />}
     </main>
   );
 }

@@ -4,6 +4,7 @@ import EmptyStaff from '../Staff/EmptyStaff/EmptyStaff';
 import Options from './Options';
 import RandomStaff from './RandomStaff';
 import generateStickings from '../../lib/utils/randomModeUtils/generateStickings';
+import './Menu.css';
 import './RandomMenu.css';
 
 function RandomMenu() {
@@ -30,7 +31,7 @@ function RandomMenu() {
   };
 
   return (
-    <>
+    <div className="menu">
       {isEmpty() ? (
         <EmptyStaff />
       ) : (
@@ -50,7 +51,7 @@ function RandomMenu() {
           <Button idName="save-button" children="Save" />
         </div>
       </div>
-    </>
+    </div>
   );
 }
 export default RandomMenu;
