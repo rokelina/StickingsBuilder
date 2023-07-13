@@ -5,12 +5,6 @@ import { eightNotesPermutations } from '../../lib/utils/permutations';
 import { useState } from 'react';
 import './Menu.css';
 
-// interface Props {
-//   onFormChange: (beatName: string, children: string) => void;
-//   onReset: () => void;
-//   selectedStickings: { [key: string]: string };
-// }
-
 function EighthNotesMenu() {
   const [selectedStickings, setSelectedStickings] = useState<{
     [key: string]: string;
