@@ -1,6 +1,7 @@
 import Button from '../Button/Button';
+import * as Tone from 'tone';
 import './MetronomeControls.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 interface Props {
   bpmValue: string;
@@ -13,6 +14,28 @@ function MetronomeControls({ bpmValue, repeatValue }: Props) {
 
   const bpm = +bpmValue;
   const repeats = +repeatValue;
+
+  useEffect(() => {
+    const osc = new Tone.Oscillator().toDestination();
+    const transport = Tone.Transport;
+    transport.bpm.value = bpm;
+
+    const startMetronome = (): void => {
+      Tone.Transport.scheduleRepeat((time) => {
+        osc.start(time).stop(time + 0.05);
+      }, '4n');
+      Tone.Transport.start();
+    };
+
+    const stopMetronome = (): void => {
+      osc.stop();
+      transport.stop();
+    };
+
+    isPlaying ? startMetronome() : stopMetronome();
+
+    return stopMetronome;
+  }, [isPlaying, bpm]);
 
   return (
     <>
