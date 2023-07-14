@@ -1,6 +1,6 @@
 import Button from '../Button/Button';
-import * as Tone from 'tone';
 import './MetronomeControls.css';
+import { useState } from 'react';
 
 interface Props {
   bpmValue: string;
@@ -9,15 +9,25 @@ interface Props {
 }
 
 function MetronomeControls({ bpmValue, repeatValue }: Props) {
+  const [isPlaying, setIsPlaying] = useState(false);
+
   const bpm = +bpmValue;
   const repeats = +repeatValue;
 
   return (
     <>
       <div className="playback-controls">
-        <Button idName="Play" children="▶ Play" />
+        <Button
+          idName="Play"
+          children="▶ Play"
+          onBtnClick={() => setIsPlaying(true)}
+        />
         <Button idName="Pause" children="⏸ Pause" />
-        <Button idName="Stop" children="⏹ Stop" />
+        <Button
+          idName="Stop"
+          children="⏹ Stop"
+          onBtnClick={() => setIsPlaying(false)}
+        />
       </div>
       <div className="sound-controls">
         <label htmlFor="metronome-sound">
