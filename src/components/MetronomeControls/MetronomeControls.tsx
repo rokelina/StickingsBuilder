@@ -18,13 +18,14 @@ function MetronomeControls({ bpmValue, repeatValue }: Props) {
     <>
       <div className="playback-controls">
         <Button
-          idName="Play"
-          children="▶ Play"
-          onBtnClick={() => setIsPlaying(true)}
+          idName="play-pause"
+          children={isPlaying ? '⏸ Pause' : '▶ Play'}
+          onBtnClick={() =>
+            isPlaying ? setIsPlaying(false) : setIsPlaying(true)
+          }
         />
-        <Button idName="Pause" children="⏸ Pause" />
         <Button
-          idName="Stop"
+          idName="stop"
           children="⏹ Stop"
           onBtnClick={() => setIsPlaying(false)}
         />

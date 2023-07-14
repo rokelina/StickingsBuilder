@@ -9,6 +9,7 @@ interface Props {
   bpmValue: string;
   repeatValue: string;
 }
+
 function MetronomeOptions({
   onBpmChange,
   onRepeatChange,
