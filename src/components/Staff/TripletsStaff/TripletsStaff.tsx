@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { RenderContext, Stave, Beam, Formatter, Tuplet } from 'vexflow';
+import { RenderContext, Stave, Formatter, Tuplet } from 'vexflow';
 import drawStaff from '../../../lib/utils/staffUtils/drawStaff';
 import drawTripletNotes from '../../../lib/utils/staffUtils/drawTriplets';
 
@@ -12,11 +12,6 @@ function TripletsStaff({ selectedStickings }: Props) {
 
   useEffect(() => {
     const notesGraph = notesGraphRef.current;
-
-    while (notesGraph?.firstChild) {
-      notesGraph.removeChild(notesGraph.firstChild);
-    }
-
     const [vexContext, vexStave] = drawStaff(notesGraph as HTMLDivElement);
 
     const notes1 = drawTripletNotes(selectedStickings, 'beat-1');
@@ -24,14 +19,6 @@ function TripletsStaff({ selectedStickings }: Props) {
     const notes3 = drawTripletNotes(selectedStickings, 'beat-3');
     const notes4 = drawTripletNotes(selectedStickings, 'beat-4');
     const allNotes = [...notes1, ...notes2, ...notes3, ...notes4];
-
-    // This hides the normal stems and flags.
-    const beams = [
-      new Beam(notes1),
-      new Beam(notes2),
-      new Beam(notes3),
-      new Beam(notes4),
-    ];
 
     const tuplets = [
       new Tuplet(notes1),
@@ -43,14 +30,18 @@ function TripletsStaff({ selectedStickings }: Props) {
     Formatter.FormatAndDraw(
       vexContext as RenderContext,
       vexStave as Stave,
-      allNotes
+      allNotes,
+      { auto_beam: true }
     );
 
-    beams.forEach((b) => {
-      b.setContext(vexContext as RenderContext).draw();
-    });
-
     tuplets.forEach((t) => t.setContext(vexContext as RenderContext).draw());
+
+    const cleanup = () => {
+      while (notesGraph?.firstChild) {
+        notesGraph.removeChild(notesGraph.firstChild);
+      }
+    };
+    return cleanup;
   }, [selectedStickings]);
 
   return <div className="staff-container" ref={notesGraphRef}></div>;

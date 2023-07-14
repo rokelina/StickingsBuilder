@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { RenderContext, Stave, Beam, Formatter } from 'vexflow';
+import { RenderContext, Stave, Formatter } from 'vexflow';
 import drawStaff from '../../../lib/utils/staffUtils/drawStaff';
 import drawEighthNotes from '../../../lib/utils/staffUtils/drawEighthNotes';
 
@@ -13,10 +13,6 @@ function EighthNoteStaff({ selectedStickings }: Props) {
   useEffect(() => {
     const notesGraph = notesGraphRef.current;
 
-    while (notesGraph?.firstChild) {
-      notesGraph.removeChild(notesGraph.firstChild);
-    }
-
     const [vexContext, vexStave] = drawStaff(notesGraph as HTMLDivElement);
 
     const notes1 = drawEighthNotes(selectedStickings, 'beat-1');
@@ -25,24 +21,19 @@ function EighthNoteStaff({ selectedStickings }: Props) {
     const notes4 = drawEighthNotes(selectedStickings, 'beat-4');
     const allNotes = [...notes1, ...notes2, ...notes3, ...notes4];
 
-    // This hides the normal stems and flags.
-    const beams = [
-      new Beam(notes1),
-      new Beam(notes2),
-      new Beam(notes3),
-      new Beam(notes4),
-    ];
-
     Formatter.FormatAndDraw(
       vexContext as RenderContext,
       vexStave as Stave,
-      allNotes
+      allNotes,
+      { auto_beam: true }
     );
 
-    // Draw the beams and stems.
-    beams.forEach((b) => {
-      b.setContext(vexContext as RenderContext).draw();
-    });
+    const cleanup = () => {
+      while (notesGraph?.firstChild) {
+        notesGraph.removeChild(notesGraph.firstChild);
+      }
+    };
+    return cleanup;
   }, [selectedStickings]);
 
   return <div className="staff-container" ref={notesGraphRef}></div>;

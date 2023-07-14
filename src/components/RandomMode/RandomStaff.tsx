@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { RenderContext, Stave, Beam, Tuplet, Formatter } from 'vexflow';
+import { RenderContext, Stave, Tuplet, Formatter } from 'vexflow';
 import drawStaff from '../../lib/utils/staffUtils/drawStaff';
 import drawNotes from '../../lib/utils/randomModeUtils/drawNotes';
 
@@ -12,11 +12,6 @@ function RandomStaff({ generatedStickings }: Props) {
 
   useEffect(() => {
     const notesGraph = notesGraphRef.current;
-
-    while (notesGraph?.firstChild) {
-      notesGraph.removeChild(notesGraph.firstChild);
-    }
-
     const [vexContext, vexStave] = drawStaff(notesGraph as HTMLDivElement);
 
     const notes1 = drawNotes(generatedStickings, 'beat-1');
@@ -24,13 +19,6 @@ function RandomStaff({ generatedStickings }: Props) {
     const notes3 = drawNotes(generatedStickings, 'beat-3');
     const notes4 = drawNotes(generatedStickings, 'beat-4');
     const allNotes = [...notes1, ...notes2, ...notes3, ...notes4];
-
-    const beams = [
-      new Beam(notes1),
-      new Beam(notes2),
-      new Beam(notes3),
-      new Beam(notes4),
-    ];
 
     const allBeats = [notes1, notes2, notes3, notes4];
     const tuplets: Tuplet[] = allBeats
@@ -40,16 +28,20 @@ function RandomStaff({ generatedStickings }: Props) {
     Formatter.FormatAndDraw(
       vexContext as RenderContext,
       vexStave as Stave,
-      allNotes
+      allNotes,
+      { auto_beam: true }
     );
-
-    beams.forEach((b) => {
-      b.setContext(vexContext as RenderContext).draw();
-    });
 
     if (tuplets.length) {
       tuplets.forEach((t) => t.setContext(vexContext as RenderContext).draw());
     }
+
+    const cleanup = () => {
+      while (notesGraph?.firstChild) {
+        notesGraph.removeChild(notesGraph.firstChild);
+      }
+    };
+    return cleanup;
   }, [generatedStickings]);
 
   return <div className="staff-container" ref={notesGraphRef}></div>;
