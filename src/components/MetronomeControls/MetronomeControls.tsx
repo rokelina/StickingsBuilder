@@ -11,7 +11,8 @@ interface Props {
 
 function MetronomeControls({ bpmValue }: Props) {
   const [isPlaying, setIsPlaying] = useState(false);
-
+  const [isMetronomeEnabled, setMetronomeEnabled] = useState(true);
+  const [isSnareEnabled, setSnareEnabled] = useState(true);
   const bpm = +bpmValue;
 
   useEffect(() => {
@@ -24,7 +25,7 @@ function MetronomeControls({ bpmValue }: Props) {
     transport.bpm.value = bpm;
 
     const startMetronome = (): void => {
-      Tone.Transport.scheduleRepeat((time) => {
+      transport.scheduleRepeat((time) => {
         if (beat_count === 0) {
           click1.start(time).stop(time + 0.05);
           beat_count++;
@@ -36,7 +37,7 @@ function MetronomeControls({ bpmValue }: Props) {
           beat_count++;
         }
       }, '4n');
-      Tone.Transport.start();
+      transport.start();
     };
 
     const stopMetronome = (): void => {
@@ -44,7 +45,11 @@ function MetronomeControls({ bpmValue }: Props) {
       click2.dispose();
     };
 
-    isPlaying ? startMetronome() : stopMetronome();
+    if (isPlaying) {
+      startMetronome();
+    } else {
+      stopMetronome();
+    }
     console.log(isPlaying);
     return stopMetronome;
   }, [isPlaying, bpm]);
@@ -68,11 +73,23 @@ function MetronomeControls({ bpmValue }: Props) {
       <div className="sound-controls">
         <label htmlFor="metronome-sound">
           Metronome
-          <input type="checkbox" name="metronome-sound" id="metronome-sound" />
+          <input
+            type="checkbox"
+            name="metronome-sound"
+            id="metronome-sound"
+            checked={isMetronomeEnabled}
+            onChange={() => setMetronomeEnabled(!isMetronomeEnabled)}
+          />
         </label>
         <label htmlFor="snare-sound">
           Snare
-          <input type="checkbox" name="snare-sound" id="snare-sound" />
+          <input
+            type="checkbox"
+            name="snare-sound"
+            id="snare-sound"
+            checked={isSnareEnabled}
+            onChange={() => setSnareEnabled(!isSnareEnabled)}
+          />
         </label>
         <label htmlFor="volume">
           Volume
