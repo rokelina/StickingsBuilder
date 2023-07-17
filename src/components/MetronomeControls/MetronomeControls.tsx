@@ -23,20 +23,20 @@ function MetronomeControls({ bpmValue }: Props) {
     }
   };
 
-  const bpm = +bpmValue;
-  Tone.Transport.bpm.value = bpm;
-
   const click1 = new Tone.Oscillator().toDestination();
   const click2 = new Tone.Oscillator(330).toDestination();
 
   const snareSound = new Tone.Sampler({
     C3: 'src/audio/snare.wav',
   }).toDestination();
+  snareSound.volume.value = 12;
 
   useEffect(() => {
-    let beat_count = 0;
+    const bpm = +bpmValue;
+    Tone.Transport.bpm.value = bpm;
 
     const startMetronome = (): void => {
+      let beat_count = 0;
       Tone.Transport.scheduleRepeat((time) => {
         if (beat_count === 0) {
           click1.start(time).stop(time + 0.05);
@@ -70,7 +70,7 @@ function MetronomeControls({ bpmValue }: Props) {
     }
 
     return stopMetronome;
-  }, [isPlaying, bpm, click1, click2, snareSound]);
+  }, [isPlaying, bpmValue, click1, click2, snareSound]);
 
   return (
     <>
