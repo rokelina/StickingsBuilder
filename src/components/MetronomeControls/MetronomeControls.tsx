@@ -13,7 +13,18 @@ function MetronomeControls({ bpmValue }: Props) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMetronomeEnabled, setMetronomeEnabled] = useState(true);
   const [isSnareEnabled, setSnareEnabled] = useState(true);
+
+  const handleStartClick = () => {
+    if (isPlaying) {
+      setIsPlaying(false);
+      Tone.Transport.stop();
+    } else {
+      setIsPlaying(true);
+    }
+  };
+
   const bpm = +bpmValue;
+  Tone.Transport.bpm.value = bpm;
 
   const click1 = new Tone.Oscillator().toDestination();
   const click2 = new Tone.Oscillator(330).toDestination();
@@ -22,7 +33,6 @@ function MetronomeControls({ bpmValue }: Props) {
     C3: 'src/audio/snare.wav',
   }).toDestination();
 
-  Tone.Transport.bpm.value = bpm;
   useEffect(() => {
     let beat_count = 0;
 
@@ -67,23 +77,8 @@ function MetronomeControls({ bpmValue }: Props) {
       <div className="playback-controls">
         <Button
           idName="play-pause"
-          children={isPlaying ? '⏸ Pause' : '▶ Play'}
-          onBtnClick={() => {
-            if (isPlaying) {
-              setIsPlaying(false);
-              Tone.Transport.pause();
-            } else {
-              setIsPlaying(true);
-            }
-          }}
-        />
-        <Button
-          idName="stop"
-          children="⏹ Stop"
-          onBtnClick={() => {
-            setIsPlaying(false);
-            Tone.Transport.stop();
-          }}
+          children={isPlaying ? '⏹ Stop' : '▶ Play'}
+          onBtnClick={() => handleStartClick()}
         />
       </div>
       <div className="sound-controls">
