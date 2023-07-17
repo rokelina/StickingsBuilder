@@ -15,10 +15,14 @@ function MetronomeControls({ bpmValue }: Props) {
   const [isSnareEnabled, setSnareEnabled] = useState(true);
   const bpm = +bpmValue;
 
-  useEffect(() => {
-    const click1 = new Tone.Oscillator().toDestination();
-    const click2 = new Tone.Oscillator(330).toDestination();
+  const click1 = new Tone.Oscillator().toDestination();
+  const click2 = new Tone.Oscillator(330).toDestination();
 
+  const snareSound = new Tone.Sampler({
+    C3: 'src/audio/snare.wav',
+  }).toDestination();
+
+  useEffect(() => {
     let beat_count = 0;
 
     const transport = Tone.Transport;
@@ -40,19 +44,25 @@ function MetronomeControls({ bpmValue }: Props) {
       transport.start();
     };
 
+    const startSnare = (): void => {
+      transport.scheduleRepeat((time) => {
+        snareSound.triggerAttackRelease('C3', '8n', time);
+      }, '8n');
+    };
+
     const stopMetronome = (): void => {
       click1.dispose();
       click2.dispose();
+      snareSound.disconnect();
     };
 
     if (isPlaying) {
       startMetronome();
-    } else {
-      stopMetronome();
+      startSnare();
     }
-    console.log(isPlaying);
+
     return stopMetronome;
-  }, [isPlaying, bpm]);
+  }, [isPlaying, bpm, click1, click2, snareSound]);
 
   return (
     <>
