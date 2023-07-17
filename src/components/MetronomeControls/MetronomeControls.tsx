@@ -22,14 +22,12 @@ function MetronomeControls({ bpmValue }: Props) {
     C3: 'src/audio/snare.wav',
   }).toDestination();
 
+  Tone.Transport.bpm.value = bpm;
   useEffect(() => {
     let beat_count = 0;
 
-    const transport = Tone.Transport;
-    transport.bpm.value = bpm;
-
     const startMetronome = (): void => {
-      transport.scheduleRepeat((time) => {
+      Tone.Transport.scheduleRepeat((time) => {
         if (beat_count === 0) {
           click1.start(time).stop(time + 0.05);
           beat_count++;
@@ -41,11 +39,11 @@ function MetronomeControls({ bpmValue }: Props) {
           beat_count++;
         }
       }, '4n');
-      transport.start();
+      Tone.Transport.start();
     };
 
     const startSnare = (): void => {
-      transport.scheduleRepeat((time) => {
+      Tone.Transport.scheduleRepeat((time) => {
         snareSound.triggerAttackRelease('C3', '8n', time);
       }, '8n');
     };
@@ -70,14 +68,22 @@ function MetronomeControls({ bpmValue }: Props) {
         <Button
           idName="play-pause"
           children={isPlaying ? '⏸ Pause' : '▶ Play'}
-          onBtnClick={() =>
-            isPlaying ? setIsPlaying(false) : setIsPlaying(true)
-          }
+          onBtnClick={() => {
+            if (isPlaying) {
+              setIsPlaying(false);
+              Tone.Transport.pause();
+            } else {
+              setIsPlaying(true);
+            }
+          }}
         />
         <Button
           idName="stop"
           children="⏹ Stop"
-          onBtnClick={() => setIsPlaying(false)}
+          onBtnClick={() => {
+            setIsPlaying(false);
+            Tone.Transport.stop();
+          }}
         />
       </div>
       <div className="sound-controls">
