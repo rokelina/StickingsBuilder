@@ -8,7 +8,7 @@ interface Props {
 
 function MetronomeWrapper({ selectedStickings }: Props) {
   const [bpm, setBpm] = useState('90');
-  const [repeats, setRepeats] = useState('4');
+  const [repeats, setRepeats] = useState('');
 
   const handleBpmChange = (numberInput: string): void => {
     setBpm(numberInput);

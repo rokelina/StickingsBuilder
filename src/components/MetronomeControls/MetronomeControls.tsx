@@ -9,31 +9,43 @@ interface Props {
   selectedStickings: { [key: string]: string };
 }
 
-function MetronomeControls({ bpmValue, repeatValue }: Props) {
+function MetronomeControls({ bpmValue }: Props) {
   const [isPlaying, setIsPlaying] = useState(false);
 
   const bpm = +bpmValue;
-  const repeats = +repeatValue;
 
   useEffect(() => {
-    const osc = new Tone.Oscillator().toDestination();
+    const click1 = new Tone.Oscillator().toDestination();
+    const click2 = new Tone.Oscillator(330).toDestination();
+
+    let beat_count = 0;
+
     const transport = Tone.Transport;
     transport.bpm.value = bpm;
 
     const startMetronome = (): void => {
       Tone.Transport.scheduleRepeat((time) => {
-        osc.start(time).stop(time + 0.05);
+        if (beat_count === 0) {
+          click1.start(time).stop(time + 0.05);
+          beat_count++;
+        } else if (beat_count === 3) {
+          click2.start(time).stop(time + 0.05);
+          beat_count = 0;
+        } else {
+          click2.start(time).stop(time + 0.05);
+          beat_count++;
+        }
       }, '4n');
       Tone.Transport.start();
     };
 
     const stopMetronome = (): void => {
-      osc.stop();
-      transport.stop();
+      click1.dispose();
+      click2.dispose();
     };
 
     isPlaying ? startMetronome() : stopMetronome();
-
+    console.log(isPlaying);
     return stopMetronome;
   }, [isPlaying, bpm]);
 

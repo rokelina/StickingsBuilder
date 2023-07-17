@@ -22,7 +22,7 @@ function MetronomeOptions({
         icon={<MetronomeIcon></MetronomeIcon>}
         wrapperName="metronome"
         inputName="met-input"
-        minValue={20}
+        minValue="20"
         children="BPM"
         onValueChange={onBpmChange}
         value={bpmValue}
@@ -31,7 +31,7 @@ function MetronomeOptions({
         icon={<RepeatIcon></RepeatIcon>}
         wrapperName="repeat"
         inputName="rep-input"
-        minValue={1}
+        minValue="1"
         children="Repeats"
         onValueChange={onRepeatChange}
         value={repeatValue}
