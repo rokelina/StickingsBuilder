@@ -87,6 +87,7 @@ function MetronomeControls({ bpmValue, selectedStickings }: Props) {
         <Button
           idName="play-pause"
           children={isPlaying ? '⏹ Stop' : '▶ Play'}
+          disabled={Object.keys(selectedStickings).length === 4 ? false : true}
           onBtnClick={() => handleStartClick()}
         />
       </div>
