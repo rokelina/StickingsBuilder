@@ -1,7 +1,7 @@
 import Button from '../Button/Button';
 import * as Tone from 'tone';
-import './MetronomeControls.css';
 import { useState, useEffect } from 'react';
+import './MetronomeControls.css';
 
 interface Props {
   bpmValue: string;
@@ -23,17 +23,16 @@ function MetronomeControls({ bpmValue }: Props) {
     }
   };
 
-  const click1 = new Tone.Oscillator().toDestination();
-  const click2 = new Tone.Oscillator(330).toDestination();
-
-  const snareSound = new Tone.Sampler({
-    C3: 'src/audio/snare.wav',
-  }).toDestination();
-  snareSound.volume.value = 12;
+  Tone.Transport.bpm.value = +bpmValue;
 
   useEffect(() => {
-    const bpm = +bpmValue;
-    Tone.Transport.bpm.value = bpm;
+    const click1 = new Tone.Oscillator().toDestination();
+    const click2 = new Tone.Oscillator(330).toDestination();
+
+    const snareSound = new Tone.Sampler({
+      C3: 'src/audio/snare.wav',
+    }).toDestination();
+    snareSound.volume.value = 12;
 
     const startMetronome = (): void => {
       let beat_count = 0;
@@ -54,8 +53,8 @@ function MetronomeControls({ bpmValue }: Props) {
 
     const startSnare = (): void => {
       Tone.Transport.scheduleRepeat((time) => {
-        snareSound.triggerAttackRelease('C3', '8n', time);
-      }, '8n');
+        snareSound.triggerAttackRelease('C3', '8t', time);
+      }, '8t');
     };
 
     const stopMetronome = (): void => {
@@ -69,8 +68,17 @@ function MetronomeControls({ bpmValue }: Props) {
       startSnare();
     }
 
+    if (!isMetronomeEnabled) {
+      click1.mute = true;
+      click2.mute = true;
+    }
+
+    if (!isSnareEnabled) {
+      snareSound.volume.value = -50;
+    }
+
     return stopMetronome;
-  }, [isPlaying, bpmValue, click1, click2, snareSound]);
+  }, [isPlaying, isMetronomeEnabled, isSnareEnabled]);
 
   return (
     <>
