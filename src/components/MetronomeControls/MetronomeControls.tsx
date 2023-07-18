@@ -1,7 +1,7 @@
 import Button from '../Button/Button';
 import * as Tone from 'tone';
 import { mapToSequence } from '../../lib/utils/metronomeUtils/mapToSequence';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import './MetronomeControls.css';
 
 interface Props {
@@ -15,11 +15,17 @@ function MetronomeControls({ bpmValue, selectedStickings }: Props) {
   const [isMetronomeEnabled, setMetronomeEnabled] = useState(true);
   const [isSnareEnabled, setSnareEnabled] = useState(true);
 
-  const handleStartClick = () => {
-    if (isPlaying) {
+  const sampleRef = useRef<Tone.Sampler | null>(null);
+  const snSeqRef = useRef<Tone.Sequence | null>(null);
+  const clSeqRef = useRef<Tone.Sequence | null>(null);
+
+  const handleStartClick = async () => {
+    if (Tone.Transport.state === 'started') {
       setIsPlaying(false);
       Tone.Transport.stop();
     } else {
+      await Tone.start();
+      Tone.Transport.start();
       setIsPlaying(true);
     }
   };
@@ -28,43 +34,67 @@ function MetronomeControls({ bpmValue, selectedStickings }: Props) {
   const seq = mapToSequence(selectedStickings);
 
   useEffect(() => {
-    const click1 = new Tone.Oscillator().toDestination();
-    const click2 = new Tone.Oscillator(330).toDestination();
+    // const click1 = new Tone.Oscillator().toDestination();
+    // const click2 = new Tone.Oscillator(330).toDestination();
+    // const clickSound = new Tone.Sampler({
+    //   C1: 'src/audio/clickHi.wav',
+    //   D1: 'src/audio/clickLow.wav',
+    // }).toDestination();
 
-    const snareSound = new Tone.Sampler({
+    // const snareSound = new Tone.Sampler({
+    //   C3: 'src/audio/snareR.wav',
+    //   D3: 'src/audio/snareL.wav',
+    // }).toDestination();
+
+    sampleRef.current = new Tone.Sampler({
+      C1: 'src/audio/clickHi.wav',
+      D1: 'src/audio/clickLow.wav',
       C3: 'src/audio/snareR.wav',
       D3: 'src/audio/snareL.wav',
     }).toDestination();
 
-    const sequence = new Tone.Sequence((time, note) => {
-      snareSound.triggerAttackRelease(note, 0.1, time);
+    snSeqRef.current = new Tone.Sequence((time, note) => {
+      sampleRef.current?.triggerAttackRelease(note, 0.1, time);
     }, seq);
 
+    clSeqRef.current = new Tone.Sequence(
+      (time, note) => {
+        sampleRef.current?.triggerAttackRelease(note, 0.1, time);
+      },
+      ['C1', 'D1', 'D1', 'D1'],
+      '4n'
+    );
+
     const startMetronome = (): void => {
-      let beat_count = 0;
-      Tone.Transport.scheduleRepeat((time) => {
-        if (beat_count === 0) {
-          click1.start(time).stop(time + 0.06);
-          beat_count++;
-        } else if (beat_count === 3) {
-          click2.start(time).stop(time + 0.06);
-          beat_count = 0;
-        } else {
-          click2.start(time).stop(time + 0.06);
-          beat_count++;
-        }
-      }, '4n');
-      Tone.Transport.start();
+      clSeqRef.current?.start(0);
+      // let beat_count = 0;
+      // Tone.Transport.scheduleRepeat((time) => {
+      //   if (beat_count === 0) {
+      //     click1.start(time).stop(time + 0.06);
+      //     beat_count++;
+      //   } else if (beat_count === 3) {
+      //     click2.start(time).stop(time + 0.06);
+      //     beat_count = 0;
+      //   } else {
+      //     click2.start(time).stop(time + 0.06);
+      //     beat_count++;
+      //   }
+      // }, '4n');
+      // Tone.Transport.start();
     };
 
     const startSnare = (): void => {
-      sequence.start(0);
+      snSeqRef.current?.start(0);
     };
 
     const stopMetronome = (): void => {
-      click1.dispose();
-      click2.dispose();
-      snareSound.disconnect();
+      // click1.dispose();
+      // click2.dispose();
+      // snareSound.disconnect();
+      // clickSound.disconnect();
+      sampleRef.current?.disconnect();
+      snSeqRef.current?.dispose();
+      clSeqRef.current?.dispose();
     };
 
     if (isPlaying) {
@@ -73,12 +103,13 @@ function MetronomeControls({ bpmValue, selectedStickings }: Props) {
     }
 
     if (!isMetronomeEnabled) {
-      click1.mute = true;
-      click2.mute = true;
+      // click1.mute = true;
+      // click2.mute = true;
+      // clickSound.volume.value = -50;
     }
 
     if (!isSnareEnabled) {
-      snareSound.volume.value = -50;
+      // snareSound.volume.value = -50;
     }
 
     return stopMetronome;
