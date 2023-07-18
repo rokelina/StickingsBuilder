@@ -15,9 +15,12 @@ function MetronomeControls({ bpmValue, selectedStickings }: Props) {
   const [isMetronomeEnabled, setMetronomeEnabled] = useState(true);
   const [isSnareEnabled, setSnareEnabled] = useState(true);
 
-  const sampleRef = useRef<Tone.Sampler | null>(null);
-  const snSeqRef = useRef<Tone.Sequence | null>(null);
-  const clSeqRef = useRef<Tone.Sequence | null>(null);
+  const clickRef = useRef<Tone.Sampler | null>(null);
+  const snareRef = useRef<Tone.Sampler | null>(null);
+  const clickSequenceRef = useRef<Tone.Sequence | null>(null);
+  const snareSequenceRef = useRef<Tone.Sequence | null>(null);
+
+  const stickingsSequenceArray = mapToSequence(selectedStickings);
 
   const handleStartClick = async () => {
     if (Tone.Transport.state === 'started') {
@@ -31,89 +34,62 @@ function MetronomeControls({ bpmValue, selectedStickings }: Props) {
   };
 
   Tone.Transport.bpm.value = +bpmValue;
-  const seq = mapToSequence(selectedStickings);
 
   useEffect(() => {
-    // const click1 = new Tone.Oscillator().toDestination();
-    // const click2 = new Tone.Oscillator(330).toDestination();
-    // const clickSound = new Tone.Sampler({
-    //   C1: 'src/audio/clickHi.wav',
-    //   D1: 'src/audio/clickLow.wav',
-    // }).toDestination();
-
-    // const snareSound = new Tone.Sampler({
-    //   C3: 'src/audio/snareR.wav',
-    //   D3: 'src/audio/snareL.wav',
-    // }).toDestination();
-
-    sampleRef.current = new Tone.Sampler({
+    clickRef.current = new Tone.Sampler({
       C1: 'src/audio/clickHi.wav',
       D1: 'src/audio/clickLow.wav',
+    }).toDestination();
+
+    snareRef.current = new Tone.Sampler({
       C3: 'src/audio/snareR.wav',
       D3: 'src/audio/snareL.wav',
     }).toDestination();
 
-    snSeqRef.current = new Tone.Sequence((time, note) => {
-      sampleRef.current?.triggerAttackRelease(note, 0.1, time);
-    }, seq);
-
-    clSeqRef.current = new Tone.Sequence(
+    clickSequenceRef.current = new Tone.Sequence(
       (time, note) => {
-        sampleRef.current?.triggerAttackRelease(note, 0.1, time);
+        clickRef.current?.triggerAttackRelease(note, 0.1, time);
       },
       ['C1', 'D1', 'D1', 'D1'],
       '4n'
     );
+    clickSequenceRef.current?.start(0);
 
-    const startMetronome = (): void => {
-      clSeqRef.current?.start(0);
-      // let beat_count = 0;
-      // Tone.Transport.scheduleRepeat((time) => {
-      //   if (beat_count === 0) {
-      //     click1.start(time).stop(time + 0.06);
-      //     beat_count++;
-      //   } else if (beat_count === 3) {
-      //     click2.start(time).stop(time + 0.06);
-      //     beat_count = 0;
-      //   } else {
-      //     click2.start(time).stop(time + 0.06);
-      //     beat_count++;
-      //   }
-      // }, '4n');
-      // Tone.Transport.start();
-    };
+    snareSequenceRef.current = new Tone.Sequence((time, note) => {
+      snareRef.current?.triggerAttackRelease(note, 0.1, time);
+    }, stickingsSequenceArray);
+    snareSequenceRef.current?.start(0);
 
-    const startSnare = (): void => {
-      snSeqRef.current?.start(0);
-    };
+    // const startMetronome = (): void => {
+    //   clickSequenceRef.current?.start(0);
+    // };
+
+    // const startSnare = (): void => {
+    //   snareSequenceRef.current?.start(0);
+    // };
 
     const stopMetronome = (): void => {
-      // click1.dispose();
-      // click2.dispose();
-      // snareSound.disconnect();
-      // clickSound.disconnect();
-      sampleRef.current?.disconnect();
-      snSeqRef.current?.dispose();
-      clSeqRef.current?.dispose();
+      clickRef.current?.disconnect();
+      snareRef.current?.disconnect();
+      snareSequenceRef.current?.dispose();
+      clickSequenceRef.current?.dispose();
     };
 
-    if (isPlaying) {
-      startMetronome();
-      startSnare();
-    }
+    // if (isPlaying) {
+    //   startMetronome();
+    //   startSnare();
+    // }
 
     if (!isMetronomeEnabled) {
-      // click1.mute = true;
-      // click2.mute = true;
-      // clickSound.volume.value = -50;
+      clickRef.current.volume.value = -50;
     }
 
     if (!isSnareEnabled) {
-      // snareSound.volume.value = -50;
+      snareRef.current.volume.value = -50;
     }
 
     return stopMetronome;
-  }, [isPlaying, isMetronomeEnabled, isSnareEnabled, seq]);
+  }, [isMetronomeEnabled, isSnareEnabled, stickingsSequenceArray]);
 
   return (
     <>
