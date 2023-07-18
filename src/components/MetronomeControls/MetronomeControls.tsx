@@ -1,5 +1,6 @@
 import Button from '../Button/Button';
 import * as Tone from 'tone';
+import { mapToSequence } from '../../lib/utils/metronomeUtils/mapToSequence';
 import { useState, useEffect } from 'react';
 import './MetronomeControls.css';
 
@@ -9,7 +10,7 @@ interface Props {
   selectedStickings: { [key: string]: string };
 }
 
-function MetronomeControls({ bpmValue }: Props) {
+function MetronomeControls({ bpmValue, selectedStickings }: Props) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMetronomeEnabled, setMetronomeEnabled] = useState(true);
   const [isSnareEnabled, setSnareEnabled] = useState(true);
@@ -24,27 +25,32 @@ function MetronomeControls({ bpmValue }: Props) {
   };
 
   Tone.Transport.bpm.value = +bpmValue;
+  const seq = mapToSequence(selectedStickings);
 
   useEffect(() => {
     const click1 = new Tone.Oscillator().toDestination();
     const click2 = new Tone.Oscillator(330).toDestination();
 
     const snareSound = new Tone.Sampler({
-      C3: 'src/audio/snare.wav',
+      C3: 'src/audio/snareR.wav',
+      D3: 'src/audio/snareL.wav',
     }).toDestination();
-    snareSound.volume.value = 12;
+
+    const sequence = new Tone.Sequence((time, note) => {
+      snareSound.triggerAttackRelease(note, 0.1, time);
+    }, seq);
 
     const startMetronome = (): void => {
       let beat_count = 0;
       Tone.Transport.scheduleRepeat((time) => {
         if (beat_count === 0) {
-          click1.start(time).stop(time + 0.05);
+          click1.start(time).stop(time + 0.06);
           beat_count++;
         } else if (beat_count === 3) {
-          click2.start(time).stop(time + 0.05);
+          click2.start(time).stop(time + 0.06);
           beat_count = 0;
         } else {
-          click2.start(time).stop(time + 0.05);
+          click2.start(time).stop(time + 0.06);
           beat_count++;
         }
       }, '4n');
@@ -52,9 +58,7 @@ function MetronomeControls({ bpmValue }: Props) {
     };
 
     const startSnare = (): void => {
-      Tone.Transport.scheduleRepeat((time) => {
-        snareSound.triggerAttackRelease('C3', '8t', time);
-      }, '8t');
+      sequence.start(0);
     };
 
     const stopMetronome = (): void => {
@@ -78,7 +82,7 @@ function MetronomeControls({ bpmValue }: Props) {
     }
 
     return stopMetronome;
-  }, [isPlaying, isMetronomeEnabled, isSnareEnabled]);
+  }, [isPlaying, isMetronomeEnabled, isSnareEnabled, seq]);
 
   return (
     <>
