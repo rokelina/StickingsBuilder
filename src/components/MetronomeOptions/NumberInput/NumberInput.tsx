@@ -4,7 +4,7 @@ interface Props {
   children: string;
   icon: ReactNode;
   inputName: string;
-  minValue: number;
+  minValue: string;
   onValueChange: (value: string) => void;
   value: string;
   wrapperName: string;

@@ -4,12 +4,18 @@ import './Button.css';
 interface Props {
   idName: string;
   children: ReactNode;
+  disabled?: boolean;
   onBtnClick?: () => void;
 }
 
-function Button({ idName, children, onBtnClick }: Props) {
+function Button({ idName, children, onBtnClick, disabled }: Props) {
   return (
-    <button className="controls-button" id={idName} onClick={onBtnClick}>
+    <button
+      className="controls-button"
+      id={idName}
+      onClick={onBtnClick}
+      disabled={disabled}
+    >
       {children}
     </button>
   );
