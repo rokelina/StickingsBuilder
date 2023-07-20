@@ -1,8 +1,5 @@
-import { ReactNode } from 'react';
-
 interface Props {
   children: string;
-  icon: ReactNode;
   inputName: string;
   minValue: string;
   onValueChange: (value: string) => void;
@@ -11,7 +8,6 @@ interface Props {
 }
 
 function NumberInput({
-  icon,
   inputName,
   minValue,
   onValueChange,
@@ -21,7 +17,6 @@ function NumberInput({
 }: Props) {
   return (
     <div className={wrapperName}>
-      {icon}
       <input
         type="number"
         name={inputName}

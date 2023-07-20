@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import Button from '../Button/Button';
+import MetronomeControls from '../MetronomeControls/MetronomeControls';
 import EmptyStaff from '../Staff/EmptyStaff/EmptyStaff';
-import Options from './Options';
 import RandomStaff from './RandomStaff';
+import Options from './Options';
 import generateStickings from '../../lib/utils/randomModeUtils/generateStickings';
-import MetronomeWrapper from '../MetronomeWrapper/MetronomeWrapper';
 import '../Menu/Menu.css';
 import './RandomMenu.css';
 
@@ -33,7 +33,7 @@ function RandomMenu() {
 
   return (
     <>
-      <MetronomeWrapper selectedStickings={generatedStickings} />
+      <MetronomeControls selectedStickings={generatedStickings} />
       <div className="menu">
         {isEmpty() ? (
           <EmptyStaff />

@@ -1,6 +1,6 @@
 import StickingsMenu from './StickingsMenu/StickingsMenu';
 import EighthNoteStaff from '../Staff/EighthNoteStaff/EighthNoteStaff';
-import MetronomeWrapper from '../MetronomeWrapper/MetronomeWrapper';
+import MetronomeControls from '../MetronomeControls/MetronomeControls';
 import { eightNotesPermutations } from '../../lib/utils/permutations';
 import { useState } from 'react';
 import './Menu.css';
@@ -34,7 +34,7 @@ function EighthNotesMenu() {
 
   return (
     <>
-      <MetronomeWrapper selectedStickings={selectedStickings} />
+      <MetronomeControls selectedStickings={selectedStickings} />
       <div className="menu">
         <EighthNoteStaff selectedStickings={selectedStickings} />
         <StickingsMenu
