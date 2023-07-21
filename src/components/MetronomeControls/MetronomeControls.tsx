@@ -3,29 +3,23 @@ import NumberInput from '../MetronomeOptions/NumberInput/NumberInput';
 import * as Tone from 'tone';
 import { mapToSequence } from '../../lib/utils/metronomeUtils/mapToSequence';
 import { useState, useEffect, useRef } from 'react';
-import './MetronomeControls.css';
 import MetronomeIcon from '../../assets/icons/MetronomeIcon';
 import SnareIcon from '../../assets/icons/SnareIcon';
+import './MetronomeControls.css';
 
 interface Props {
+  displayMenu: string;
   selectedStickings: { [key: string]: string };
 }
 
-function MetronomeControls({ selectedStickings }: Props) {
+function MetronomeControls({ selectedStickings, displayMenu }: Props) {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [metronomeVolume, setMetronomeVolume] = useState(10);
-  const [snareVolume, setSnareVolume] = useState(10);
   const [bpm, setBpm] = useState('80');
 
   const clickRef = useRef<Tone.Sampler | null>(null);
   const snareRef = useRef<Tone.Sampler | null>(null);
   const clickSequenceRef = useRef<Tone.Sequence | null>(null);
   const snareSequenceRef = useRef<Tone.Sequence | null>(null);
-  const clickVolumeRef = useRef<number>(10);
-  const snareVolumeRef = useRef<number>(10);
-
-  clickVolumeRef.current = metronomeVolume;
-  snareVolumeRef.current = snareVolume;
 
   const stickingsSequenceArray = mapToSequence(selectedStickings);
 
@@ -54,23 +48,10 @@ function MetronomeControls({ selectedStickings }: Props) {
       D1: 'src/audio/clickLow.wav',
     }).toDestination();
 
-    clickRef.current.volume.value = clickVolumeRef.current;
-
     snareRef.current = new Tone.Sampler({
       C3: 'src/audio/snareR.wav',
       D3: 'src/audio/snareL.wav',
     }).toDestination();
-
-    snareRef.current.volume.value = snareVolumeRef.current;
-
-    // const events = {
-    //   time:0,
-    //   callback: () => {
-
-    //   }
-    // }
-
-    // clickSequenceRef.current =
 
     clickSequenceRef.current = new Tone.Sequence(
       (time, note) => {
@@ -95,57 +76,57 @@ function MetronomeControls({ selectedStickings }: Props) {
     };
 
     return stopMetronome;
-  }, [stickingsSequenceArray]);
+  }, [stickingsSequenceArray, displayMenu]);
 
   return (
     <>
-      <div className="playback-controls">
-        <Button
-          idName="play-pause"
-          children={isPlaying ? '⏹ Stop' : '▶ Play'}
-          disabled={Object.keys(selectedStickings).length === 4 ? false : true}
-          onBtnClick={() => handleStartClick()}
-        />
-        <NumberInput
-          wrapperName="metronome"
-          inputName="met-input"
-          minValue="20"
-          children="BPM"
-          onValueChange={handleBpmChange}
-          value={bpm}
-        ></NumberInput>
-      </div>
       <div className="sound-controls">
-        <label htmlFor="metronome-volume">
+        <div className="toggle-sound">
           {<MetronomeIcon />}
           <input
-            type="range"
-            name="metronome-volume"
-            id="metronome-volume"
-            min={-20}
-            max={25}
-            step={5}
-            value={metronomeVolume}
-            onChange={(e) => setMetronomeVolume(+e.target.value)}
+            className="toggle-sound-checkbox"
+            type="checkbox"
+            name="metronome-sound"
+            id="metronome-sound"
           />
-        </label>
-      </div>
-      <div className="sound-controls">
-        <label htmlFor="snare-sound">
           {<SnareIcon />}
           <input
-            type="range"
+            className="toggle-sound-checkbox"
+            type="checkbox"
             name="snare-sound"
             id="snare-sound"
-            min={-10}
-            max={25}
-            step={5}
-            value={snareVolume}
-            onChange={(e) => {
-              setSnareVolume(+e.target.value);
-            }}
           />
-        </label>
+        </div>
+      </div>
+      <div className="playback-controls">
+        <div>
+          <Button
+            idName="play-pause"
+            children={isPlaying ? '⏹ Stop' : '▶ Play'}
+            disabled={
+              Object.keys(selectedStickings).length === 4 ? false : true
+            }
+            onBtnClick={() => handleStartClick()}
+          />
+          <label htmlFor="volume">
+            <input
+              type="range"
+              name="volume"
+              id="volume"
+              className="volume-controls"
+            />
+          </label>
+        </div>
+        <div>
+          <NumberInput
+            wrapperName="metronome"
+            inputName="met-input"
+            minValue="20"
+            children="BPM"
+            onValueChange={handleBpmChange}
+            value={bpm}
+          ></NumberInput>
+        </div>
       </div>
     </>
   );

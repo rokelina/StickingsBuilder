@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import drawStaff from '../../../lib/utils/staffUtils/drawStaff';
-
+import '../Staff.css';
 function EmptyStaff() {
   const notesGraphRef = useRef<HTMLDivElement | null>(null);
 

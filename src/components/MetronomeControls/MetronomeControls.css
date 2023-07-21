@@ -1,32 +1,52 @@
 .playback-controls{
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  margin-top: 4rem;
+  align-items: center;
+  margin-top: 1rem;
 }
+/* .playback-controls button{
+  padding: 1rem;
+} */
 
 .sound-controls{
   display: flex;
+  align-items: center;
+  width: 100%;
   justify-content: center;
-  margin-top: 1rem;
+  height: fit-content;
 }
 
-.metronome,
-.repeat {
-  margin: 0 1rem;
+.volume-controls{
+  width: 5rem;
+  margin-left: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.metronome{
   padding: 0.3rem 1.5rem;
   color: black;
   display: flex;
   align-items: center;
 }
 
-.met-input,
-.rep-input {
-  max-width: 4rem;
+.toggle-sound{
+  display: flex;
+  max-width: fit-content;
+  height: fit-content;
+  align-items: center;
+  justify-content: center;
+}
+
+.toggle-sound svg{
+  width: 8%;
+}
+
+.toggle-sound-checkbox{margin-right: 2rem;}
+
+.met-input {
+  max-width: 5rem;
   border-radius: 5px;
   padding: 0.3rem;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-}
-
-.options-icon {
-  max-height: 3rem;
 }

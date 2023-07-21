@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import { RenderContext, Stave, Tuplet, Formatter } from 'vexflow';
 import drawStaff from '../../lib/utils/staffUtils/drawStaff';
 import drawNotes from '../../lib/utils/randomModeUtils/drawNotes';
-
+import '../Staff/Staff.css';
 interface Props {
   generatedStickings: { [key: string]: string };
 }
