@@ -28,11 +28,9 @@ function MetronomeControls({ selectedStickings, displayMenu }: Props) {
       setIsPlaying(false);
       Tone.Transport.stop();
     } else {
-      if (clickRef.current?.loaded && snareRef.current?.loaded) {
-        await Tone.start();
-        Tone.Transport.start();
-        setIsPlaying(true);
-      }
+      await Tone.start();
+      Tone.Transport.start();
+      setIsPlaying(true);
     }
   };
 
@@ -48,7 +46,7 @@ function MetronomeControls({ selectedStickings, displayMenu }: Props) {
       onload: () => {
         clickSequenceRef.current = new Tone.Sequence(
           (time, note) => {
-            clickRef.current?.triggerAttackRelease(note, 0.1, time);
+            clickRef.current?.triggerAttack(note, time);
           },
           ['C1', 'D1', 'D1', 'D1'],
           '4n'
@@ -64,7 +62,7 @@ function MetronomeControls({ selectedStickings, displayMenu }: Props) {
       },
       onload: () => {
         snareSequenceRef.current = new Tone.Sequence((time, note) => {
-          snareRef.current?.triggerAttackRelease(note, 0.1, time);
+          snareRef.current?.triggerAttack(note, time);
         }, stickingsSequenceArray);
         snareSequenceRef.current?.start(0);
       },
@@ -73,6 +71,8 @@ function MetronomeControls({ selectedStickings, displayMenu }: Props) {
     const stopMetronome = (): void => {
       clickRef.current?.disconnect();
       snareRef.current?.disconnect();
+      clickSequenceRef.current?.dispose();
+      snareSequenceRef.current?.dispose();
     };
 
     return stopMetronome;
