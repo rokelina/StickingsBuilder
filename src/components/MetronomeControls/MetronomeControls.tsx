@@ -44,35 +44,35 @@ function MetronomeControls({ selectedStickings, displayMenu }: Props) {
 
   useEffect(() => {
     clickRef.current = new Tone.Sampler({
-      C1: 'src/audio/clickHi.wav',
-      D1: 'src/audio/clickLow.wav',
+      urls: { C1: 'src/audio/clickHi.wav', D1: 'src/audio/clickLow.wav' },
+      onload: () => {
+        clickSequenceRef.current = new Tone.Sequence(
+          (time, note) => {
+            clickRef.current?.triggerAttackRelease(note, 0.1, time);
+          },
+          ['C1', 'D1', 'D1', 'D1'],
+          '4n'
+        );
+        clickSequenceRef.current?.start(0);
+      },
     }).toDestination();
 
     snareRef.current = new Tone.Sampler({
-      C3: 'src/audio/snareR.wav',
-      D3: 'src/audio/snareL.wav',
-    }).toDestination();
-
-    clickSequenceRef.current = new Tone.Sequence(
-      (time, note) => {
-        clickRef.current?.triggerAttackRelease(note, 0.1, time);
+      urls: {
+        C3: 'src/audio/snareR.wav',
+        D3: 'src/audio/snareL.wav',
       },
-      ['C1', 'D1', 'D1', 'D1'],
-      '4n'
-    );
-
-    snareSequenceRef.current = new Tone.Sequence((time, note) => {
-      snareRef.current?.triggerAttackRelease(note, 0.1, time);
-    }, stickingsSequenceArray);
-
-    clickSequenceRef.current?.start(0);
-    snareSequenceRef.current?.start(0);
+      onload: () => {
+        snareSequenceRef.current = new Tone.Sequence((time, note) => {
+          snareRef.current?.triggerAttackRelease(note, 0.1, time);
+        }, stickingsSequenceArray);
+        snareSequenceRef.current?.start(0);
+      },
+    }).toDestination();
 
     const stopMetronome = (): void => {
       clickRef.current?.disconnect();
       snareRef.current?.disconnect();
-      snareSequenceRef.current?.dispose();
-      clickSequenceRef.current?.dispose();
     };
 
     return stopMetronome;
