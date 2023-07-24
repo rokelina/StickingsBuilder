@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import { RenderContext, Stave, Formatter } from 'vexflow';
 import drawStaff from '../../../lib/utils/staffUtils/drawStaff';
 import drawEighthNotes from '../../../lib/utils/staffUtils/drawEighthNotes';
+import '../Staff.css';
 
 interface Props {
   selectedStickings: { [key: string]: string };

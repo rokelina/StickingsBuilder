@@ -1,14 +1,18 @@
 import { useState } from 'react';
 import Button from '../Button/Button';
+import MetronomeControls from '../MetronomeControls/MetronomeControls';
 import EmptyStaff from '../Staff/EmptyStaff/EmptyStaff';
-import Options from './Options';
 import RandomStaff from './RandomStaff';
+import Options from './Options';
 import generateStickings from '../../lib/utils/randomModeUtils/generateStickings';
-import MetronomeWrapper from '../MetronomeWrapper/MetronomeWrapper';
 import '../Menu/Menu.css';
 import './RandomMenu.css';
 
-function RandomMenu() {
+interface Props {
+  displayMenu: string;
+}
+
+function RandomMenu({ displayMenu }: Props) {
   const [selectedRandomOption, setSelectedRandomOption] = useState('');
   const [generatedStickings, setGeneratedStickings] = useState<{
     [key: string]: string;
@@ -31,9 +35,14 @@ function RandomMenu() {
     return Object.keys(generatedStickings).length === 0;
   };
 
+  console.log(generatedStickings);
+
   return (
     <>
-      <MetronomeWrapper selectedStickings={generatedStickings} />
+      <MetronomeControls
+        selectedStickings={generatedStickings}
+        displayMenu={displayMenu}
+      />
       <div className="menu">
         {isEmpty() ? (
           <EmptyStaff />

@@ -1,22 +1,7 @@
-const MetronomeIcon = () => {
-  return (
-    <svg
-      version="1.1"
-      id="Layer_1"
-      xmlns="http://www.w3.org/2000/svg"
-      xmlnsXlink="http://www.w3.org/1999/xlink"
-      x="0px"
-      y="0px"
-      width="100%"
-      viewBox="0 0 1024 1024"
-      enableBackground="new 0 0 1024 1024"
-      xmlSpace="preserve"
-    >
-      <path
-        fill="#000000"
-        opacity="1.000000"
-        stroke="none"
-        d="
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="100%" viewBox="0 0 1024 1024" enable-background="new 0 0 1024 1024" xml:space="preserve">
+<path fill="#000000" opacity="1.000000" stroke="none" 
+	d="
 M535.335449,287.571075 
 	C545.297058,291.504395 554.896545,295.300934 564.489380,299.114288 
 	C566.824036,300.042328 569.441528,300.852386 569.170959,304.112946 
@@ -145,10 +130,5 @@ M453.500000,642.013062
 	C483.100281,599.851196 459.056885,558.932190 434.224396,516.670227 
 	C424.040619,559.168884 414.233948,600.093750 404.188965,642.013123 
 	C420.959290,642.013123 436.729645,642.013123 453.500000,642.013062 
-z"
-      />
-    </svg>
-  );
-};
-
-export default MetronomeIcon;
+z"/>
+</svg>

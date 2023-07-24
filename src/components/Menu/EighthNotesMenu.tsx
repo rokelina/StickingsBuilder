@@ -1,11 +1,15 @@
 import StickingsMenu from './StickingsMenu/StickingsMenu';
 import EighthNoteStaff from '../Staff/EighthNoteStaff/EighthNoteStaff';
-import MetronomeWrapper from '../MetronomeWrapper/MetronomeWrapper';
+import MetronomeControls from '../MetronomeControls/MetronomeControls';
 import { eightNotesPermutations } from '../../lib/utils/permutations';
 import { useState } from 'react';
 import './Menu.css';
 
-function EighthNotesMenu() {
+interface Props {
+  displayMenu: string;
+}
+
+function EighthNotesMenu({ displayMenu }: Props) {
   const [selectedStickings, setSelectedStickings] = useState<{
     [key: string]: string;
   }>({});
@@ -34,7 +38,10 @@ function EighthNotesMenu() {
 
   return (
     <>
-      <MetronomeWrapper selectedStickings={selectedStickings} />
+      <MetronomeControls
+        selectedStickings={selectedStickings}
+        displayMenu={displayMenu}
+      />
       <div className="menu">
         <EighthNoteStaff selectedStickings={selectedStickings} />
         <StickingsMenu

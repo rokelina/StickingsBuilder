@@ -1,17 +1,15 @@
 import StickingsMenu from './StickingsMenu/StickingsMenu';
 import TripletsStaff from '../Staff/TripletsStaff/TripletsStaff';
-import MetronomeWrapper from '../MetronomeWrapper/MetronomeWrapper';
+import MetronomeControls from '../MetronomeControls/MetronomeControls';
 import { tripletPermutations } from '../../lib/utils/permutations';
 import { useState } from 'react';
 import './Menu.css';
 
-// interface Props {
-//   onFormChange: (beatName: string, children: string) => void;
-//   onReset: () => void;
-//   selectedStickings: { [key: string]: string };
-// }
+interface Props {
+  displayMenu: string;
+}
 
-function TripletNotesMenu() {
+function TripletNotesMenu({ displayMenu }: Props) {
   const [selectedStickings, setSelectedStickings] = useState<{
     [key: string]: string;
   }>({});
@@ -39,7 +37,10 @@ function TripletNotesMenu() {
   console.log(selectedStickings);
   return (
     <>
-      <MetronomeWrapper selectedStickings={selectedStickings} />
+      <MetronomeControls
+        selectedStickings={selectedStickings}
+        displayMenu={displayMenu}
+      />
       <div className="menu">
         <TripletsStaff selectedStickings={selectedStickings} />
         <StickingsMenu

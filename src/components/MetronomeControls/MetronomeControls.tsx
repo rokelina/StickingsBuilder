@@ -1,19 +1,19 @@
 import Button from '../Button/Button';
 import * as Tone from 'tone';
 import { mapToSequence } from '../../lib/utils/metronomeUtils/mapToSequence';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, ChangeEvent } from 'react';
+import MetronomeIcon from '../../assets/icons/MetronomeIcon';
+import SnareIcon from '../../assets/icons/SnareIcon';
 import './MetronomeControls.css';
 
 interface Props {
-  bpmValue: string;
-  repeatValue: string;
+  displayMenu: string;
   selectedStickings: { [key: string]: string };
 }
 
-function MetronomeControls({ bpmValue, selectedStickings }: Props) {
+function MetronomeControls({ selectedStickings }: Props) {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [isMetronomeEnabled, setMetronomeEnabled] = useState(true);
-  const [isSnareEnabled, setSnareEnabled] = useState(true);
+  const [bpm, setBpm] = useState('80');
 
   const clickRef = useRef<Tone.Sampler | null>(null);
   const snareRef = useRef<Tone.Sampler | null>(null);
@@ -27,95 +27,112 @@ function MetronomeControls({ bpmValue, selectedStickings }: Props) {
       setIsPlaying(false);
       Tone.Transport.stop();
     } else {
-      if (clickRef.current?.loaded && snareRef.current?.loaded) {
-        await Tone.start();
-        Tone.Transport.start();
-        setIsPlaying(true);
-      }
+      await Tone.start();
+      Tone.Transport.start();
+      setIsPlaying(true);
     }
   };
 
-  Tone.Transport.bpm.value = +bpmValue;
+  const handleBpmChange = (numberInput: string): void => {
+    setBpm(numberInput);
+  };
+  Tone.Transport.bpm.value = +bpm;
+
+  const handleVolumeChange = (e: ChangeEvent<HTMLInputElement>) => {
+    Tone.Destination.volume.value = Tone.gainToDb(Number(e.target.value));
+  };
 
   useEffect(() => {
     clickRef.current = new Tone.Sampler({
-      C1: 'src/audio/clickHi.wav',
-      D1: 'src/audio/clickLow.wav',
+      urls: { C1: 'src/audio/clickHi.wav', D1: 'src/audio/clickLow.wav' },
+      onload: () => {
+        clickSequenceRef.current = new Tone.Sequence(
+          (time, note) => {
+            clickRef.current?.triggerAttack(note, time);
+          },
+          ['C1', 'D1', 'D1', 'D1'],
+          '4n'
+        );
+        clickSequenceRef.current?.start(0);
+      },
     }).toDestination();
 
     snareRef.current = new Tone.Sampler({
-      C3: 'src/audio/snareR.wav',
-      D3: 'src/audio/snareL.wav',
+      urls: {
+        C3: 'src/audio/snareR.wav',
+        D3: 'src/audio/snareL.wav',
+      },
+      onload: () => {
+        snareSequenceRef.current = new Tone.Sequence((time, note) => {
+          snareRef.current?.triggerAttack(note, time);
+        }, stickingsSequenceArray);
+        snareSequenceRef.current?.start(0);
+      },
     }).toDestination();
 
-    clickSequenceRef.current = new Tone.Sequence(
-      (time, note) => {
-        clickRef.current?.triggerAttackRelease(note, 0.1, time);
-      },
-      ['C1', 'D1', 'D1', 'D1'],
-      '4n'
-    );
-
-    snareSequenceRef.current = new Tone.Sequence((time, note) => {
-      snareRef.current?.triggerAttackRelease(note, 0.1, time);
-    }, stickingsSequenceArray);
-
-    clickSequenceRef.current?.start(0);
-    snareSequenceRef.current?.start(0);
-
-    const stopMetronome = (): void => {
+    return (): void => {
       clickRef.current?.disconnect();
       snareRef.current?.disconnect();
-      snareSequenceRef.current?.dispose();
       clickSequenceRef.current?.dispose();
+      snareSequenceRef.current?.dispose();
     };
-
-    if (!isMetronomeEnabled) {
-      clickRef.current.volume.value = -50;
-    }
-
-    if (!isSnareEnabled) {
-      snareRef.current.volume.value = -50;
-    }
-
-    return stopMetronome;
-  }, [isMetronomeEnabled, isSnareEnabled, stickingsSequenceArray]);
+  }, [stickingsSequenceArray]);
 
   return (
     <>
-      <div className="playback-controls">
-        <Button
-          idName="play-pause"
-          children={isPlaying ? '⏹ Stop' : '▶ Play'}
-          disabled={Object.keys(selectedStickings).length === 4 ? false : true}
-          onBtnClick={() => handleStartClick()}
-        />
-      </div>
       <div className="sound-controls">
-        <label htmlFor="metronome-sound">
-          Metronome
+        <div className="toggle-sound">
+          {<MetronomeIcon />}
           <input
+            className="toggle-sound-checkbox"
             type="checkbox"
             name="metronome-sound"
             id="metronome-sound"
-            checked={isMetronomeEnabled}
-            onChange={() => setMetronomeEnabled(!isMetronomeEnabled)}
           />
-        </label>
-        <label htmlFor="snare-sound">
-          Snare
+          {<SnareIcon />}
           <input
+            className="toggle-sound-checkbox"
             type="checkbox"
             name="snare-sound"
             id="snare-sound"
-            checked={isSnareEnabled}
-            onChange={() => setSnareEnabled(!isSnareEnabled)}
           />
-        </label>
-        <label htmlFor="volume">
-          Volume
-          <input type="range" name="volume" id="volume" />
-        </label>
+        </div>
+      </div>
+      <div className="playback-controls">
+        <div>
+          <Button
+            idName="play-pause"
+            children={isPlaying ? '⏹ Stop' : '▶ Play'}
+            disabled={
+              Object.keys(selectedStickings).length === 4 ? false : true
+            }
+            onBtnClick={() => handleStartClick()}
+          />
+          <label htmlFor="volume">
+            <input
+              type="range"
+              name="volume"
+              id="volume"
+              className="volume-controls"
+              min={0}
+              max={1}
+              step={0.01}
+              onChange={handleVolumeChange}
+              defaultValue={1}
+            />
+          </label>
+        </div>
+        <div className="metronome">
+          <input
+            type="number"
+            name="met-input"
+            min={20}
+            value={bpm}
+            className="met-input"
+            onChange={(e) => handleBpmChange(e.target.value)}
+          />
+          <span>BPM</span>
+        </div>
       </div>
     </>
   );
