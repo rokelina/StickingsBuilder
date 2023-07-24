@@ -2,7 +2,7 @@ import Button from '../Button/Button';
 import NumberInput from '../MetronomeOptions/NumberInput/NumberInput';
 import * as Tone from 'tone';
 import { mapToSequence } from '../../lib/utils/metronomeUtils/mapToSequence';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, ChangeEvent } from 'react';
 import MetronomeIcon from '../../assets/icons/MetronomeIcon';
 import SnareIcon from '../../assets/icons/SnareIcon';
 import './MetronomeControls.css';
@@ -12,7 +12,7 @@ interface Props {
   selectedStickings: { [key: string]: string };
 }
 
-function MetronomeControls({ selectedStickings, displayMenu }: Props) {
+function MetronomeControls({ selectedStickings }: Props) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [bpm, setBpm] = useState('80');
 
@@ -37,8 +37,11 @@ function MetronomeControls({ selectedStickings, displayMenu }: Props) {
   const handleBpmChange = (numberInput: string): void => {
     setBpm(numberInput);
   };
-
   Tone.Transport.bpm.value = +bpm;
+
+  const handleVolumeChange = (e: ChangeEvent<HTMLInputElement>) => {
+    Tone.Destination.volume.value = Tone.gainToDb(Number(e.target.value));
+  };
 
   useEffect(() => {
     clickRef.current = new Tone.Sampler({
@@ -68,15 +71,13 @@ function MetronomeControls({ selectedStickings, displayMenu }: Props) {
       },
     }).toDestination();
 
-    const stopMetronome = (): void => {
+    return (): void => {
       clickRef.current?.disconnect();
       snareRef.current?.disconnect();
       clickSequenceRef.current?.dispose();
       snareSequenceRef.current?.dispose();
     };
-
-    return stopMetronome;
-  }, [stickingsSequenceArray, displayMenu]);
+  }, [stickingsSequenceArray]);
 
   return (
     <>
@@ -114,6 +115,11 @@ function MetronomeControls({ selectedStickings, displayMenu }: Props) {
               name="volume"
               id="volume"
               className="volume-controls"
+              min={0}
+              max={1}
+              step={0.01}
+              onChange={handleVolumeChange}
+              defaultValue={1}
             />
           </label>
         </div>
