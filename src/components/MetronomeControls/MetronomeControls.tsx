@@ -1,5 +1,4 @@
 import Button from '../Button/Button';
-import NumberInput from '../MetronomeOptions/NumberInput/NumberInput';
 import * as Tone from 'tone';
 import { mapToSequence } from '../../lib/utils/metronomeUtils/mapToSequence';
 import { useState, useEffect, useRef, ChangeEvent } from 'react';
@@ -123,15 +122,16 @@ function MetronomeControls({ selectedStickings }: Props) {
             />
           </label>
         </div>
-        <div>
-          <NumberInput
-            wrapperName="metronome"
-            inputName="met-input"
-            minValue="20"
-            children="BPM"
-            onValueChange={handleBpmChange}
+        <div className="metronome">
+          <input
+            type="number"
+            name="met-input"
+            min={20}
             value={bpm}
-          ></NumberInput>
+            className="met-input"
+            onChange={(e) => handleBpmChange(e.target.value)}
+          />
+          <span>BPM</span>
         </div>
       </div>
     </>
