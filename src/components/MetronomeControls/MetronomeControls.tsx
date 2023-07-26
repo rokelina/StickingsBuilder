@@ -17,6 +17,7 @@ import D3 from '../../audio/D3.wav';
 interface Props {
   displayMenu: string;
   selectedStickings: { [key: string]: string };
+  //reset: boolean
 }
 
 function MetronomeControls({ selectedStickings }: Props) {
@@ -31,9 +32,13 @@ function MetronomeControls({ selectedStickings }: Props) {
   const stickingsSequenceArray = mapToSequence(selectedStickings);
 
   const handleStartClick = async () => {
-    if (Tone.Transport.state === 'started') {
+    if (
+      Tone.Transport.state === 'started' ||
+      // reset===true
+      Object.keys(selectedStickings).length !== 4
+    ) {
       setIsPlaying(false);
-      Tone.Transport.pause();
+      Tone.Transport.stop();
     } else {
       await Tone.start();
       Tone.Transport.start();
@@ -62,7 +67,9 @@ function MetronomeControls({ selectedStickings }: Props) {
             ['C1', 'D1', 'D1', 'D1'],
             '4n'
           );
-          clickSequenceRef.current?.start(0);
+          if (Object.keys(selectedStickings).length === 4) {
+            clickSequenceRef.current?.start(0);
+          }
         },
       }
     ).toDestination();
@@ -77,7 +84,9 @@ function MetronomeControls({ selectedStickings }: Props) {
           snareSequenceRef.current = new Tone.Sequence((time, note) => {
             snareRef.current?.triggerAttack(note, time);
           }, stickingsSequenceArray);
-          snareSequenceRef.current?.start(0);
+          if (Object.keys(selectedStickings).length === 4) {
+            snareSequenceRef.current?.start(0);
+          }
         },
       }
     ).toDestination();
@@ -88,7 +97,7 @@ function MetronomeControls({ selectedStickings }: Props) {
       clickSequenceRef.current?.dispose();
       snareSequenceRef.current?.dispose();
     };
-  }, [stickingsSequenceArray]);
+  }, [stickingsSequenceArray, selectedStickings]);
 
   return (
     <>
@@ -114,10 +123,11 @@ function MetronomeControls({ selectedStickings }: Props) {
         <div>
           <Button
             idName="play-pause"
+            // isPlaying && !reset ? 'Pause' : 'Play'
             children={isPlaying ? '⏸ Pause' : '▶ Play'}
-            disabled={
-              Object.keys(selectedStickings).length === 4 ? false : true
-            }
+            // disabled={
+            //   Object.keys(selectedStickings).length === 4 ? false : true
+            // }
             onBtnClick={() => handleStartClick()}
           />
           <label htmlFor="volume">

@@ -30,6 +30,7 @@ function EighthNotesMenu({ displayMenu }: Props) {
     });
   };
 
+  // set a 'reset' state
   const handleResetClick = () => {
     setSelectedStickings({});
   };
