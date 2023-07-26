@@ -5,6 +5,14 @@ import { useState, useEffect, useRef, ChangeEvent } from 'react';
 import MetronomeIcon from '../../assets/icons/MetronomeIcon';
 import SnareIcon from '../../assets/icons/SnareIcon';
 import './MetronomeControls.css';
+//Click Hi
+import C1 from '../../audio/C1.wav';
+//Click Low
+import D1 from '../../audio/D1.wav';
+//Snare R
+import C3 from '../../audio/C3.wav';
+//Snare L
+import D3 from '../../audio/D3.wav';
 
 interface Props {
   displayMenu: string;
@@ -25,7 +33,7 @@ function MetronomeControls({ selectedStickings }: Props) {
   const handleStartClick = async () => {
     if (Tone.Transport.state === 'started') {
       setIsPlaying(false);
-      Tone.Transport.stop();
+      Tone.Transport.pause();
     } else {
       await Tone.start();
       Tone.Transport.start();
@@ -43,32 +51,36 @@ function MetronomeControls({ selectedStickings }: Props) {
   };
 
   useEffect(() => {
-    clickRef.current = new Tone.Sampler({
-      urls: { C1: 'src/audio/clickHi.wav', D1: 'src/audio/clickLow.wav' },
-      onload: () => {
-        clickSequenceRef.current = new Tone.Sequence(
-          (time, note) => {
-            clickRef.current?.triggerAttack(note, time);
-          },
-          ['C1', 'D1', 'D1', 'D1'],
-          '4n'
-        );
-        clickSequenceRef.current?.start(0);
-      },
-    }).toDestination();
+    clickRef.current = new Tone.Sampler(
+      { C1, D1 },
+      {
+        onload: () => {
+          clickSequenceRef.current = new Tone.Sequence(
+            (time, note) => {
+              clickRef.current?.triggerAttack(note, time);
+            },
+            ['C1', 'D1', 'D1', 'D1'],
+            '4n'
+          );
+          clickSequenceRef.current?.start(0);
+        },
+      }
+    ).toDestination();
 
-    snareRef.current = new Tone.Sampler({
-      urls: {
-        C3: 'src/audio/snareR.wav',
-        D3: 'src/audio/snareL.wav',
+    snareRef.current = new Tone.Sampler(
+      {
+        C3,
+        D3,
       },
-      onload: () => {
-        snareSequenceRef.current = new Tone.Sequence((time, note) => {
-          snareRef.current?.triggerAttack(note, time);
-        }, stickingsSequenceArray);
-        snareSequenceRef.current?.start(0);
-      },
-    }).toDestination();
+      {
+        onload: () => {
+          snareSequenceRef.current = new Tone.Sequence((time, note) => {
+            snareRef.current?.triggerAttack(note, time);
+          }, stickingsSequenceArray);
+          snareSequenceRef.current?.start(0);
+        },
+      }
+    ).toDestination();
 
     return (): void => {
       clickRef.current?.disconnect();
@@ -102,7 +114,7 @@ function MetronomeControls({ selectedStickings }: Props) {
         <div>
           <Button
             idName="play-pause"
-            children={isPlaying ? '⏹ Stop' : '▶ Play'}
+            children={isPlaying ? '⏸ Pause' : '▶ Play'}
             disabled={
               Object.keys(selectedStickings).length === 4 ? false : true
             }
