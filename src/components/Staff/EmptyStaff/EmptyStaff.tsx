@@ -5,9 +5,14 @@ function EmptyStaff() {
   const notesGraphRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    if (!notesGraphRef.current?.hasChildNodes()) {
-      drawStaff(notesGraphRef.current as HTMLDivElement);
-    }
+    const notesGraph = notesGraphRef.current;
+    drawStaff(notesGraph as HTMLDivElement);
+
+    return () => {
+      while (notesGraph?.firstChild) {
+        notesGraph.removeChild(notesGraph.firstChild);
+      }
+    };
   }, []);
 
   return <div className="staff-container" ref={notesGraphRef}></div>;
