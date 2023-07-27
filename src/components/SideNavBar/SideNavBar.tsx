@@ -30,6 +30,12 @@ function SideNavBar({ onNavClick }: Props) {
           spanText="Random Stickings"
           onNavClick={onNavClick}
         />
+        <LiComponent
+          idName="saved-stickings"
+          icon={<RandomIcon></RandomIcon>}
+          spanText="Saved Stickings"
+          onNavClick={onNavClick}
+        />
       </ul>
     </nav>
   );

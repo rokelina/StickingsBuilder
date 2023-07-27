@@ -1,5 +1,6 @@
 import BeatForm from './MenuForms/BeatForm';
 import RowForm from './MenuForms/RowForm';
+import Button from '../../Button/Button';
 
 interface MenuProps {
   permutations: { [key: string]: string };
@@ -48,6 +49,9 @@ function StickingsMenu({
           onFormChange={onFormChange}
           selectedStickings={selectedStickings}
         />
+      </div>
+      <div className="menu-options">
+        <Button idName="save-button" children="Save" />
       </div>
     </div>
   );

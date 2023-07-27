@@ -30,11 +30,6 @@ function EighthNotesMenu({ displayMenu }: Props) {
     });
   };
 
-  // set a 'reset' state
-  // const handleResetClick = () => {
-  //   setSelectedStickings({});
-  // };
-
   console.log(selectedStickings);
 
   return (
@@ -48,7 +43,6 @@ function EighthNotesMenu({ displayMenu }: Props) {
         <StickingsMenu
           permutations={eightNotesPermutations}
           onFormChange={handleFormChange}
-          // onReset={handleResetClick}
           selectedStickings={selectedStickings}
         />
       </div>
