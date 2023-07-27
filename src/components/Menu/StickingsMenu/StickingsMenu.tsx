@@ -1,18 +1,15 @@
 import BeatForm from './MenuForms/BeatForm';
 import RowForm from './MenuForms/RowForm';
-import Button from '../../Button/Button';
 
 interface MenuProps {
   permutations: { [key: string]: string };
   onFormChange: (beatName: string, children: string) => void;
-  onReset: () => void;
   selectedStickings: { [key: string]: string };
 }
 
 function StickingsMenu({
   permutations,
   onFormChange,
-  onReset,
   selectedStickings,
 }: MenuProps) {
   return (
@@ -50,13 +47,6 @@ function StickingsMenu({
           permutations={permutations}
           onFormChange={onFormChange}
           selectedStickings={selectedStickings}
-        />
-      </div>
-      <div className="menu-options">
-        <Button
-          idName="reset-button"
-          children="Reset"
-          onBtnClick={() => onReset()}
         />
       </div>
     </div>

@@ -17,7 +17,6 @@ import D3 from '../../audio/D3.wav';
 interface Props {
   displayMenu: string;
   selectedStickings: { [key: string]: string };
-  //reset: boolean
 }
 
 function MetronomeControls({ selectedStickings }: Props) {
@@ -34,7 +33,6 @@ function MetronomeControls({ selectedStickings }: Props) {
   const handleStartClick = async () => {
     if (
       Tone.Transport.state === 'started' ||
-      // reset===true
       Object.keys(selectedStickings).length !== 4
     ) {
       setIsPlaying(false);
@@ -123,11 +121,7 @@ function MetronomeControls({ selectedStickings }: Props) {
         <div>
           <Button
             idName="play-pause"
-            // isPlaying && !reset ? 'Pause' : 'Play'
             children={isPlaying ? '⏸ Pause' : '▶ Play'}
-            // disabled={
-            //   Object.keys(selectedStickings).length === 4 ? false : true
-            // }
             onBtnClick={() => handleStartClick()}
           />
           <label htmlFor="volume">

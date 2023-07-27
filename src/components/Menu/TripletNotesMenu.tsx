@@ -30,10 +30,6 @@ function TripletNotesMenu({ displayMenu }: Props) {
     });
   };
 
-  const handleResetClick = () => {
-    setSelectedStickings({});
-  };
-
   console.log(selectedStickings);
   return (
     <>
@@ -46,7 +42,6 @@ function TripletNotesMenu({ displayMenu }: Props) {
         <StickingsMenu
           permutations={tripletPermutations}
           onFormChange={handleFormChange}
-          onReset={handleResetClick}
           selectedStickings={selectedStickings}
         />
       </div>
