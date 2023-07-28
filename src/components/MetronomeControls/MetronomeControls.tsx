@@ -79,9 +79,13 @@ function MetronomeControls({ selectedStickings }: Props) {
       },
       {
         onload: () => {
-          snareSequenceRef.current = new Tone.Sequence((time, note) => {
-            snareRef.current?.triggerAttack(note, time);
-          }, stickingsSequenceArray);
+          snareSequenceRef.current = new Tone.Sequence(
+            (time, note) => {
+              snareRef.current?.triggerAttack(note, time);
+            },
+            stickingsSequenceArray,
+            '4n'
+          );
           if (Object.keys(selectedStickings).length === 4) {
             snareSequenceRef.current?.start(0);
           }
