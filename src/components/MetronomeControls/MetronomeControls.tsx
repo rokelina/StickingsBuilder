@@ -2,9 +2,6 @@ import Button from '../Button/Button';
 import * as Tone from 'tone';
 import { mapToSequence } from '../../lib/utils/metronomeUtils/mapToSequence';
 import { useState, useEffect, useRef, ChangeEvent } from 'react';
-import MetronomeIcon from '../../assets/icons/MetronomeIcon';
-import SnareIcon from '../../assets/icons/SnareIcon';
-import './MetronomeControls.css';
 //Click Hi
 import C1 from '../../audio/C1.wav';
 //Click Low
@@ -13,6 +10,7 @@ import D1 from '../../audio/D1.wav';
 import C3 from '../../audio/C3.wav';
 //Snare L
 import D3 from '../../audio/D3.wav';
+import './MetronomeControls.css';
 
 interface Props {
   displayMenu: string;
@@ -27,8 +25,10 @@ function MetronomeControls({ selectedStickings }: Props) {
   const snareRef = useRef<Tone.Sampler | null>(null);
   const clickSequenceRef = useRef<Tone.Sequence | null>(null);
   const snareSequenceRef = useRef<Tone.Sequence | null>(null);
+  const countdownRef = useRef<HTMLInputElement | null>(null);
 
   const stickingsSequenceArray = mapToSequence(selectedStickings);
+  const countdownDelay = (60 / +bpm) * 4;
 
   const handleStartClick = async () => {
     if (
@@ -87,7 +87,9 @@ function MetronomeControls({ selectedStickings }: Props) {
             '4n'
           );
           if (Object.keys(selectedStickings).length === 4) {
-            snareSequenceRef.current?.start(0);
+            countdownRef.current?.checked
+              ? snareSequenceRef.current?.start(countdownDelay)
+              : snareSequenceRef.current?.start(0);
           }
         },
       }
@@ -99,28 +101,10 @@ function MetronomeControls({ selectedStickings }: Props) {
       clickSequenceRef.current?.dispose();
       snareSequenceRef.current?.dispose();
     };
-  }, [stickingsSequenceArray, selectedStickings]);
+  }, [stickingsSequenceArray, selectedStickings, countdownDelay]);
 
   return (
     <>
-      <div className="sound-controls">
-        <div className="toggle-sound">
-          {<MetronomeIcon />}
-          <input
-            className="toggle-sound-checkbox"
-            type="checkbox"
-            name="metronome-sound"
-            id="metronome-sound"
-          />
-          {<SnareIcon />}
-          <input
-            className="toggle-sound-checkbox"
-            type="checkbox"
-            name="snare-sound"
-            id="snare-sound"
-          />
-        </div>
-      </div>
       <div className="playback-controls">
         <div>
           <Button
@@ -152,6 +136,10 @@ function MetronomeControls({ selectedStickings }: Props) {
             onChange={(e) => handleBpmChange(e.target.value)}
           />
           <span>BPM</span>
+        </div>
+        <div className="countdown">
+          <input type="checkbox" ref={countdownRef} />
+          <span>Add Countdown</span>
         </div>
       </div>
     </>

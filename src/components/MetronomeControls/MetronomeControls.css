@@ -3,11 +3,12 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 1rem;
+  margin-top: 2rem;
 }
-/* .playback-controls button{
-  padding: 1rem;
-} */
+
+.playback-controls button{
+  padding: 0.8rem 1rem;
+}
 
 .sound-controls{
   display: flex;
@@ -24,25 +25,11 @@
 }
 
 .metronome{
-  padding: 0.3rem 1.5rem;
+  padding: 0.5rem;
   color: black;
   display: flex;
   align-items: center;
 }
-
-.toggle-sound{
-  display: flex;
-  max-width: fit-content;
-  height: fit-content;
-  align-items: center;
-  justify-content: center;
-}
-
-.toggle-sound svg{
-  width: 8%;
-}
-
-.toggle-sound-checkbox{margin-right: 2rem;}
 
 .met-input {
   max-width: 5rem;
@@ -50,4 +37,9 @@
   padding: 0.3rem;
   margin-right: 0.5rem;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.countdown{
+  font-size: 14px;
+  padding: 0.5rem;
 }
