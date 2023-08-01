@@ -4,7 +4,7 @@ function drawStaff(graphRef: HTMLDivElement) {
   const { Renderer, Stave } = Vex.Flow;
 
   const renderer = new Renderer(graphRef, Renderer.Backends.SVG);
-  renderer.resize(650, 200);
+  renderer.resize(700, 200);
   const context = renderer.getContext();
   context.setFont('Arial', 10);
 

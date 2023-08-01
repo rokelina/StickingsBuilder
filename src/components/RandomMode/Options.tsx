@@ -3,6 +3,16 @@ interface Props {
   selectedOption: string;
 }
 
+/*
+two divs
+-All checkbox
+-subdivision
+  - 8th
+  - 8th note triplets
+  - 16th
+  - etc
+*/
+
 function Options({ onOptionsChange, selectedOption }: Props) {
   const isChecked = (id: string): boolean => {
     return selectedOption === id;
@@ -10,38 +20,80 @@ function Options({ onOptionsChange, selectedOption }: Props) {
 
   return (
     <div className="random-options">
-      <form action="">
+      <div className="select-all">
         <label htmlFor="combinations">
           <input
-            type="radio"
+            type="checkbox"
             id="combinations"
             name="options"
             checked={isChecked('combinations')}
             onChange={() => onOptionsChange('combinations')}
           />
-          Combinations
+          Select All
         </label>
+      </div>
+      <div className="subdivision-options">
         <label htmlFor="eighths">
           <input
-            type="radio"
+            type="checkbox"
             id="eighths"
             name="options"
             checked={isChecked('eighths')}
             onChange={() => onOptionsChange('eighths')}
           />
-          Eighth Notes
+          8th Notes
         </label>
         <label htmlFor="triplets">
           <input
-            type="radio"
+            type="checkbox"
             id="triplets"
             name="options"
             checked={isChecked('triplets')}
             onChange={() => onOptionsChange('triplets')}
           />
-          Triplets
+          8th Note Triplets
         </label>
-      </form>
+        <label htmlFor="triplets">
+          <input
+            type="checkbox"
+            id="triplets"
+            name="options"
+            checked={isChecked('triplets')}
+            onChange={() => onOptionsChange('triplets')}
+          />
+          16th Notes
+        </label>
+        <label htmlFor="triplets">
+          <input
+            type="checkbox"
+            id="triplets"
+            name="options"
+            checked={isChecked('triplets')}
+            onChange={() => onOptionsChange('triplets')}
+          />
+          Quintuplets
+        </label>
+        <label htmlFor="triplets">
+          <input
+            type="checkbox"
+            id="triplets"
+            name="options"
+            checked={isChecked('triplets')}
+            onChange={() => onOptionsChange('triplets')}
+          />
+          Sextuplets
+        </label>
+        <label htmlFor="triplets">
+          <input
+            type="checkbox"
+            id="triplets"
+            name="options"
+            checked={isChecked('triplets')}
+            onChange={() => onOptionsChange('triplets')}
+          />
+          Septuplets
+        </label>
+      </div>
     </div>
   );
 }
