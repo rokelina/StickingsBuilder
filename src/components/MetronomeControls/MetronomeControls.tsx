@@ -138,8 +138,8 @@ function MetronomeControls({ selectedStickings }: Props) {
           <span>BPM</span>
         </div>
         <div className="countdown">
-          <input type="checkbox" ref={countdownRef} />
           <span>Add Countdown</span>
+          <input type="checkbox" ref={countdownRef} />
         </div>
       </div>
     </>
