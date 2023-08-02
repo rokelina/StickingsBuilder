@@ -1,33 +1,20 @@
 interface Props {
-  onOptionsChange: (id: string) => void;
-  selectedOption: string;
+  onOptionsChange: (id: string, checked: boolean) => void;
+  selectedOption: string[];
+  isSelectAll: boolean;
 }
 
-/*
-two divs
--All checkbox
--subdivision
-  - 8th
-  - 8th note triplets
-  - 16th
-  - etc
-*/
-
-function Options({ onOptionsChange, selectedOption }: Props) {
-  const isChecked = (id: string): boolean => {
-    return selectedOption === id;
-  };
-
+function Options({ onOptionsChange, isSelectAll, selectedOption }: Props) {
   return (
     <div className="random-options">
       <div className="select-all">
-        <label htmlFor="combinations">
+        <label htmlFor="select-all">
           <input
             type="checkbox"
-            id="combinations"
+            id="select-all"
             name="options"
-            checked={isChecked('combinations')}
-            onChange={() => onOptionsChange('combinations')}
+            checked={isSelectAll}
+            onChange={(e) => onOptionsChange('select-all', e.target.checked)}
           />
           Select All
         </label>
@@ -38,8 +25,9 @@ function Options({ onOptionsChange, selectedOption }: Props) {
             type="checkbox"
             id="eighths"
             name="options"
-            checked={isChecked('eighths')}
-            onChange={() => onOptionsChange('eighths')}
+            checked={selectedOption.includes('eighths')}
+            onChange={(e) => onOptionsChange('eighths', e.target.checked)}
+            disabled={isSelectAll}
           />
           8th Notes
         </label>
@@ -48,48 +36,53 @@ function Options({ onOptionsChange, selectedOption }: Props) {
             type="checkbox"
             id="triplets"
             name="options"
-            checked={isChecked('triplets')}
-            onChange={() => onOptionsChange('triplets')}
+            checked={selectedOption.includes('triplets')}
+            onChange={(e) => onOptionsChange('triplets', e.target.checked)}
+            disabled={isSelectAll}
           />
           8th Note Triplets
         </label>
-        <label htmlFor="triplets">
+        <label htmlFor="sixteenths">
           <input
             type="checkbox"
-            id="triplets"
+            id="sixteenths"
             name="options"
-            checked={isChecked('triplets')}
-            onChange={() => onOptionsChange('triplets')}
+            checked={selectedOption.includes('sixteenths')}
+            onChange={(e) => onOptionsChange('sixteenths', e.target.checked)}
+            disabled={isSelectAll}
           />
           16th Notes
         </label>
-        <label htmlFor="triplets">
+        <label htmlFor="quintuplets">
           <input
             type="checkbox"
-            id="triplets"
+            id="quintuplets"
             name="options"
-            checked={isChecked('triplets')}
-            onChange={() => onOptionsChange('triplets')}
+            checked={selectedOption.includes('quintuplets')}
+            onChange={(e) => onOptionsChange('quintuplets', e.target.checked)}
+            disabled={isSelectAll}
           />
           Quintuplets
         </label>
-        <label htmlFor="triplets">
+        <label htmlFor="sextuplets">
           <input
             type="checkbox"
-            id="triplets"
+            id="sextuplets"
             name="options"
-            checked={isChecked('triplets')}
-            onChange={() => onOptionsChange('triplets')}
+            checked={selectedOption.includes('sextuplets')}
+            onChange={(e) => onOptionsChange('sextuplets', e.target.checked)}
+            disabled={isSelectAll}
           />
           Sextuplets
         </label>
-        <label htmlFor="triplets">
+        <label htmlFor="septuplets">
           <input
             type="checkbox"
-            id="triplets"
+            id="septuplets"
             name="options"
-            checked={isChecked('triplets')}
-            onChange={() => onOptionsChange('triplets')}
+            checked={selectedOption.includes('septuplets')}
+            onChange={(e) => onOptionsChange('septuplets', e.target.checked)}
+            disabled={isSelectAll}
           />
           Septuplets
         </label>
