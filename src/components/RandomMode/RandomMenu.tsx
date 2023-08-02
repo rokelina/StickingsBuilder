@@ -24,7 +24,7 @@ function RandomMenu({ displayMenu }: Props) {
 
   const handleGenerateStickings = (selectedOption: string): void => {
     if (!selectedOption.length) {
-      alert('Select one option: Combinations, Eighth Notes or Triplet Notes');
+      alert('Select one subdivision option');
       return;
     }
     const generated = generateStickings(selectedOption);
