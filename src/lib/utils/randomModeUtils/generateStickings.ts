@@ -14,20 +14,11 @@ const quintuplets = Object.values(quintupletPermutations);
 const sextuplets = Object.values(sextupletPermutations);
 const septuplets = Object.values(septupletPermutations);
 
-const all: string[] = [
-  ...eighths,
-  ...triplets,
-  ...sixteenths,
-  ...quintuplets,
-  ...sextuplets,
-  ...septuplets,
-];
-
 const randomIndex = (arr: string[]): number => {
   return Math.floor(Math.random() * arr.length);
 };
 
-const combineAll = (): string => {
+const combineAllSubdivisions = (): string => {
   const randomNumber = Math.floor(Math.random() * 6);
   switch (randomNumber) {
     case 0:
@@ -47,50 +38,52 @@ const combineAll = (): string => {
   }
 };
 
-const singleSelectionSticking = (arr: string[]): string => {
-  //I'm passing an array of ids that does not include 'select-all' and its length less than 6
-  switch (arr[0]) {
-    case 'eighths':
-      return eighths[randomIndex(eighths)].toUpperCase();
-    case 'triplets':
-      return triplets[randomIndex(triplets)].toUpperCase();
-    case 'sixteenths':
-      return sixteenths[randomIndex(sixteenths)].toUpperCase();
-    case 'quintuplets':
-      return quintuplets[randomIndex(quintuplets)].toUpperCase();
-    case 'sextuplets':
-      return sextuplets[randomIndex(sextuplets)].toUpperCase();
-    case 'septuplets':
-      return septuplets[randomIndex(septuplets)].toUpperCase();
-    default:
-      return '';
+const combineSelectedSubdivisions = (arr: string[]): string => {
+  let filteredArray: string[] = [];
+  for (const id of arr) {
+    switch (id) {
+      case 'eighths':
+        filteredArray = [...filteredArray, ...eighths];
+        break;
+      case 'triplets':
+        filteredArray = [...filteredArray, ...triplets];
+        break;
+      case 'sixteenths':
+        filteredArray = [...filteredArray, ...sixteenths];
+        break;
+      case 'quintuplets':
+        filteredArray = [...filteredArray, ...quintuplets];
+        break;
+      case 'sextuplets':
+        filteredArray = [...filteredArray, ...sextuplets];
+        break;
+      case 'septuplets':
+        filteredArray = [...filteredArray, ...septuplets];
+        break;
+    }
   }
+  return filteredArray[randomIndex(filteredArray)].toUpperCase();
 };
 
-const generateStickings = (selectedOption: string[]) => {
+const generateRandomStickings = (selectedOption: string[]) => {
   let output: { [key: string]: string };
 
   if (selectedOption[0] === 'select-all' || selectedOption.length === 6) {
     output = {
-      'beat-1': combineAll(),
-      'beat-2': combineAll(),
-      'beat-3': combineAll(),
-      'beat-4': combineAll(),
-    };
-  } else if (
-    selectedOption.length === 1 &&
-    !selectedOption.includes('select-all')
-  ) {
-    output = {
-      'beat-1': singleSelectionSticking(selectedOption),
-      'beat-2': singleSelectionSticking(selectedOption),
-      'beat-3': singleSelectionSticking(selectedOption),
-      'beat-4': singleSelectionSticking(selectedOption),
+      'beat-1': combineAllSubdivisions(),
+      'beat-2': combineAllSubdivisions(),
+      'beat-3': combineAllSubdivisions(),
+      'beat-4': combineAllSubdivisions(),
     };
   } else {
-    return {};
+    output = {
+      'beat-1': combineSelectedSubdivisions(selectedOption),
+      'beat-2': combineSelectedSubdivisions(selectedOption),
+      'beat-3': combineSelectedSubdivisions(selectedOption),
+      'beat-4': combineSelectedSubdivisions(selectedOption),
+    };
   }
   return output;
 };
 
-export default generateStickings;
+export default generateRandomStickings;

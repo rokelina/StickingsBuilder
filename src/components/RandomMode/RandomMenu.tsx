@@ -4,7 +4,7 @@ import MetronomeControls from '../MetronomeControls/MetronomeControls';
 import EmptyStaff from '../Staff/EmptyStaff/EmptyStaff';
 import RandomStaff from './RandomStaff';
 import Options from './Options';
-import generateStickings from '../../lib/utils/randomModeUtils/generateStickings';
+import generateRandomStickings from '../../lib/utils/randomModeUtils/generateStickings';
 import '../Menu/Menu.css';
 import './RandomMenu.css';
 
@@ -46,7 +46,7 @@ function RandomMenu({ displayMenu }: Props) {
       alert('Select one subdivision option');
       return;
     }
-    const generated = generateStickings(selectedOption);
+    const generated = generateRandomStickings(selectedOption);
     setGeneratedStickings(generated);
   };
 
