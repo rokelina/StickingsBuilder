@@ -1,7 +1,7 @@
 import { StaveNote } from 'vexflow';
 import annotate from '../staffUtils/annotate';
 
-const drawNotes = (
+const drawRandomNotes = (
   stickings: { [key: string]: string },
   beatName: string
 ): StaveNote[] => {
@@ -20,4 +20,4 @@ const drawNotes = (
   return output;
 };
 
-export default drawNotes;
+export default drawRandomNotes;

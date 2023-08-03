@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { RenderContext, Stave, Tuplet, Beam, Formatter } from 'vexflow';
 import drawStaff from '../../lib/utils/staffUtils/drawStaff';
-import drawNotes from '../../lib/utils/randomModeUtils/drawNotes';
+import drawRandomNotes from '../../lib/utils/randomModeUtils/drawRandomNotes';
 import '../Staff/Staff.css';
 interface Props {
   generatedStickings: { [key: string]: string };
@@ -14,10 +14,10 @@ function RandomStaff({ generatedStickings }: Props) {
     const notesGraph = notesGraphRef.current;
     const [vexContext, vexStave] = drawStaff(notesGraph as HTMLDivElement);
 
-    const notes1 = drawNotes(generatedStickings, 'beat-1');
-    const notes2 = drawNotes(generatedStickings, 'beat-2');
-    const notes3 = drawNotes(generatedStickings, 'beat-3');
-    const notes4 = drawNotes(generatedStickings, 'beat-4');
+    const notes1 = drawRandomNotes(generatedStickings, 'beat-1');
+    const notes2 = drawRandomNotes(generatedStickings, 'beat-2');
+    const notes3 = drawRandomNotes(generatedStickings, 'beat-3');
+    const notes4 = drawRandomNotes(generatedStickings, 'beat-4');
     const allNotes = [...notes1, ...notes2, ...notes3, ...notes4];
 
     const allBeats = [notes1, notes2, notes3, notes4];

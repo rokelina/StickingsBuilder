@@ -4,7 +4,7 @@ import MetronomeControls from '../MetronomeControls/MetronomeControls';
 import EmptyStaff from '../Staff/EmptyStaff/EmptyStaff';
 import RandomStaff from './RandomStaff';
 import Options from './Options';
-import generateRandomStickings from '../../lib/utils/randomModeUtils/generateStickings';
+import generateRandomStickings from '../../lib/utils/randomModeUtils/generateRandomStickings';
 import '../Menu/Menu.css';
 import './RandomMenu.css';
 
