@@ -3,5 +3,27 @@
   flex-direction: column;
   align-items: center;
   padding: 1rem;
+  border: 1px solid #333;
+  border-radius: 20px;
 }
 
+.random-options{
+  display: flex;
+}
+
+.subdivision-options{
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  
+}
+
+.subdivision-options label{
+  padding: 0.5rem;
+}
+  
+.select-all{
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+}

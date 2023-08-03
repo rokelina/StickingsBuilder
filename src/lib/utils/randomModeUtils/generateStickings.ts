@@ -1,55 +1,89 @@
-import { eightNotesPermutations, tripletPermutations } from '../permutations';
+import {
+  eightNotesPermutations,
+  tripletPermutations,
+  sixteenthPermutations,
+  quintupletPermutations,
+  sextupletPermutations,
+  septupletPermutations,
+} from '../permutations';
 
-const generateStickings = (selectedOption: string) => {
-  const eighths = Object.values(eightNotesPermutations);
-  const triplets = Object.values(tripletPermutations);
+const eighths = Object.values(eightNotesPermutations);
+const triplets = Object.values(tripletPermutations);
+const sixteenths = Object.values(sixteenthPermutations);
+const quintuplets = Object.values(quintupletPermutations);
+const sextuplets = Object.values(sextupletPermutations);
+const septuplets = Object.values(septupletPermutations);
 
-  const randomIndex = (arr: string[]): number => {
-    return Math.floor(Math.random() * arr.length);
-  };
+const randomIndex = (arr: string[]): number => {
+  return Math.floor(Math.random() * arr.length);
+};
 
-  const generateCombinations = (): string => {
-    if (Math.random() < 0.5) {
+const combineAllSubdivisions = (): string => {
+  const randomNumber = Math.floor(Math.random() * 6);
+  switch (randomNumber) {
+    case 0:
       return eighths[randomIndex(eighths)].toUpperCase();
-    } else {
+    case 1:
       return triplets[randomIndex(triplets)].toUpperCase();
+    case 2:
+      return sixteenths[randomIndex(sixteenths)].toUpperCase();
+    case 3:
+      return quintuplets[randomIndex(quintuplets)].toUpperCase();
+    case 4:
+      return sextuplets[randomIndex(sextuplets)].toUpperCase();
+    case 5:
+      return septuplets[randomIndex(septuplets)].toUpperCase();
+    default:
+      return '';
+  }
+};
+
+const combineSelectedSubdivisions = (arr: string[]): string => {
+  let filteredArray: string[] = [];
+  for (const id of arr) {
+    switch (id) {
+      case 'eighths':
+        filteredArray = [...filteredArray, ...eighths];
+        break;
+      case 'triplets':
+        filteredArray = [...filteredArray, ...triplets];
+        break;
+      case 'sixteenths':
+        filteredArray = [...filteredArray, ...sixteenths];
+        break;
+      case 'quintuplets':
+        filteredArray = [...filteredArray, ...quintuplets];
+        break;
+      case 'sextuplets':
+        filteredArray = [...filteredArray, ...sextuplets];
+        break;
+      case 'septuplets':
+        filteredArray = [...filteredArray, ...septuplets];
+        break;
     }
-  };
+  }
+  return filteredArray[randomIndex(filteredArray)].toUpperCase();
+};
 
-  const generateOutput = (arr: string[]): { [key: string]: string } => {
-    return {
-      'beat-1': arr[randomIndex(arr)].toUpperCase(),
-      'beat-2': arr[randomIndex(arr)].toUpperCase(),
-      'beat-3': arr[randomIndex(arr)].toUpperCase(),
-      'beat-4': arr[randomIndex(arr)].toUpperCase(),
-    };
-  };
-
+const generateRandomStickings = (selectedOption: string[]) => {
   let output: { [key: string]: string };
 
-  switch (selectedOption) {
-    case 'combinations':
-      output = {
-        'beat-1': generateCombinations(),
-        'beat-2': generateCombinations(),
-        'beat-3': generateCombinations(),
-        'beat-4': generateCombinations(),
-      };
-      break;
-
-    case 'eighths':
-      output = generateOutput(eighths);
-      break;
-
-    case 'triplets':
-      output = generateOutput(triplets);
-      break;
-
-    default:
-      output = {};
-      break;
+  if (selectedOption[0] === 'select-all' || selectedOption.length === 6) {
+    output = {
+      'beat-1': combineAllSubdivisions(),
+      'beat-2': combineAllSubdivisions(),
+      'beat-3': combineAllSubdivisions(),
+      'beat-4': combineAllSubdivisions(),
+    };
+  } else {
+    output = {
+      'beat-1': combineSelectedSubdivisions(selectedOption),
+      'beat-2': combineSelectedSubdivisions(selectedOption),
+      'beat-3': combineSelectedSubdivisions(selectedOption),
+      'beat-4': combineSelectedSubdivisions(selectedOption),
+    };
   }
   return output;
 };
 
-export default generateStickings;
+export default generateRandomStickings;
