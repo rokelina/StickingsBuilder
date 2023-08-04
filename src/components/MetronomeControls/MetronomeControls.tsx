@@ -43,8 +43,13 @@ function MetronomeControls({ selectedStickings }: Props) {
     }
   };
 
-  const handleBpmChange = (numberInput: string): void => {
-    setBpm(numberInput);
+  const handleBpmChange = (inputValue: string): void => {
+    if (!inputValue) {
+      alert('Enter a valid BPM value');
+      setBpm('80');
+      return;
+    }
+    setBpm(inputValue);
   };
   Tone.Transport.bpm.value = +bpm;
 
