@@ -5,11 +5,7 @@ import { eightNotesPermutations } from '../../lib/utils/permutations';
 import { useState } from 'react';
 import './Menu.css';
 
-interface Props {
-  displayMenu: string;
-}
-
-function EighthNotesMenu({ displayMenu }: Props) {
+function EighthNotesMenu() {
   const [selectedStickings, setSelectedStickings] = useState<{
     [key: string]: string;
   }>({});
@@ -30,14 +26,9 @@ function EighthNotesMenu({ displayMenu }: Props) {
     });
   };
 
-  console.log(selectedStickings);
-
   return (
     <>
-      <MetronomeControls
-        selectedStickings={selectedStickings}
-        displayMenu={displayMenu}
-      />
+      <MetronomeControls selectedStickings={selectedStickings} />
       <div className="menu">
         <EighthNoteStaff selectedStickings={selectedStickings} />
         <StickingsMenu

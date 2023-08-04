@@ -1,21 +1,11 @@
 import { useEffect, useRef } from 'react';
-import {
-  RenderContext,
-  StaveNote,
-  Stave,
-  Tuplet,
-  Beam,
-  Formatter,
-} from 'vexflow';
+import { RenderContext, Stave, Tuplet, Beam, Formatter } from 'vexflow';
 import drawStaff from '../../lib/utils/staffUtils/drawStaff';
 import drawRandomNotes from '../../lib/utils/randomModeUtils/drawRandomNotes';
 import '../Staff/Staff.css';
+
 interface Props {
   generatedStickings: { [key: string]: string };
-  drawNotes?: (
-    stickings: { [key: string]: string },
-    beatName: string
-  ) => StaveNote[];
 }
 
 function RandomStaff({ generatedStickings }: Props) {

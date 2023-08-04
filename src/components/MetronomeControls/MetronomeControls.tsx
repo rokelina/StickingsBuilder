@@ -13,7 +13,6 @@ import D3 from '../../audio/D3.wav';
 import './MetronomeControls.css';
 
 interface Props {
-  displayMenu: string;
   selectedStickings: { [key: string]: string };
 }
 
@@ -96,8 +95,8 @@ function MetronomeControls({ selectedStickings }: Props) {
     ).toDestination();
 
     return (): void => {
-      clickRef.current?.disconnect();
-      snareRef.current?.disconnect();
+      clickRef.current?.dispose();
+      snareRef.current?.dispose();
       clickSequenceRef.current?.dispose();
       snareSequenceRef.current?.dispose();
     };
@@ -110,7 +109,7 @@ function MetronomeControls({ selectedStickings }: Props) {
           <Button
             idName="play-pause"
             children={isPlaying ? '⏸ Pause' : '▶ Play'}
-            onBtnClick={() => handleStartClick()}
+            onBtnClick={handleStartClick}
           />
           <label htmlFor="volume">
             <input
@@ -130,7 +129,9 @@ function MetronomeControls({ selectedStickings }: Props) {
           <input
             type="number"
             name="met-input"
-            min={20}
+            min={40}
+            max={300}
+            step={5}
             value={bpm}
             className="met-input"
             onChange={(e) => handleBpmChange(e.target.value)}

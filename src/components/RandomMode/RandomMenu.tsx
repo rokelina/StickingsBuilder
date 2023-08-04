@@ -8,11 +8,7 @@ import generateRandomStickings from '../../lib/utils/randomModeUtils/generateRan
 import '../Menu/Menu.css';
 import './RandomMenu.css';
 
-interface Props {
-  displayMenu: string;
-}
-
-function RandomMenu({ displayMenu }: Props) {
+function RandomMenu() {
   const [selectedRandomOption, setSelectedRandomOption] = useState<string[]>(
     []
   );
@@ -54,15 +50,9 @@ function RandomMenu({ displayMenu }: Props) {
     return Object.keys(generatedStickings).length === 0;
   };
 
-  console.log(generatedStickings);
-  console.log(selectedRandomOption);
-
   return (
     <>
-      <MetronomeControls
-        selectedStickings={generatedStickings}
-        displayMenu={displayMenu}
-      />
+      <MetronomeControls selectedStickings={generatedStickings} />
       <div className="menu">
         {isEmpty() ? (
           <EmptyStaff />
