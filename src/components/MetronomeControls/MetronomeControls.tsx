@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, ChangeEvent } from 'react';
+import { useState, useEffect, useRef, useMemo, ChangeEvent } from 'react';
 import * as Tone from 'tone';
 import { mapToSequence } from '../../lib/utils/metronomeUtils/mapToSequence';
 import clickHi from '../../assets/audio/clickHi.wav';
@@ -15,14 +15,17 @@ interface Props {
 function MetronomeControls({ selectedStickings }: Props) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [bpm, setBpm] = useState('80');
+  const [addCountdown, setAddCountdown] = useState(false);
 
   const clickRef = useRef<Tone.Sampler | null>(null);
   const snareRef = useRef<Tone.Sampler | null>(null);
   const clickSequenceRef = useRef<Tone.Sequence | null>(null);
   const snareSequenceRef = useRef<Tone.Sequence | null>(null);
-  const countdownRef = useRef<HTMLInputElement | null>(null);
 
-  const stickingsSequenceArray = mapToSequence(selectedStickings);
+  const stickingsSequenceArray = useMemo(() => {
+    return mapToSequence(selectedStickings);
+  }, [selectedStickings]);
+
   const countdownDelay = (60 / +bpm) * 4;
 
   const handleStartClick = async () => {
@@ -87,7 +90,7 @@ function MetronomeControls({ selectedStickings }: Props) {
             '4n'
           );
           if (Object.keys(selectedStickings).length === 4) {
-            countdownRef.current?.checked
+            addCountdown
               ? snareSequenceRef.current?.start(countdownDelay)
               : snareSequenceRef.current?.start(0);
           }
@@ -101,7 +104,7 @@ function MetronomeControls({ selectedStickings }: Props) {
       clickSequenceRef.current?.dispose();
       snareSequenceRef.current?.dispose();
     };
-  }, [stickingsSequenceArray, selectedStickings, countdownDelay]);
+  }, [stickingsSequenceArray, selectedStickings, countdownDelay, addCountdown]);
 
   return (
     <>
@@ -141,7 +144,11 @@ function MetronomeControls({ selectedStickings }: Props) {
         </div>
         <div className="countdown">
           <span>Add Countdown</span>
-          <input type="checkbox" ref={countdownRef} />
+          <input
+            type="checkbox"
+            checked={addCountdown}
+            onChange={() => setAddCountdown(!addCountdown)}
+          />
         </div>
       </div>
     </>

@@ -1,8 +1,8 @@
+import { useState } from 'react';
+import { tripletPermutations } from '../../lib/utils/permutations';
+import MetronomeControls from '../MetronomeControls/MetronomeControls';
 import StickingsMenu from './StickingsMenu/StickingsMenu';
 import TripletsStaff from '../Staff/TripletsStaff/TripletsStaff';
-import MetronomeControls from '../MetronomeControls/MetronomeControls';
-import { tripletPermutations } from '../../lib/utils/permutations';
-import { useState } from 'react';
 import './Menu.css';
 
 function TripletNotesMenu() {

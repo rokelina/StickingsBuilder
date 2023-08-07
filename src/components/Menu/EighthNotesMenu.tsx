@@ -1,8 +1,8 @@
+import { useState } from 'react';
+import { eightNotesPermutations } from '../../lib/utils/permutations';
+import MetronomeControls from '../MetronomeControls/MetronomeControls';
 import StickingsMenu from './StickingsMenu/StickingsMenu';
 import EighthNoteStaff from '../Staff/EighthNoteStaff/EighthNoteStaff';
-import MetronomeControls from '../MetronomeControls/MetronomeControls';
-import { eightNotesPermutations } from '../../lib/utils/permutations';
-import { useState } from 'react';
 import './Menu.css';
 
 function EighthNotesMenu() {
