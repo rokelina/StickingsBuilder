@@ -1,15 +1,11 @@
-import Button from '../Button/Button';
+import { useState, useEffect, useRef, ChangeEvent } from 'react';
 import * as Tone from 'tone';
 import { mapToSequence } from '../../lib/utils/metronomeUtils/mapToSequence';
-import { useState, useEffect, useRef, ChangeEvent } from 'react';
-//Click Hi
-import C1 from '../../audio/C1.wav';
-//Click Low
-import D1 from '../../audio/D1.wav';
-//Snare R
-import C3 from '../../audio/C3.wav';
-//Snare L
-import D3 from '../../audio/D3.wav';
+import clickHi from '../../assets/audio/clickHi.wav';
+import clickLow from '../../assets/audio/clickLow.wav';
+import snareR from '../../assets/audio/snareR.wav';
+import snareL from '../../assets/audio/snareL.wav';
+import Button from '../Button/Button';
 import './MetronomeControls.css';
 
 interface Props {
@@ -59,14 +55,14 @@ function MetronomeControls({ selectedStickings }: Props) {
 
   useEffect(() => {
     clickRef.current = new Tone.Sampler(
-      { C1, D1 },
+      { C1: clickLow, D1: clickHi },
       {
         onload: () => {
           clickSequenceRef.current = new Tone.Sequence(
             (time, note) => {
               clickRef.current?.triggerAttack(note, time);
             },
-            ['C1', 'D1', 'D1', 'D1'],
+            ['D1', 'C1', 'C1', 'C1'],
             '4n'
           );
           if (Object.keys(selectedStickings).length === 4) {
@@ -78,8 +74,8 @@ function MetronomeControls({ selectedStickings }: Props) {
 
     snareRef.current = new Tone.Sampler(
       {
-        C3,
-        D3,
+        C3: snareR,
+        D3: snareL,
       },
       {
         onload: () => {
