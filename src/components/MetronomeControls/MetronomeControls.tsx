@@ -1,30 +1,38 @@
-import { useState, useEffect, useRef, useMemo, ChangeEvent } from 'react';
+import { useState, useEffect, useRef, ChangeEvent } from 'react';
 import * as Tone from 'tone';
 import { mapToSequence } from '../../lib/utils/metronomeUtils/mapToSequence';
-import clickHi from '../../assets/audio/clickHi.wav';
-import clickLow from '../../assets/audio/clickLow.wav';
-import snareR from '../../assets/audio/snareR.wav';
-import snareL from '../../assets/audio/snareL.wav';
+// import clickHi from '../../assets/audio/clickHi.wav';
+// import clickLow from '../../assets/audio/clickLow.wav';
+// import snareR from '../../assets/audio/snareR.wav';
+// import snareL from '../../assets/audio/snareL.wav';
 import Button from '../Button/Button';
 import './MetronomeControls.css';
 
+interface Samples {
+  clickSampler: Tone.Sampler | null;
+  snareSampler: Tone.Sampler | null;
+}
 interface Props {
   selectedStickings: { [key: string]: string };
+  samples: Samples;
 }
 
-function MetronomeControls({ selectedStickings }: Props) {
+function MetronomeControls({ selectedStickings, samples }: Props) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [bpm, setBpm] = useState('80');
   const [addCountdown, setAddCountdown] = useState(false);
+  // const [samples, setSamples] = useState<{
+  //   clickSampler: Tone.Sampler | null;
+  //   snareSampler: Tone.Sampler | null;
+  // }>({
+  //   clickSampler: null,
+  //   snareSampler: null,
+  // });
 
-  const clickRef = useRef<Tone.Sampler | null>(null);
-  const snareRef = useRef<Tone.Sampler | null>(null);
   const clickSequenceRef = useRef<Tone.Sequence | null>(null);
   const snareSequenceRef = useRef<Tone.Sequence | null>(null);
 
-  const stickingsSequenceArray = useMemo(() => {
-    return mapToSequence(selectedStickings);
-  }, [selectedStickings]);
+  const stickingsSequenceArray = mapToSequence(selectedStickings);
 
   const countdownDelay = (60 / +bpm) * 4;
 
@@ -56,55 +64,49 @@ function MetronomeControls({ selectedStickings }: Props) {
     Tone.Destination.volume.value = Tone.gainToDb(Number(e.target.value));
   };
 
-  useEffect(() => {
-    clickRef.current = new Tone.Sampler(
-      { C1: clickLow, D1: clickHi },
-      {
-        onload: () => {
-          clickSequenceRef.current = new Tone.Sequence(
-            (time, note) => {
-              clickRef.current?.triggerAttack(note, time);
-            },
-            ['D1', 'C1', 'C1', 'C1'],
-            '4n'
-          );
-          if (Object.keys(selectedStickings).length === 4) {
-            clickSequenceRef.current?.start(0);
-          }
-        },
-      }
-    ).toDestination();
+  // Load the samples only once when the component is mounted
+  // useEffect(() => {
+  //   const clickSampler = new Tone.Sampler({
+  //     C1: clickLow,
+  //     D1: clickHi,
+  //   }).toDestination();
+  //   const snareSampler = new Tone.Sampler({
+  //     C3: snareR,
+  //     D3: snareL,
+  //   }).toDestination();
 
-    snareRef.current = new Tone.Sampler(
-      {
-        C3: snareR,
-        D3: snareL,
+  //   setSamples({ clickSampler, snareSampler });
+
+  //   return (): void => {
+  //     clickSampler.dispose();
+  //     snareSampler.dispose();
+  //   };
+  // }, []);
+  useEffect(() => {
+    clickSequenceRef.current = new Tone.Sequence(
+      (time, note) => {
+        samples.clickSampler?.triggerAttack(note, time);
       },
-      {
-        onload: () => {
-          snareSequenceRef.current = new Tone.Sequence(
-            (time, note) => {
-              snareRef.current?.triggerAttack(note, time);
-            },
-            stickingsSequenceArray,
-            '4n'
-          );
-          if (Object.keys(selectedStickings).length === 4) {
-            addCountdown
-              ? snareSequenceRef.current?.start(countdownDelay)
-              : snareSequenceRef.current?.start(0);
-          }
-        },
-      }
-    ).toDestination();
+      ['D1', 'C1', 'C1', 'C1'],
+      '4n'
+    );
+    clickSequenceRef.current?.start(0);
+    snareSequenceRef.current = new Tone.Sequence(
+      (time, note) => {
+        samples.snareSampler?.triggerAttack(note, time);
+      },
+      stickingsSequenceArray,
+      '4n'
+    );
+    addCountdown
+      ? snareSequenceRef.current?.start(countdownDelay)
+      : snareSequenceRef.current?.start(0);
 
     return (): void => {
-      clickRef.current?.dispose();
-      snareRef.current?.dispose();
       clickSequenceRef.current?.dispose();
       snareSequenceRef.current?.dispose();
     };
-  }, [stickingsSequenceArray, selectedStickings, countdownDelay, addCountdown]);
+  }, [stickingsSequenceArray, countdownDelay, addCountdown, samples]);
 
   return (
     <>

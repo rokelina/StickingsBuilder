@@ -1,11 +1,19 @@
 import { useState } from 'react';
 import { eightNotesPermutations } from '../../lib/utils/permutations';
+import { Sampler } from 'tone';
 import MetronomeControls from '../MetronomeControls/MetronomeControls';
 import StickingsMenu from './StickingsMenu/StickingsMenu';
 import EighthNoteStaff from '../Staff/EighthNoteStaff/EighthNoteStaff';
 import './Menu.css';
 
-function EighthNotesMenu() {
+interface Samples {
+  clickSampler: Sampler | null;
+  snareSampler: Sampler | null;
+}
+interface Props {
+  samples: Samples;
+}
+function EighthNotesMenu({ samples }: Props) {
   const [selectedStickings, setSelectedStickings] = useState<{
     [key: string]: string;
   }>({});
@@ -28,7 +36,10 @@ function EighthNotesMenu() {
 
   return (
     <>
-      <MetronomeControls selectedStickings={selectedStickings} />
+      <MetronomeControls
+        selectedStickings={selectedStickings}
+        samples={samples}
+      />
       <div className="menu">
         <EighthNoteStaff selectedStickings={selectedStickings} />
         <StickingsMenu

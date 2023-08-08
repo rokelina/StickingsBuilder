@@ -1,14 +1,23 @@
+import { Sampler } from 'tone';
 import { useState } from 'react';
-import Button from '../Button/Button';
 import MetronomeControls from '../MetronomeControls/MetronomeControls';
 import EmptyStaff from '../Staff/EmptyStaff/EmptyStaff';
 import RandomStaff from './RandomStaff';
 import Options from './Options';
+import Button from '../Button/Button';
 import generateRandomStickings from '../../lib/utils/randomModeUtils/generateRandomStickings';
 import '../Menu/Menu.css';
 import './RandomMenu.css';
 
-function RandomMenu() {
+interface Samples {
+  clickSampler: Sampler | null;
+  snareSampler: Sampler | null;
+}
+interface Props {
+  samples: Samples;
+}
+
+function RandomMenu({ samples }: Props) {
   const [selectedRandomOption, setSelectedRandomOption] = useState<string[]>(
     []
   );
@@ -52,7 +61,10 @@ function RandomMenu() {
 
   return (
     <>
-      <MetronomeControls selectedStickings={generatedStickings} />
+      <MetronomeControls
+        selectedStickings={generatedStickings}
+        samples={samples}
+      />
       <div className="menu">
         {isEmpty() ? (
           <EmptyStaff />

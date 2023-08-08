@@ -1,11 +1,21 @@
 import { useState } from 'react';
 import { tripletPermutations } from '../../lib/utils/permutations';
+import { Sampler } from 'tone';
 import MetronomeControls from '../MetronomeControls/MetronomeControls';
 import StickingsMenu from './StickingsMenu/StickingsMenu';
 import TripletsStaff from '../Staff/TripletsStaff/TripletsStaff';
 import './Menu.css';
 
-function TripletNotesMenu() {
+interface Samples {
+  clickSampler: Sampler | null;
+  snareSampler: Sampler | null;
+}
+
+interface Props {
+  samples: Samples;
+}
+
+function TripletNotesMenu({ samples }: Props) {
   const [selectedStickings, setSelectedStickings] = useState<{
     [key: string]: string;
   }>({});
@@ -28,7 +38,10 @@ function TripletNotesMenu() {
 
   return (
     <>
-      <MetronomeControls selectedStickings={selectedStickings} />
+      <MetronomeControls
+        selectedStickings={selectedStickings}
+        samples={samples}
+      />
       <div className="menu">
         <TripletsStaff selectedStickings={selectedStickings} />
         <StickingsMenu
