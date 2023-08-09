@@ -1,10 +1,6 @@
-import { useState, useEffect, useRef, ChangeEvent } from 'react';
 import * as Tone from 'tone';
-import { mapToSequence } from '../../lib/utils/metronomeUtils/mapToSequence';
-// import clickHi from '../../assets/audio/clickHi.wav';
-// import clickLow from '../../assets/audio/clickLow.wav';
-// import snareR from '../../assets/audio/snareR.wav';
-// import snareL from '../../assets/audio/snareL.wav';
+import { useState, useEffect, useRef } from 'react';
+import mapToSequence from '../../lib/utils/metronomeUtils/mapToSequence';
 import Button from '../Button/Button';
 import './MetronomeControls.css';
 
@@ -21,19 +17,11 @@ function MetronomeControls({ selectedStickings, samples }: Props) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [bpm, setBpm] = useState('80');
   const [addCountdown, setAddCountdown] = useState(false);
-  // const [samples, setSamples] = useState<{
-  //   clickSampler: Tone.Sampler | null;
-  //   snareSampler: Tone.Sampler | null;
-  // }>({
-  //   clickSampler: null,
-  //   snareSampler: null,
-  // });
 
   const clickSequenceRef = useRef<Tone.Sequence | null>(null);
   const snareSequenceRef = useRef<Tone.Sequence | null>(null);
 
   const stickingsSequenceArray = mapToSequence(selectedStickings);
-
   const countdownDelay = (60 / +bpm) * 4;
 
   const handleStartClick = async () => {
@@ -60,29 +48,12 @@ function MetronomeControls({ selectedStickings, samples }: Props) {
   };
   Tone.Transport.bpm.value = +bpm;
 
-  const handleVolumeChange = (e: ChangeEvent<HTMLInputElement>) => {
-    Tone.Destination.volume.value = Tone.gainToDb(Number(e.target.value));
+  const handleVolumeChange = (inputValue: string) => {
+    Tone.Destination.volume.value = Tone.gainToDb(+inputValue);
   };
 
-  // Load the samples only once when the component is mounted
-  // useEffect(() => {
-  //   const clickSampler = new Tone.Sampler({
-  //     C1: clickLow,
-  //     D1: clickHi,
-  //   }).toDestination();
-  //   const snareSampler = new Tone.Sampler({
-  //     C3: snareR,
-  //     D3: snareL,
-  //   }).toDestination();
-
-  //   setSamples({ clickSampler, snareSampler });
-
-  //   return (): void => {
-  //     clickSampler.dispose();
-  //     snareSampler.dispose();
-  //   };
-  // }, []);
   useEffect(() => {
+    //Metronome sound sequence
     clickSequenceRef.current = new Tone.Sequence(
       (time, note) => {
         samples.clickSampler?.triggerAttack(note, time);
@@ -91,6 +62,8 @@ function MetronomeControls({ selectedStickings, samples }: Props) {
       '4n'
     );
     clickSequenceRef.current?.start(0);
+
+    //Snare sound sequence
     snareSequenceRef.current = new Tone.Sequence(
       (time, note) => {
         samples.snareSampler?.triggerAttack(note, time);
@@ -126,7 +99,7 @@ function MetronomeControls({ selectedStickings, samples }: Props) {
               min={0}
               max={1}
               step={0.01}
-              onChange={handleVolumeChange}
+              onChange={(e) => handleVolumeChange(e.target.value)}
               defaultValue={1}
             />
           </label>

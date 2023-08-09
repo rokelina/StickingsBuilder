@@ -1,4 +1,4 @@
-export const mapToSequence = (stickings: {
+const mapToSequence = (stickings: {
   [key: string]: string;
 }): ('C3' | 'D3')[][] => {
   return Object.values(stickings).map((value: string) => {
@@ -12,3 +12,5 @@ export const mapToSequence = (stickings: {
     return notes;
   });
 };
+
+export default mapToSequence;
