@@ -25,10 +25,11 @@ function MetronomeControls({ selectedStickings, samples }: Props) {
   const countdownDelay = (60 / +bpm) * 4;
 
   const handleStartClick = async () => {
-    if (
-      Tone.Transport.state === 'started' ||
-      Object.keys(selectedStickings).length !== 4
-    ) {
+    if (Object.keys(selectedStickings).length !== 4) {
+      alert('Select all 4 beat stickings to start!');
+      return;
+    }
+    if (Tone.Transport.state === 'started') {
       setIsPlaying(false);
       Tone.Transport.stop();
     } else {
@@ -75,6 +76,7 @@ function MetronomeControls({ selectedStickings, samples }: Props) {
       ? snareSequenceRef.current?.start(countdownDelay)
       : snareSequenceRef.current?.start(0);
 
+    // cleanup
     return (): void => {
       clickSequenceRef.current?.dispose();
       snareSequenceRef.current?.dispose();

@@ -10,11 +10,16 @@ interface Props {
 }
 
 function MenuWrapper({ displayMenu }: Props) {
-  //Eights-Triplets State
-  const [selectedStickings, setSelectedStickings] = useState<{
+  //Eights State
+  const [selectedEighths, setSelectedEighths] = useState<{
     [key: string]: string;
   }>({});
-  console.log(selectedStickings);
+
+  //Triplets State
+  const [selectedTriplets, setSelectedTriplets] = useState<{
+    [key: string]: string;
+  }>({});
+
   //Random Mode State
   const [generatedStickings, setGeneratedStickings] = useState<{
     [key: string]: string;
@@ -24,11 +29,10 @@ function MenuWrapper({ displayMenu }: Props) {
   );
   const [isSelectAll, setSelectAll] = useState(false);
 
-  console.log(generatedStickings);
   //Stickings Form Handler
-  const handleFormChange = (beatName: string, children: string) => {
+  const handleEighthsChange = (beatName: string, children: string) => {
     if (beatName === 'row') {
-      setSelectedStickings({
+      setSelectedEighths({
         'beat-1': children,
         'beat-2': children,
         'beat-3': children,
@@ -36,8 +40,24 @@ function MenuWrapper({ displayMenu }: Props) {
       });
       return;
     }
-    setSelectedStickings({
-      ...selectedStickings,
+    setSelectedEighths({
+      ...selectedEighths,
+      [beatName]: children,
+    });
+  };
+
+  const handleTripletsChange = (beatName: string, children: string) => {
+    if (beatName === 'row') {
+      setSelectedTriplets({
+        'beat-1': children,
+        'beat-2': children,
+        'beat-3': children,
+        'beat-4': children,
+      });
+      return;
+    }
+    setSelectedTriplets({
+      ...selectedTriplets,
       [beatName]: children,
     });
   };
@@ -72,25 +92,33 @@ function MenuWrapper({ displayMenu }: Props) {
     setGeneratedStickings(generated);
   };
 
+  // Pass stickings to the metronome
+  const returnStickings = () => {
+    if (displayMenu === 'random-stickings') {
+      return generatedStickings;
+    }
+    if (displayMenu === 'eighth-notes') {
+      return selectedEighths;
+    }
+    if (displayMenu === 'triplet-notes') {
+      return selectedTriplets;
+    }
+    return {};
+  };
+
   return (
     <>
-      <MetronomeWrapper
-        selectedStickings={
-          displayMenu === 'random-stickings'
-            ? generatedStickings
-            : selectedStickings
-        }
-      />
+      <MetronomeWrapper selectedStickings={returnStickings()} />
       {displayMenu === 'eighth-notes' && (
         <EighthNotesMenu
-          selectedStickings={selectedStickings}
-          onFormChange={handleFormChange}
+          selectedStickings={selectedEighths}
+          onFormChange={handleEighthsChange}
         />
       )}
       {displayMenu === 'triplet-notes' && (
         <TripletNotesMenu
-          selectedStickings={selectedStickings}
-          onFormChange={handleFormChange}
+          selectedStickings={selectedTriplets}
+          onFormChange={handleTripletsChange}
         />
       )}
       {displayMenu === 'random-stickings' && (
