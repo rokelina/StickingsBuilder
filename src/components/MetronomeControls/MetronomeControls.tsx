@@ -11,9 +11,10 @@ interface Samples {
 interface Props {
   selectedStickings: { [key: string]: string };
   samples: Samples;
+  displayMenu: string;
 }
 
-function MetronomeControls({ selectedStickings, samples }: Props) {
+function MetronomeControls({ selectedStickings, samples, displayMenu }: Props) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [bpm, setBpm] = useState('80');
   const [addCountdown, setAddCountdown] = useState(false);
@@ -52,6 +53,11 @@ function MetronomeControls({ selectedStickings, samples }: Props) {
   const handleVolumeChange = (inputValue: string) => {
     Tone.Destination.volume.value = Tone.gainToDb(+inputValue);
   };
+  useEffect(() => {
+    //Stop the transport when changing between menus
+    setIsPlaying(false);
+    Tone.Transport.stop();
+  }, [displayMenu]);
 
   useEffect(() => {
     //Metronome sound sequence

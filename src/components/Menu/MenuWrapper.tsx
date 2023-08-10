@@ -30,7 +30,10 @@ function MenuWrapper({ displayMenu }: Props) {
 
   return (
     <>
-      <MetronomeWrapper selectedStickings={returnStickings()} />
+      <MetronomeWrapper
+        selectedStickings={returnStickings()}
+        displayMenu={displayMenu}
+      />
       {displayMenu === 'eighth-notes' && (
         <EighthNotesMenu stickingMenuProps={eighths} />
       )}

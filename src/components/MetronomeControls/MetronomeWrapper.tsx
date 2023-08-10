@@ -13,9 +13,10 @@ interface Samples {
 
 interface Props {
   selectedStickings: { [key: string]: string };
+  displayMenu: string;
 }
 
-function MetronomeWrapper({ selectedStickings }: Props) {
+function MetronomeWrapper({ selectedStickings, displayMenu }: Props) {
   const [samples, setSamples] = useState<Samples>({
     clickSampler: null,
     snareSampler: null,
@@ -45,6 +46,7 @@ function MetronomeWrapper({ selectedStickings }: Props) {
       <MetronomeControls
         selectedStickings={selectedStickings}
         samples={samples}
+        displayMenu={displayMenu}
       />
     </>
   );
