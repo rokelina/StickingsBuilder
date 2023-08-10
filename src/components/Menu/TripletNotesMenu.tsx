@@ -4,10 +4,14 @@ import TripletsStaff from '../Staff/TripletsStaff/TripletsStaff';
 import './Menu.css';
 
 interface Props {
-  selectedStickings: { [key: string]: string };
-  onFormChange: (beatName: string, children: string) => void;
+  stickingMenuProps: {
+    selectedStickings: { [key: string]: string };
+    onFormChange: (beatName: string, children: string) => void;
+  };
 }
-function TripletNotesMenu({ selectedStickings, onFormChange }: Props) {
+function TripletNotesMenu({ stickingMenuProps }: Props) {
+  const { selectedStickings, onFormChange } = stickingMenuProps;
+
   return (
     <>
       <div className="menu">

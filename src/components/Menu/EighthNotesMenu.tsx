@@ -4,11 +4,15 @@ import EighthNoteStaff from '../Staff/EighthNoteStaff/EighthNoteStaff';
 import './Menu.css';
 
 interface Props {
-  selectedStickings: { [key: string]: string };
-  onFormChange: (beatName: string, children: string) => void;
+  stickingMenuProps: {
+    selectedStickings: { [key: string]: string };
+    onFormChange: (beatName: string, children: string) => void;
+  };
 }
 
-function EighthNotesMenu({ selectedStickings, onFormChange }: Props) {
+function EighthNotesMenu({ stickingMenuProps }: Props) {
+  const { selectedStickings, onFormChange } = stickingMenuProps;
+
   return (
     <>
       <div className="menu">

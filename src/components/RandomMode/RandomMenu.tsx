@@ -6,22 +6,26 @@ import '../Menu/Menu.css';
 import './RandomMenu.css';
 
 interface Props {
-  selectedRandomOption: string[];
-  isSelectAll: boolean;
-  generatedStickings: {
-    [key: string]: string;
+  randomMenuProps: {
+    generatedStickings: {
+      [key: string]: string;
+    };
+    isSelectAll: boolean;
+    selectedRandomOption: string[];
+    onGenerateStickings: (selectedOption: string[]) => void;
+    onRandomOptionsChange: (id: string, checked: boolean) => void;
   };
-  onRandomOptionsChange: (id: string, checked: boolean) => void;
-  onGenerateStickings: (selectedOption: string[]) => void;
 }
 
-function RandomMenu({
-  selectedRandomOption,
-  isSelectAll,
-  generatedStickings,
-  onRandomOptionsChange,
-  onGenerateStickings,
-}: Props) {
+function RandomMenu({ randomMenuProps }: Props) {
+  const {
+    selectedRandomOption,
+    isSelectAll,
+    generatedStickings,
+    onRandomOptionsChange,
+    onGenerateStickings,
+  } = randomMenuProps;
+
   const isEmpty = (): boolean => {
     return Object.keys(generatedStickings).length === 0;
   };
