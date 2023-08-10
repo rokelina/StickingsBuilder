@@ -10,20 +10,20 @@ interface Props {
 }
 
 function MenuWrapper({ displayMenu }: Props) {
-  const eighths = useSelectStickings();
-  const triplets = useSelectStickings();
-  const random = useGenerateStickings();
+  const eighthsProps = useSelectStickings();
+  const tripletsProps = useSelectStickings();
+  const randomProps = useGenerateStickings();
 
   // Pass stickings to the metronome
   const returnStickings = () => {
     if (displayMenu === 'random-stickings') {
-      return random.generatedStickings;
+      return randomProps.generatedStickings;
     }
     if (displayMenu === 'eighth-notes') {
-      return eighths.selectedStickings;
+      return eighthsProps.selectedStickings;
     }
     if (displayMenu === 'triplet-notes') {
-      return triplets.selectedStickings;
+      return tripletsProps.selectedStickings;
     }
     return {};
   };
@@ -35,13 +35,13 @@ function MenuWrapper({ displayMenu }: Props) {
         displayMenu={displayMenu}
       />
       {displayMenu === 'eighth-notes' && (
-        <EighthNotesMenu stickingMenuProps={eighths} />
+        <EighthNotesMenu stickingMenuProps={eighthsProps} />
       )}
       {displayMenu === 'triplet-notes' && (
-        <TripletNotesMenu stickingMenuProps={triplets} />
+        <TripletNotesMenu stickingMenuProps={tripletsProps} />
       )}
       {displayMenu === 'random-stickings' && (
-        <RandomMenu randomMenuProps={random} />
+        <RandomMenu randomMenuProps={randomProps} />
       )}
     </>
   );

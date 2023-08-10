@@ -1,15 +1,5 @@
-import { Sampler } from 'tone';
-import { useState, useEffect } from 'react';
+import { useCreateSamples } from '../../hooks/useCreateSamples';
 import MetronomeControls from './MetronomeControls';
-import clickHi from '../../assets/audio/clickHi.wav';
-import clickLow from '../../assets/audio/clickLow.wav';
-import snareR from '../../assets/audio/snareR.wav';
-import snareL from '../../assets/audio/snareL.wav';
-
-interface Samples {
-  clickSampler: Sampler | null;
-  snareSampler: Sampler | null;
-}
 
 interface Props {
   selectedStickings: { [key: string]: string };
@@ -17,29 +7,8 @@ interface Props {
 }
 
 function MetronomeWrapper({ selectedStickings, displayMenu }: Props) {
-  const [samples, setSamples] = useState<Samples>({
-    clickSampler: null,
-    snareSampler: null,
-  });
-
-  //Load sounds, create Sample objects
-  useEffect(() => {
-    const clickSampler = new Sampler({
-      C1: clickLow,
-      D1: clickHi,
-    }).toDestination();
-    const snareSampler = new Sampler({
-      C3: snareR,
-      D3: snareL,
-    }).toDestination();
-
-    setSamples({ clickSampler, snareSampler });
-
-    return (): void => {
-      clickSampler.dispose();
-      snareSampler.dispose();
-    };
-  }, []);
+  //Load sounds, returns a Samples object
+  const samples = useCreateSamples();
 
   return (
     <>
