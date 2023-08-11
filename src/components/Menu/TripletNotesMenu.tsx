@@ -1,7 +1,8 @@
 import { tripletPermutations } from '../../lib/utils/permutations';
 import StickingsMenu from './StickingsMenu/StickingsMenu';
-import TripletsStaff from '../Staff/TripletsStaff/TripletsStaff';
+import Staff from '../Staff/Staff';
 import './Menu.css';
+import drawTripletNotes from '../../lib/utils/staffUtils/drawTriplets';
 
 interface Props {
   stickingMenuProps: {
@@ -15,7 +16,10 @@ function TripletNotesMenu({ stickingMenuProps }: Props) {
   return (
     <>
       <div className="menu">
-        <TripletsStaff selectedStickings={selectedStickings} />
+        <Staff
+          stickings={selectedStickings}
+          drawNotesFunction={drawTripletNotes}
+        />
         <StickingsMenu
           permutations={tripletPermutations}
           onFormChange={onFormChange}

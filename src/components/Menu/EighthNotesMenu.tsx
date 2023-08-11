@@ -1,6 +1,7 @@
 import { eightNotesPermutations } from '../../lib/utils/permutations';
 import StickingsMenu from './StickingsMenu/StickingsMenu';
-import EighthNoteStaff from '../Staff/EighthNoteStaff/EighthNoteStaff';
+import drawEighthNotes from '../../lib/utils/staffUtils/drawEighthNotes';
+import Staff from '../Staff/Staff';
 import './Menu.css';
 
 interface Props {
@@ -16,7 +17,10 @@ function EighthNotesMenu({ stickingMenuProps }: Props) {
   return (
     <>
       <div className="menu">
-        <EighthNoteStaff selectedStickings={selectedStickings} />
+        <Staff
+          stickings={selectedStickings}
+          drawNotesFunction={drawEighthNotes}
+        />
         <StickingsMenu
           permutations={eightNotesPermutations}
           onFormChange={onFormChange}

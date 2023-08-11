@@ -1,9 +1,10 @@
-import EmptyStaff from '../Staff/EmptyStaff/EmptyStaff';
-import RandomStaff from './RandomStaff';
+import Staff from '../Staff/Staff';
 import Options from './Options';
 import Button from '../Button/Button';
 import '../Menu/Menu.css';
 import './RandomMenu.css';
+import drawRandomNotes from '../../lib/utils/randomModeUtils/drawRandomNotes';
+import EmptyStaff from '../Staff/EmptyStaff/EmptyStaff';
 
 interface Props {
   randomMenuProps: {
@@ -36,7 +37,10 @@ function RandomMenu({ randomMenuProps }: Props) {
         {isEmpty() ? (
           <EmptyStaff />
         ) : (
-          <RandomStaff generatedStickings={generatedStickings} />
+          <Staff
+            stickings={generatedStickings}
+            drawNotesFunction={drawRandomNotes}
+          />
         )}
         <div className="random-menu">
           <Options
