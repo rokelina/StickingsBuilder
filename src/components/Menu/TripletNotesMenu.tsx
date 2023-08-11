@@ -1,52 +1,28 @@
-import { useState } from 'react';
 import { tripletPermutations } from '../../lib/utils/permutations';
-import { Sampler } from 'tone';
-import MetronomeControls from '../MetronomeControls/MetronomeControls';
 import StickingsMenu from './StickingsMenu/StickingsMenu';
-import TripletsStaff from '../Staff/TripletsStaff/TripletsStaff';
+import Staff from '../Staff/Staff';
 import './Menu.css';
-
-interface Samples {
-  clickSampler: Sampler | null;
-  snareSampler: Sampler | null;
-}
+import drawTripletNotes from '../../lib/utils/staffUtils/drawTriplets';
 
 interface Props {
-  samples: Samples;
-}
-
-function TripletNotesMenu({ samples }: Props) {
-  const [selectedStickings, setSelectedStickings] = useState<{
-    [key: string]: string;
-  }>({});
-
-  const handleFormChange = (beatName: string, children: string) => {
-    if (beatName === 'row') {
-      setSelectedStickings({
-        'beat-1': children,
-        'beat-2': children,
-        'beat-3': children,
-        'beat-4': children,
-      });
-      return;
-    }
-    setSelectedStickings({
-      ...selectedStickings,
-      [beatName]: children,
-    });
+  stickingMenuProps: {
+    selectedStickings: { [key: string]: string };
+    onFormChange: (beatName: string, children: string) => void;
   };
+}
+function TripletNotesMenu({ stickingMenuProps }: Props) {
+  const { selectedStickings, onFormChange } = stickingMenuProps;
 
   return (
     <>
-      <MetronomeControls
-        selectedStickings={selectedStickings}
-        samples={samples}
-      />
       <div className="menu">
-        <TripletsStaff selectedStickings={selectedStickings} />
+        <Staff
+          stickings={selectedStickings}
+          drawNotesFunction={drawTripletNotes}
+        />
         <StickingsMenu
           permutations={tripletPermutations}
-          onFormChange={handleFormChange}
+          onFormChange={onFormChange}
           selectedStickings={selectedStickings}
         />
       </div>
