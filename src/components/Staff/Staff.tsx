@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { StaveNote } from 'vexflow';
 import { useDrawNotes } from '../../hooks/useDrawNotes';
-import '../Staff/Staff.css';
+import './Staff.css';
 
 interface Props {
   stickings: { [key: string]: string };

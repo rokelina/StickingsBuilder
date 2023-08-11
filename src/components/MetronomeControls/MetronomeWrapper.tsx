@@ -7,7 +7,7 @@ interface Props {
 }
 
 function MetronomeWrapper({ selectedStickings, displayMenu }: Props) {
-  //Load sounds, returns a Samples object
+  // Load sounds
   const samples = useCreateSamples();
 
   return (
