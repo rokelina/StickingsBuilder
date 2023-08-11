@@ -1,5 +1,5 @@
 import { StaveNote } from 'vexflow';
-import annotate from '../staffUtils/annotate';
+import annotate from './annotate';
 
 const drawRandomNotes = (
   stickings: { [key: string]: string },

@@ -1,10 +1,10 @@
 import Staff from '../Staff/Staff';
+import EmptyStaff from '../Staff/EmptyStaff';
 import Options from './Options';
 import Button from '../Button/Button';
+import drawRandomNotes from '../../lib/utils/staffUtils/drawRandomNotes';
 import '../Menu/Menu.css';
 import './RandomMenu.css';
-import drawRandomNotes from '../../lib/utils/randomModeUtils/drawRandomNotes';
-import EmptyStaff from '../Staff/EmptyStaff/EmptyStaff';
 
 interface Props {
   randomMenuProps: {
