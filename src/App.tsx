@@ -1,6 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect, CSSProperties } from 'react';
+// import { useLoadingSpinner } from './hooks/useLoadingSpinner';
 import MainWrapper from './components/MainWrapper/MainWrapper';
 import SideNavBar from './components/SideNavBar/SideNavBar';
+// import BarLoader from 'react-spinners/BarLoader';
 
 function App() {
   const [showMenu, setShowMenu] = useState('eighth-notes');
@@ -11,8 +13,14 @@ function App() {
 
   return (
     <>
-      <SideNavBar onNavClick={handleNavClick} />
-      <MainWrapper displayMenu={showMenu} />
+      {/* {isLoading ? (
+        <BarLoader />
+      ) : ( */}
+      <>
+        <SideNavBar onNavClick={handleNavClick} />
+        <MainWrapper displayMenu={showMenu} />
+      </>
+      {/* )} */}
     </>
   );
 }

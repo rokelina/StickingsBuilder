@@ -1,4 +1,9 @@
 .top-nav{
   justify-content: center;
+  align-items: center;
   color: white; 
+}
+
+.login-signup{
+  
 }
