@@ -1,4 +1,5 @@
 import Button from '../Button/Button';
+import Snare from '../../assets/icons/Snare';
 import './TopNavBar.css';
 
 function TopNavBar() {
@@ -6,6 +7,7 @@ function TopNavBar() {
 
   return (
     <nav className="top-nav">
+      <Snare />
       <h1>Stickings Builder</h1>
       <div className="login-signup">
         <Button idName="log-in-btn">Log In</Button>
