@@ -12,15 +12,14 @@ function App() {
   const load = () => new Promise((resolve) => setTimeout(resolve, 1000));
   useEffect(() => {
     const ele = document.getElementById('loader');
-    const body = document.querySelector('body');
+    // const body = document.querySelector('body');
     load().then(() => {
       if (ele) {
-        // fade out
         ele.classList.add('hidden');
 
         setTimeout(() => {
           // remove from DOM
-          body?.removeChild(ele);
+          ele.parentNode?.removeChild(ele);
         }, 50);
       }
     });
