@@ -1,8 +1,6 @@
-import { useState, useEffect, CSSProperties } from 'react';
-// import { useLoadingSpinner } from './hooks/useLoadingSpinner';
+import { useEffect, useState } from 'react';
 import MainWrapper from './components/MainWrapper/MainWrapper';
 import SideNavBar from './components/SideNavBar/SideNavBar';
-// import BarLoader from 'react-spinners/BarLoader';
 
 function App() {
   const [showMenu, setShowMenu] = useState('eighth-notes');
@@ -11,16 +9,27 @@ function App() {
     setShowMenu(id);
   };
 
+  const load = () => new Promise((resolve) => setTimeout(resolve, 1000));
+  useEffect(() => {
+    const ele = document.getElementById('loader');
+    const body = document.querySelector('body');
+    load().then(() => {
+      if (ele) {
+        // fade out
+        ele.classList.add('hidden');
+
+        setTimeout(() => {
+          // remove from DOM
+          body?.removeChild(ele);
+        }, 50);
+      }
+    });
+  }, []);
+
   return (
     <>
-      {/* {isLoading ? (
-        <BarLoader />
-      ) : ( */}
-      <>
-        <SideNavBar onNavClick={handleNavClick} />
-        <MainWrapper displayMenu={showMenu} />
-      </>
-      {/* )} */}
+      <SideNavBar onNavClick={handleNavClick} />
+      <MainWrapper displayMenu={showMenu} />
     </>
   );
 }
