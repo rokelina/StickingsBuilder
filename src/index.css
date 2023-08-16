@@ -31,6 +31,7 @@ fieldset {
   border: none;
   display: grid;
   justify-items: start;
+  justify-content: center;
   min-height: fit-content;
   min-width: 4vw;
   padding: 0.3rem;

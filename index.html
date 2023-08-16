@@ -2,19 +2,25 @@
 <html lang="en">
   <head>
     <style type="text/css">
-      .hidden {
-        opacity: 0;
-        visibility: hidden;
-      }
       .loader {
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        opacity: 1;
+        background-color: white;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        width: 100%;
-        height: 100vh;
         font-family: sans-serif;
         font-weight: 600;
+      }
+      .hidden {
+        opacity: 0;
+        visibility: hidden;
       }
       .spinner-logo {
         animation: spin 1s linear infinite;
@@ -30,8 +36,11 @@
       }
     </style>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Stickings App</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>🥁 Stickings Builder</title>
   </head>
   <body>
     <div class="loader" id="loader">
@@ -51,7 +60,7 @@
             calcMode="linear"
             values="0 50 51;360 50 51"
             keyTimes="0;1"
-            dur="2s"
+            dur="1s"
             begin="0s"
             repeatCount="indefinite"
           ></animateTransform>

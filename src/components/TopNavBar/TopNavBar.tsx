@@ -8,10 +8,10 @@ function TopNavBar() {
   return (
     <nav className="top-nav">
       <Snare />
-      <h1>Stickings Builder</h1>
+      <h1>STICKINGS BUILDER</h1>
       <div className="login-signup">
-        <Button idName="log-in-btn">Log In</Button>
-        <Button idName="sign-up-btn">Sign Up</Button>
+        <Button idName="log-in-btn">LOG IN</Button>
+        <Button idName="sign-up-btn">SIGN UP</Button>
       </div>
     </nav>
   );

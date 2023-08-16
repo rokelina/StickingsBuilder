@@ -9,16 +9,13 @@ function App() {
     setShowMenu(id);
   };
 
-  const load = () => new Promise((resolve) => setTimeout(resolve, 1000));
+  const load = () => new Promise((resolve) => setTimeout(resolve, 750));
   useEffect(() => {
     const ele = document.getElementById('loader');
-    // const body = document.querySelector('body');
     load().then(() => {
       if (ele) {
         ele.classList.add('hidden');
-
         setTimeout(() => {
-          // remove from DOM
           ele.parentNode?.removeChild(ele);
         }, 50);
       }

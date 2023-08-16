@@ -51,10 +51,10 @@ function RandomMenu({ randomMenuProps }: Props) {
           <div className="random-controls">
             <Button
               idName="generate-button"
-              children="Generate"
+              children="GENERATE"
               onBtnClick={() => onGenerateStickings(selectedRandomOption)}
             />
-            <Button idName="save-button" children="Save" />
+            <Button idName="save-button" children="SAVE" />
           </div>
         </div>
       </div>
