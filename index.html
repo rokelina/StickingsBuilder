@@ -1,11 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <style type="text/css">
+      .loader {
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        opacity: 1;
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-family: sans-serif;
+        font-weight: 600;
+      }
+      .hidden {
+        opacity: 0;
+        visibility: hidden;
+      }
+      .spinner-logo {
+        animation: spin 1s linear infinite;
+        margin: 1em;
+      }
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Stickings App</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>Stickings Builder</title>
   </head>
   <body>
+    <div class="loader" id="loader">
+      <span>Loading...</span>
+      <svg class="spinner-logo" viewBox="0 0 100 100" width="8em" height="8em">
+        <path
+          ng-attr-d="{{config.pathCmd}}"
+          ng-attr-fill="{{config.color}}"
+          stroke="none"
+          d="M10 50A40 40 0 0 0 90 50A40 42 0 0 1 10 50"
+          fill="#333333"
+          transform="rotate(179.719 50 51)"
+        >
+          <animateTransform
+            attributeName="transform"
+            type="rotate"
+            calcMode="linear"
+            values="0 50 51;360 50 51"
+            keyTimes="0;1"
+            dur="1s"
+            begin="0s"
+            repeatCount="indefinite"
+          ></animateTransform>
+        </path>
+      </svg>
+    </div>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

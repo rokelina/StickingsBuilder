@@ -1,9 +1,18 @@
+import Button from '../Button/Button';
+import Snare from '../../assets/icons/Snare';
 import './TopNavBar.css';
 
 function TopNavBar() {
+  // add log in buttons
+
   return (
     <nav className="top-nav">
-      <h1>Stickings Builder</h1>
+      <Snare />
+      <h1>STICKINGS BUILDER</h1>
+      <div className="login-signup">
+        <Button idName="log-in-btn">LOG IN</Button>
+        <Button idName="sign-up-btn">SIGN UP</Button>
+      </div>
     </nav>
   );
 }

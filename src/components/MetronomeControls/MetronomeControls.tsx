@@ -95,7 +95,7 @@ function MetronomeControls({ selectedStickings, samples, displayMenu }: Props) {
         <div>
           <Button
             idName="play-pause"
-            children={isPlaying ? '⏸ Pause' : '▶ Play'}
+            children={isPlaying ? '⏸ PAUSE' : '▶ PLAY'}
             onBtnClick={handleStartClick}
           />
           <label htmlFor="volume">
@@ -126,7 +126,7 @@ function MetronomeControls({ selectedStickings, samples, displayMenu }: Props) {
           <span>BPM</span>
         </div>
         <div className="countdown">
-          <span>Add Countdown</span>
+          <span>ADD COUNTDOWN</span>
           <input
             type="checkbox"
             checked={addCountdown}

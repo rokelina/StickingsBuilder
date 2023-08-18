@@ -51,7 +51,7 @@ function StickingsMenu({
         />
       </div>
       <div className="menu-options">
-        <Button idName="save-button" children="Save" />
+        <Button idName="save-button" children="SAVE" />
       </div>
     </div>
   );
