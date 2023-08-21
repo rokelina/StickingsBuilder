@@ -9,12 +9,14 @@ import {
 } from 'vexflow';
 import drawStaff from '../lib/utils/staffUtils/drawStaff';
 
+export type NotesArray = StaveNote[];
+
 export function useDrawNotes(
   stickingsObject: { [key: string]: string },
   drawNotesFunction: (
     stickingsObject: { [key: string]: string },
     beatName: string
-  ) => StaveNote[],
+  ) => NotesArray,
   divRef: MutableRefObject<HTMLDivElement | null>
 ) {
   useEffect(() => {

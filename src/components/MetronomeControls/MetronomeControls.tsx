@@ -1,13 +1,10 @@
 import * as Tone from 'tone';
 import { useState, useEffect, useRef } from 'react';
+import { Samples } from '../../hooks/useCreateSamples';
 import mapToSequence from '../../lib/utils/metronomeUtils/mapToSequence';
 import Button from '../Button/Button';
 import './MetronomeControls.css';
 
-interface Samples {
-  clickSampler: Tone.Sampler | null;
-  snareSampler: Tone.Sampler | null;
-}
 interface Props {
   selectedStickings: { [key: string]: string };
   samples: Samples;
