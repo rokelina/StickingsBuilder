@@ -13,6 +13,10 @@ function StickingsMenu({
   onFormChange,
   selectedStickings,
 }: MenuProps) {
+  const isDisabled = () => {
+    return Object.keys(selectedStickings).length !== 4;
+  };
+
   return (
     <div className="menu-card">
       <div className="menu-container">
@@ -51,7 +55,7 @@ function StickingsMenu({
         />
       </div>
       <div className="menu-options">
-        <Button idName="save-button" children="SAVE" />
+        <Button idName="save-button" children="SAVE" disabled={isDisabled()} />
       </div>
     </div>
   );

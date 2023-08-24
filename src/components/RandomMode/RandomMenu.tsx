@@ -31,6 +31,10 @@ function RandomMenu({ randomMenuProps }: Props) {
     return Object.keys(generatedStickings).length === 0;
   };
 
+  const isDisabled = () => {
+    return Object.keys(generatedStickings).length !== 4;
+  };
+
   return (
     <>
       <div className="menu">
@@ -54,7 +58,11 @@ function RandomMenu({ randomMenuProps }: Props) {
               children="GENERATE"
               onBtnClick={() => onGenerateStickings(selectedRandomOption)}
             />
-            <Button idName="save-button" children="SAVE" />
+            <Button
+              idName="save-button"
+              children="SAVE"
+              disabled={isDisabled()}
+            />
           </div>
         </div>
       </div>
