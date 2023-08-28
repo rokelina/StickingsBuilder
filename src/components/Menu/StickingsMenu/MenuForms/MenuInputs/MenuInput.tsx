@@ -1,3 +1,5 @@
+import { isStickingChecked } from '../../../../../lib/uiHelpers/menuHelpers';
+
 interface InputProps {
   children: string;
   beatName: string;
@@ -17,26 +19,13 @@ function MenuInput({
   selectedStickings,
   value,
 }: InputProps) {
-  const isChecked = (
-    selectedStickings: { [key: string]: string },
-    beatName: string,
-    children: string
-  ): boolean => {
-    for (const [key, value] of Object.entries(selectedStickings)) {
-      if (key === beatName && value === children) {
-        return true;
-      }
-    }
-    return false;
-  };
-
   return (
     <label className="stickings" htmlFor={labelFor}>
       <input
         type={inputType}
         id={labelFor}
         name={beatName}
-        checked={isChecked(selectedStickings, beatName, children)}
+        checked={isStickingChecked(selectedStickings, beatName, children)}
         onChange={() => onFormChange(beatName, children)}
         value={value}
       />

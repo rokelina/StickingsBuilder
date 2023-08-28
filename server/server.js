@@ -5,7 +5,7 @@ const port = 5000;
 const app = express();
 
 app.get('/', (req, res) => {
-  res.send('Hello');
+  res.send('Hello Express');
 });
 
 app.listen(port, () => console.log(`Listening in port ${port}`));

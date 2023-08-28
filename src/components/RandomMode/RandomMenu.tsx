@@ -3,6 +3,10 @@ import EmptyStaff from '../Staff/EmptyStaff';
 import Options from './Options';
 import Button from '../Button/Button';
 import drawRandomNotes from '../../lib/utils/staffUtils/drawRandomNotes';
+import {
+  isStickingsObjEmpty,
+  isSaveBtnDisabled,
+} from '../../lib/uiHelpers/menuHelpers';
 import '../Menu/Menu.css';
 import './RandomMenu.css';
 
@@ -27,18 +31,10 @@ function RandomMenu({ randomMenuProps }: Props) {
     onGenerateStickings,
   } = randomMenuProps;
 
-  const isEmpty = (): boolean => {
-    return Object.keys(generatedStickings).length === 0;
-  };
-
-  const isDisabled = () => {
-    return Object.keys(generatedStickings).length !== 4;
-  };
-
   return (
     <>
       <div className="menu">
-        {isEmpty() ? (
+        {isStickingsObjEmpty(generatedStickings) ? (
           <EmptyStaff />
         ) : (
           <Staff
@@ -61,7 +57,7 @@ function RandomMenu({ randomMenuProps }: Props) {
             <Button
               idName="save-button"
               children="SAVE"
-              disabled={isDisabled()}
+              disabled={isSaveBtnDisabled(generatedStickings)}
             />
           </div>
         </div>
