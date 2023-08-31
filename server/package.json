@@ -2,15 +2,17 @@
   "name": "stickingsappserver",
   "version": "1.0.0",
   "description": "App for practicing snare drum stickings",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
-    "dev": "nodemon server.js"
+    "start:build": "tsc -w",
+    "start:run": "nodemon build/index.js",
+    "start": "concurrently npm:start:*"
   },
   "author": "Rosina S",
   "license": "MIT",
   "dependencies": {
+    "concurrently": "^8.2.1",
     "express": "^4.18.2"
   },
   "devDependencies": {
