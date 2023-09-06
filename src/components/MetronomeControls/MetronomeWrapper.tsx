@@ -1,4 +1,4 @@
-import { useCreateSamples } from '../../hooks/useCreateSamples';
+import { useSamples } from '../../hooks/useSamples';
 import MetronomeControls from './MetronomeControls';
 
 interface Props {
@@ -8,7 +8,7 @@ interface Props {
 
 function MetronomeWrapper({ selectedStickings, displayMenu }: Props) {
   // Load sounds
-  const samples = useCreateSamples();
+  const samples = useSamples();
 
   return (
     <>

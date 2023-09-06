@@ -1,4 +1,4 @@
-import { useCreateSamples } from '../../hooks/useCreateSamples';
+import { useSamples } from '../../hooks/useSamples';
 import MenuWrapper from '../Menu/MenuWrapper';
 import TopNavBar from '../TopNavBar/TopNavBar';
 import './MainWrapper.css';
@@ -8,7 +8,7 @@ interface Props {
 }
 function MainWrapper({ displayMenu }: Props) {
   // Load click and snare sounds
-  const samples = useCreateSamples();
+  const samples = useSamples();
 
   return (
     <main>

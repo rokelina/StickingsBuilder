@@ -1,6 +1,6 @@
 import { Sequence } from 'tone';
 import { useEffect, useRef } from 'react';
-import { Samples } from '../../hooks/useCreateSamples';
+import { Samples } from '../../hooks/useSamples';
 import mapToSequence from '../../lib/utils/metronomeUtils/mapToSequence';
 import Button from '../Button/Button';
 import './MetronomeControls.css';

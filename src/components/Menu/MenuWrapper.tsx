@@ -1,7 +1,7 @@
 import * as Tone from 'tone';
 import { useSelectStickings } from '../../hooks/useSelectStickings';
 import { useGenerateStickings } from '../../hooks/useGenerateStickings';
-import { Samples } from '../../hooks/useCreateSamples';
+import { Samples } from '../../hooks/useSamples';
 import { useState, useEffect } from 'react';
 import EighthNotesMenu from './EighthNotesMenu';
 import TripletNotesMenu from './TripletNotesMenu';
