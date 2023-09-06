@@ -32,7 +32,7 @@ export function useGenerateStickings() {
 
   const handleGenerateRandomStickings = (selectedOption: string[]): void => {
     if (!selectedOption.length) {
-      alert('Select one subdivision option');
+      alert('Select one or more subdivision options');
       return;
     }
     const generated = generateRandomStickings(selectedOption);

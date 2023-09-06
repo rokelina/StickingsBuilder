@@ -38,9 +38,8 @@ function MetronomeControls({ selectedStickings, samples, displayMenu }: Props) {
   };
 
   const handleBpmChange = (inputValue: string): void => {
-    if (!inputValue) {
-      alert('Enter a valid BPM value');
-      setBpm('80');
+    if (!inputValue || +inputValue < 20 || +inputValue > 300) {
+      alert('Enter a value between 20 and 300 BPM');
       return;
     }
     setBpm(inputValue);
@@ -92,7 +91,7 @@ function MetronomeControls({ selectedStickings, samples, displayMenu }: Props) {
         <div>
           <Button
             idName="play-pause"
-            children={isPlaying ? '⏸ PAUSE' : '▶ PLAY'}
+            children={isPlaying ? '⏹ STOP' : '▶ PLAY'}
             onBtnClick={handleStartClick}
           />
           <label htmlFor="volume">
@@ -113,7 +112,7 @@ function MetronomeControls({ selectedStickings, samples, displayMenu }: Props) {
           <input
             type="number"
             name="met-input"
-            min={40}
+            min={20}
             max={300}
             step={5}
             value={bpm}
