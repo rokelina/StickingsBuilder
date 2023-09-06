@@ -1,3 +1,5 @@
+import { isRowChecked } from '../../../../../lib/uiHelpers/menuHelpers';
+
 interface RowInputProps {
   inputType: string;
   rowName: string;
@@ -11,36 +13,17 @@ function RowInput({
   onFormChange,
   selectedStickings,
 }: RowInputProps) {
-  // to match menuInput children format
-  const children: string = rowName.toUpperCase();
-
-  const isChecked = (
-    selectedStickings: {
-      [key: string]: string;
-    },
-    children: string
-  ): boolean => {
-    // current selected stickings values
-    const objValues = Object.values(selectedStickings);
-
-    if (
-      objValues.length === 4 &&
-      new Set(objValues).size === 1 &&
-      objValues[0] === children
-    ) {
-      return true;
-    }
-    return false;
-  };
+  // to match menuInput upper case format (needs to be passed as uppercase to onFormChange)
+  const rowLabel: string = rowName.toUpperCase();
 
   return (
     <label className="row-input" htmlFor={rowName}>
       <input
         type={inputType}
         id={rowName}
-        checked={isChecked(selectedStickings, children)}
+        checked={isRowChecked(selectedStickings, rowLabel)}
         name="row"
-        onChange={() => onFormChange('row', children)}
+        onChange={() => onFormChange('row', rowLabel)}
       />
     </label>
   );

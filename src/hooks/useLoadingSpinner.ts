@@ -1,8 +1,17 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 
-export const useLoadingSpinner = () => {
-  const [loading, setLoading] = useState(true);
-  const [startLoadingTime, setStartLoadingTime] = useState(Date.now());
+export function useLoadingSpinner() {
+  const load = () => new Promise((resolve) => setTimeout(resolve, 750));
 
-  return loading;
-};
+  useEffect(() => {
+    const spinnerDiv = document.getElementById('loader');
+    load().then(() => {
+      if (spinnerDiv) {
+        spinnerDiv.classList.add('hidden');
+        setTimeout(() => {
+          spinnerDiv.parentNode?.removeChild(spinnerDiv);
+        }, 50);
+      }
+    });
+  }, []);
+}

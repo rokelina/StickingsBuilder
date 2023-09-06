@@ -5,10 +5,10 @@ import clickLow from '../assets/audio/clickLow.wav';
 import snareR from '../assets/audio/snareR.wav';
 import snareL from '../assets/audio/snareL.wav';
 
-interface Samples {
+export type Samples = {
   clickSampler: Sampler | null;
   snareSampler: Sampler | null;
-}
+};
 
 export function useCreateSamples() {
   const [samples, setSamples] = useState<Samples>({

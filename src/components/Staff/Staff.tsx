@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { StaveNote } from 'vexflow';
+import { NotesArray } from '../../hooks/useDrawNotes';
 import { useDrawNotes } from '../../hooks/useDrawNotes';
 import './Staff.css';
 
@@ -8,7 +8,7 @@ interface Props {
   drawNotesFunction: (
     stickingsObject: { [key: string]: string },
     beatName: string
-  ) => StaveNote[];
+  ) => NotesArray;
 }
 
 function Staff({ stickings, drawNotesFunction }: Props) {
