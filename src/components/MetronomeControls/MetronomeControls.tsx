@@ -1,6 +1,7 @@
 import { Sequence } from 'tone';
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import { Samples } from '../../hooks/useSamples';
+import { useSequence } from '../../hooks/useSequence';
 import mapToSequence from '../../lib/utils/metronomeUtils/mapToSequence';
 import Button from '../Button/Button';
 import './MetronomeControls.css';
@@ -34,35 +35,14 @@ function MetronomeControls({
   const stickingsSequenceArray = mapToSequence(selectedStickings);
   const countdownDelay = (60 / +bpm) * 4;
 
-  useEffect(() => {
-    //Metronome sound sequence
-    clickSequenceRef.current = new Sequence(
-      (time, note) => {
-        samples.clickSampler?.triggerAttack(note, time);
-      },
-      ['D1', 'C1', 'C1', 'C1'],
-      '4n'
-    );
-    clickSequenceRef.current?.start(0);
-
-    //Snare sound sequence
-    snareSequenceRef.current = new Sequence(
-      (time, note) => {
-        samples.snareSampler?.triggerAttack(note, time);
-      },
-      stickingsSequenceArray,
-      '4n'
-    );
+  useSequence(
+    clickSequenceRef,
+    snareSequenceRef,
+    samples,
+    stickingsSequenceArray,
+    countdownDelay,
     addCountdown
-      ? snareSequenceRef.current?.start(countdownDelay)
-      : snareSequenceRef.current?.start(0);
-
-    // cleanup
-    return (): void => {
-      clickSequenceRef.current?.dispose();
-      snareSequenceRef.current?.dispose();
-    };
-  }, [stickingsSequenceArray, countdownDelay, addCountdown, samples]);
+  );
 
   return (
     <>

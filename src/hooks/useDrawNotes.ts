@@ -17,11 +17,13 @@ export function useDrawNotes(
     stickingsObject: { [key: string]: string },
     beatName: string
   ) => NotesArray,
-  divRef: MutableRefObject<HTMLDivElement | null>
+  divRef: MutableRefObject<HTMLDivElement | null>,
+  bpm: string,
+  isPlaying: boolean,
+  addCountdown: boolean
 ) {
   useEffect(() => {
     const notesDiv = divRef.current;
-
     const [vexContext, vexStave] = drawStaff(notesDiv as HTMLDivElement);
 
     const notes1 = drawNotesFunction(stickingsObject, 'beat-1');
@@ -30,6 +32,10 @@ export function useDrawNotes(
     const notes4 = drawNotesFunction(stickingsObject, 'beat-4');
     const allNotes = [...notes1, ...notes2, ...notes3, ...notes4];
     const allBeats = [notes1, notes2, notes3, notes4];
+
+    notes1.forEach((note) => {
+      note.setStyle({ fillStyle: 'blue' });
+    });
 
     const beams = [
       new Beam(notes1),
@@ -61,5 +67,12 @@ export function useDrawNotes(
     };
 
     return cleanup;
-  }, [stickingsObject, drawNotesFunction, divRef]);
+  }, [
+    stickingsObject,
+    drawNotesFunction,
+    divRef,
+    bpm,
+    isPlaying,
+    addCountdown,
+  ]);
 }
