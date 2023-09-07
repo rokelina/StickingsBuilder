@@ -33,9 +33,21 @@ export function useDrawNotes(
     const allNotes = [...notes1, ...notes2, ...notes3, ...notes4];
     const allBeats = [notes1, notes2, notes3, notes4];
 
-    notes1.forEach((note) => {
-      note.setStyle({ fillStyle: 'blue' });
-    });
+    // const beatIter = beatGenerator(allBeats);
+    const bpmOffset = (60 / +bpm) * 1000;
+
+    if (isPlaying) {
+      console.log(isPlaying);
+      setTimeout(() => {
+        notes1.forEach((note: StaveNote) => {
+          note.setStyle({
+            fillStyle: '#0000ff',
+            shadowColor: '#0000ff',
+            shadowBlur: 14,
+          });
+        });
+      }, 1000);
+    }
 
     const beams = [
       new Beam(notes1),

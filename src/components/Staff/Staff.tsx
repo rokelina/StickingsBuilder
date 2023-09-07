@@ -9,12 +9,28 @@ interface Props {
     stickingsObject: { [key: string]: string },
     beatName: string
   ) => NotesArray;
+  isPlaying: boolean;
+  bpm: string;
+  addCountdown: boolean;
 }
 
-function Staff({ stickings, drawNotesFunction }: Props) {
+function Staff({
+  stickings,
+  drawNotesFunction,
+  isPlaying,
+  bpm,
+  addCountdown,
+}: Props) {
   const notesDivRef = useRef<HTMLDivElement | null>(null);
 
-  useDrawNotes(stickings, drawNotesFunction, notesDivRef);
+  useDrawNotes(
+    stickings,
+    drawNotesFunction,
+    notesDivRef,
+    bpm,
+    isPlaying,
+    addCountdown
+  );
 
   return <div className="staff-container" ref={notesDivRef}></div>;
 }

@@ -20,9 +20,12 @@ interface Props {
     onGenerateStickings: (selectedOption: string[]) => void;
     onRandomOptionsChange: (id: string, checked: boolean) => void;
   };
+  isPlaying: boolean;
+  bpm: string;
+  addCountdown: boolean;
 }
 
-function RandomMenu({ randomMenuProps }: Props) {
+function RandomMenu({ randomMenuProps, isPlaying, bpm, addCountdown }: Props) {
   const {
     selectedRandomOption,
     isSelectAll,
@@ -40,6 +43,9 @@ function RandomMenu({ randomMenuProps }: Props) {
           <Staff
             stickings={generatedStickings}
             drawNotesFunction={drawRandomNotes}
+            isPlaying={isPlaying}
+            bpm={bpm}
+            addCountdown={addCountdown}
           />
         )}
         <div className="random-menu">

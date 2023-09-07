@@ -91,13 +91,28 @@ function MenuWrapper({ displayMenu, samples }: Props) {
         onCountdown={metronomeProps.handleCountdown}
       />
       {displayMenu === 'eighth-notes' && (
-        <EighthNotesMenu stickingMenuProps={eighthsProps} />
+        <EighthNotesMenu
+          stickingMenuProps={eighthsProps}
+          isPlaying={metronomeProps.isPlaying}
+          bpm={metronomeProps.bpm}
+          addCountdown={metronomeProps.addCountdown}
+        />
       )}
       {displayMenu === 'triplet-notes' && (
-        <TripletNotesMenu stickingMenuProps={tripletsProps} />
+        <TripletNotesMenu
+          stickingMenuProps={tripletsProps}
+          isPlaying={metronomeProps.isPlaying}
+          bpm={metronomeProps.bpm}
+          addCountdown={metronomeProps.addCountdown}
+        />
       )}
       {displayMenu === 'random-stickings' && (
-        <RandomMenu randomMenuProps={randomProps} />
+        <RandomMenu
+          randomMenuProps={randomProps}
+          isPlaying={metronomeProps.isPlaying}
+          bpm={metronomeProps.bpm}
+          addCountdown={metronomeProps.addCountdown}
+        />
       )}
     </>
   );
