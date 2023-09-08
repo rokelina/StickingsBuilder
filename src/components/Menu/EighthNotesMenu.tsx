@@ -10,14 +10,12 @@ interface Props {
     onFormChange: (beatName: string, children: string) => void;
   };
   isPlaying: boolean;
-  bpm: string;
   addCountdown: boolean;
 }
 
 function EighthNotesMenu({
   stickingMenuProps,
   isPlaying,
-  bpm,
   addCountdown,
 }: Props) {
   const { selectedStickings, onFormChange } = stickingMenuProps;
@@ -29,7 +27,6 @@ function EighthNotesMenu({
           stickings={selectedStickings}
           drawNotesFunction={drawEighthNotes}
           isPlaying={isPlaying}
-          bpm={bpm}
           addCountdown={addCountdown}
         />
         <StickingsMenu

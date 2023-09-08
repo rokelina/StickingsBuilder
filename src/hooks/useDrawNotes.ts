@@ -20,11 +20,11 @@ export function useDrawNotes(
     beatName: string
   ) => NotesArray,
   divRef: MutableRefObject<HTMLDivElement | null>,
-  bpm: string,
   isPlaying: boolean,
   addCountdown: boolean
 ) {
   useEffect(() => {
+    const transportBpm = Transport.bpm.value;
     const notesDiv = divRef.current;
     const [vexContext, vexStave] = drawStaff(notesDiv as HTMLDivElement);
 
@@ -48,58 +48,48 @@ export function useDrawNotes(
 
     let eventID: number | null = null;
 
-    if (isPlaying) {
+    if (Transport.state === 'started') {
       const beatIter = beatGenerator(allBeats);
       eventID = Transport.scheduleRepeat(() => {
         const nextNotes = beatIter.next().value as NotesArray;
-        console.log(nextNotes);
         nextNotes.forEach((note: StaveNote) => {
-          note.setStyle({
-            fillStyle: '#0000ff',
-            shadowColor: '#0000ff',
-            shadowBlur: 14,
-          });
+          note
+            .setStyle({
+              fillStyle: '#0000ff',
+            })
+            .setContext(vexContext as RenderContext)
+            .draw();
         });
-        Formatter.FormatAndDraw(
-          vexContext as RenderContext,
-          vexStave as Stave,
-          allNotes
-        );
 
-        beams.forEach((b) => b.setContext(vexContext as RenderContext).draw());
-
-        if (tuplets.length) {
-          tuplets.forEach((t) =>
-            t.setContext(vexContext as RenderContext).draw()
-          );
-        }
-        Transport.scheduleRepeat(() => {
-          console.log('change back to black called');
-          console.log(nextNotes);
-          nextNotes.forEach((note: StaveNote) => {
-            note.setStyle({
-              fillStyle: 'black',
-              shadowColor: 'black',
-              shadowBlur: 1,
+        Transport.scheduleRepeat(
+          () => {
+            nextNotes.forEach((note: StaveNote) => {
+              note
+                .setStyle({
+                  fillStyle: 'black',
+                })
+                .setContext(vexContext as RenderContext)
+                .draw();
             });
-          });
-          Formatter.FormatAndDraw(
-            vexContext as RenderContext,
-            vexStave as Stave,
-            allNotes
-          );
-
-          beams.forEach((b) =>
-            b.setContext(vexContext as RenderContext).draw()
-          );
-
-          if (tuplets.length) {
-            tuplets.forEach((t) =>
-              t.setContext(vexContext as RenderContext).draw()
-            );
-          }
-        }, 60 / +bpm);
+          },
+          60 / transportBpm,
+          60 / transportBpm
+        );
       }, '4n');
+
+      Formatter.FormatAndDraw(
+        vexContext as RenderContext,
+        vexStave as Stave,
+        allNotes
+      );
+
+      beams.forEach((b) => b.setContext(vexContext as RenderContext).draw());
+
+      if (tuplets.length) {
+        tuplets.forEach((t) =>
+          t.setContext(vexContext as RenderContext).draw()
+        );
+      }
     } else {
       if (eventID) {
         Transport.clear(eventID);
@@ -127,12 +117,5 @@ export function useDrawNotes(
     };
 
     return cleanup;
-  }, [
-    stickingsObject,
-    drawNotesFunction,
-    divRef,
-    bpm,
-    isPlaying,
-    addCountdown,
-  ]);
+  }, [stickingsObject, drawNotesFunction, divRef, isPlaying, addCountdown]);
 }

@@ -10,7 +10,6 @@ interface Props {
     beatName: string
   ) => NotesArray;
   isPlaying: boolean;
-  bpm: string;
   addCountdown: boolean;
 }
 
@@ -18,7 +17,6 @@ function Staff({
   stickings,
   drawNotesFunction,
   isPlaying,
-  bpm,
   addCountdown,
 }: Props) {
   const notesDivRef = useRef<HTMLDivElement | null>(null);
@@ -27,7 +25,6 @@ function Staff({
     stickings,
     drawNotesFunction,
     notesDivRef,
-    bpm,
     isPlaying,
     addCountdown
   );

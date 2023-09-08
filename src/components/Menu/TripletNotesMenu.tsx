@@ -10,13 +10,11 @@ interface Props {
     onFormChange: (beatName: string, children: string) => void;
   };
   isPlaying: boolean;
-  bpm: string;
   addCountdown: boolean;
 }
 function TripletNotesMenu({
   stickingMenuProps,
   isPlaying,
-  bpm,
   addCountdown,
 }: Props) {
   const { selectedStickings, onFormChange } = stickingMenuProps;
@@ -28,7 +26,6 @@ function TripletNotesMenu({
           stickings={selectedStickings}
           drawNotesFunction={drawTripletNotes}
           isPlaying={isPlaying}
-          bpm={bpm}
           addCountdown={addCountdown}
         />
         <StickingsMenu

@@ -2,7 +2,6 @@
 import { useSelectStickings } from '../../hooks/useSelectStickings';
 import { useGenerateStickings } from '../../hooks/useGenerateStickings';
 import { Samples } from '../../hooks/useSamples';
-// import { useState, useEffect } from 'react';
 import EighthNotesMenu from './EighthNotesMenu';
 import TripletNotesMenu from './TripletNotesMenu';
 import RandomMenu from '../RandomMode/RandomMenu';
@@ -15,10 +14,6 @@ interface Props {
 }
 
 function MenuWrapper({ displayMenu, samples }: Props) {
-  // const [isPlaying, setIsPlaying] = useState(false);
-  // const [bpm, setBpm] = useState('80');
-  // const [addCountdown, setAddCountdown] = useState(false);
-
   const eighthsProps = useSelectStickings();
   const tripletsProps = useSelectStickings();
   const randomProps = useGenerateStickings();
@@ -40,43 +35,6 @@ function MenuWrapper({ displayMenu, samples }: Props) {
 
   const metronomeProps = useMetronomeProps(displayMenu, currentStickings);
 
-  // const handleStartClick = async () => {
-  //   if (Object.keys(currentStickings).length !== 4) {
-  //     alert('Select all 4 beat stickings to start!');
-  //     return;
-  //   }
-  //   if (Tone.Transport.state === 'started') {
-  //     Tone.Transport.stop();
-  //     setIsPlaying(false);
-  //   } else {
-  //     await Tone.start();
-  //     Tone.Transport.start();
-  //     setIsPlaying(true);
-  //   }
-  // };
-
-  // const handleBpmChange = (inputValue: string): void => {
-  //   if (!inputValue || +inputValue < 20 || +inputValue > 300) {
-  //     alert('Enter a value between 20 and 300 BPM');
-  //     return;
-  //   }
-  //   setBpm(inputValue);
-  // };
-  // Tone.Transport.bpm.value = +bpm;
-
-  // const handleVolumeChange = (inputValue: string) => {
-  //   Tone.Destination.volume.value = Tone.gainToDb(+inputValue);
-  // };
-
-  // const handleCountdown = () => {
-  //   setAddCountdown(!addCountdown);
-  // };
-  // useEffect(() => {
-  //   //Stop the transport when changing between menus
-  //   Tone.Transport.stop();
-  //   setIsPlaying(false);
-  // }, [displayMenu]);
-
   return (
     <>
       <MetronomeControls
@@ -94,7 +52,6 @@ function MenuWrapper({ displayMenu, samples }: Props) {
         <EighthNotesMenu
           stickingMenuProps={eighthsProps}
           isPlaying={metronomeProps.isPlaying}
-          bpm={metronomeProps.bpm}
           addCountdown={metronomeProps.addCountdown}
         />
       )}
@@ -102,7 +59,6 @@ function MenuWrapper({ displayMenu, samples }: Props) {
         <TripletNotesMenu
           stickingMenuProps={tripletsProps}
           isPlaying={metronomeProps.isPlaying}
-          bpm={metronomeProps.bpm}
           addCountdown={metronomeProps.addCountdown}
         />
       )}
@@ -110,7 +66,6 @@ function MenuWrapper({ displayMenu, samples }: Props) {
         <RandomMenu
           randomMenuProps={randomProps}
           isPlaying={metronomeProps.isPlaying}
-          bpm={metronomeProps.bpm}
           addCountdown={metronomeProps.addCountdown}
         />
       )}

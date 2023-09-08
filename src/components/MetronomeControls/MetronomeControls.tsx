@@ -77,6 +77,7 @@ function MetronomeControls({
             value={bpm}
             className="met-input"
             onChange={(e) => onBpmChange(e.target.value)}
+            disabled={isPlaying}
           />
           <span>BPM</span>
         </div>
