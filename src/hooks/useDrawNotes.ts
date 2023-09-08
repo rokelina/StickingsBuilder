@@ -1,3 +1,4 @@
+import { Transport } from 'tone';
 import { useEffect, MutableRefObject } from 'react';
 import {
   RenderContext,
@@ -8,6 +9,7 @@ import {
   Formatter,
 } from 'vexflow';
 import drawStaff from '../lib/utils/staffUtils/drawStaff';
+import beatGenerator from '../lib/utils/staffUtils/beatGenerator';
 
 export type NotesArray = StaveNote[];
 
@@ -33,22 +35,6 @@ export function useDrawNotes(
     const allNotes = [...notes1, ...notes2, ...notes3, ...notes4];
     const allBeats = [notes1, notes2, notes3, notes4];
 
-    // const beatIter = beatGenerator(allBeats);
-    const bpmOffset = (60 / +bpm) * 1000;
-
-    if (isPlaying) {
-      console.log(isPlaying);
-      setTimeout(() => {
-        notes1.forEach((note: StaveNote) => {
-          note.setStyle({
-            fillStyle: '#0000ff',
-            shadowColor: '#0000ff',
-            shadowBlur: 14,
-          });
-        });
-      }, 1000);
-    }
-
     const beams = [
       new Beam(notes1),
       new Beam(notes2),
@@ -60,16 +46,78 @@ export function useDrawNotes(
       .filter((notesArray) => notesArray.length === 3 || notesArray.length > 4)
       .map((notesArray) => new Tuplet(notesArray, { ratioed: false }));
 
-    Formatter.FormatAndDraw(
-      vexContext as RenderContext,
-      vexStave as Stave,
-      allNotes
-    );
+    let eventID: number | null = null;
 
-    beams.forEach((b) => b.setContext(vexContext as RenderContext).draw());
+    if (isPlaying) {
+      const beatIter = beatGenerator(allBeats);
+      eventID = Transport.scheduleRepeat(() => {
+        const nextNotes = beatIter.next().value as NotesArray;
+        console.log(nextNotes);
+        nextNotes.forEach((note: StaveNote) => {
+          note.setStyle({
+            fillStyle: '#0000ff',
+            shadowColor: '#0000ff',
+            shadowBlur: 14,
+          });
+        });
+        Formatter.FormatAndDraw(
+          vexContext as RenderContext,
+          vexStave as Stave,
+          allNotes
+        );
 
-    if (tuplets.length) {
-      tuplets.forEach((t) => t.setContext(vexContext as RenderContext).draw());
+        beams.forEach((b) => b.setContext(vexContext as RenderContext).draw());
+
+        if (tuplets.length) {
+          tuplets.forEach((t) =>
+            t.setContext(vexContext as RenderContext).draw()
+          );
+        }
+        Transport.scheduleRepeat(() => {
+          console.log('change back to black called');
+          console.log(nextNotes);
+          nextNotes.forEach((note: StaveNote) => {
+            note.setStyle({
+              fillStyle: 'black',
+              shadowColor: 'black',
+              shadowBlur: 1,
+            });
+          });
+          Formatter.FormatAndDraw(
+            vexContext as RenderContext,
+            vexStave as Stave,
+            allNotes
+          );
+
+          beams.forEach((b) =>
+            b.setContext(vexContext as RenderContext).draw()
+          );
+
+          if (tuplets.length) {
+            tuplets.forEach((t) =>
+              t.setContext(vexContext as RenderContext).draw()
+            );
+          }
+        }, 60 / +bpm);
+      }, '4n');
+    } else {
+      if (eventID) {
+        Transport.clear(eventID);
+      }
+
+      Formatter.FormatAndDraw(
+        vexContext as RenderContext,
+        vexStave as Stave,
+        allNotes
+      );
+
+      beams.forEach((b) => b.setContext(vexContext as RenderContext).draw());
+
+      if (tuplets.length) {
+        tuplets.forEach((t) =>
+          t.setContext(vexContext as RenderContext).draw()
+        );
+      }
     }
 
     const cleanup = () => {
