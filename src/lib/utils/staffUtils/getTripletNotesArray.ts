@@ -1,7 +1,7 @@
 import { StaveNote } from 'vexflow';
 import annotate from './annotate';
 
-const drawTripletNotes = (
+const getTripletNotesArray = (
   selectedStickings: { [key: string]: string },
   beatName: string
 ): StaveNote[] => {
@@ -41,4 +41,4 @@ const drawTripletNotes = (
   }
 };
 
-export default drawTripletNotes;
+export default getTripletNotesArray;

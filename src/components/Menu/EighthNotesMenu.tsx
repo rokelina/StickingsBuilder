@@ -1,6 +1,6 @@
 import { eightNotesPermutations } from '../../lib/utils/permutations';
 import StickingsMenu from './StickingsMenu/StickingsMenu';
-import drawEighthNotes from '../../lib/utils/staffUtils/drawEighthNotes';
+import getEighthNotesArray from '../../lib/utils/staffUtils/getEighthNotesArray';
 import Staff from '../Staff/Staff';
 import './Menu.css';
 
@@ -20,7 +20,7 @@ function EighthNotesMenu({ stickingMenuProps, isPlaying }: Props) {
       <div className="menu">
         <Staff
           stickings={selectedStickings}
-          drawNotesFunction={drawEighthNotes}
+          getNotesArrayFunction={getEighthNotesArray}
           isPlaying={isPlaying}
         />
         <StickingsMenu

@@ -1,4 +1,5 @@
 import { useEffect, MutableRefObject } from 'react';
+import { useCurrentBeatIndex } from './useCurrentBeatIndex';
 import {
   RenderContext,
   Stave,
@@ -8,13 +9,12 @@ import {
   Formatter,
 } from 'vexflow';
 import drawStaff from '../lib/utils/staffUtils/drawStaff';
-import { useCurrentBeatIndex } from '../lib/utils/metronomeUtils/useCurrentBeat';
 
 export type NotesArray = StaveNote[];
 
 export function useDrawNotes(
   stickingsObject: { [key: string]: string },
-  getNotesArray: (
+  getNotesArrayFunction: (
     stickingsObject: { [key: string]: string },
     beatName: string
   ) => NotesArray,
@@ -26,10 +26,10 @@ export function useDrawNotes(
   useEffect(() => {
     const notesDiv = divRef.current;
 
-    const notes1 = getNotesArray(stickingsObject, 'beat-1');
-    const notes2 = getNotesArray(stickingsObject, 'beat-2');
-    const notes3 = getNotesArray(stickingsObject, 'beat-3');
-    const notes4 = getNotesArray(stickingsObject, 'beat-4');
+    const notes1 = getNotesArrayFunction(stickingsObject, 'beat-1');
+    const notes2 = getNotesArrayFunction(stickingsObject, 'beat-2');
+    const notes3 = getNotesArrayFunction(stickingsObject, 'beat-3');
+    const notes4 = getNotesArrayFunction(stickingsObject, 'beat-4');
     const allBeats = [notes1, notes2, notes3, notes4];
     const allNotes = [...notes1, ...notes2, ...notes3, ...notes4];
 
@@ -52,12 +52,16 @@ export function useDrawNotes(
 
     if (isPlaying) {
       cleanup();
-      //need to check if allBeats.length === beatsPerMeasure
-      allBeats[currentBeatIndex].forEach((note: StaveNote) => {
-        note.setStyle({
-          fillStyle: 'blue',
+
+      if (allBeats.length === beatsPerMeasure) {
+        allBeats[currentBeatIndex].forEach((note: StaveNote) => {
+          note.setStyle({
+            fillStyle: 'blue',
+          });
         });
-      });
+      } else {
+        console.log('Error: Incorrect number of beats per measure');
+      }
 
       const [vexContext, vexStave] = drawStaff(notesDiv as HTMLDivElement);
 
@@ -94,5 +98,12 @@ export function useDrawNotes(
     }
 
     return cleanup;
-  }, [stickingsObject, getNotesArray, divRef, isPlaying, currentBeatIndex]);
+  }, [
+    stickingsObject,
+    getNotesArrayFunction,
+    divRef,
+    isPlaying,
+    currentBeatIndex,
+    beatsPerMeasure,
+  ]);
 }
