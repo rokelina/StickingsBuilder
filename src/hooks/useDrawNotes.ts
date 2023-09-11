@@ -8,7 +8,7 @@ import {
   Formatter,
 } from 'vexflow';
 import drawStaff from '../lib/utils/staffUtils/drawStaff';
-import { useCurrentBeat } from '../lib/utils/metronomeUtils/useCurrentBeat';
+import { useCurrentBeatIndex } from '../lib/utils/metronomeUtils/useCurrentBeat';
 
 export type NotesArray = StaveNote[];
 
@@ -22,7 +22,7 @@ export function useDrawNotes(
   isPlaying: boolean,
   beatsPerMeasure: number
 ) {
-  const currentBeatIndex = useCurrentBeat(beatsPerMeasure);
+  const currentBeatIndex = useCurrentBeatIndex(beatsPerMeasure);
   useEffect(() => {
     const notesDiv = divRef.current;
 
@@ -52,8 +52,12 @@ export function useDrawNotes(
 
     if (isPlaying) {
       cleanup();
-
       //need to check if allBeats.length === beatsPerMeasure
+      allBeats[currentBeatIndex].forEach((note: StaveNote) => {
+        note.setStyle({
+          fillStyle: 'blue',
+        });
+      });
 
       const [vexContext, vexStave] = drawStaff(notesDiv as HTMLDivElement);
 
@@ -90,5 +94,5 @@ export function useDrawNotes(
     }
 
     return cleanup;
-  }, [stickingsObject, getNotesArray, divRef, isPlaying]);
+  }, [stickingsObject, getNotesArray, divRef, isPlaying, currentBeatIndex]);
 }
