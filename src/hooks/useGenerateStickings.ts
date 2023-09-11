@@ -39,8 +39,6 @@ export function useGenerateStickings() {
     setGeneratedStickings(generated);
   };
 
-  console.log(generatedStickings);
-
   const randomProps = {
     generatedStickings: generatedStickings,
     isSelectAll: isSelectAll,

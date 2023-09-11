@@ -1,11 +1,11 @@
 import { useSelectStickings } from '../../hooks/useSelectStickings';
 import { useGenerateStickings } from '../../hooks/useGenerateStickings';
+import { useMetronome } from '../../hooks/useMetronome';
 import { Samples } from '../../hooks/useSamples';
 import EighthNotesMenu from './EighthNotesMenu';
 import TripletNotesMenu from './TripletNotesMenu';
 import RandomMenu from '../RandomMode/RandomMenu';
 import MetronomeControls from '../MetronomeControls/MetronomeControls';
-import { useMetronomeProps } from '../../hooks/useMetronomeProps';
 
 interface Props {
   displayMenu: string;
@@ -21,7 +21,8 @@ function MenuWrapper({ displayMenu, samples }: Props) {
   let currentStickings: {
     [key: string]: string;
   } = {};
-  // Pass stickings to the metronome
+
+  // Pass currentStickings to the metronome
   if (displayMenu === 'random-stickings') {
     currentStickings = randomProps.generatedStickings;
   }
@@ -32,7 +33,7 @@ function MenuWrapper({ displayMenu, samples }: Props) {
     currentStickings = tripletsProps.selectedStickings;
   }
 
-  const metronomeProps = useMetronomeProps(displayMenu, currentStickings);
+  const metronomeProps = useMetronome(displayMenu, currentStickings);
 
   return (
     <>

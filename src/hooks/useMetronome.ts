@@ -1,14 +1,13 @@
 import * as Tone from 'tone';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, ChangeEvent } from 'react';
 
-export function useMetronomeProps(
+export function useMetronome(
   displayMenu: string,
   currentStickings: { [key: string]: string }
 ) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [bpm, setBpm] = useState('80');
   const [addCountdown, setAddCountdown] = useState(false);
-  // const [currentBeat, setCurrentBeat] = useState(0);
 
   const handleStartClick = async () => {
     if (Object.keys(currentStickings).length !== 4) {
@@ -25,7 +24,8 @@ export function useMetronomeProps(
     }
   };
 
-  const handleBpmChange = (inputValue: string): void => {
+  const handleBpmChange = (e: ChangeEvent<HTMLInputElement>): void => {
+    const inputValue = e.target.value;
     if (!inputValue || +inputValue < 20 || +inputValue > 300) {
       alert('Enter a value between 20 and 300 BPM');
       return;
@@ -34,7 +34,8 @@ export function useMetronomeProps(
   };
   Tone.Transport.bpm.value = +bpm;
 
-  const handleVolumeChange = (inputValue: string) => {
+  const handleVolumeChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const inputValue = e.target.value;
     Tone.Destination.volume.value = Tone.gainToDb(+inputValue);
   };
 

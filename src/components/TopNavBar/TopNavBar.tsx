@@ -3,8 +3,6 @@ import Snare from '../../assets/icons/Snare';
 import './TopNavBar.css';
 
 function TopNavBar() {
-  // add log in buttons
-
   return (
     <nav className="top-nav">
       <Snare />

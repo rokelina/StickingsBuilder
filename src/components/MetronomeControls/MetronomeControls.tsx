@@ -1,5 +1,5 @@
 import { Sequence } from 'tone';
-import { useRef } from 'react';
+import { ChangeEvent, useRef } from 'react';
 import { Samples } from '../../hooks/useSamples';
 import { useSequence } from '../../hooks/useSequence';
 import mapToSequence from '../../lib/utils/metronomeUtils/mapToSequence';
@@ -13,8 +13,8 @@ interface Props {
   bpm: string;
   addCountdown: boolean;
   onStartClick: () => Promise<void>;
-  onBpmChange: (inputValue: string) => void;
-  onVolumeChange: (inputValue: string) => void;
+  onBpmChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  onVolumeChange: (e: ChangeEvent<HTMLInputElement>) => void;
   onCountdown: () => void;
 }
 
@@ -62,7 +62,7 @@ function MetronomeControls({
               min={0}
               max={1}
               step={0.01}
-              onChange={(e) => onVolumeChange(e.target.value)}
+              onChange={onVolumeChange}
               defaultValue={1}
             />
           </label>
@@ -76,8 +76,7 @@ function MetronomeControls({
             step={5}
             value={bpm}
             className="met-input"
-            onChange={(e) => onBpmChange(e.target.value)}
-            // disabled={isPlaying}
+            onChange={onBpmChange}
           />
           <span>BPM</span>
         </div>
