@@ -8,6 +8,7 @@ export function useMetronomeProps(
   const [isPlaying, setIsPlaying] = useState(false);
   const [bpm, setBpm] = useState('80');
   const [addCountdown, setAddCountdown] = useState(false);
+  // const [currentBeat, setCurrentBeat] = useState(0);
 
   const handleStartClick = async () => {
     if (Object.keys(currentStickings).length !== 4) {

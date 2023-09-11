@@ -10,12 +10,13 @@ import {
 } from 'vexflow';
 import drawStaff from '../lib/utils/staffUtils/drawStaff';
 import beatGenerator from '../lib/utils/staffUtils/beatGenerator';
+import { useCurrentBeat } from '../lib/utils/metronomeUtils/useCurrentBeat';
 
 export type NotesArray = StaveNote[];
 
 export function useDrawNotes(
   stickingsObject: { [key: string]: string },
-  drawNotesFunction: (
+  getNotesArray: (
     stickingsObject: { [key: string]: string },
     beatName: string
   ) => NotesArray,
@@ -23,17 +24,18 @@ export function useDrawNotes(
   isPlaying: boolean,
   addCountdown: boolean
 ) {
+  const currentBeat = useCurrentBeat(4);
   useEffect(() => {
     const transportBpm = Transport.bpm.value;
     const notesDiv = divRef.current;
-    const [vexContext, vexStave] = drawStaff(notesDiv as HTMLDivElement);
+    // const [vexContext, vexStave] = drawStaff(notesDiv as HTMLDivElement);
 
-    const notes1 = drawNotesFunction(stickingsObject, 'beat-1');
-    const notes2 = drawNotesFunction(stickingsObject, 'beat-2');
-    const notes3 = drawNotesFunction(stickingsObject, 'beat-3');
-    const notes4 = drawNotesFunction(stickingsObject, 'beat-4');
-    const allNotes = [...notes1, ...notes2, ...notes3, ...notes4];
+    const notes1 = getNotesArray(stickingsObject, 'beat-1');
+    const notes2 = getNotesArray(stickingsObject, 'beat-2');
+    const notes3 = getNotesArray(stickingsObject, 'beat-3');
+    const notes4 = getNotesArray(stickingsObject, 'beat-4');
     const allBeats = [notes1, notes2, notes3, notes4];
+    const allNotes = [...notes1, ...notes2, ...notes3, ...notes4];
 
     const beams = [
       new Beam(notes1),
@@ -48,8 +50,17 @@ export function useDrawNotes(
 
     let eventID: number | null = null;
 
+    const cleanup = () => {
+      while (notesDiv?.firstChild) {
+        notesDiv.removeChild(notesDiv.firstChild);
+      }
+    };
+
     if (Transport.state === 'started') {
+      cleanup();
+
       const beatIter = beatGenerator(allBeats);
+
       eventID = Transport.scheduleRepeat(() => {
         const nextNotes = beatIter.next().value as NotesArray;
         nextNotes.forEach((note: StaveNote) => {
@@ -77,6 +88,7 @@ export function useDrawNotes(
         );
       }, '4n');
 
+      const [vexContext, vexStave] = drawStaff(notesDiv as HTMLDivElement);
       Formatter.FormatAndDraw(
         vexContext as RenderContext,
         vexStave as Stave,
@@ -95,6 +107,9 @@ export function useDrawNotes(
         Transport.clear(eventID);
       }
 
+      cleanup();
+
+      const [vexContext, vexStave] = drawStaff(notesDiv as HTMLDivElement);
       Formatter.FormatAndDraw(
         vexContext as RenderContext,
         vexStave as Stave,
@@ -110,12 +125,6 @@ export function useDrawNotes(
       }
     }
 
-    const cleanup = () => {
-      while (notesDiv?.firstChild) {
-        notesDiv.removeChild(notesDiv.firstChild);
-      }
-    };
-
     return cleanup;
-  }, [stickingsObject, drawNotesFunction, divRef, isPlaying, addCountdown]);
+  }, [stickingsObject, getNotesArray, divRef, isPlaying, addCountdown]);
 }

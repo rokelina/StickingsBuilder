@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import { NotesArray } from '../../hooks/useDrawNotes';
 import { useDrawNotes } from '../../hooks/useDrawNotes';
 import './Staff.css';
+import { useCurrentBeat } from '../../lib/utils/metronomeUtils/useCurrentBeat';
 
 interface Props {
   stickings: { [key: string]: string };
@@ -19,6 +20,7 @@ function Staff({
   isPlaying,
   addCountdown,
 }: Props) {
+  // const currentBeat = useCurrentBeat(4, isPlaying);
   const notesDivRef = useRef<HTMLDivElement | null>(null);
 
   useDrawNotes(
@@ -29,7 +31,11 @@ function Staff({
     addCountdown
   );
 
-  return <div className="staff-container" ref={notesDivRef}></div>;
+  return (
+    <>
+      <div className="staff-container" ref={notesDivRef}></div>
+    </>
+  );
 }
 
 export default Staff;

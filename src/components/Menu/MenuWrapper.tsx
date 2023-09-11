@@ -1,4 +1,3 @@
-// import * as Tone from 'tone';
 import { useSelectStickings } from '../../hooks/useSelectStickings';
 import { useGenerateStickings } from '../../hooks/useGenerateStickings';
 import { Samples } from '../../hooks/useSamples';
