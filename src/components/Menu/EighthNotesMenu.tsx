@@ -1,6 +1,6 @@
 import { eightNotesPermutations } from '../../lib/utils/permutations';
 import StickingsMenu from './StickingsMenu/StickingsMenu';
-import drawEighthNotes from '../../lib/utils/staffUtils/drawEighthNotes';
+import getEighthNotesArray from '../../lib/utils/staffUtils/getEighthNotesArray';
 import Staff from '../Staff/Staff';
 import './Menu.css';
 
@@ -9,9 +9,10 @@ interface Props {
     selectedStickings: { [key: string]: string };
     onFormChange: (beatName: string, children: string) => void;
   };
+  isPlaying: boolean;
 }
 
-function EighthNotesMenu({ stickingMenuProps }: Props) {
+function EighthNotesMenu({ stickingMenuProps, isPlaying }: Props) {
   const { selectedStickings, onFormChange } = stickingMenuProps;
 
   return (
@@ -19,7 +20,8 @@ function EighthNotesMenu({ stickingMenuProps }: Props) {
       <div className="menu">
         <Staff
           stickings={selectedStickings}
-          drawNotesFunction={drawEighthNotes}
+          getNotesArrayFunction={getEighthNotesArray}
+          isPlaying={isPlaying}
         />
         <StickingsMenu
           permutations={eightNotesPermutations}

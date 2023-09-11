@@ -10,7 +10,7 @@ export type Samples = {
   snareSampler: Sampler | null;
 };
 
-export function useCreateSamples() {
+export function useSamples() {
   const [samples, setSamples] = useState<Samples>({
     clickSampler: null,
     snareSampler: null,

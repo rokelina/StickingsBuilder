@@ -21,8 +21,6 @@ export function useSelectStickings() {
     });
   };
 
-  console.log(selectedStickings);
-
   const selectedStickingsProps = {
     selectedStickings: selectedStickings,
     onFormChange: handleStickingsChange,

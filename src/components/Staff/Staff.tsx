@@ -5,16 +5,24 @@ import './Staff.css';
 
 interface Props {
   stickings: { [key: string]: string };
-  drawNotesFunction: (
+  getNotesArrayFunction: (
     stickingsObject: { [key: string]: string },
     beatName: string
   ) => NotesArray;
+  isPlaying: boolean;
 }
 
-function Staff({ stickings, drawNotesFunction }: Props) {
+function Staff({ stickings, getNotesArrayFunction, isPlaying }: Props) {
   const notesDivRef = useRef<HTMLDivElement | null>(null);
+  const beatsPerMeasure = 4;
 
-  useDrawNotes(stickings, drawNotesFunction, notesDivRef);
+  useDrawNotes(
+    stickings,
+    getNotesArrayFunction,
+    notesDivRef,
+    isPlaying,
+    beatsPerMeasure
+  );
 
   return <div className="staff-container" ref={notesDivRef}></div>;
 }

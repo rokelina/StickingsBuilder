@@ -2,7 +2,7 @@ import Staff from '../Staff/Staff';
 import EmptyStaff from '../Staff/EmptyStaff';
 import Options from './Options';
 import Button from '../Button/Button';
-import drawRandomNotes from '../../lib/utils/staffUtils/drawRandomNotes';
+import getRandomNotesArray from '../../lib/utils/staffUtils/getRandomNotesArray';
 import {
   isStickingsObjEmpty,
   isSaveBtnDisabled,
@@ -20,9 +20,10 @@ interface Props {
     onGenerateStickings: (selectedOption: string[]) => void;
     onRandomOptionsChange: (id: string, checked: boolean) => void;
   };
+  isPlaying: boolean;
 }
 
-function RandomMenu({ randomMenuProps }: Props) {
+function RandomMenu({ randomMenuProps, isPlaying }: Props) {
   const {
     selectedRandomOption,
     isSelectAll,
@@ -39,7 +40,8 @@ function RandomMenu({ randomMenuProps }: Props) {
         ) : (
           <Staff
             stickings={generatedStickings}
-            drawNotesFunction={drawRandomNotes}
+            getNotesArrayFunction={getRandomNotesArray}
+            isPlaying={isPlaying}
           />
         )}
         <div className="random-menu">

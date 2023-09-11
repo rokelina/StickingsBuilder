@@ -9,6 +9,7 @@
 
 .playback-controls button{
   padding: 0.8rem 1rem;
+  height: 3rem;
 }
 
 .sound-controls{

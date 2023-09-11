@@ -1,6 +1,7 @@
-import * as Tone from 'tone';
-import { useState, useEffect, useRef } from 'react';
-import { Samples } from '../../hooks/useCreateSamples';
+import { Sequence } from 'tone';
+import { ChangeEvent, useRef } from 'react';
+import { Samples } from '../../hooks/useSamples';
+import { useSequence } from '../../hooks/useSequence';
 import mapToSequence from '../../lib/utils/metronomeUtils/mapToSequence';
 import Button from '../Button/Button';
 import './MetronomeControls.css';
@@ -8,82 +9,40 @@ import './MetronomeControls.css';
 interface Props {
   selectedStickings: { [key: string]: string };
   samples: Samples;
-  displayMenu: string;
+  isPlaying: boolean;
+  bpm: string;
+  addCountdown: boolean;
+  onStartClick: () => Promise<void>;
+  onBpmChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  onVolumeChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  onCountdown: () => void;
 }
 
-function MetronomeControls({ selectedStickings, samples, displayMenu }: Props) {
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [bpm, setBpm] = useState('80');
-  const [addCountdown, setAddCountdown] = useState(false);
-
-  const clickSequenceRef = useRef<Tone.Sequence | null>(null);
-  const snareSequenceRef = useRef<Tone.Sequence | null>(null);
+function MetronomeControls({
+  selectedStickings,
+  samples,
+  isPlaying,
+  bpm,
+  addCountdown,
+  onStartClick,
+  onBpmChange,
+  onVolumeChange,
+  onCountdown,
+}: Props) {
+  const clickSequenceRef = useRef<Sequence | null>(null);
+  const snareSequenceRef = useRef<Sequence | null>(null);
 
   const stickingsSequenceArray = mapToSequence(selectedStickings);
   const countdownDelay = (60 / +bpm) * 4;
 
-  const handleStartClick = async () => {
-    if (Object.keys(selectedStickings).length !== 4) {
-      alert('Select all 4 beat stickings to start!');
-      return;
-    }
-    if (Tone.Transport.state === 'started') {
-      setIsPlaying(false);
-      Tone.Transport.stop();
-    } else {
-      await Tone.start();
-      Tone.Transport.start();
-      setIsPlaying(true);
-    }
-  };
-
-  const handleBpmChange = (inputValue: string): void => {
-    if (!inputValue || +inputValue < 20 || +inputValue > 300) {
-      alert('Enter a value between 20 and 300 BPM');
-      return;
-    }
-    setBpm(inputValue);
-  };
-  Tone.Transport.bpm.value = +bpm;
-
-  const handleVolumeChange = (inputValue: string) => {
-    Tone.Destination.volume.value = Tone.gainToDb(+inputValue);
-  };
-  useEffect(() => {
-    //Stop the transport when changing between menus
-    setIsPlaying(false);
-    Tone.Transport.stop();
-  }, [displayMenu]);
-
-  useEffect(() => {
-    //Metronome sound sequence
-    clickSequenceRef.current = new Tone.Sequence(
-      (time, note) => {
-        samples.clickSampler?.triggerAttack(note, time);
-      },
-      ['D1', 'C1', 'C1', 'C1'],
-      '4n'
-    );
-    clickSequenceRef.current?.start(0);
-
-    //Snare sound sequence
-    snareSequenceRef.current = new Tone.Sequence(
-      (time, note) => {
-        samples.snareSampler?.triggerAttack(note, time);
-      },
-      stickingsSequenceArray,
-      '4n'
-    );
+  useSequence(
+    clickSequenceRef,
+    snareSequenceRef,
+    samples,
+    stickingsSequenceArray,
+    countdownDelay,
     addCountdown
-      ? snareSequenceRef.current?.start(countdownDelay)
-      : snareSequenceRef.current?.start(0);
-
-    // cleanup
-    return (): void => {
-      clickSequenceRef.current?.dispose();
-      snareSequenceRef.current?.dispose();
-    };
-  }, [stickingsSequenceArray, countdownDelay, addCountdown, samples]);
+  );
 
   return (
     <>
@@ -92,7 +51,7 @@ function MetronomeControls({ selectedStickings, samples, displayMenu }: Props) {
           <Button
             idName="play-pause"
             children={isPlaying ? '⏹ STOP' : '▶ PLAY'}
-            onBtnClick={handleStartClick}
+            onBtnClick={onStartClick}
           />
           <label htmlFor="volume">
             <input
@@ -103,7 +62,7 @@ function MetronomeControls({ selectedStickings, samples, displayMenu }: Props) {
               min={0}
               max={1}
               step={0.01}
-              onChange={(e) => handleVolumeChange(e.target.value)}
+              onChange={onVolumeChange}
               defaultValue={1}
             />
           </label>
@@ -117,7 +76,7 @@ function MetronomeControls({ selectedStickings, samples, displayMenu }: Props) {
             step={5}
             value={bpm}
             className="met-input"
-            onChange={(e) => handleBpmChange(e.target.value)}
+            onChange={onBpmChange}
           />
           <span>BPM</span>
         </div>
@@ -126,7 +85,7 @@ function MetronomeControls({ selectedStickings, samples, displayMenu }: Props) {
           <input
             type="checkbox"
             checked={addCountdown}
-            onChange={() => setAddCountdown(!addCountdown)}
+            onChange={onCountdown}
           />
         </div>
       </div>

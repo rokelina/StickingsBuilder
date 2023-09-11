@@ -5,3 +5,8 @@
     align-items: center;
     padding: 1rem;
 }
+
+.current-note{
+    background-color: blue;
+    
+}
