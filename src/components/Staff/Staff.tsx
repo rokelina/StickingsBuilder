@@ -11,24 +11,19 @@ interface Props {
     beatName: string
   ) => NotesArray;
   isPlaying: boolean;
-  addCountdown: boolean;
 }
 
-function Staff({
-  stickings,
-  drawNotesFunction,
-  isPlaying,
-  addCountdown,
-}: Props) {
+function Staff({ stickings, drawNotesFunction, isPlaying }: Props) {
   // const currentBeat = useCurrentBeat(4, isPlaying);
   const notesDivRef = useRef<HTMLDivElement | null>(null);
+  const beatsPerMeasure = 4;
 
   useDrawNotes(
     stickings,
     drawNotesFunction,
     notesDivRef,
     isPlaying,
-    addCountdown
+    beatsPerMeasure
   );
 
   return (

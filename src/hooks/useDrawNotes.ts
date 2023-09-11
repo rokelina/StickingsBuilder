@@ -1,4 +1,3 @@
-import { Transport } from 'tone';
 import { useEffect, MutableRefObject } from 'react';
 import {
   RenderContext,
@@ -9,7 +8,6 @@ import {
   Formatter,
 } from 'vexflow';
 import drawStaff from '../lib/utils/staffUtils/drawStaff';
-import beatGenerator from '../lib/utils/staffUtils/beatGenerator';
 import { useCurrentBeat } from '../lib/utils/metronomeUtils/useCurrentBeat';
 
 export type NotesArray = StaveNote[];
@@ -22,13 +20,11 @@ export function useDrawNotes(
   ) => NotesArray,
   divRef: MutableRefObject<HTMLDivElement | null>,
   isPlaying: boolean,
-  addCountdown: boolean
+  beatsPerMeasure: number
 ) {
-  const currentBeat = useCurrentBeat(4);
+  const currentBeatIndex = useCurrentBeat(beatsPerMeasure);
   useEffect(() => {
-    const transportBpm = Transport.bpm.value;
     const notesDiv = divRef.current;
-    // const [vexContext, vexStave] = drawStaff(notesDiv as HTMLDivElement);
 
     const notes1 = getNotesArray(stickingsObject, 'beat-1');
     const notes2 = getNotesArray(stickingsObject, 'beat-2');
@@ -48,47 +44,19 @@ export function useDrawNotes(
       .filter((notesArray) => notesArray.length === 3 || notesArray.length > 4)
       .map((notesArray) => new Tuplet(notesArray, { ratioed: false }));
 
-    let eventID: number | null = null;
-
     const cleanup = () => {
       while (notesDiv?.firstChild) {
         notesDiv.removeChild(notesDiv.firstChild);
       }
     };
 
-    if (Transport.state === 'started') {
+    if (isPlaying) {
       cleanup();
 
-      const beatIter = beatGenerator(allBeats);
-
-      eventID = Transport.scheduleRepeat(() => {
-        const nextNotes = beatIter.next().value as NotesArray;
-        nextNotes.forEach((note: StaveNote) => {
-          note
-            .setStyle({
-              fillStyle: '#0000ff',
-            })
-            .setContext(vexContext as RenderContext)
-            .draw();
-        });
-
-        Transport.scheduleRepeat(
-          () => {
-            nextNotes.forEach((note: StaveNote) => {
-              note
-                .setStyle({
-                  fillStyle: 'black',
-                })
-                .setContext(vexContext as RenderContext)
-                .draw();
-            });
-          },
-          60 / transportBpm,
-          60 / transportBpm
-        );
-      }, '4n');
+      //need to check if allBeats.length === beatsPerMeasure
 
       const [vexContext, vexStave] = drawStaff(notesDiv as HTMLDivElement);
+
       Formatter.FormatAndDraw(
         vexContext as RenderContext,
         vexStave as Stave,
@@ -103,13 +71,9 @@ export function useDrawNotes(
         );
       }
     } else {
-      if (eventID) {
-        Transport.clear(eventID);
-      }
-
       cleanup();
-
       const [vexContext, vexStave] = drawStaff(notesDiv as HTMLDivElement);
+
       Formatter.FormatAndDraw(
         vexContext as RenderContext,
         vexStave as Stave,
@@ -126,5 +90,5 @@ export function useDrawNotes(
     }
 
     return cleanup;
-  }, [stickingsObject, getNotesArray, divRef, isPlaying, addCountdown]);
+  }, [stickingsObject, getNotesArray, divRef, isPlaying]);
 }

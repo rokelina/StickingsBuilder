@@ -51,21 +51,18 @@ function MenuWrapper({ displayMenu, samples }: Props) {
         <EighthNotesMenu
           stickingMenuProps={eighthsProps}
           isPlaying={metronomeProps.isPlaying}
-          addCountdown={metronomeProps.addCountdown}
         />
       )}
       {displayMenu === 'triplet-notes' && (
         <TripletNotesMenu
           stickingMenuProps={tripletsProps}
           isPlaying={metronomeProps.isPlaying}
-          addCountdown={metronomeProps.addCountdown}
         />
       )}
       {displayMenu === 'random-stickings' && (
         <RandomMenu
           randomMenuProps={randomProps}
           isPlaying={metronomeProps.isPlaying}
-          addCountdown={metronomeProps.addCountdown}
         />
       )}
     </>

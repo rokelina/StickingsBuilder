@@ -21,10 +21,9 @@ interface Props {
     onRandomOptionsChange: (id: string, checked: boolean) => void;
   };
   isPlaying: boolean;
-  addCountdown: boolean;
 }
 
-function RandomMenu({ randomMenuProps, isPlaying, addCountdown }: Props) {
+function RandomMenu({ randomMenuProps, isPlaying }: Props) {
   const {
     selectedRandomOption,
     isSelectAll,
@@ -43,7 +42,6 @@ function RandomMenu({ randomMenuProps, isPlaying, addCountdown }: Props) {
             stickings={generatedStickings}
             drawNotesFunction={drawRandomNotes}
             isPlaying={isPlaying}
-            addCountdown={addCountdown}
           />
         )}
         <div className="random-menu">
