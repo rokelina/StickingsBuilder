@@ -5,7 +5,7 @@ import Button from '../Button/Button';
 import getRandomNotesArray from '../../lib/utils/staffUtils/getRandomNotesArray';
 import {
   isStickingsObjEmpty,
-  isSaveBtnDisabled,
+  // isSaveBtnDisabled,
 } from '../../lib/uiHelpers/menuHelpers';
 import '../Menu/Menu.css';
 import './RandomMenu.css';
@@ -56,11 +56,11 @@ function RandomMenu({ randomMenuProps, isPlaying }: Props) {
               children="GENERATE"
               onBtnClick={() => onGenerateStickings(selectedRandomOption)}
             />
-            <Button
+            {/* <Button
               idName="save-button"
               children="SAVE"
               disabled={isSaveBtnDisabled(generatedStickings)}
-            />
+            /> */}
           </div>
         </div>
       </div>

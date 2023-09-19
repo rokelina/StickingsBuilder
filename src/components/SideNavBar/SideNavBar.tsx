@@ -1,7 +1,7 @@
 import EightNotesIcon from '../../assets/icons/EightNotesIcon';
 import RandomIcon from '../../assets/icons/RandomIcon';
 import TripletsIcon from '../../assets/icons/TripletsIcon';
-import SaveIcon from '../../assets/icons/SaveIcon';
+// import SaveIcon from '../../assets/icons/SaveIcon';
 import LiComponent from './LiComponent/LiComponent';
 import './SideNavBar.css';
 
@@ -31,12 +31,12 @@ function SideNavBar({ onNavClick }: Props) {
           spanText="Random Stickings"
           onNavClick={onNavClick}
         />
-        <LiComponent
+        {/* <LiComponent
           idName="saved-stickings"
           icon={<SaveIcon />}
           spanText="Saved Stickings"
           onNavClick={onNavClick}
-        />
+        /> */}
       </ul>
     </nav>
   );
