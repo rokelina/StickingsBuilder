@@ -1,9 +1,9 @@
 import { Vex } from 'vexflow';
 
-function drawEmptyStaff(graphRef: HTMLDivElement) {
+function drawEmptyStaff(divRef: HTMLDivElement) {
   const { Renderer, Stave } = Vex.Flow;
 
-  const renderer = new Renderer(graphRef, Renderer.Backends.SVG);
+  const renderer = new Renderer(divRef, Renderer.Backends.SVG);
   renderer.resize(750, 200);
   const context = renderer.getContext();
   context.setFont('Arial', 10);

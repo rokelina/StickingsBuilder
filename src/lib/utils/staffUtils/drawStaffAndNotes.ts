@@ -9,12 +9,12 @@ import {
 import drawEmptyStaff from './drawEmptyStaff';
 
 function drawStaffAndNotes(
-  graphRef: HTMLDivElement,
+  divRef: HTMLDivElement,
   allNotes: StaveNote[],
   beams: Beam[],
   tuplets: Tuplet[]
 ) {
-  const [vexContext, vexStave] = drawEmptyStaff(graphRef as HTMLDivElement);
+  const [vexContext, vexStave] = drawEmptyStaff(divRef as HTMLDivElement);
 
   Formatter.FormatAndDraw(
     vexContext as RenderContext,
