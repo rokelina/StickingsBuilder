@@ -1,6 +1,5 @@
 import { useRef } from 'react';
-import { NotesArray } from '../../hooks/useDrawNotes';
-import { useDrawNotes } from '../../hooks/useDrawNotes';
+import { NotesArray, useDrawNotes } from '../../hooks/useDrawNotes';
 import './Staff.css';
 
 interface Props {

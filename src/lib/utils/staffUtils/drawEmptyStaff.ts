@@ -1,6 +1,6 @@
 import { Vex } from 'vexflow';
 
-function drawStaff(graphRef: HTMLDivElement) {
+function drawEmptyStaff(graphRef: HTMLDivElement) {
   const { Renderer, Stave } = Vex.Flow;
 
   const renderer = new Renderer(graphRef, Renderer.Backends.SVG);
@@ -17,4 +17,4 @@ function drawStaff(graphRef: HTMLDivElement) {
   return [context, stave];
 }
 
-export default drawStaff;
+export default drawEmptyStaff;

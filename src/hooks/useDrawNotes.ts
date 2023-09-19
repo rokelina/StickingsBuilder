@@ -1,14 +1,7 @@
 import { useEffect, MutableRefObject } from 'react';
 import { useCurrentBeatIndex } from './useCurrentBeatIndex';
-import {
-  RenderContext,
-  Stave,
-  StaveNote,
-  Tuplet,
-  Beam,
-  Formatter,
-} from 'vexflow';
-import drawStaff from '../lib/utils/staffUtils/drawStaff';
+import { StaveNote, Tuplet, Beam } from 'vexflow';
+import drawStaffAndNotes from '../lib/utils/staffUtils/drawStaffAndNotes';
 
 export type NotesArray = StaveNote[];
 
@@ -57,44 +50,18 @@ export function useDrawNotes(
         allBeats[currentBeatIndex].forEach((note: StaveNote) => {
           note.setStyle({
             fillStyle: 'blue',
+            shadowColor: 'blue',
+            shadowBlur: 25,
           });
         });
       } else {
         console.log('Error: Incorrect number of beats per measure');
       }
 
-      const [vexContext, vexStave] = drawStaff(notesDiv as HTMLDivElement);
-
-      Formatter.FormatAndDraw(
-        vexContext as RenderContext,
-        vexStave as Stave,
-        allNotes
-      );
-
-      beams.forEach((b) => b.setContext(vexContext as RenderContext).draw());
-
-      if (tuplets.length) {
-        tuplets.forEach((t) =>
-          t.setContext(vexContext as RenderContext).draw()
-        );
-      }
+      drawStaffAndNotes(notesDiv as HTMLDivElement, allNotes, beams, tuplets);
     } else {
       cleanup();
-      const [vexContext, vexStave] = drawStaff(notesDiv as HTMLDivElement);
-
-      Formatter.FormatAndDraw(
-        vexContext as RenderContext,
-        vexStave as Stave,
-        allNotes
-      );
-
-      beams.forEach((b) => b.setContext(vexContext as RenderContext).draw());
-
-      if (tuplets.length) {
-        tuplets.forEach((t) =>
-          t.setContext(vexContext as RenderContext).draw()
-        );
-      }
+      drawStaffAndNotes(notesDiv as HTMLDivElement, allNotes, beams, tuplets);
     }
 
     return cleanup;

@@ -1,22 +1,22 @@
 import { useEffect, useRef } from 'react';
-import drawStaff from '../../lib/utils/staffUtils/drawStaff';
+import drawEmptyStaff from '../../lib/utils/staffUtils/drawEmptyStaff';
 import './Staff.css';
 
 function EmptyStaff() {
-  const notesGraphRef = useRef<HTMLDivElement | null>(null);
+  const notesDivRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    const notesGraph = notesGraphRef.current;
-    drawStaff(notesGraph as HTMLDivElement);
+    const notesDiv = notesDivRef.current;
+    drawEmptyStaff(notesDiv as HTMLDivElement);
 
     return () => {
-      while (notesGraph?.firstChild) {
-        notesGraph.removeChild(notesGraph.firstChild);
+      while (notesDiv?.firstChild) {
+        notesDiv.removeChild(notesDiv.firstChild);
       }
     };
   }, []);
 
-  return <div className="staff-container" ref={notesGraphRef}></div>;
+  return <div className="staff-container" ref={notesDivRef}></div>;
 }
 
 export default EmptyStaff;
