@@ -29,19 +29,9 @@ nav{
 
 fieldset {
   border: none;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  align-content: center;
+  display: grid;
   min-height: fit-content;
-  min-width: 4vw;
   padding: 0.3rem;
-}
-
-legend {
-  font-weight: 600;
-  padding: 0.3rem;
-  text-align: center
 }
 
 input{

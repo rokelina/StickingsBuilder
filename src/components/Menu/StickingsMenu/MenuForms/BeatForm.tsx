@@ -18,7 +18,9 @@ function BeatForm({
   return (
     <form action="">
       <fieldset id={beatName} name={beatName}>
-        <legend>{children}</legend>
+        <div className="legend">
+          <legend>{children}</legend>
+        </div>
         {Object.values(permutations).map((value) => (
           <MenuInput
             children={value.toUpperCase()}

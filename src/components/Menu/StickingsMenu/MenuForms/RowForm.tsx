@@ -10,7 +10,9 @@ function RowForm({ permutations, onFormChange, selectedStickings }: RowProps) {
   return (
     <form action="">
       <fieldset id="rows" className="rows">
-        <legend>Row</legend>
+        <div className="legend">
+          <legend>Row</legend>
+        </div>
         {Object.values(permutations).map((value) => (
           <RowInput
             inputType="radio"
