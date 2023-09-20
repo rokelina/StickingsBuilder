@@ -10,7 +10,7 @@ export function useLoadingSpinner() {
         spinnerDiv.classList.add('hidden');
         setTimeout(() => {
           spinnerDiv.parentNode?.removeChild(spinnerDiv);
-        }, 50);
+        }, 750);
       }
     });
   }, []);
