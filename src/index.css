@@ -29,9 +29,10 @@ nav{
 
 fieldset {
   border: none;
-  display: grid;
-  justify-items: start;
-  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: center;
   min-height: fit-content;
   min-width: 4vw;
   padding: 0.3rem;
@@ -39,5 +40,11 @@ fieldset {
 
 legend {
   font-weight: 600;
-  text-align: center;
+  padding: 0.3rem;
+  text-align: center
+}
+
+input{
+  cursor: pointer;
+  accent-color: #6666ff
 }

@@ -49,8 +49,8 @@ export function useDrawNotes(
       if (allBeats.length === beatsPerMeasure) {
         allBeats[currentBeatIndex].forEach((note: StaveNote) => {
           note.setStyle({
-            fillStyle: 'blue',
-            shadowColor: 'blue',
+            fillStyle: '#3333ff',
+            shadowColor: '#3333ff',
             shadowBlur: 25,
           });
         });
