@@ -25,6 +25,7 @@
 .stickings,
 .row-input {
   padding: 0.5rem 0.3rem;
+  cursor: pointer;
 }
 
 .rows {
