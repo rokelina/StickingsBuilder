@@ -18,6 +18,10 @@ export function useMetronome(
       Tone.Transport.stop();
       setIsPlaying(false);
     } else {
+      if (!bpm || +bpm < 20 || +bpm > 300) {
+        alert('Enter a value between 20 and 300 BPM');
+        return;
+      }
       await Tone.start();
       Tone.Transport.start();
       setIsPlaying(true);
@@ -26,10 +30,6 @@ export function useMetronome(
 
   const handleBpmChange = (e: ChangeEvent<HTMLInputElement>): void => {
     const inputValue = e.target.value;
-    if (!inputValue || +inputValue < 20 || +inputValue > 300) {
-      alert('Enter a value between 20 and 300 BPM');
-      return;
-    }
     setBpm(inputValue);
   };
   Tone.Transport.bpm.value = +bpm;
