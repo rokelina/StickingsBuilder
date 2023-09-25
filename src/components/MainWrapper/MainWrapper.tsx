@@ -11,7 +11,7 @@ function MainWrapper({ displayMenu }: Props) {
   const samples = useSamples();
 
   return (
-    <main>
+    <main className="main-wrapper">
       <TopNavBar />
       <MenuWrapper displayMenu={displayMenu} samples={samples} />
     </main>
