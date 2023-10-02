@@ -1,12 +1,11 @@
-.staff-container{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    padding: 1rem;
+.staff-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem;
 }
 
-.current-note{
-    background-color: blue;
-    
+.current-note {
+  background-color: blue;
 }

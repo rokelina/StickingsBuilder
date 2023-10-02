@@ -3,27 +3,27 @@
   flex-direction: column;
   align-items: center;
   padding: 1rem;
-  border: 2px solid #333;
+  border: 1.5px solid #555;
   border-radius: 20px;
   margin: 2rem 0rem;
+  box-shadow: 1px 3px 3px gray;
 }
 
-.random-options{
+.random-options {
   display: flex;
 }
 
-.subdivision-options{
+.subdivision-options {
   display: flex;
   flex-direction: column;
   padding: 1rem;
-  
 }
 
-.subdivision-options label{
+.subdivision-options label {
   padding: 0.5rem;
 }
-  
-.select-all{
+
+.select-all {
   display: flex;
   align-items: center;
   padding: 1rem;
