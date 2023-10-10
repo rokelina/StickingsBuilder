@@ -3,6 +3,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  padding: 1rem;
 }
 
 .menu-container {
@@ -62,7 +63,7 @@
 @media only screen and (max-width: 640px) {
   .menu-card {
     min-width: 400px;
-    padding: 0.5rem 0.8rem;
+    padding: 1rem 0.8rem;
   }
 
   .menu-container fieldset {
@@ -77,7 +78,7 @@
   }
   .menu-card {
     min-width: 320px;
-    padding: 0;
+    padding: 1rem 0.2rem;
   }
   .menu-container fieldset {
     padding: 0.5rem 0rem;
