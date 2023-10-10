@@ -5,6 +5,11 @@
     'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
+#root {
+  display: flex;
+  flex-direction: column;
+}
+
 body {
   color: black;
   background-color: white;
@@ -39,4 +44,10 @@ fieldset {
 input {
   cursor: pointer;
   accent-color: #6666ff;
+}
+
+@media only screen and (max-width: 640px) {
+  :root {
+    font-size: 12px;
+  }
 }

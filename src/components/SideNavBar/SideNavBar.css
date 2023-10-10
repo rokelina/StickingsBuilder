@@ -52,8 +52,8 @@
   opacity: 0.85;
 }
 
-/* large screens 635px and up */
-@media only screen and (min-width: 635px) {
+/* large screens 992px and up */
+@media only screen and (min-width: 992px) {
   .navbar {
     top: 0;
     width: 5rem;
@@ -69,9 +69,9 @@
   }
 }
 
-/* small screens < 635px */
+/* medium and small screens < 880px */
 
-@media only screen and (max-width: 635px) {
+@media only screen and (max-width: 991px) {
   .navbar {
     bottom: 0;
     width: 100vw;
@@ -87,3 +87,11 @@
     height: 4rem;
   }
 }
+
+/* @media only screen and (max-width: 640px) {
+  .navbar,
+  .nav-link,
+  .nav-link svg {
+    height: 3rem;
+  }
+} */

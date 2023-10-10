@@ -36,7 +36,7 @@ function MenuWrapper({ displayMenu, samples }: Props) {
   const metronomeProps = useMetronome(displayMenu, currentStickings);
 
   return (
-    <>
+    <div className="main-container">
       <MetronomeControls
         selectedStickings={currentStickings}
         samples={samples}
@@ -66,7 +66,7 @@ function MenuWrapper({ displayMenu, samples }: Props) {
           isPlaying={metronomeProps.isPlaying}
         />
       )}
-    </>
+    </div>
   );
 }
 export default MenuWrapper;

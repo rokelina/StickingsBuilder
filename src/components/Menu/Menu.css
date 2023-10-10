@@ -17,7 +17,6 @@
   width: fit-content;
   border: 1.5px solid #555;
   border-radius: 20px;
-  min-width: 40vw;
   padding: 1rem 1.5rem;
   box-shadow: 1px 3px 3px gray;
 }
@@ -43,4 +42,47 @@
 .legend {
   font-weight: 600;
   padding: 0.3rem;
+}
+
+/* medium and up */
+@media only screen and (min-width: 769px) {
+  .menu-card {
+    min-width: 650px;
+  }
+}
+
+/* s */
+@media only screen and (max-width: 768px) {
+  .menu-card {
+    min-width: 550px;
+    padding: 0.5rem 0.8rem;
+  }
+}
+/* xs >= 460px*/
+@media only screen and (max-width: 640px) {
+  .menu-card {
+    min-width: 400px;
+    padding: 0.5rem 0.8rem;
+  }
+
+  .menu-container fieldset {
+    padding: 0.5rem;
+  }
+}
+
+/* xxs less than 460px */
+@media only screen and (max-width: 460px) {
+  .menu-container {
+    padding: 0;
+  }
+  .menu-card {
+    min-width: 320px;
+    padding: 0;
+  }
+  .menu-container fieldset {
+    padding: 0.5rem 0rem;
+  }
+  .menu-container label {
+    padding: 0.5rem 0rem;
+  }
 }

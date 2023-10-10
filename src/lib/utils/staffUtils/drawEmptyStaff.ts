@@ -6,7 +6,6 @@ function drawEmptyStaff(divRef: HTMLDivElement) {
   const renderer = new Renderer(divRef, Renderer.Backends.SVG);
   renderer.resize(750, 200);
   const context = renderer.getContext();
-  context.setFont('Arial', 10);
 
   const stave = new Stave(25, 40, 700);
 

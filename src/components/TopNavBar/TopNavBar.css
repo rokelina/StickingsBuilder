@@ -1,5 +1,5 @@
 .top-nav {
-  justify-content: space-between;
+  justify-content: space-around;
   color: white;
   position: absolute;
   width: 100%;
@@ -9,6 +9,9 @@
 .top-nav h1 {
   margin: 0;
   font-weight: 300;
+  flex-grow: 1;
+  flex-shrink: 0;
+  flex-basis: auto;
 }
 
 .top-nav svg {
@@ -28,21 +31,35 @@
 
 .login-signup button {
   box-shadow: 0px 2px 2px #666;
-  display: none;
+  /* display: none; */
 }
 
-/* large screens 635px and up */
-@media only screen and (min-width: 635px) {
-  .top-nav svg {
-    margin-left: 5rem;
-  }
-  .login-signup {
+/* large screens 880px and up */
+@media only screen and (min-width: 992px) {
+  /* .login-signup {
     margin-right: 5rem;
+  } */
+}
+
+@media only screen and (orientation: landscape) and (max-width: 992px) {
+  /* .top-nav svg {
+    margin-left: 5rem;
+  } */
+  /* .top-nav h1 {
+    font-size: 16px;
+  } */
+
+  .top-nav,
+  .top-nav svg {
+    max-height: 3rem;
+  }
+  .top-nav button {
+    padding: 0.3rem 0.5rem;
+    font-size: 12px;
   }
 }
 
-/* extra-small screens < 475px */
-@media only screen and (max-width: 475px) {
+@media only screen and (max-width: 640px) {
   .top-nav h1 {
     font-size: 16px;
   }
@@ -51,7 +68,8 @@
     margin: 0;
     padding: 0.5rem;
   }
+  /* .top-nav,
   .top-nav svg {
-    max-width: 3rem;
-  }
+    max-height: 3rem;
+  } */
 }
