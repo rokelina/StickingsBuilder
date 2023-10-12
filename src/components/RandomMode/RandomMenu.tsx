@@ -34,16 +34,16 @@ function RandomMenu({ randomMenuProps, isPlaying }: Props) {
 
   return (
     <>
+      {isStickingsObjEmpty(generatedStickings) ? (
+        <EmptyStaff />
+      ) : (
+        <Staff
+          stickings={generatedStickings}
+          getNotesArrayFunction={getRandomNotesArray}
+          isPlaying={isPlaying}
+        />
+      )}
       <div className="menu">
-        {isStickingsObjEmpty(generatedStickings) ? (
-          <EmptyStaff />
-        ) : (
-          <Staff
-            stickings={generatedStickings}
-            getNotesArrayFunction={getRandomNotesArray}
-            isPlaying={isPlaying}
-          />
-        )}
         <div className="random-menu">
           <Options
             selectedOption={selectedRandomOption}

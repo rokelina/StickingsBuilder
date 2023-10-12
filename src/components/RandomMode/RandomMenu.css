@@ -11,6 +11,7 @@
 
 .random-options {
   display: flex;
+  padding: 0.5rem;
 }
 
 .subdivision-options {
@@ -52,10 +53,9 @@
 @media only screen and (max-width: 460px) {
   .random-menu {
     min-width: 300px;
-    padding: 0;
-    margin: 0;
+    padding: 1rem 0rem;
   }
-  /* .random-menu label {
-    font-size: 14px;
-  } */
+  .random-options {
+    padding: 0.5rem 0rem;
+  }
 }

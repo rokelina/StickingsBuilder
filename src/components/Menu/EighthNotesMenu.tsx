@@ -17,12 +17,12 @@ function EighthNotesMenu({ stickingMenuProps, isPlaying }: Props) {
 
   return (
     <>
+      <Staff
+        stickings={selectedStickings}
+        getNotesArrayFunction={getEighthNotesArray}
+        isPlaying={isPlaying}
+      />
       <div className="menu">
-        <Staff
-          stickings={selectedStickings}
-          getNotesArrayFunction={getEighthNotesArray}
-          isPlaying={isPlaying}
-        />
         <StickingsMenu
           permutations={eightNotesPermutations}
           onFormChange={onFormChange}

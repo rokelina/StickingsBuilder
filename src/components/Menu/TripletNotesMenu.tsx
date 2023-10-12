@@ -16,12 +16,12 @@ function TripletNotesMenu({ stickingMenuProps, isPlaying }: Props) {
 
   return (
     <>
+      <Staff
+        stickings={selectedStickings}
+        getNotesArrayFunction={getTripletNotesArray}
+        isPlaying={isPlaying}
+      />
       <div className="menu">
-        <Staff
-          stickings={selectedStickings}
-          getNotesArrayFunction={getTripletNotesArray}
-          isPlaying={isPlaying}
-        />
         <StickingsMenu
           permutations={tripletPermutations}
           onFormChange={onFormChange}
