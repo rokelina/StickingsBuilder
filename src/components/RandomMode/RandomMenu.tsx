@@ -1,3 +1,4 @@
+import { RiAiGenerate } from 'react-icons/ri';
 import Staff from '../Staff/Staff';
 import EmptyStaff from '../Staff/EmptyStaff';
 import Options from './Options';
@@ -53,7 +54,11 @@ function RandomMenu({ randomMenuProps, isPlaying }: Props) {
           <div className="random-controls">
             <Button
               idName="generate-button"
-              children="GENERATE"
+              children={
+                <>
+                  GENERATE <RiAiGenerate size="1.3rem" />
+                </>
+              }
               onBtnClick={() => onGenerateStickings(selectedRandomOption)}
             />
             {/* <Button

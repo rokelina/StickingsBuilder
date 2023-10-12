@@ -1,8 +1,9 @@
+import { ReactNode } from 'react';
 import './Button.css';
 
 interface Props {
   idName: string;
-  children: string;
+  children: ReactNode | string;
   disabled?: boolean;
   onBtnClick?: () => void;
 }
