@@ -5,3 +5,9 @@
   align-items: center;
   padding: 1rem 0rem;
 }
+
+@media screen and (orientation: landscape) and (max-width: 991px) {
+  .staff-container {
+    padding: 0;
+  }
+}

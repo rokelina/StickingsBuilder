@@ -88,3 +88,13 @@
     padding: 0.5rem 0rem;
   }
 }
+
+@media screen and (orientation: landscape) and (max-width: 991px) {
+  .menu-card {
+    margin: 0;
+    padding: 0;
+  }
+  .menu {
+    padding: 0;
+  }
+}
