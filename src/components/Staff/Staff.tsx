@@ -1,5 +1,6 @@
 import { useRef } from 'react';
 import { NotesArray, useDrawNotes } from '../../hooks/useDrawNotes';
+import { useResizeStaff } from '../../hooks/useResizeStaff';
 import './Staff.css';
 
 interface Props {
@@ -15,10 +16,13 @@ function Staff({ stickings, getNotesArrayFunction, isPlaying }: Props) {
   const notesDivRef = useRef<HTMLDivElement | null>(null);
   const beatsPerMeasure = 4;
 
+  const staffSize = useResizeStaff();
+
   useDrawNotes(
     stickings,
     getNotesArrayFunction,
     notesDivRef,
+    staffSize,
     isPlaying,
     beatsPerMeasure
   );

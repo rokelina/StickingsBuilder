@@ -55,12 +55,22 @@ export function useResizeStaff() {
     //add viewport width to dependency array
   }, [width]);
 
-  // switch (width) {
-  //   case :
+  let outputStaff: StaffSize;
 
-  //     break;
+  switch (true) {
+    case width < 481:
+      outputStaff = xtraSmallStaff;
+      break;
+    case width >= 481 && width <= 640:
+      outputStaff = smallStaff;
+      break;
+    case width > 640 && width < 992:
+      outputStaff = mediumStaff;
+      break;
 
-  //   default:
-  //     break;
-  // }
+    default:
+      outputStaff = largeStaff;
+      break;
+  }
+  return outputStaff;
 }

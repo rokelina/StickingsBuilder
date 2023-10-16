@@ -6,15 +6,20 @@ import {
   StaveNote,
   Tuplet,
 } from 'vexflow';
+import { StaffSize } from '../../../hooks/useResizeStaff';
 import drawEmptyStaff from './drawEmptyStaff';
 
 function drawStaffAndNotes(
   divRef: HTMLDivElement,
+  staffSize: StaffSize,
   allNotes: StaveNote[],
   beams: Beam[],
   tuplets: Tuplet[]
 ) {
-  const [vexContext, vexStave] = drawEmptyStaff(divRef as HTMLDivElement);
+  const [vexContext, vexStave] = drawEmptyStaff(
+    divRef as HTMLDivElement,
+    staffSize
+  );
 
   Formatter.FormatAndDraw(
     vexContext as RenderContext,
