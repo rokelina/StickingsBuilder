@@ -1,5 +1,6 @@
 .navbar {
   position: fixed;
+  z-index: 1;
   background-color: #333;
   display: flex;
   flex-direction: column;
@@ -52,6 +53,18 @@
   opacity: 0.85;
 }
 
+.menu-icon {
+  display: none;
+  width: 3rem;
+  height: 3rem;
+}
+.menu-icon svg {
+  width: 3rem;
+  /* width: 20%; */
+  /* margin: 0 0.5rem; */
+  opacity: 0.85;
+}
+
 /* large screens 992px and up */
 @media only screen and (min-width: 992px) {
   .navbar {
@@ -71,7 +84,7 @@
 
 /* medium and small screens < 880px */
 
-@media only screen and (max-width: 991px) {
+@media only screen and (orientation: portrait) and (max-width: 991px) {
   .navbar {
     bottom: 0;
     width: 100vw;
@@ -88,10 +101,41 @@
   }
 }
 
+@media only screen and (orientation: landscape) and (max-width: 991px) {
+  .menu-icon {
+    display: inline;
+  }
+  .navbar {
+    position: absolute;
+    height: 3rem;
+    width: 3rem;
+    align-items: start;
+  }
+  .navbar-nav {
+    display: none;
+  }
+
+  .nav-link svg {
+    display: none;
+  }
+
+  .navbar:hover {
+    min-width: 10rem;
+    background-color: #444;
+  }
+  .navbar:hover .navbar-nav {
+    display: inline;
+  }
+  .navbar:hover .icon-text {
+    display: inline;
+    padding: 0.5rem;
+  }
+}
+
 /* @media only screen and (max-width: 640px) {
-  .navbar,
+  /* .navbar,
   .nav-link,
   .nav-link svg {
     height: 3rem;
   }
-} */
+}  */

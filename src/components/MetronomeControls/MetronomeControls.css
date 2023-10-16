@@ -42,12 +42,13 @@
 }
 
 .countdown {
+  display: flex;
+  align-items: center;
   padding: 0.5rem;
 }
 
 @media screen and (orientation: landscape) and (max-width: 992px) {
   .playback-controls {
     flex-direction: row;
-    justify-content: space-evenly;
   }
 }

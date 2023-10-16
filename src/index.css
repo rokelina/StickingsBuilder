@@ -51,3 +51,8 @@ input {
     font-size: 12px;
   }
 }
+@media only screen and (orientation: landscape) and (max-width: 991px) {
+  :root {
+    font-size: 12px;
+  }
+}
