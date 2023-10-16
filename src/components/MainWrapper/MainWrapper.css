@@ -1,5 +1,27 @@
-.main-wrapper{
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
+.main-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 4rem;
+  justify-content: flex-start;
+  padding: 1rem;
+  overflow-y: auto;
+  overflow-x: clip;
+}
+
+@media only screen and (orientation: portrait) and (max-width: 991px) {
+  .main-wrapper {
+    margin-bottom: 4rem;
+    margin-left: 0;
+  }
+}
+
+@media screen and (orientation: landscape) and (max-width: 991px) {
+  .main-container {
+    margin-top: 3rem;
+  }
 }

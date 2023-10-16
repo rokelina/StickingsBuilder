@@ -2,6 +2,7 @@ import { useEffect, MutableRefObject } from 'react';
 import { useCurrentBeatIndex } from './useCurrentBeatIndex';
 import { StaveNote, Tuplet, Beam } from 'vexflow';
 import drawStaffAndNotes from '../lib/utils/staffUtils/drawStaffAndNotes';
+import { StaffSize } from './useResizeStaff';
 
 export type NotesArray = StaveNote[];
 
@@ -12,6 +13,7 @@ export function useDrawNotes(
     beatName: string
   ) => NotesArray,
   divRef: MutableRefObject<HTMLDivElement | null>,
+  staffSize: StaffSize,
   isPlaying: boolean,
   beatsPerMeasure: number
 ) {
@@ -58,10 +60,22 @@ export function useDrawNotes(
         console.log('Error: Incorrect number of beats per measure');
       }
 
-      drawStaffAndNotes(notesDiv as HTMLDivElement, allNotes, beams, tuplets);
+      drawStaffAndNotes(
+        notesDiv as HTMLDivElement,
+        staffSize,
+        allNotes,
+        beams,
+        tuplets
+      );
     } else {
       cleanup();
-      drawStaffAndNotes(notesDiv as HTMLDivElement, allNotes, beams, tuplets);
+      drawStaffAndNotes(
+        notesDiv as HTMLDivElement,
+        staffSize,
+        allNotes,
+        beams,
+        tuplets
+      );
     }
 
     return cleanup;
@@ -69,6 +83,7 @@ export function useDrawNotes(
     stickingsObject,
     getNotesArrayFunction,
     divRef,
+    staffSize,
     isPlaying,
     currentBeatIndex,
     beatsPerMeasure,

@@ -1,30 +1,76 @@
-.top-nav{
-  justify-content: center;
-  align-items: center;
-  color: white; 
+.top-nav {
+  justify-content: space-around;
+  color: white;
   position: absolute;
-  width: 100%;
+  width: 100dvw;
   height: 4rem;
 }
 
-.top-nav h1{
+.top-nav h1 {
   margin: 0;
-  flex: 1 0 auto;
-  padding-left: 1rem;
   font-weight: 300;
+  flex-grow: 1;
+  flex-shrink: 0;
+  flex-basis: auto;
 }
 
-.top-nav svg{
+.top-nav svg {
   max-width: 4rem;
-  /* margin-left: 8rem; */
-  /* padding-left: 1rem; */
+  opacity: 0.85;
 }
 
-.login-signup{
-  margin-right: 8rem;
-  padding: 0 2rem;
+.title-logo {
+  display: flex;
+  align-items: center;
 }
 
-.login-signup button{
+.login-signup {
+  display: flex;
+  align-items: center;
+}
+
+.login-signup button {
   box-shadow: 0px 2px 2px #666;
+  font-size: 0.8rem;
+  /* display: none; */
+}
+
+/* large screens 880px and up */
+@media only screen and (min-width: 992px) {
+  /* .login-signup {
+    margin-right: 5rem;
+  } */
+}
+
+@media only screen and (orientation: landscape) and (max-width: 992px) {
+  /* .top-nav svg {
+    margin-left: 5rem;
+  } */
+  /* .top-nav h1 {
+    font-size: 16px;
+  } */
+
+  .top-nav,
+  .top-nav svg {
+    max-height: 3rem;
+  }
+  .top-nav button {
+    padding: 0.3rem 0.5rem;
+    font-size: 12px;
+  }
+}
+
+@media only screen and (max-width: 640px) {
+  .top-nav h1 {
+    font-size: 16px;
+  }
+  .login-signup button {
+    font-size: 10px;
+    margin: 0;
+    padding: 0.5rem;
+  }
+  /* .top-nav,
+  .top-nav svg {
+    max-height: 3rem;
+  } */
 }

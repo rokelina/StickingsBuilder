@@ -1,3 +1,4 @@
+import MenuIcon from '../../assets/icons/MenuIcon';
 import EightNotesIcon from '../../assets/icons/EightNotesIcon';
 import RandomIcon from '../../assets/icons/RandomIcon';
 import TripletsIcon from '../../assets/icons/TripletsIcon';
@@ -12,6 +13,9 @@ interface Props {
 function SideNavBar({ onNavClick }: Props) {
   return (
     <nav className="navbar">
+      <div className="menu-icon">
+        <MenuIcon />
+      </div>
       <ul className="navbar-nav">
         <LiComponent
           idName="eighth-notes"

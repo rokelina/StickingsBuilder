@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 
 export function useLoadingSpinner() {
-  const load = () => new Promise((resolve) => setTimeout(resolve, 750));
+  const load = () => new Promise((resolve) => setTimeout(resolve, 150));
 
   useEffect(() => {
     const spinnerDiv = document.getElementById('loader');

@@ -1,12 +1,13 @@
-.staff-container{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    padding: 1rem;
+.staff-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem 0rem;
 }
 
-.current-note{
-    background-color: blue;
-    
+@media screen and (orientation: landscape) and (max-width: 991px) {
+  .staff-container {
+    padding: 0;
+  }
 }

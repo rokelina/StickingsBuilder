@@ -3,6 +3,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  padding: 1rem;
 }
 
 .menu-container {
@@ -15,10 +16,10 @@
   display: flex;
   flex-direction: column;
   width: fit-content;
-  border: 2px solid #333;
+  border: 1.5px solid #555;
   border-radius: 20px;
-  min-width: 40vw;
-  padding: 1rem;
+  padding: 1rem 1.5rem;
+  box-shadow: 1px 3px 3px gray;
   margin: 2rem 0rem;
 }
 
@@ -43,4 +44,57 @@
 .legend {
   font-weight: 600;
   padding: 0.3rem;
+}
+
+/* medium and up */
+@media only screen and (min-width: 769px) {
+  .menu-card {
+    min-width: 650px;
+  }
+}
+
+/* s */
+@media only screen and (max-width: 768px) {
+  .menu-card {
+    min-width: 550px;
+    padding: 0.5rem 0.8rem;
+  }
+}
+/* xs >= 460px*/
+@media only screen and (max-width: 640px) {
+  .menu-card {
+    min-width: 400px;
+    padding: 1rem 0.8rem;
+  }
+
+  .menu-container fieldset {
+    padding: 0.5rem;
+  }
+}
+
+/* xxs less than 460px */
+@media only screen and (max-width: 460px) {
+  .menu-container {
+    padding: 0;
+  }
+  .menu-card {
+    min-width: 320px;
+    padding: 1rem 0.2rem;
+  }
+  .menu-container fieldset {
+    padding: 0.5rem 0rem;
+  }
+  .menu-container label {
+    padding: 0.5rem 0rem;
+  }
+}
+
+@media screen and (orientation: landscape) and (max-width: 991px) {
+  .menu-card {
+    margin: 0;
+    padding: 0;
+  }
+  .menu {
+    padding: 0;
+  }
 }
