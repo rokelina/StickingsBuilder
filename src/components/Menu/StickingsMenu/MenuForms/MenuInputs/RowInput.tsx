@@ -19,6 +19,7 @@ function RowInput({
   return (
     <label className="row-input" htmlFor={rowName}>
       <input
+        aria-label={`selects ${rowName} for all beats`}
         type={inputType}
         id={rowName}
         checked={isRowChecked(selectedStickings, rowLabel)}
