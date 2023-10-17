@@ -67,6 +67,7 @@ function MetronomeControls({
           />
           <label htmlFor="volume">
             <input
+              aria-label="volume control"
               type="range"
               name="volume"
               id="volume"
@@ -81,6 +82,7 @@ function MetronomeControls({
         </div>
         <div className="metronome">
           <input
+            aria-label="beats per minute value"
             type="number"
             name="met-input"
             min={20}
@@ -90,11 +92,13 @@ function MetronomeControls({
             className="met-input"
             onChange={onBpmChange}
           />
-          <span>BPM</span>
+          <span aria-label="beats per minute">BPM</span>
         </div>
         <div className="countdown">
           <span>ADD COUNTDOWN</span>
           <input
+            aria-label="add a countdown measure"
+            name="countdown"
             type="checkbox"
             checked={addCountdown}
             onChange={onCountdown}

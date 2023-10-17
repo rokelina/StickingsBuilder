@@ -18,20 +18,23 @@ function SideNavBar({ onNavClick }: Props) {
       </div>
       <ul className="navbar-nav">
         <LiComponent
+          ariaLabel="eight notes menu"
           idName="eighth-notes"
-          icon={<EightNotesIcon></EightNotesIcon>}
+          icon={<EightNotesIcon />}
           spanText="8th Notes"
           onNavClick={onNavClick}
         />
         <LiComponent
+          ariaLabel="eight note triplets menu"
           idName="triplet-notes"
-          icon={<TripletsIcon></TripletsIcon>}
+          icon={<TripletsIcon />}
           spanText="8th Notes Triplets"
           onNavClick={onNavClick}
         />
         <LiComponent
+          ariaLabel="random stickings menu"
           idName="random-stickings"
-          icon={<RandomIcon></RandomIcon>}
+          icon={<RandomIcon />}
           spanText="Random Stickings"
           onNavClick={onNavClick}
         />
