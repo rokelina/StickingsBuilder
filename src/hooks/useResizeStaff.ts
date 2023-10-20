@@ -31,7 +31,7 @@ const smallStaff: StaffSize = {
 const mediumStaff: StaffSize = {
   divWidth: 650,
   divHeight: 160,
-  staffX: 10,
+  staffX: 5,
   staffY: 30,
   staffWidth: 630,
 };
