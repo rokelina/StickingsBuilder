@@ -37,6 +37,7 @@ nav {
 fieldset {
   border: none;
   display: grid;
+  min-height: -moz-fit-content;
   min-height: fit-content;
   padding: 0.5rem 1rem;
 }

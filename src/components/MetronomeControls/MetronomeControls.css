@@ -11,14 +11,6 @@
   height: 3rem;
 }
 
-.sound-controls {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  justify-content: center;
-  height: fit-content;
-}
-
 .volume-controls {
   width: 5rem;
   margin-left: 0.5rem;

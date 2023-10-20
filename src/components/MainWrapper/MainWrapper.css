@@ -10,7 +10,7 @@
   justify-content: flex-start;
   padding: 1rem;
   overflow-y: auto;
-  overflow-x: clip;
+  overflow-x: auto;
 }
 
 @media only screen and (orientation: portrait) and (max-width: 991px) {
