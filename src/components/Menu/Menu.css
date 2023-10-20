@@ -15,6 +15,7 @@
 .menu-card {
   display: flex;
   flex-direction: column;
+  width: -moz-fit-content;
   width: fit-content;
   border: 1.5px solid #555;
   border-radius: 20px;
