@@ -13,7 +13,7 @@ export type StaffSize = {
 const xtraSmallStaff: StaffSize = {
   divWidth: 350,
   divHeight: 100,
-  staffX: 10,
+  staffX: 5,
   staffY: 30,
   staffWidth: 525,
   scaleX: 0.65,
@@ -31,7 +31,7 @@ const smallStaff: StaffSize = {
 const mediumStaff: StaffSize = {
   divWidth: 650,
   divHeight: 160,
-  staffX: 10,
+  staffX: 5,
   staffY: 30,
   staffWidth: 630,
 };
