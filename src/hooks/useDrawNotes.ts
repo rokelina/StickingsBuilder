@@ -1,8 +1,8 @@
 import { useEffect, MutableRefObject } from 'react';
 import { useCurrentBeatIndex } from './useCurrentBeatIndex';
+import { StaffSize } from './useResizeStaff';
 import { StaveNote, Tuplet, Beam } from 'vexflow';
 import drawStaffAndNotes from '../lib/utils/staffUtils/drawStaffAndNotes';
-import { StaffSize } from './useResizeStaff';
 
 export type NotesArray = StaveNote[];
 
@@ -52,8 +52,6 @@ export function useDrawNotes(
         allBeats[currentBeatIndex].forEach((note: StaveNote) => {
           note.setStyle({
             fillStyle: '#3333ff',
-            shadowColor: '#3333ff',
-            shadowBlur: 25,
           });
         });
       } else {

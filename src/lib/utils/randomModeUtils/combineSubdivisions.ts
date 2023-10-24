@@ -39,28 +39,28 @@ const combineAllSubdivisions = (): string => {
 };
 
 const combineSelectedSubdivisions = (arr: string[]): string => {
+  const subdivision = arr[randomIndex(arr)];
+
   let filteredArray: string[] = [];
-  for (const id of arr) {
-    switch (id) {
-      case 'eighths':
-        filteredArray = [...filteredArray, ...eighths];
-        break;
-      case 'triplets':
-        filteredArray = [...filteredArray, ...triplets];
-        break;
-      case 'sixteenths':
-        filteredArray = [...filteredArray, ...sixteenths];
-        break;
-      case 'quintuplets':
-        filteredArray = [...filteredArray, ...quintuplets];
-        break;
-      case 'sextuplets':
-        filteredArray = [...filteredArray, ...sextuplets];
-        break;
-      case 'septuplets':
-        filteredArray = [...filteredArray, ...septuplets];
-        break;
-    }
+  switch (subdivision) {
+    case 'eighths':
+      filteredArray = [...filteredArray, ...eighths];
+      break;
+    case 'triplets':
+      filteredArray = [...filteredArray, ...triplets];
+      break;
+    case 'sixteenths':
+      filteredArray = [...filteredArray, ...sixteenths];
+      break;
+    case 'quintuplets':
+      filteredArray = [...filteredArray, ...quintuplets];
+      break;
+    case 'sextuplets':
+      filteredArray = [...filteredArray, ...sextuplets];
+      break;
+    case 'septuplets':
+      filteredArray = [...filteredArray, ...septuplets];
+      break;
   }
   return filteredArray[randomIndex(filteredArray)].toUpperCase();
 };
