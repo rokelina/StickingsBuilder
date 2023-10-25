@@ -41,29 +41,22 @@ const combineAllSubdivisions = (): string => {
 
 const combineSelectedSubdivisions = (arr: SubdivisionOption[]): string => {
   const subdivision = arr[randomIndex(arr)];
-
-  let filteredArray: string[] = [];
   switch (subdivision) {
     case 'eighths':
-      filteredArray = [...filteredArray, ...eighths];
-      break;
+      return eighths[randomIndex(eighths)].toUpperCase();
     case 'triplets':
-      filteredArray = [...filteredArray, ...triplets];
-      break;
+      return triplets[randomIndex(triplets)].toUpperCase();
     case 'sixteenths':
-      filteredArray = [...filteredArray, ...sixteenths];
-      break;
+      return sixteenths[randomIndex(sixteenths)].toUpperCase();
     case 'quintuplets':
-      filteredArray = [...filteredArray, ...quintuplets];
-      break;
+      return quintuplets[randomIndex(quintuplets)].toUpperCase();
     case 'sextuplets':
-      filteredArray = [...filteredArray, ...sextuplets];
-      break;
+      return sextuplets[randomIndex(sextuplets)].toUpperCase();
     case 'septuplets':
-      filteredArray = [...filteredArray, ...septuplets];
-      break;
+      return septuplets[randomIndex(septuplets)].toUpperCase();
+    default:
+      return '';
   }
-  return filteredArray[randomIndex(filteredArray)].toUpperCase();
 };
 
 export { combineAllSubdivisions, combineSelectedSubdivisions };
