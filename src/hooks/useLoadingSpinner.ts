@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 
 export function useLoadingSpinner() {
-  const load = () => new Promise((resolve) => setTimeout(resolve, 150));
+  const load = () => new Promise((resolve) => setTimeout(resolve, 50));
 
   useEffect(() => {
     const spinnerDiv = document.getElementById('loader');
@@ -10,7 +10,7 @@ export function useLoadingSpinner() {
         spinnerDiv.classList.add('hidden');
         setTimeout(() => {
           spinnerDiv.parentNode?.removeChild(spinnerDiv);
-        }, 750);
+        }, 700);
       }
     });
   }, []);

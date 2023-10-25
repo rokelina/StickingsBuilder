@@ -1,13 +1,11 @@
-import { RiAiGenerate } from 'react-icons/ri';
-import Staff from '../Staff/Staff';
+import Button from '../Button/Button';
 import EmptyStaff from '../Staff/EmptyStaff';
 import Options from './Options';
-import Button from '../Button/Button';
+import Staff from '../Staff/Staff';
 import getRandomNotesArray from '../../lib/utils/staffUtils/getRandomNotesArray';
-import {
-  isStickingsObjEmpty,
-  // isSaveBtnDisabled,
-} from '../../lib/uiHelpers/menuHelpers';
+import { RiAiGenerate } from 'react-icons/ri';
+import { isStickingsObjEmpty } from '../../lib/uiHelpers/menuHelpers';
+import { SubdivisionOption } from '../../hooks/useGenerateStickings';
 import '../Menu/Menu.css';
 import './RandomMenu.css';
 
@@ -17,9 +15,9 @@ interface Props {
       [key: string]: string;
     };
     isSelectAll: boolean;
-    selectedRandomOption: string[];
-    onGenerateStickings: (selectedOption: string[]) => void;
-    onRandomOptionsChange: (id: string, checked: boolean) => void;
+    selectedRandomOption: SubdivisionOption[];
+    onGenerateStickings: (selectedOption: SubdivisionOption[]) => void;
+    onRandomOptionsChange: (id: SubdivisionOption, checked: boolean) => void;
   };
   isPlaying: boolean;
 }
@@ -61,11 +59,6 @@ function RandomMenu({ randomMenuProps, isPlaying }: Props) {
               }
               onBtnClick={() => onGenerateStickings(selectedRandomOption)}
             />
-            {/* <Button
-              idName="save-button"
-              children="SAVE"
-              disabled={isSaveBtnDisabled(generatedStickings)}
-            /> */}
           </div>
         </div>
       </div>

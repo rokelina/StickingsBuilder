@@ -39,6 +39,10 @@
   padding: 0.5rem;
 }
 
+.countdown span {
+  padding: 0.5em 0;
+}
+
 @media screen and (orientation: landscape) and (max-width: 991px) {
   .playback-controls {
     flex-direction: row;

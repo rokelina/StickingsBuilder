@@ -6,6 +6,7 @@ import {
   sextupletPermutations,
   septupletPermutations,
 } from '../permutations';
+import { SubdivisionOption } from '../../../hooks/useGenerateStickings';
 
 const eighths = Object.values(eightNotesPermutations);
 const triplets = Object.values(tripletPermutations);
@@ -20,6 +21,7 @@ const randomIndex = (arr: string[]): number => {
 
 const combineAllSubdivisions = (): string => {
   const randomNumber = Math.floor(Math.random() * 6);
+
   switch (randomNumber) {
     case 0:
       return eighths[randomIndex(eighths)].toUpperCase();
@@ -38,31 +40,25 @@ const combineAllSubdivisions = (): string => {
   }
 };
 
-const combineSelectedSubdivisions = (arr: string[]): string => {
-  let filteredArray: string[] = [];
-  for (const id of arr) {
-    switch (id) {
-      case 'eighths':
-        filteredArray = [...filteredArray, ...eighths];
-        break;
-      case 'triplets':
-        filteredArray = [...filteredArray, ...triplets];
-        break;
-      case 'sixteenths':
-        filteredArray = [...filteredArray, ...sixteenths];
-        break;
-      case 'quintuplets':
-        filteredArray = [...filteredArray, ...quintuplets];
-        break;
-      case 'sextuplets':
-        filteredArray = [...filteredArray, ...sextuplets];
-        break;
-      case 'septuplets':
-        filteredArray = [...filteredArray, ...septuplets];
-        break;
-    }
+const combineSelectedSubdivisions = (arr: SubdivisionOption[]): string => {
+  const subdivision = arr[randomIndex(arr)];
+
+  switch (subdivision) {
+    case 'eighths':
+      return eighths[randomIndex(eighths)].toUpperCase();
+    case 'triplets':
+      return triplets[randomIndex(triplets)].toUpperCase();
+    case 'sixteenths':
+      return sixteenths[randomIndex(sixteenths)].toUpperCase();
+    case 'quintuplets':
+      return quintuplets[randomIndex(quintuplets)].toUpperCase();
+    case 'sextuplets':
+      return sextuplets[randomIndex(sextuplets)].toUpperCase();
+    case 'septuplets':
+      return septuplets[randomIndex(septuplets)].toUpperCase();
+    default:
+      return '';
   }
-  return filteredArray[randomIndex(filteredArray)].toUpperCase();
 };
 
 export { combineAllSubdivisions, combineSelectedSubdivisions };

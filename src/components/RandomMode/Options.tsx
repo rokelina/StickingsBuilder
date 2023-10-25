@@ -1,8 +1,9 @@
 import OptionsInput from './OptionsInput';
+import { SubdivisionOption } from '../../hooks/useGenerateStickings';
 
 interface Props {
-  onOptionsChange: (id: string, checked: boolean) => void;
-  selectedOption: string[];
+  onOptionsChange: (id: SubdivisionOption, checked: boolean) => void;
+  selectedOption: SubdivisionOption[];
   isSelectAll: boolean;
 }
 
