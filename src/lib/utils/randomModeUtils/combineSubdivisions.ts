@@ -6,6 +6,7 @@ import {
   sextupletPermutations,
   septupletPermutations,
 } from '../permutations';
+import { SubdivisionOption } from '../../../hooks/useGenerateStickings';
 
 const eighths = Object.values(eightNotesPermutations);
 const triplets = Object.values(tripletPermutations);
@@ -38,7 +39,7 @@ const combineAllSubdivisions = (): string => {
   }
 };
 
-const combineSelectedSubdivisions = (arr: string[]): string => {
+const combineSelectedSubdivisions = (arr: SubdivisionOption[]): string => {
   const subdivision = arr[randomIndex(arr)];
 
   let filteredArray: string[] = [];

@@ -1,9 +1,11 @@
+import { SubdivisionOption } from '../../hooks/useGenerateStickings';
+
 interface Props {
   checked: boolean;
   children: string;
   disabled?: boolean;
-  id: string;
-  onOptionsChange: (id: string, checked: boolean) => void;
+  id: SubdivisionOption;
+  onOptionsChange: (id: SubdivisionOption, checked: boolean) => void;
 }
 
 function OptionsInput({

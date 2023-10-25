@@ -10,6 +10,7 @@ import {
 } from '../../lib/uiHelpers/menuHelpers';
 import '../Menu/Menu.css';
 import './RandomMenu.css';
+import { SubdivisionOption } from '../../hooks/useGenerateStickings';
 
 interface Props {
   randomMenuProps: {
@@ -17,9 +18,9 @@ interface Props {
       [key: string]: string;
     };
     isSelectAll: boolean;
-    selectedRandomOption: string[];
-    onGenerateStickings: (selectedOption: string[]) => void;
-    onRandomOptionsChange: (id: string, checked: boolean) => void;
+    selectedRandomOption: SubdivisionOption[];
+    onGenerateStickings: (selectedOption: SubdivisionOption[]) => void;
+    onRandomOptionsChange: (id: SubdivisionOption, checked: boolean) => void;
   };
   isPlaying: boolean;
 }

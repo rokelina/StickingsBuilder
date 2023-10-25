@@ -1,16 +1,28 @@
 import { useState } from 'react';
 import generateRandomStickings from '../lib/utils/randomModeUtils/generateRandomStickings';
 
+export type SubdivisionOption =
+  | 'select-all'
+  | 'eighths'
+  | 'triplets'
+  | 'sixteenths'
+  | 'quintuplets'
+  | 'sextuplets'
+  | 'septuplets';
+
 export function useGenerateStickings() {
   const [generatedStickings, setGeneratedStickings] = useState<{
     [key: string]: string;
   }>({});
-  const [selectedRandomOption, setSelectedRandomOption] = useState<string[]>(
-    []
-  );
+  const [selectedRandomOption, setSelectedRandomOption] = useState<
+    SubdivisionOption[]
+  >([]);
   const [isSelectAll, setSelectAll] = useState(false);
 
-  const handleRandomOptionsChange = (id: string, checked: boolean): void => {
+  const handleRandomOptionsChange = (
+    id: SubdivisionOption,
+    checked: boolean
+  ): void => {
     if (id === 'select-all') {
       if (checked) {
         setSelectedRandomOption(['select-all']);
@@ -30,7 +42,9 @@ export function useGenerateStickings() {
     }
   };
 
-  const handleGenerateRandomStickings = (selectedOption: string[]): void => {
+  const handleGenerateRandomStickings = (
+    selectedOption: SubdivisionOption[]
+  ): void => {
     if (!selectedOption.length) {
       alert('Select one or more subdivision options');
       return;
@@ -39,6 +53,7 @@ export function useGenerateStickings() {
     setGeneratedStickings(generated);
   };
 
+  console.log(selectedRandomOption);
   const randomProps = {
     generatedStickings: generatedStickings,
     isSelectAll: isSelectAll,

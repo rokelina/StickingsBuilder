@@ -2,8 +2,9 @@ import {
   combineAllSubdivisions,
   combineSelectedSubdivisions,
 } from './combineSubdivisions';
+import { SubdivisionOption } from '../../../hooks/useGenerateStickings';
 
-const generateRandomStickings = (selectedOption: string[]) => {
+const generateRandomStickings = (selectedOption: SubdivisionOption[]) => {
   let output: { [key: string]: string };
 
   if (selectedOption[0] === 'select-all' || selectedOption.length === 6) {
