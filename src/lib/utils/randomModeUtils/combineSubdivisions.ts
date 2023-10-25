@@ -21,6 +21,7 @@ const randomIndex = (arr: string[]): number => {
 
 const combineAllSubdivisions = (): string => {
   const randomNumber = Math.floor(Math.random() * 6);
+
   switch (randomNumber) {
     case 0:
       return eighths[randomIndex(eighths)].toUpperCase();
@@ -41,6 +42,7 @@ const combineAllSubdivisions = (): string => {
 
 const combineSelectedSubdivisions = (arr: SubdivisionOption[]): string => {
   const subdivision = arr[randomIndex(arr)];
+
   switch (subdivision) {
     case 'eighths':
       return eighths[randomIndex(eighths)].toUpperCase();

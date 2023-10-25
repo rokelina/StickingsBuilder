@@ -47,7 +47,6 @@ export function useResizeStaff() {
   //get viewport's width
   const [width, setWidth] = useState(window.innerWidth);
 
-  //useEffect
   useEffect(() => {
     const handleResize = () => setWidth(window.innerWidth);
     window.addEventListener('resize', handleResize);

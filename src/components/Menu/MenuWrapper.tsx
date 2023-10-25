@@ -22,7 +22,7 @@ function MenuWrapper({ displayMenu, samples }: Props) {
     [key: string]: string;
   } = {};
 
-  // Pass currentStickings to the metronome
+  // Pass currentStickings to the Metronome component
   if (displayMenu === 'random-stickings') {
     currentStickings = randomProps.generatedStickings;
   }

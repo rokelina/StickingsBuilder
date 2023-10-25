@@ -57,6 +57,7 @@
   width: 3rem;
   height: 3rem;
 }
+
 .menu-icon svg {
   width: 3rem;
   opacity: 0.85;
@@ -74,12 +75,13 @@
   .navbar:hover {
     width: 16rem;
   }
+
   .navbar:hover .icon-text {
     display: inline;
   }
 }
 
-/* medium and small screens < 880px */
+/* medium and small screens < 991px */
 
 @media only screen and (orientation: portrait) and (max-width: 991px) {
   .navbar {
@@ -103,6 +105,7 @@
   .menu-icon {
     display: inline;
   }
+
   .navbar {
     position: absolute;
     z-index: 1;
@@ -110,6 +113,7 @@
     width: 3rem;
     align-items: start;
   }
+
   .navbar-nav {
     display: none;
   }
@@ -122,9 +126,11 @@
     min-width: 10rem;
     background-color: #444;
   }
+
   .navbar:hover .navbar-nav {
     display: inline;
   }
+
   .navbar:hover .icon-text {
     display: inline;
     padding: 0.5rem;
