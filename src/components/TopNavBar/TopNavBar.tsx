@@ -1,4 +1,4 @@
-import Snare from '../../assets/icons/Snare';
+import Snare from '../Icons/Snare';
 import './TopNavBar.css';
 
 function TopNavBar() {

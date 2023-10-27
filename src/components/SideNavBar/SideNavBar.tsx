@@ -1,7 +1,7 @@
-import MenuIcon from '../../assets/icons/MenuIcon';
-import EightNotesIcon from '../../assets/icons/EightNotesIcon';
-import RandomIcon from '../../assets/icons/RandomIcon';
-import TripletsIcon from '../../assets/icons/TripletsIcon';
+import MenuIcon from '../Icons/MenuIcon';
+import EightNotesIcon from '../Icons/EightNotesIcon';
+import RandomIcon from '../Icons/RandomIcon';
+import TripletsIcon from '../Icons/TripletsIcon';
 import LiComponent from './LiComponent/LiComponent';
 import './SideNavBar.css';
 

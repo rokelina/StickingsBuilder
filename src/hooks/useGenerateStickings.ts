@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import generateRandomStickings from '../lib/utils/randomModeUtils/generateRandomStickings';
 
+// Random Menu state and event handlers. Returns randomProps {}. Called on MenuWrapper.tsx
+
 export type SubdivisionOption =
   | 'select-all'
   | 'eighths'
@@ -14,9 +16,11 @@ export function useGenerateStickings() {
   const [generatedStickings, setGeneratedStickings] = useState<{
     [key: string]: string;
   }>({});
+
   const [selectedRandomOption, setSelectedRandomOption] = useState<
     SubdivisionOption[]
   >([]);
+
   const [isSelectAll, setSelectAll] = useState(false);
 
   const handleRandomOptionsChange = (
