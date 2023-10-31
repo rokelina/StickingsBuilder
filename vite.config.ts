@@ -10,7 +10,11 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'mask-icon.svg'],
+      includeAssets: [
+        'favicon.ico',
+        'apple-touch-icon-180x180.png',
+        'favicon.svg',
+      ],
       manifest: {
         name: 'Stickings Builder App',
         short_name: 'Stickings Builder',
