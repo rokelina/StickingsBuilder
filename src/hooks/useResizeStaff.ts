@@ -19,6 +19,7 @@ const xtraSmallStaff: StaffSize = {
   scaleX: 0.65,
   scaleY: 0.6,
 };
+
 const smallStaff: StaffSize = {
   divWidth: 500,
   divHeight: 110,
@@ -28,6 +29,7 @@ const smallStaff: StaffSize = {
   scaleX: 0.75,
   scaleY: 0.65,
 };
+
 const mediumStaff: StaffSize = {
   divWidth: 650,
   divHeight: 160,
@@ -35,6 +37,7 @@ const mediumStaff: StaffSize = {
   staffY: 30,
   staffWidth: 630,
 };
+
 const largeStaff: StaffSize = {
   divWidth: 800,
   divHeight: 200,
@@ -51,7 +54,6 @@ export function useResizeStaff() {
     const handleResize = () => setWidth(window.innerWidth);
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
-    //add viewport width to dependency array
   }, [width]);
 
   let outputStaff: StaffSize;

@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 
+// Called at the top level, removes spinner from the DOM after App.tsx is loaded
 export function useLoadingSpinner() {
   const load = () => new Promise((resolve) => setTimeout(resolve, 50));
 

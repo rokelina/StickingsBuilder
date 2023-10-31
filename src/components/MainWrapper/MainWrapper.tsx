@@ -7,7 +7,7 @@ interface Props {
   displayMenu: string;
 }
 function MainWrapper({ displayMenu }: Props) {
-  // Load click and snare sounds
+  // Load click and snare sound files
   const samples = useSamples();
 
   return (

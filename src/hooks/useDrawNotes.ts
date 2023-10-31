@@ -4,6 +4,8 @@ import { StaffSize } from './useResizeStaff';
 import { StaveNote, Tuplet, Beam } from 'vexflow';
 import drawStaffAndNotes from '../lib/utils/staffUtils/drawStaffAndNotes';
 
+// Handles the rendering of the staff and notes. Called on Staff.tsx
+
 export type NotesArray = StaveNote[];
 
 export function useDrawNotes(

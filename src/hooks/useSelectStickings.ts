@@ -1,5 +1,6 @@
 import { useState } from 'react';
 
+// Returns StickingsMenu props
 export function useSelectStickings() {
   const [selectedStickings, setSelectedStickings] = useState<{
     [key: string]: string;
