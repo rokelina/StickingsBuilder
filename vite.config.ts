@@ -17,8 +17,8 @@ export default defineConfig({
       ],
       manifest: {
         id: '/',
-        name: 'Stickings Builder App',
-        short_name: 'SBA',
+        name: 'Stickings Builder',
+        short_name: 'Stickings Builder',
         description:
           'An application for drummers and percussionists aimed to help them improve their technical dexterity by practicing different sticking combinations. Inspired by the book Stick Control written by George L. Stone',
         theme_color: '#000000',
