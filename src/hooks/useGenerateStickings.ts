@@ -21,8 +21,6 @@ export function useGenerateStickings() {
     SubdivisionOption[]
   >([]);
 
-  const [isSelectAll, setSelectAll] = useState(false);
-
   const handleRandomOptionsChange = (
     id: SubdivisionOption,
     checked: boolean
@@ -30,10 +28,8 @@ export function useGenerateStickings() {
     if (id === 'select-all') {
       if (checked) {
         setSelectedRandomOption(['select-all']);
-        setSelectAll(true);
       } else {
         setSelectedRandomOption([]);
-        setSelectAll(false);
       }
     } else {
       if (checked) {
@@ -45,6 +41,10 @@ export function useGenerateStickings() {
       }
     }
   };
+
+  if (selectedRandomOption.length === 6) {
+    setSelectedRandomOption(['select-all']);
+  }
 
   const handleGenerateRandomStickings = (
     selectedOption: SubdivisionOption[]
@@ -59,7 +59,6 @@ export function useGenerateStickings() {
 
   const randomProps = {
     generatedStickings: generatedStickings,
-    isSelectAll: isSelectAll,
     selectedRandomOption: selectedRandomOption,
     onGenerateStickings: handleGenerateRandomStickings,
     onRandomOptionsChange: handleRandomOptionsChange,

@@ -14,7 +14,6 @@ interface Props {
     generatedStickings: {
       [key: string]: string;
     };
-    isSelectAll: boolean;
     selectedRandomOption: SubdivisionOption[];
     onGenerateStickings: (selectedOption: SubdivisionOption[]) => void;
     onRandomOptionsChange: (id: SubdivisionOption, checked: boolean) => void;
@@ -25,7 +24,6 @@ interface Props {
 function RandomMenu({ randomMenuProps, isPlaying }: Props) {
   const {
     selectedRandomOption,
-    isSelectAll,
     generatedStickings,
     onRandomOptionsChange,
     onGenerateStickings,
@@ -47,14 +45,13 @@ function RandomMenu({ randomMenuProps, isPlaying }: Props) {
           <Options
             selectedOption={selectedRandomOption}
             onOptionsChange={onRandomOptionsChange}
-            isSelectAll={isSelectAll}
           />
           <div className="random-controls">
             <Button
               idName="generate-button"
               children={
                 <>
-                  GENERATE <RiAiGenerate size="1.3rem" />
+                  GENERATE <RiAiGenerate size="1rem" />
                 </>
               }
               onBtnClick={() => onGenerateStickings(selectedRandomOption)}
