@@ -1,7 +1,7 @@
 import * as Tone from 'tone';
 import { useState, useEffect, ChangeEvent } from 'react';
 
-//Metronome state and event handlers, returned as props. Called on MenuWrapper.tsx
+/** Metronome state and event handlers, returned as props */
 export function useMetronome(
   displayMenu: string,
   currentStickings: { [key: string]: string }

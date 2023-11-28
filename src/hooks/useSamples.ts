@@ -5,14 +5,14 @@ import clickLow from '../assets/audio/clickLow.wav';
 import snareR from '../assets/audio/snareR.wav';
 import snareL from '../assets/audio/snareL.wav';
 
-/* Loads sound files and creates Sampler objecs. Called on MainWrapper.tsx to ensure
-files are ready once the Metronome component is mounted*/
-
 export type Samples = {
   clickSampler: Sampler | null;
   snareSampler: Sampler | null;
 };
 
+/** Loads sound files and creates Sampler objecs. Called on MainWrapper.tsx (parent wrapper)
+ to ensure files finished loading once the Metronome component is mounted
+*/
 export function useSamples() {
   const [samples, setSamples] = useState<Samples>({
     clickSampler: null,
