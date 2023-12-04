@@ -46,6 +46,7 @@ const largeStaff: StaffSize = {
   staffWidth: 700,
 };
 
+/** Returns the proper staff size according to the device's width */
 export function useResizeStaff() {
   //get viewport's width
   const [width, setWidth] = useState(window.innerWidth);

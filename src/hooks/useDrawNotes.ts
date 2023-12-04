@@ -4,10 +4,9 @@ import { StaffSize } from './useResizeStaff';
 import { StaveNote, Tuplet, Beam } from 'vexflow';
 import drawStaffAndNotes from '../lib/utils/staffUtils/drawStaffAndNotes';
 
-// Handles the rendering of the staff and notes. Called on Staff.tsx
-
 export type NotesArray = StaveNote[];
 
+/** Handles the rendering of the staff and notes */
 export function useDrawNotes(
   stickingsObject: { [key: string]: string },
   getNotesArrayFunction: (
@@ -51,6 +50,7 @@ export function useDrawNotes(
       cleanup();
 
       if (allBeats.length === beatsPerMeasure) {
+        //change notes' color to blue at the current beat index
         allBeats[currentBeatIndex].forEach((note: StaveNote) => {
           note.setStyle({
             fillStyle: '#3333ff',

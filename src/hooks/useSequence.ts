@@ -2,6 +2,7 @@ import { useEffect, MutableRefObject } from 'react';
 import { Sequence } from 'tone';
 import { Samples } from './useSamples';
 
+/** Creates the sequences that trigger the metronome and snare sounds */
 export function useSequence(
   clickRef: MutableRefObject<Sequence | null>,
   snareRef: MutableRefObject<Sequence | null>,

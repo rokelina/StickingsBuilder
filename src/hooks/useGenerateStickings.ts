@@ -1,8 +1,6 @@
 import { useState } from 'react';
 import generateRandomStickings from '../lib/utils/randomModeUtils/generateRandomStickings';
 
-// Random Menu state and event handlers. Returns randomProps {}. Called on MenuWrapper.tsx
-
 export type SubdivisionOption =
   | 'select-all'
   | 'eighths'
@@ -12,6 +10,9 @@ export type SubdivisionOption =
   | 'sextuplets'
   | 'septuplets';
 
+/**
+ * Random Menu state and event handlers. Returns randomProps {}
+ */
 export function useGenerateStickings() {
   const [generatedStickings, setGeneratedStickings] = useState<{
     [key: string]: string;
@@ -21,8 +22,6 @@ export function useGenerateStickings() {
     SubdivisionOption[]
   >([]);
 
-  const [isSelectAll, setSelectAll] = useState(false);
-
   const handleRandomOptionsChange = (
     id: SubdivisionOption,
     checked: boolean
@@ -30,10 +29,8 @@ export function useGenerateStickings() {
     if (id === 'select-all') {
       if (checked) {
         setSelectedRandomOption(['select-all']);
-        setSelectAll(true);
       } else {
         setSelectedRandomOption([]);
-        setSelectAll(false);
       }
     } else {
       if (checked) {
@@ -45,6 +42,10 @@ export function useGenerateStickings() {
       }
     }
   };
+
+  if (selectedRandomOption.length === 6) {
+    setSelectedRandomOption(['select-all']);
+  }
 
   const handleGenerateRandomStickings = (
     selectedOption: SubdivisionOption[]
@@ -59,7 +60,6 @@ export function useGenerateStickings() {
 
   const randomProps = {
     generatedStickings: generatedStickings,
-    isSelectAll: isSelectAll,
     selectedRandomOption: selectedRandomOption,
     onGenerateStickings: handleGenerateRandomStickings,
     onRandomOptionsChange: handleRandomOptionsChange,

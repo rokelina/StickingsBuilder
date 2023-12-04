@@ -4,10 +4,11 @@ import { SubdivisionOption } from '../../hooks/useGenerateStickings';
 interface Props {
   onOptionsChange: (id: SubdivisionOption, checked: boolean) => void;
   selectedOption: SubdivisionOption[];
-  isSelectAll: boolean;
 }
 
-function Options({ onOptionsChange, isSelectAll, selectedOption }: Props) {
+function Options({ onOptionsChange, selectedOption }: Props) {
+  const isSelectAll = selectedOption.includes('select-all');
+
   return (
     <div className="random-options">
       <div className="select-all">
