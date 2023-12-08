@@ -2,7 +2,6 @@ import { eightNotesPermutations } from '../../lib/utils/permutations';
 import StickingsMenu from './StickingsMenu/StickingsMenu';
 import getEighthNotesArray from '../../lib/utils/staffUtils/getEighthNotesArray';
 import Staff from '../Staff/Staff';
-import './Menu.css';
 
 interface Props {
   stickingMenuProps: {

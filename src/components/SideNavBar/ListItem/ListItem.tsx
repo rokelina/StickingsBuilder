@@ -8,7 +8,7 @@ interface Props {
   onNavClick: (id: string) => void;
 }
 
-function LiComponent({ ariaLabel, idName, icon, spanText, onNavClick }: Props) {
+function ListItem({ ariaLabel, idName, icon, spanText, onNavClick }: Props) {
   return (
     <li className="nav-item" id={idName}>
       <button
@@ -23,4 +23,4 @@ function LiComponent({ ariaLabel, idName, icon, spanText, onNavClick }: Props) {
   );
 }
 
-export default LiComponent;
+export default ListItem;

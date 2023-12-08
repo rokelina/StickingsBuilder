@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useLoadingSpinner } from './hooks/useLoadingSpinner';
-import MainWrapper from './components/MainWrapper/MainWrapper';
+import MainContainer from './components/MainContainer/MainContainer';
 import SideNavBar from './components/SideNavBar/SideNavBar';
 
 function App() {
@@ -14,7 +14,7 @@ function App() {
   return (
     <>
       <SideNavBar onNavClick={handleNavClick} />
-      <MainWrapper displayMenu={displayMenu} />
+      <MainContainer displayMenu={displayMenu} />
     </>
   );
 }

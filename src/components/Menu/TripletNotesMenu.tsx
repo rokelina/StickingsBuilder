@@ -2,7 +2,6 @@ import { tripletPermutations } from '../../lib/utils/permutations';
 import StickingsMenu from './StickingsMenu/StickingsMenu';
 import Staff from '../Staff/Staff';
 import getTripletNotesArray from '../../lib/utils/staffUtils/getTripletNotesArray';
-import './Menu.css';
 
 interface Props {
   stickingMenuProps: {

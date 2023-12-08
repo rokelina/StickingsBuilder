@@ -2,7 +2,7 @@ import MenuIcon from '../Icons/MenuIcon';
 import EightNotesIcon from '../Icons/EightNotesIcon';
 import RandomIcon from '../Icons/RandomIcon';
 import TripletsIcon from '../Icons/TripletsIcon';
-import LiComponent from './LiComponent/LiComponent';
+import ListItem from './ListItem/ListItem';
 import './SideNavBar.css';
 
 interface Props {
@@ -16,21 +16,21 @@ function SideNavBar({ onNavClick }: Props) {
         <MenuIcon />
       </div>
       <ul className="navbar-nav">
-        <LiComponent
+        <ListItem
           ariaLabel="eight notes menu"
           idName="eighth-notes"
           icon={<EightNotesIcon />}
           spanText="8th Notes"
           onNavClick={onNavClick}
         />
-        <LiComponent
+        <ListItem
           ariaLabel="eight note triplets menu"
           idName="triplet-notes"
           icon={<TripletsIcon />}
           spanText="8th Notes Triplets"
           onNavClick={onNavClick}
         />
-        <LiComponent
+        <ListItem
           ariaLabel="random stickings menu"
           idName="random-stickings"
           icon={<RandomIcon />}

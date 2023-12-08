@@ -1,21 +1,21 @@
 import { useSamples } from '../../hooks/useSamples';
-import MenuWrapper from '../Menu/MenuWrapper';
+import MenuContainer from '../Menu/MenuContainer';
 import TopNavBar from '../TopNavBar/TopNavBar';
-import './MainWrapper.css';
+import './MainContainer.css';
 
 interface Props {
   displayMenu: string;
 }
-function MainWrapper({ displayMenu }: Props) {
+function MainContainer({ displayMenu }: Props) {
   // Load click and snare sound files
   const samples = useSamples();
 
   return (
     <main className="main-wrapper">
       <TopNavBar />
-      <MenuWrapper displayMenu={displayMenu} samples={samples} />
+      <MenuContainer displayMenu={displayMenu} samples={samples} />
     </main>
   );
 }
 
-export default MainWrapper;
+export default MainContainer;

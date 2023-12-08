@@ -6,7 +6,7 @@ import getRandomNotesArray from '../../lib/utils/staffUtils/getRandomNotesArray'
 import { RiAiGenerate } from 'react-icons/ri';
 import { isStickingsObjEmpty } from '../../lib/uiHelpers/menuHelpers';
 import { SubdivisionOption } from '../../hooks/useGenerateStickings';
-import '../Menu/Menu.css';
+import '../Menu/MenuContainer.css';
 import './RandomMenu.css';
 
 interface Props {
