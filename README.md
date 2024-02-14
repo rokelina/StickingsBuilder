@@ -1,8 +1,8 @@
 # Stickings Builder
 
-![gif1](documentation/gifs/StickingsBuilderDemoPhoneIcon.gif)
-![gif2](documentation/gifs/StickingsBuilderDemoRandom.gif)
-![gif3](documentation/gifs/StickingsBuilderDemoPhoneLandscape.gif)
+<p align="center">
+  <img src="documentation/gifs/StickingsBuilderDemoPhoneIcon.gif">
+</p>
 
 ## About
 
