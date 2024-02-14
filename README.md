@@ -1,6 +1,6 @@
 # Stickings Builder
 
-[stickingsbuilder.app](stickingsbuilder.app)
+[stickingsbuilder.app](https://stickingsbuilder.app)
 
 <p align="center">
   <img src="documentation/gifs/StickingsBuilderDemoPhoneIcon.gif">
