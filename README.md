@@ -1,5 +1,7 @@
 # Stickings Builder
 
+[stickingsbuilder.app](stickingsbuilder.app)
+
 <p align="center">
   <img src="documentation/gifs/StickingsBuilderDemoPhoneIcon.gif">
 </p>
@@ -12,7 +14,7 @@ Emphasizing user-friendly design principles, Stickings Builder boasts an interfa
 
 ## Tech used / Dependencies
 
-This project is the outcome of my self-directed study in programming and web development. I began by creating a [proof of concept](https://github.com/rokelina/stickings-app) using Vanilla JavaScript before transitioning to React and TypeScript.
+This project is the outcome of my self-directed study in programming and web development. I began by creating a [proof of concept](https://github.com/rokelina/stickings-app) using plain JavaScript before transitioning to React and TypeScript.
 
 - Typescript
 - React
