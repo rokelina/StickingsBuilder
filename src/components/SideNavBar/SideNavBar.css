@@ -1,36 +1,29 @@
-.navbar{
-    width: 5rem;
-    height: 100vh;
-    position: fixed;
-    background-color: #333;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    transition: width 100ms ease
+.navbar {
+  position: fixed;
+  background-color: #333;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.navbar:hover{
-    width: 16rem;
-  }
-
 .navbar-nav {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    width: 100%;
-  }
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+}
 
 .nav-item {
   width: 100%;
   text-align: start;
 }
 
-.nav-link{
+.nav-link {
   display: flex;
   align-items: center;
   height: 5rem;
@@ -42,26 +35,104 @@
   margin: 0;
 }
 
-.nav-link:hover{
+.nav-link:hover {
   background-color: black;
 }
 
-.icon-text{
+.icon-text {
   display: none;
   color: white;
   font-size: 1rem;
 }
 
-.nav-link svg{
+.nav-link svg {
   min-width: 4rem;
   width: 20%;
-  margin: 0 0.5rem
+  margin: 0 0.5rem;
+  opacity: 0.85;
 }
 
-.navbar:hover{
-  width: 16rem;
+.menu-icon {
+  display: none;
+  width: 3rem;
+  height: 3rem;
 }
 
-.navbar:hover .icon-text{
-  display: block;
+.menu-icon svg {
+  width: 3rem;
+  opacity: 0.85;
+}
+
+/* large screens 992px and up */
+@media only screen and (min-width: 992px) {
+  .navbar {
+    top: 0;
+    width: 5rem;
+    height: 100vh;
+    transition: width 400ms ease;
+  }
+
+  .navbar:hover {
+    width: 16rem;
+  }
+
+  .navbar:hover .icon-text {
+    display: inline;
+  }
+}
+
+/* medium and small screens < 991px */
+
+@media only screen and (orientation: portrait) and (max-width: 991px) {
+  .navbar {
+    bottom: 0;
+    width: 100vw;
+    height: 4rem;
+    z-index: 1;
+  }
+
+  .navbar-nav {
+    flex-direction: row;
+  }
+
+  .nav-link {
+    justify-content: center;
+    height: 4rem;
+  }
+}
+
+@media only screen and (orientation: landscape) and (max-width: 991px) {
+  .menu-icon {
+    display: inline;
+  }
+
+  .navbar {
+    position: absolute;
+    z-index: 1;
+    height: 3rem;
+    width: 3rem;
+    align-items: start;
+  }
+
+  .navbar-nav {
+    display: none;
+  }
+
+  .nav-link svg {
+    display: none;
+  }
+
+  .navbar:hover {
+    min-width: 10rem;
+    background-color: #444;
+  }
+
+  .navbar:hover .navbar-nav {
+    display: inline;
+  }
+
+  .navbar:hover .icon-text {
+    display: inline;
+    padding: 0.5rem;
+  }
 }

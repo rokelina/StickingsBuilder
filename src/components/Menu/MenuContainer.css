@@ -1,0 +1,102 @@
+.menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.menu-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem;
+}
+
+.menu-card {
+  display: flex;
+  flex-direction: column;
+  width: -moz-fit-content;
+  width: fit-content;
+  border: 2px solid #333;
+  border-radius: 20px;
+  padding: 1rem 1.5rem;
+  box-shadow: 1px 3px 3px gray;
+  margin: 2rem 0rem;
+}
+
+.stickings,
+.row-input {
+  padding: 0.5rem 0.3rem;
+  cursor: pointer;
+}
+
+.rows {
+  justify-items: center;
+  text-align: center;
+}
+
+.menu-options {
+  display: flex;
+  justify-content: center;
+  padding: 0.5rem;
+  align-items: center;
+}
+
+.legend {
+  font-weight: 600;
+  padding: 0.3rem;
+}
+
+/* medium and up */
+@media only screen and (min-width: 769px) {
+  .menu-card {
+    min-width: 650px;
+  }
+}
+
+/* s */
+@media only screen and (max-width: 768px) {
+  .menu-card {
+    min-width: 550px;
+    padding: 0.5rem 0.8rem;
+  }
+}
+/* xs >= 460px*/
+@media only screen and (max-width: 640px) {
+  .menu-card {
+    min-width: 400px;
+    padding: 1rem 0.8rem;
+  }
+
+  .menu-container fieldset {
+    padding: 0.5rem;
+  }
+}
+
+/* xxs less than 460px */
+@media only screen and (max-width: 460px) {
+  .menu-container {
+    padding: 0;
+  }
+  .menu-card {
+    min-width: 320px;
+    padding: 1rem 0.2rem;
+  }
+  .menu-container fieldset {
+    padding: 0.5rem 0rem;
+  }
+  .menu-container label {
+    padding: 0.5rem 0rem;
+  }
+}
+
+@media screen and (orientation: landscape) and (max-width: 991px) {
+  .menu-card {
+    margin: 0;
+    padding: 0;
+  }
+  .menu {
+    padding: 0;
+    margin-top: 1rem;
+  }
+}

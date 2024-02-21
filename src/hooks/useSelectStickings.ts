@@ -1,5 +1,7 @@
 import { useState } from 'react';
 
+/** Stickings form control. Returns an object with the current selected stickings, and
+ onFormChange handler */
 export function useSelectStickings() {
   const [selectedStickings, setSelectedStickings] = useState<{
     [key: string]: string;

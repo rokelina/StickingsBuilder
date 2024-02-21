@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
 
+/** Called at the top level, removes spinner from the DOM after App.tsx is mounted*/
 export function useLoadingSpinner() {
-  const load = () => new Promise((resolve) => setTimeout(resolve, 750));
+  const load = () => new Promise((resolve) => setTimeout(resolve, 50));
 
   useEffect(() => {
     const spinnerDiv = document.getElementById('loader');
@@ -10,7 +11,7 @@ export function useLoadingSpinner() {
         spinnerDiv.classList.add('hidden');
         setTimeout(() => {
           spinnerDiv.parentNode?.removeChild(spinnerDiv);
-        }, 750);
+        }, 700);
       }
     });
   }, []);

@@ -1,12 +1,14 @@
 import OptionsInput from './OptionsInput';
+import { SubdivisionOption } from '../../hooks/useGenerateStickings';
 
 interface Props {
-  onOptionsChange: (id: string, checked: boolean) => void;
-  selectedOption: string[];
-  isSelectAll: boolean;
+  onOptionsChange: (id: SubdivisionOption, checked: boolean) => void;
+  selectedOption: SubdivisionOption[];
 }
 
-function Options({ onOptionsChange, isSelectAll, selectedOption }: Props) {
+function Options({ onOptionsChange, selectedOption }: Props) {
+  const isSelectAll = selectedOption.includes('select-all');
+
   return (
     <div className="random-options">
       <div className="select-all">

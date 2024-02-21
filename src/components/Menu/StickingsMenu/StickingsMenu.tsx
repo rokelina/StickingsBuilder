@@ -1,9 +1,7 @@
 import BeatForm from './MenuForms/BeatForm';
 import RowForm from './MenuForms/RowForm';
-// import Button from '../../Button/Button';
-// import { isSaveBtnDisabled } from '../../../lib/uiHelpers/menuHelpers';
 
-interface MenuProps {
+interface StickingsMenuProps {
   permutations: { [key: string]: string };
   onFormChange: (beatName: string, children: string) => void;
   selectedStickings: { [key: string]: string };
@@ -13,7 +11,7 @@ function StickingsMenu({
   permutations,
   onFormChange,
   selectedStickings,
-}: MenuProps) {
+}: StickingsMenuProps) {
   return (
     <div className="menu-card">
       <div className="menu-container">
@@ -51,13 +49,6 @@ function StickingsMenu({
           selectedStickings={selectedStickings}
         />
       </div>
-      {/* <div className="menu-options">
-        <Button
-          idName="save-button"
-          children="SAVE"
-          disabled={isSaveBtnDisabled(selectedStickings)}
-        />
-      </div> */}
     </div>
   );
 }

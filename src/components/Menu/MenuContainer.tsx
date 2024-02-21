@@ -6,13 +6,14 @@ import EighthNotesMenu from './EighthNotesMenu';
 import TripletNotesMenu from './TripletNotesMenu';
 import RandomMenu from '../RandomMode/RandomMenu';
 import MetronomeControls from '../MetronomeControls/MetronomeControls';
+import './MenuContainer.css';
 
 interface Props {
   displayMenu: string;
   samples: Samples;
 }
 
-function MenuWrapper({ displayMenu, samples }: Props) {
+function MenuContainer({ displayMenu, samples }: Props) {
   const eighthsProps = useSelectStickings();
   const tripletsProps = useSelectStickings();
   const randomProps = useGenerateStickings();
@@ -22,7 +23,7 @@ function MenuWrapper({ displayMenu, samples }: Props) {
     [key: string]: string;
   } = {};
 
-  // Pass currentStickings to the metronome
+  // Pass currentStickings to the Metronome component
   if (displayMenu === 'random-stickings') {
     currentStickings = randomProps.generatedStickings;
   }
@@ -36,7 +37,7 @@ function MenuWrapper({ displayMenu, samples }: Props) {
   const metronomeProps = useMetronome(displayMenu, currentStickings);
 
   return (
-    <>
+    <div className="main-container">
       <MetronomeControls
         selectedStickings={currentStickings}
         samples={samples}
@@ -66,7 +67,7 @@ function MenuWrapper({ displayMenu, samples }: Props) {
           isPlaying={metronomeProps.isPlaying}
         />
       )}
-    </>
+    </div>
   );
 }
-export default MenuWrapper;
+export default MenuContainer;

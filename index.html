@@ -1,10 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stickings Builder</title>
+    <meta
+      name="description"
+      content="An application for drummers and percussionists aimed to help them improve their technical dexterity by practicing different sticking combinations. Inspired by the book Stick Control written by George L. Stone"
+    />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon-180x180.png" />
     <style type="text/css">
+      * {
+        box-sizing: border-box;
+        margin: 0;
+      }
       .loader {
         position: fixed;
-        z-index: 1;
+        z-index: 2;
         top: 0;
         left: 0;
         width: 100vw;
@@ -21,7 +35,7 @@
       .hidden {
         opacity: 0;
         visibility: hidden;
-        transition: opacity 0.75s, visibility 0.75s;
+        transition: opacity 0.7s, visibility 0.7s;
       }
       .spinner-logo {
         animation: spin 1s linear infinite;
@@ -36,12 +50,6 @@
         }
       }
     </style>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
-    />
-    <title>Stickings Builder</title>
   </head>
   <body>
     <div class="loader" id="loader">

@@ -1,23 +1,36 @@
 import { useState } from 'react';
 import generateRandomStickings from '../lib/utils/randomModeUtils/generateRandomStickings';
 
+export type SubdivisionOption =
+  | 'select-all'
+  | 'eighths'
+  | 'triplets'
+  | 'sixteenths'
+  | 'quintuplets'
+  | 'sextuplets'
+  | 'septuplets';
+
+/**
+ * Random Menu state and event handlers. Returns randomProps {}
+ */
 export function useGenerateStickings() {
   const [generatedStickings, setGeneratedStickings] = useState<{
     [key: string]: string;
   }>({});
-  const [selectedRandomOption, setSelectedRandomOption] = useState<string[]>(
-    []
-  );
-  const [isSelectAll, setSelectAll] = useState(false);
 
-  const handleRandomOptionsChange = (id: string, checked: boolean): void => {
+  const [selectedRandomOption, setSelectedRandomOption] = useState<
+    SubdivisionOption[]
+  >([]);
+
+  const handleRandomOptionsChange = (
+    id: SubdivisionOption,
+    checked: boolean
+  ): void => {
     if (id === 'select-all') {
       if (checked) {
         setSelectedRandomOption(['select-all']);
-        setSelectAll(true);
       } else {
         setSelectedRandomOption([]);
-        setSelectAll(false);
       }
     } else {
       if (checked) {
@@ -30,7 +43,13 @@ export function useGenerateStickings() {
     }
   };
 
-  const handleGenerateRandomStickings = (selectedOption: string[]): void => {
+  if (selectedRandomOption.length === 6) {
+    setSelectedRandomOption(['select-all']);
+  }
+
+  const handleGenerateRandomStickings = (
+    selectedOption: SubdivisionOption[]
+  ): void => {
     if (!selectedOption.length) {
       alert('Select one or more subdivision options');
       return;
@@ -41,7 +60,6 @@ export function useGenerateStickings() {
 
   const randomProps = {
     generatedStickings: generatedStickings,
-    isSelectAll: isSelectAll,
     selectedRandomOption: selectedRandomOption,
     onGenerateStickings: handleGenerateRandomStickings,
     onRandomOptionsChange: handleRandomOptionsChange,

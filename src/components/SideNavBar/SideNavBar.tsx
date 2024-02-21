@@ -1,8 +1,8 @@
-import EightNotesIcon from '../../assets/icons/EightNotesIcon';
-import RandomIcon from '../../assets/icons/RandomIcon';
-import TripletsIcon from '../../assets/icons/TripletsIcon';
-// import SaveIcon from '../../assets/icons/SaveIcon';
-import LiComponent from './LiComponent/LiComponent';
+import MenuIcon from '../Icons/MenuIcon';
+import EightNotesIcon from '../Icons/EightNotesIcon';
+import RandomIcon from '../Icons/RandomIcon';
+import TripletsIcon from '../Icons/TripletsIcon';
+import ListItem from './ListItem/ListItem';
 import './SideNavBar.css';
 
 interface Props {
@@ -12,31 +12,31 @@ interface Props {
 function SideNavBar({ onNavClick }: Props) {
   return (
     <nav className="navbar">
+      <div className="menu-icon">
+        <MenuIcon />
+      </div>
       <ul className="navbar-nav">
-        <LiComponent
+        <ListItem
+          ariaLabel="eight notes menu"
           idName="eighth-notes"
-          icon={<EightNotesIcon></EightNotesIcon>}
+          icon={<EightNotesIcon />}
           spanText="8th Notes"
           onNavClick={onNavClick}
         />
-        <LiComponent
+        <ListItem
+          ariaLabel="eight note triplets menu"
           idName="triplet-notes"
-          icon={<TripletsIcon></TripletsIcon>}
+          icon={<TripletsIcon />}
           spanText="8th Notes Triplets"
           onNavClick={onNavClick}
         />
-        <LiComponent
+        <ListItem
+          ariaLabel="random stickings menu"
           idName="random-stickings"
-          icon={<RandomIcon></RandomIcon>}
+          icon={<RandomIcon />}
           spanText="Random Stickings"
           onNavClick={onNavClick}
         />
-        {/* <LiComponent
-          idName="saved-stickings"
-          icon={<SaveIcon />}
-          spanText="Saved Stickings"
-          onNavClick={onNavClick}
-        /> */}
       </ul>
     </nav>
   );

@@ -2,6 +2,8 @@ import { Sequence } from 'tone';
 import { ChangeEvent, useRef } from 'react';
 import { Samples } from '../../hooks/useSamples';
 import { useSequence } from '../../hooks/useSequence';
+import { FaPlay } from 'react-icons/fa6';
+import { FaStop } from 'react-icons/fa6';
 import mapToSequence from '../../lib/utils/metronomeUtils/mapToSequence';
 import Button from '../Button/Button';
 import './MetronomeControls.css';
@@ -50,11 +52,22 @@ function MetronomeControls({
         <div>
           <Button
             idName="play-pause"
-            children={isPlaying ? '⏹ STOP' : '▶ PLAY'}
+            children={
+              isPlaying ? (
+                <>
+                  <FaStop /> STOP
+                </>
+              ) : (
+                <>
+                  <FaPlay /> PLAY
+                </>
+              )
+            }
             onBtnClick={onStartClick}
           />
           <label htmlFor="volume">
             <input
+              aria-label="volume control"
               type="range"
               name="volume"
               id="volume"
@@ -69,6 +82,7 @@ function MetronomeControls({
         </div>
         <div className="metronome">
           <input
+            aria-label="beats per minute value"
             type="number"
             name="met-input"
             min={20}
@@ -78,11 +92,13 @@ function MetronomeControls({
             className="met-input"
             onChange={onBpmChange}
           />
-          <span>BPM</span>
+          <span aria-label="beats per minute">BPM</span>
         </div>
         <div className="countdown">
           <span>ADD COUNTDOWN</span>
           <input
+            aria-label="add a countdown measure"
+            name="countdown"
             type="checkbox"
             checked={addCountdown}
             onChange={onCountdown}

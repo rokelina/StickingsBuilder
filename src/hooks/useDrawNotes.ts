@@ -1,10 +1,12 @@
 import { useEffect, MutableRefObject } from 'react';
 import { useCurrentBeatIndex } from './useCurrentBeatIndex';
+import { StaffSize } from './useResizeStaff';
 import { StaveNote, Tuplet, Beam } from 'vexflow';
 import drawStaffAndNotes from '../lib/utils/staffUtils/drawStaffAndNotes';
 
 export type NotesArray = StaveNote[];
 
+/** Handles the rendering of the staff and notes */
 export function useDrawNotes(
   stickingsObject: { [key: string]: string },
   getNotesArrayFunction: (
@@ -12,6 +14,7 @@ export function useDrawNotes(
     beatName: string
   ) => NotesArray,
   divRef: MutableRefObject<HTMLDivElement | null>,
+  staffSize: StaffSize,
   isPlaying: boolean,
   beatsPerMeasure: number
 ) {
@@ -47,21 +50,32 @@ export function useDrawNotes(
       cleanup();
 
       if (allBeats.length === beatsPerMeasure) {
+        //change notes' color to blue at the current beat index
         allBeats[currentBeatIndex].forEach((note: StaveNote) => {
           note.setStyle({
             fillStyle: '#3333ff',
-            shadowColor: '#3333ff',
-            shadowBlur: 25,
           });
         });
       } else {
         console.log('Error: Incorrect number of beats per measure');
       }
 
-      drawStaffAndNotes(notesDiv as HTMLDivElement, allNotes, beams, tuplets);
+      drawStaffAndNotes(
+        notesDiv as HTMLDivElement,
+        staffSize,
+        allNotes,
+        beams,
+        tuplets
+      );
     } else {
       cleanup();
-      drawStaffAndNotes(notesDiv as HTMLDivElement, allNotes, beams, tuplets);
+      drawStaffAndNotes(
+        notesDiv as HTMLDivElement,
+        staffSize,
+        allNotes,
+        beams,
+        tuplets
+      );
     }
 
     return cleanup;
@@ -69,6 +83,7 @@ export function useDrawNotes(
     stickingsObject,
     getNotesArrayFunction,
     divRef,
+    staffSize,
     isPlaying,
     currentBeatIndex,
     beatsPerMeasure,

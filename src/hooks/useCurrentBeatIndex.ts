@@ -1,8 +1,10 @@
 import { Sequence } from 'tone';
 import { useState, useEffect, useRef } from 'react';
 
-// Create a sequence that runs attached to the Tone.Transport
-// and updates a state variable with each beat, returns the current beat index
+/** Creates a Sequence that runs attached to the global Tone.Transport.
+Updates a state variable with each beat, returns the current beat index.
+Called inside of useDrawNotes to sync the notes' color change with the metronome.
+*/
 export function useCurrentBeatIndex(beatsPerMeasure: number) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
