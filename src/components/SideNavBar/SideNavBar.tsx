@@ -3,6 +3,8 @@ import EightNotesIcon from '../Icons/EightNotesIcon';
 import RandomIcon from '../Icons/RandomIcon';
 import TripletsIcon from '../Icons/TripletsIcon';
 import SaveIcon from '../Icons/SaveIcon';
+import AboutIcon from '../Icons/AboutIcon';
+import LogInIcon from '../Icons/LogInIcon';
 import ListItem from './ListItem/ListItem';
 import './SideNavBar.css';
 
@@ -39,6 +41,13 @@ function SideNavBar({ onNavClick }: Props) {
           onNavClick={onNavClick}
         />
         <ListItem
+          ariaLabel="log in button"
+          idName="log-in"
+          icon={<LogInIcon />}
+          spanText="Log In"
+          onNavClick={onNavClick}
+        />
+        <ListItem
           ariaLabel="saved stickings menu"
           idName="saved-stickings"
           icon={<SaveIcon />}
@@ -47,26 +56,13 @@ function SideNavBar({ onNavClick }: Props) {
         />
       </ul>
       <ul className="navbar-nav" style={{ flex: 0 }}>
-        <li className="nav-item" id="log-in">
-          <button
-            className="nav-link"
-            aria-label="log in button"
-            onClick={() => console.log('log in clicked')}
-          >
-            {<SaveIcon />}
-            <span className="icon-text">Log In</span>
-          </button>
-        </li>
-        <li className="nav-item" id="about">
-          <button
-            className="nav-link"
-            aria-label="about this application"
-            onClick={() => console.log('about clicked')}
-          >
-            {<RandomIcon />}
-            <span className="icon-text">About</span>
-          </button>
-        </li>
+        <ListItem
+          ariaLabel="about this application"
+          idName="about"
+          icon={<AboutIcon />}
+          spanText="About"
+          onNavClick={onNavClick}
+        />
       </ul>
     </nav>
   );

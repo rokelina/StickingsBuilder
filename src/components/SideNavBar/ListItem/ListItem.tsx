@@ -2,7 +2,13 @@ import { ReactNode } from 'react';
 
 interface Props {
   ariaLabel: string;
-  idName: string;
+  idName:
+    | 'eighth-notes'
+    | 'triplet-notes'
+    | 'random-stickings'
+    | 'log-in'
+    | 'saved-stickings'
+    | 'about';
   icon: ReactNode;
   spanText: string;
   onNavClick: (id: string) => void;
