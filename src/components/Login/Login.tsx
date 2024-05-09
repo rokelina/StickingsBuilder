@@ -1,17 +1,21 @@
 import { useEffect } from 'react';
-// import { app } from '../../firebase/firebaseConfig';
 import { auth } from '../../firebase/firebaseConfig';
 import { EmailAuthProvider, GoogleAuthProvider } from 'firebase/auth';
+import { MenuId } from '../../App';
+
+interface Props {
+  displayMenu: MenuId;
+}
 
 import * as firebaseui from 'firebaseui';
 import 'firebaseui/dist/firebaseui.css';
 
-const Login = () => {
+const Login = ({ displayMenu }: Props) => {
   useEffect(() => {
-    // const auth = getAuth(app);
-    // Ensure Firebase is initialized
     const uiConfig = {
-      signInSuccessUrl: '/', // where to redirect after sign-in
+      callbacks: {},
+      signInFlow: 'popup',
+      signInSuccessUrl: '/',
       signInOptions: [
         { provider: GoogleAuthProvider.PROVIDER_ID },
         { provider: EmailAuthProvider.PROVIDER_ID },
@@ -25,7 +29,7 @@ const Login = () => {
     ui.start('#firebaseui-auth-container', uiConfig);
   }, []);
 
-  return (
+  return displayMenu === 'user-account' ? (
     <div
       id="firebaseui-auth-container"
       style={{
@@ -33,6 +37,17 @@ const Login = () => {
         flexDirection: 'column',
         justifyContent: 'center',
         height: '100vh',
+      }}
+    ></div>
+  ) : (
+    <div
+      id="firebaseui-auth-container"
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        height: '100vh',
+        opacity: 0.5,
       }}
     ></div>
   );

@@ -3,11 +3,19 @@ import { useLoadingSpinner } from './hooks/useLoadingSpinner';
 import MainContainer from './components/MainContainer/MainContainer';
 import TopNavBar from './components/TopNavBar/TopNavBar';
 import SideNavBar from './components/SideNavBar/SideNavBar';
-import Login from './components/Login/Login';
+import MyAccount from './components/MyAccount/MyAccount';
+
+export type MenuId =
+  | 'eighth-notes'
+  | 'triplet-notes'
+  | 'random-stickings'
+  | 'user-account'
+  | 'saved-stickings'
+  | 'about';
 
 function App() {
-  const [displayMenu, setDisplayMenu] = useState('eighth-notes');
-  const handleNavClick = (id: string): void => {
+  const [displayMenu, setDisplayMenu] = useState<MenuId>('eighth-notes');
+  const handleNavClick = (id: MenuId): void => {
     setDisplayMenu(id);
   };
 
@@ -17,8 +25,8 @@ function App() {
     <>
       <SideNavBar onNavClick={handleNavClick} />
       <TopNavBar />
-      {displayMenu === 'log-in' ? (
-        <Login />
+      {displayMenu === 'user-account' ? (
+        <MyAccount displayMenu={displayMenu} />
       ) : (
         <MainContainer displayMenu={displayMenu} />
       )}

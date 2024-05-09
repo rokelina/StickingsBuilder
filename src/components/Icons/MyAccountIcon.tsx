@@ -1,4 +1,4 @@
-const LogInIcon = () => {
+const MyAccountIcon = () => {
   return (
     <svg
       version="1.1"
@@ -110,4 +110,4 @@ z"
     </svg>
   );
 };
-export default LogInIcon;
+export default MyAccountIcon;

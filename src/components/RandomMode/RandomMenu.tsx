@@ -8,6 +8,7 @@ import { isStickingsObjEmpty } from '../../lib/uiHelpers/menuHelpers';
 import { SubdivisionOption } from '../../hooks/useGenerateStickings';
 import '../Menu/MenuContainer.css';
 import './RandomMenu.css';
+import SaveBtn from '../SaveBtn/SaveBtn';
 
 interface Props {
   randomMenuProps: {
@@ -56,6 +57,7 @@ function RandomMenu({ randomMenuProps, isPlaying }: Props) {
               }
               onBtnClick={() => onGenerateStickings(selectedRandomOption)}
             />
+            <SaveBtn />
           </div>
         </div>
       </div>

@@ -1,0 +1,28 @@
+.account-menu {
+  display: flex;
+  margin-top: 4rem;
+  margin-left: 5rem;
+  padding: 1rem;
+  overflow-y: auto;
+  overflow-x: auto;
+}
+
+.welcome-message {
+  margin: 0;
+  font-weight: 300;
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+}
+
+@media only screen and (orientation: landscape) {
+  .account-menu {
+    margin-left: 0;
+  }
+}
+@media only screen and (max-width: 640px) {
+  .account-menu {
+    margin-left: 0;
+  }
+}

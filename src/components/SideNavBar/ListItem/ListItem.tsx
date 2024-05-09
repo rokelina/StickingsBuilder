@@ -1,17 +1,12 @@
 import { ReactNode } from 'react';
+import { MenuId } from '../../../App';
 
 interface Props {
   ariaLabel: string;
-  idName:
-    | 'eighth-notes'
-    | 'triplet-notes'
-    | 'random-stickings'
-    | 'log-in'
-    | 'saved-stickings'
-    | 'about';
+  idName: MenuId;
   icon: ReactNode;
   spanText: string;
-  onNavClick: (id: string) => void;
+  onNavClick: (id: MenuId) => void;
 }
 
 function ListItem({ ariaLabel, idName, icon, spanText, onNavClick }: Props) {

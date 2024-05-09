@@ -2,14 +2,14 @@ import MenuIcon from '../Icons/MenuIcon';
 import EightNotesIcon from '../Icons/EightNotesIcon';
 import RandomIcon from '../Icons/RandomIcon';
 import TripletsIcon from '../Icons/TripletsIcon';
-import SaveIcon from '../Icons/SaveIcon';
 import AboutIcon from '../Icons/AboutIcon';
-import LogInIcon from '../Icons/LogInIcon';
+import MyAccountIcon from '../Icons/MyAccountIcon';
 import ListItem from './ListItem/ListItem';
 import './SideNavBar.css';
+import { MenuId } from '../../App';
 
 interface Props {
-  onNavClick: (id: string) => void;
+  onNavClick: (id: MenuId) => void;
 }
 
 function SideNavBar({ onNavClick }: Props) {
@@ -41,17 +41,10 @@ function SideNavBar({ onNavClick }: Props) {
           onNavClick={onNavClick}
         />
         <ListItem
-          ariaLabel="log in button"
-          idName="log-in"
-          icon={<LogInIcon />}
-          spanText="Log In"
-          onNavClick={onNavClick}
-        />
-        <ListItem
-          ariaLabel="saved stickings menu"
-          idName="saved-stickings"
-          icon={<SaveIcon />}
-          spanText="Saved Stickings"
+          ariaLabel="account button"
+          idName="user-account"
+          icon={<MyAccountIcon />}
+          spanText="My Account"
           onNavClick={onNavClick}
         />
       </ul>
