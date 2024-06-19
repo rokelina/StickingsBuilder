@@ -18,7 +18,10 @@ const Login = ({ displayMenu }: Props) => {
       signInSuccessUrl: '/',
       signInOptions: [
         { provider: GoogleAuthProvider.PROVIDER_ID },
-        { provider: EmailAuthProvider.PROVIDER_ID },
+        {
+          provider: EmailAuthProvider.PROVIDER_ID,
+          disableSignUp: { status: true },
+        },
       ],
     };
 
