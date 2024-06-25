@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
-import { auth } from '../../firebase/firebaseConfig';
+import { auth, db } from '../../firebase/firebaseConfig';
 import { EmailAuthProvider, GoogleAuthProvider } from 'firebase/auth';
 import { MenuId } from '../../App';
+import { doc, setDoc, getDoc } from 'firebase/firestore';
 
 interface Props {
   displayMenu: MenuId;
@@ -13,14 +14,13 @@ import 'firebaseui/dist/firebaseui.css';
 const Login = ({ displayMenu }: Props) => {
   useEffect(() => {
     const uiConfig = {
-      callbacks: {},
       signInFlow: 'popup',
       signInSuccessUrl: '/',
       signInOptions: [
         { provider: GoogleAuthProvider.PROVIDER_ID },
         {
           provider: EmailAuthProvider.PROVIDER_ID,
-          disableSignUp: { status: true },
+          // disableSignUp: { status: true },
         },
       ],
     };
