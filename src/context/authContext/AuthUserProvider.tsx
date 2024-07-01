@@ -1,11 +1,9 @@
-// AuthProvider.tsx
 import { ReactNode } from 'react';
-import { AuthUserContext } from './authContext';
-import useFirebaseAuth from './authContext';
+import { useFirebaseAuth, AuthUserContext } from './authContext';
 
-interface AuthUserProviderProps {
+type AuthUserProviderProps = {
   children: ReactNode;
-}
+};
 export default function AuthUserProvider({ children }: AuthUserProviderProps) {
   const auth = useFirebaseAuth();
   return (
