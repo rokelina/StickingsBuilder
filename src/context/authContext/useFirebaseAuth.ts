@@ -34,7 +34,6 @@ export function useFirebaseAuth() {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, authStateChanged);
-    console.log('effect run');
     return () => unsubscribe();
   }, []);
 
