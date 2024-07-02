@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
-import { useFirebaseAuth, AuthUserContext } from './authContext';
+import { AuthUserContext } from './AuthUserContext';
+import { useFirebaseAuth } from './useFirebaseAuth';
 
 type AuthUserProviderProps = {
   children: ReactNode;

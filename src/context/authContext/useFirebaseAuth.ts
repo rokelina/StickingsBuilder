@@ -1,26 +1,10 @@
-import { createContext, useState, useContext, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import {
   User,
   onAuthStateChanged,
   signOut as authSignOut,
 } from 'firebase/auth';
 import { auth } from '../../firebase/firebaseConfig';
-
-type AuthUserContextType = {
-  authUser: {
-    uid: string;
-    email: string | null;
-    name: string | null;
-  } | null;
-  isLoading: boolean;
-  signOut: () => Promise<void>;
-};
-
-export const AuthUserContext = createContext<AuthUserContextType>({
-  authUser: null,
-  isLoading: true,
-  signOut: async () => Promise.resolve(),
-});
 
 export function useFirebaseAuth() {
   const [authUser, setAuthUser] = useState<{
@@ -60,5 +44,3 @@ export function useFirebaseAuth() {
     signOut,
   };
 }
-
-export const useAuth = () => useContext(AuthUserContext);

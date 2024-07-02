@@ -1,4 +1,4 @@
-import { useAuth } from '../../context/authContext/authContext';
+import { useAuth } from '../../context/authContext/useAuth';
 import Button from '../Button/Button';
 
 const UserAccount = () => {

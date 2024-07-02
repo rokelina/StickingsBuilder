@@ -1,4 +1,4 @@
-import { useAuth } from '../../context/authContext/authContext';
+import { useAuth } from '../../context/authContext/useAuth';
 import Login from '../Login/Login';
 import UserAccount from '../UserAccount/UserAccount';
 import './MyAccount.css';
