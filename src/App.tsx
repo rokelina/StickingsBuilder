@@ -26,7 +26,7 @@ function App() {
       <SideNavBar onNavClick={handleNavClick} />
       <TopNavBar />
       {displayMenu === 'user-account' ? (
-        <MyAccount displayMenu={displayMenu} />
+        <MyAccount />
       ) : (
         <MainContainer displayMenu={displayMenu} />
       )}
