@@ -25,8 +25,8 @@ function MenuInput({
         type={inputType}
         id={labelFor}
         name={beatName}
-        checked={isStickingChecked(selectedStickings, beatName, children)}
-        onChange={() => onFormChange(beatName, children)}
+        checked={isStickingChecked(selectedStickings, beatName, value)}
+        onChange={() => onFormChange(beatName, value)}
         value={value}
       />
       {children}

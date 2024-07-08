@@ -24,17 +24,17 @@ const combineAllSubdivisions = (): string => {
 
   switch (randomNumber) {
     case 0:
-      return eighths[randomIndex(eighths)].toUpperCase();
+      return eighths[randomIndex(eighths)];
     case 1:
-      return triplets[randomIndex(triplets)].toUpperCase();
+      return triplets[randomIndex(triplets)];
     case 2:
-      return sixteenths[randomIndex(sixteenths)].toUpperCase();
+      return sixteenths[randomIndex(sixteenths)];
     case 3:
-      return quintuplets[randomIndex(quintuplets)].toUpperCase();
+      return quintuplets[randomIndex(quintuplets)];
     case 4:
-      return sextuplets[randomIndex(sextuplets)].toUpperCase();
+      return sextuplets[randomIndex(sextuplets)];
     case 5:
-      return septuplets[randomIndex(septuplets)].toUpperCase();
+      return septuplets[randomIndex(septuplets)];
     default:
       return '';
   }
@@ -45,17 +45,17 @@ const combineSelectedSubdivisions = (arr: SubdivisionOption[]): string => {
 
   switch (subdivision) {
     case 'eighths':
-      return eighths[randomIndex(eighths)].toUpperCase();
+      return eighths[randomIndex(eighths)];
     case 'triplets':
-      return triplets[randomIndex(triplets)].toUpperCase();
+      return triplets[randomIndex(triplets)];
     case 'sixteenths':
-      return sixteenths[randomIndex(sixteenths)].toUpperCase();
+      return sixteenths[randomIndex(sixteenths)];
     case 'quintuplets':
-      return quintuplets[randomIndex(quintuplets)].toUpperCase();
+      return quintuplets[randomIndex(quintuplets)];
     case 'sextuplets':
-      return sextuplets[randomIndex(sextuplets)].toUpperCase();
+      return sextuplets[randomIndex(sextuplets)];
     case 'septuplets':
-      return septuplets[randomIndex(septuplets)].toUpperCase();
+      return septuplets[randomIndex(septuplets)];
     default:
       return '';
   }
