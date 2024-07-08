@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useLoadingSpinner } from './hooks/useLoadingSpinner';
 import { useSamples } from './hooks/useSamples';
-// import MainContainer from './components/MainContainer/MainContainer';
 import TopNavBar from './components/TopNavBar/TopNavBar';
 import SideNavBar from './components/SideNavBar/SideNavBar';
 import MyAccount from './components/MyAccount/MyAccount';
