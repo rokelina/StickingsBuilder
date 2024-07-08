@@ -1,6 +1,5 @@
 import { useSamples } from '../../hooks/useSamples';
 import MenuContainer from '../Menu/MenuContainer';
-import TopNavBar from '../TopNavBar/TopNavBar';
 import './MainContainer.css';
 
 interface Props {
@@ -12,7 +11,6 @@ function MainContainer({ displayMenu }: Props) {
 
   return (
     <main className="main-wrapper">
-      <TopNavBar />
       <MenuContainer displayMenu={displayMenu} samples={samples} />
     </main>
   );
