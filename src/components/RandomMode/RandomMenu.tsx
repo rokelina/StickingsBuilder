@@ -57,7 +57,7 @@ function RandomMenu({ randomMenuProps, isPlaying }: Props) {
               }
               onBtnClick={() => onGenerateStickings(selectedRandomOption)}
             />
-            <SaveBtn />
+            <SaveBtn onSave={() => console.log(generatedStickings)} />
           </div>
         </div>
       </div>
