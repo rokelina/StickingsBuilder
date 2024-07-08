@@ -20,7 +20,6 @@ const Login = () => {
     const ui =
       firebaseui.auth.AuthUI.getInstance() || new firebaseui.auth.AuthUI(auth);
 
-    // The start method will wait until the DOM is loaded to render the auth UI
     ui.start('#firebaseui-auth-container', uiConfig);
   }, []);
 
