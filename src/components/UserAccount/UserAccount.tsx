@@ -10,6 +10,8 @@ type UserAccountProps = {
 const UserAccount = ({ samples }: UserAccountProps) => {
   const { authUser, signOut } = useAuth();
 
+  //here I need to fetch the user data
+
   return (
     <>
       <div className="account-menu">
