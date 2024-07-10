@@ -3,6 +3,8 @@ import Button from '../../Button/Button';
 import './SavedStickings.css';
 
 const SavedStickings = () => {
+  // const [isLoading, setIsLoading] = useState(true);
+  // const [savedStickings, setSavedStickings] = useState([]);
   const [showStickings, setShowStickings] = useState(true);
   const handleOnClick = () => {
     setShowStickings(!showStickings);

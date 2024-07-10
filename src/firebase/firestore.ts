@@ -1,16 +1,4 @@
-import {
-  addDoc,
-  collection,
-  deleteDoc,
-  doc,
-  getDoc,
-  onSnapshot,
-  orderBy,
-  query,
-  setDoc,
-  where,
-  Timestamp,
-} from 'firebase/firestore';
+import { collection, doc, getDoc, setDoc, Timestamp } from 'firebase/firestore';
 import { db } from './firebaseConfig';
 import { User } from 'firebase/auth';
 
@@ -30,3 +18,29 @@ export async function addUserToDatabase(user: User) {
     });
   }
 }
+
+export async function addSticking(
+  sticking: { [key: string]: string },
+  uid: string
+) {
+  try {
+    const stickingRef = doc(
+      collection(db, USER_COLLECTION, uid, STICKING_COLLECTION)
+    );
+    await setDoc(stickingRef, {
+      sticking: sticking,
+      dateCreated: Timestamp.now(),
+    });
+    console.log('Sticking saved successfully');
+  } catch (error) {
+    console.error('Error saving sticking: ', error);
+  }
+}
+
+// export async function getStickings(
+//   try {
+
+//   } catch (error) {
+//     console.log(error)
+//   }
+// )
