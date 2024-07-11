@@ -50,7 +50,7 @@ function StickingsMenu({
           selectedStickings={selectedStickings}
         />
       </div>
-      <SaveBtn sticking={selectedStickings} />
+      <SaveBtn currentSticking={selectedStickings} />
     </div>
   );
 }
