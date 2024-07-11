@@ -1,13 +1,24 @@
-import { collection, doc, getDoc, setDoc, Timestamp } from 'firebase/firestore';
+import {
+  collection,
+  doc,
+  getDocs,
+  getDoc,
+  orderBy,
+  query,
+  setDoc,
+  Timestamp,
+  where,
+} from 'firebase/firestore';
 import { db } from './firebaseConfig';
 import { User } from 'firebase/auth';
 
-const USER_COLLECTION = 'users';
-const STICKING_COLLECTION = 'stickings';
+const USERS_COLLECTION = 'users';
+const STICKINGS_COLLECTION = 'stickings';
 const DRILL_COLLECTION = 'drills';
 
+export type StickingsArray = { [key: string]: string }[];
 export async function addUserToDatabase(user: User) {
-  const userRef = doc(collection(db, USER_COLLECTION), user.uid);
+  const userRef = doc(collection(db, USERS_COLLECTION), user.uid);
   const userDoc = await getDoc(userRef);
   if (!userDoc.exists()) {
     await setDoc(userRef, {
@@ -25,7 +36,7 @@ export async function addSticking(
 ) {
   try {
     const stickingRef = doc(
-      collection(db, USER_COLLECTION, uid, STICKING_COLLECTION)
+      collection(db, USERS_COLLECTION, uid, STICKINGS_COLLECTION)
     );
     await setDoc(stickingRef, {
       sticking: sticking,
@@ -37,10 +48,25 @@ export async function addSticking(
   }
 }
 
-// export async function getStickings(
-//   try {
+export async function getStickings(uid: string) {
+  const stickingsQuery = query(
+    collection(db, USERS_COLLECTION, uid, STICKINGS_COLLECTION),
+    orderBy('dateCreated', 'desc')
+  );
+  const stickingsSnapshot = await getDocs(stickingsQuery);
 
-//   } catch (error) {
-//     console.log(error)
-//   }
-// )
+  if (stickingsSnapshot.empty) {
+    return undefined;
+  }
+
+  let allStickings: StickingsArray = [];
+
+  for (const documentSnapshot of stickingsSnapshot.docs) {
+    const data = documentSnapshot.data();
+    if (data && data['sticking']) {
+      allStickings = [...allStickings, data['sticking']];
+    }
+  }
+
+  return allStickings;
+}
