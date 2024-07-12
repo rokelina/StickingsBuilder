@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getStickings } from '../../../firebase/firestore';
+import { getStickings, deleteSticking } from '../../../firebase/firestore';
 import { DocumentData } from 'firebase/firestore';
 import Button from '../../Button/Button';
 import './SavedStickings.css';
@@ -8,6 +8,7 @@ import { useAuth } from '../../../context/authContext/useAuth';
 const SavedStickings = () => {
   const { authUser } = useAuth();
   const [isLoading, setIsLoading] = useState(true);
+  const [deleteId, setDeleteId] = useState('');
   const [savedStickings, setSavedStickings] = useState<
     DocumentData[] | undefined
   >(undefined);
@@ -15,17 +16,38 @@ const SavedStickings = () => {
   const handleOnClick = () => {
     setShowStickings(!showStickings);
   };
-  useEffect(() => {
-    async function fetchData() {
-      if (authUser) {
-        const stickings = await getStickings(authUser.uid);
-        setSavedStickings(stickings);
-        setIsLoading(false);
-        console.log(stickings);
-      }
+
+  const handleOnDeleteClick = (id: string) => {
+    if (authUser) {
+      setDeleteId(id);
+      deleteSticking(id, authUser.uid);
     }
-    fetchData();
-  }, [authUser]);
+  };
+
+  // const resetDelete = () => {
+  //   setDeleteId('');
+  // };
+
+  const fetchStickings = async (uid: string) => {
+    const stickings = await getStickings(uid);
+    setSavedStickings(stickings);
+    setIsLoading(false);
+    console.log(stickings);
+  };
+  console.log(deleteId);
+
+  useEffect(() => {
+    if (authUser) {
+      // const stickings = await getStickings(authUser.uid);
+      // setSavedStickings(stickings);
+      // setIsLoading(false);
+      return () => {
+        fetchStickings(authUser.uid);
+      };
+    }
+    // fetchData();
+    // resetDelete();
+  }, [authUser, deleteId]);
 
   return (
     <div className="saved-stickings-card">
@@ -37,11 +59,21 @@ const SavedStickings = () => {
       {!isLoading ? (
         showStickings &&
         (savedStickings ? (
-          savedStickings.map((sticking) => (
-            <div key={sticking.id}>
-              {Object.values(sticking.sticking).toString()}
-            </div>
-          ))
+          savedStickings.map(
+            (sticking) =>
+              sticking.id !== deleteId && (
+                <div key={sticking.id}>
+                  {Object.values(sticking.sticking).toString()}
+                  <button
+                    onClick={() => {
+                      handleOnDeleteClick(sticking.id);
+                    }}
+                  >
+                    Delete
+                  </button>
+                </div>
+              )
+          )
         ) : (
           <div>You haven't saved any stickings yet!</div>
         ))

@@ -9,6 +9,7 @@ import {
   Timestamp,
   where,
   DocumentData,
+  deleteDoc,
 } from 'firebase/firestore';
 import { db } from './firebaseConfig';
 import { User } from 'firebase/auth';
@@ -84,9 +85,9 @@ export async function getStickings(uid: string) {
 
 // Delete stickings
 
-// export const deleteStickings(){
-
-// }
+export function deleteSticking(id: string, uid: string) {
+  deleteDoc(doc(db, USERS_COLLECTION, uid, STICKINGS_COLLECTION, id));
+}
 
 // Create drill
 
