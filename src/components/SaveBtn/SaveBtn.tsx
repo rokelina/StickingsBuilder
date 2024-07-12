@@ -2,7 +2,7 @@ import { RiSave3Line } from 'react-icons/ri';
 import Button from '../Button/Button';
 import { useAuth } from '../../context/authContext/useAuth';
 import { addSticking, getStickings } from '../../firebase/firestore';
-import { compareStickingObject } from './compareStickingObject';
+import { checkDuplicateObject } from './checkDuplicateObject';
 
 //this should save the current sticking if there's a user logged in and show a
 // 'save successful' modal, or show the login modal if there isn't any user
@@ -30,7 +30,7 @@ const SaveBtn = ({ currentSticking }: SaveBtnProps) => {
     //checks for duplicates
     if (savedStickigns) {
       for (const sticking of savedStickigns) {
-        const isDuplicate = compareStickingObject(
+        const isDuplicate = checkDuplicateObject(
           sticking.sticking,
           currentSticking
         );

@@ -1,4 +1,4 @@
-export const compareStickingObject = (
+export const checkDuplicateObject = (
   objA: { [key: string]: string },
   objB: { [key: string]: string }
 ): boolean => {
