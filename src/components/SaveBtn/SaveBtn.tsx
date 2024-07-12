@@ -30,8 +30,11 @@ const SaveBtn = ({ currentSticking }: SaveBtnProps) => {
     //checks for duplicates
     if (savedStickigns) {
       for (const sticking of savedStickigns) {
-        const areEqual = compareStickingObject(sticking, currentSticking);
-        if (areEqual) {
+        const isDuplicate = compareStickingObject(
+          sticking.sticking,
+          currentSticking
+        );
+        if (isDuplicate) {
           alert('You already saved that sticking to your account');
           return;
         }

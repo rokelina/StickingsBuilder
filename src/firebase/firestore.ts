@@ -8,15 +8,18 @@ import {
   setDoc,
   Timestamp,
   where,
+  DocumentData,
 } from 'firebase/firestore';
 import { db } from './firebaseConfig';
 import { User } from 'firebase/auth';
 
 const USERS_COLLECTION = 'users';
 const STICKINGS_COLLECTION = 'stickings';
-const DRILL_COLLECTION = 'drills';
+const DRILLS_COLLECTION = 'drills';
 
-export type StickingsArray = { [key: string]: string }[];
+// export type StickingsDataArray = { id:string | DocumentData, {[key: string]: string} }[];
+
+//Add user
 export async function addUserToDatabase(user: User) {
   const userRef = doc(collection(db, USERS_COLLECTION), user.uid);
   const userDoc = await getDoc(userRef);
@@ -30,6 +33,9 @@ export async function addUserToDatabase(user: User) {
   }
 }
 
+//Delete user
+
+//Add Sticking
 export async function addSticking(
   sticking: { [key: string]: string },
   uid: string
@@ -48,6 +54,7 @@ export async function addSticking(
   }
 }
 
+// Fetch stickings
 export async function getStickings(uid: string) {
   const stickingsQuery = query(
     collection(db, USERS_COLLECTION, uid, STICKINGS_COLLECTION),
@@ -59,14 +66,32 @@ export async function getStickings(uid: string) {
     return undefined;
   }
 
-  let allStickings: StickingsArray = [];
+  // let allStickings: StickingsDataArray = [];
+  let allStickings: DocumentData[] = [];
 
   for (const documentSnapshot of stickingsSnapshot.docs) {
     const data = documentSnapshot.data();
     if (data && data['sticking']) {
-      allStickings = [...allStickings, data['sticking']];
+      allStickings = [
+        ...allStickings,
+        { id: documentSnapshot.id, sticking: data['sticking'] },
+      ];
     }
   }
 
   return allStickings;
 }
+
+// Delete stickings
+
+// export const deleteStickings(){
+
+// }
+
+// Create drill
+
+// Update drill
+
+//Get drills
+
+//Delete drill

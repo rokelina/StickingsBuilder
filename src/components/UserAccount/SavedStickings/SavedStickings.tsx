@@ -1,14 +1,15 @@
 import { useEffect, useState } from 'react';
-import { getStickings, StickingsArray } from '../../../firebase/firestore';
+import { getStickings } from '../../../firebase/firestore';
+import { DocumentData } from 'firebase/firestore';
 import Button from '../../Button/Button';
 import './SavedStickings.css';
 import { useAuth } from '../../../context/authContext/useAuth';
 
 const SavedStickings = () => {
   const { authUser } = useAuth();
-  // const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
   const [savedStickings, setSavedStickings] = useState<
-    StickingsArray | undefined
+    DocumentData[] | undefined
   >(undefined);
   const [showStickings, setShowStickings] = useState(true);
   const handleOnClick = () => {
@@ -19,6 +20,7 @@ const SavedStickings = () => {
       if (authUser) {
         const stickings = await getStickings(authUser.uid);
         setSavedStickings(stickings);
+        setIsLoading(false);
         console.log(stickings);
       }
     }
@@ -32,14 +34,20 @@ const SavedStickings = () => {
         children={'View my saved stickings'}
         onBtnClick={handleOnClick}
       />
-      {showStickings &&
+      {!isLoading ? (
+        showStickings &&
         (savedStickings ? (
           savedStickings.map((sticking) => (
-            <div>{Object.values(sticking).toString()}</div>
+            <div key={sticking.id}>
+              {Object.values(sticking.sticking).toString()}
+            </div>
           ))
         ) : (
           <div>You haven't saved any stickings yet!</div>
-        ))}
+        ))
+      ) : (
+        <div>Loading</div>
+      )}
     </div>
   );
 };
