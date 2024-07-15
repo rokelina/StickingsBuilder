@@ -1,50 +1,32 @@
 import { useEffect, useState } from 'react';
-import { getStickings, deleteSticking } from '../../../firebase/firestore';
-import { DocumentData } from 'firebase/firestore';
+import { deleteSticking } from '../../../firebase/firestore';
 import Button from '../../Button/Button';
 import './SavedStickings.css';
 import { useAuth } from '../../../context/authContext/useAuth';
+import { useFetchStickings } from '../../../hooks/useFetchStickings';
 
 const SavedStickings = () => {
-  const { authUser } = useAuth();
-  const [isLoadingStickings, setIsLoadingStickings] = useState(true);
-  const [savedStickings, setSavedStickings] = useState<
-    DocumentData[] | undefined
-  >(undefined);
   const [deleteId, setDeleteId] = useState('');
   const [showStickings, setShowStickings] = useState(true);
+  const { authUser } = useAuth();
+  const { savedStickings, isLoading } = useFetchStickings(authUser, deleteId);
+
   const handleOnClick = () => {
     setShowStickings(!showStickings);
   };
-
   const handleOnDeleteClick = (id: string) => {
     if (authUser) {
       setDeleteId(id);
       deleteSticking(id, authUser.uid);
     }
   };
-
   const resetDeleteId = () => {
     setDeleteId('');
   };
 
-  const fetchStickings = async (uid: string) => {
-    const stickings = await getStickings(uid);
-    setSavedStickings(stickings);
-    setIsLoadingStickings(false);
-    console.log(stickings);
-  };
+  useEffect(() => resetDeleteId(), []);
+
   console.log(deleteId);
-
-  useEffect(() => {
-    if (authUser) {
-      return () => {
-        fetchStickings(authUser.uid);
-        resetDeleteId();
-      };
-    }
-  }, [authUser, deleteId]);
-
   return (
     <div className="saved-stickings-card">
       <Button
@@ -52,7 +34,7 @@ const SavedStickings = () => {
         children={'View my saved stickings'}
         onBtnClick={handleOnClick}
       />
-      {!isLoadingStickings ? (
+      {!isLoading ? (
         showStickings &&
         (savedStickings ? (
           savedStickings.map(
