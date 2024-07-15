@@ -18,8 +18,6 @@ const USERS_COLLECTION = 'users';
 const STICKINGS_COLLECTION = 'stickings';
 const DRILLS_COLLECTION = 'drills';
 
-// export type StickingsDataArray = { id:string | DocumentData, {[key: string]: string} }[];
-
 //Add user
 export async function addUserToDatabase(user: User) {
   const userRef = doc(collection(db, USERS_COLLECTION), user.uid);
@@ -67,7 +65,6 @@ export async function getStickings(uid: string) {
     return undefined;
   }
 
-  // let allStickings: StickingsDataArray = [];
   let allStickings: DocumentData[] = [];
 
   for (const documentSnapshot of stickingsSnapshot.docs) {
@@ -84,7 +81,6 @@ export async function getStickings(uid: string) {
 }
 
 // Delete stickings
-
 export function deleteSticking(id: string, uid: string) {
   deleteDoc(doc(db, USERS_COLLECTION, uid, STICKINGS_COLLECTION, id));
 }

@@ -7,11 +7,11 @@ import { useAuth } from '../../../context/authContext/useAuth';
 
 const SavedStickings = () => {
   const { authUser } = useAuth();
-  const [isLoading, setIsLoading] = useState(true);
-  const [deleteId, setDeleteId] = useState('');
+  const [isLoadingStickings, setIsLoadingStickings] = useState(true);
   const [savedStickings, setSavedStickings] = useState<
     DocumentData[] | undefined
   >(undefined);
+  const [deleteId, setDeleteId] = useState('');
   const [showStickings, setShowStickings] = useState(true);
   const handleOnClick = () => {
     setShowStickings(!showStickings);
@@ -24,29 +24,25 @@ const SavedStickings = () => {
     }
   };
 
-  // const resetDelete = () => {
-  //   setDeleteId('');
-  // };
+  const resetDeleteId = () => {
+    setDeleteId('');
+  };
 
   const fetchStickings = async (uid: string) => {
     const stickings = await getStickings(uid);
     setSavedStickings(stickings);
-    setIsLoading(false);
+    setIsLoadingStickings(false);
     console.log(stickings);
   };
   console.log(deleteId);
 
   useEffect(() => {
     if (authUser) {
-      // const stickings = await getStickings(authUser.uid);
-      // setSavedStickings(stickings);
-      // setIsLoading(false);
       return () => {
         fetchStickings(authUser.uid);
+        resetDeleteId();
       };
     }
-    // fetchData();
-    // resetDelete();
   }, [authUser, deleteId]);
 
   return (
@@ -56,7 +52,7 @@ const SavedStickings = () => {
         children={'View my saved stickings'}
         onBtnClick={handleOnClick}
       />
-      {!isLoading ? (
+      {!isLoadingStickings ? (
         showStickings &&
         (savedStickings ? (
           savedStickings.map(
