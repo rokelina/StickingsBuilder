@@ -81,8 +81,8 @@ export async function getStickings(uid: string) {
 }
 
 // Delete stickings
-export function deleteSticking(id: string, uid: string) {
-  deleteDoc(doc(db, USERS_COLLECTION, uid, STICKINGS_COLLECTION, id));
+export async function deleteSticking(id: string, uid: string) {
+  await deleteDoc(doc(db, USERS_COLLECTION, uid, STICKINGS_COLLECTION, id));
 }
 
 // Create drill

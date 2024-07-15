@@ -4,6 +4,7 @@ import Button from '../../Button/Button';
 import './SavedStickings.css';
 import { useAuth } from '../../../context/authContext/useAuth';
 import { useFetchStickings } from '../../../hooks/useFetchStickings';
+import SavedStickingsColumn from './SavedStickingsColumn';
 
 const SavedStickings = () => {
   const [deleteId, setDeleteId] = useState('');
@@ -12,12 +13,12 @@ const SavedStickings = () => {
   const { savedStickings, isLoading } = useFetchStickings(authUser, deleteId);
 
   const handleOnClick = () => {
-    setShowStickings(!showStickings);
+    setShowStickings((prevState) => !prevState);
   };
-  const handleOnDeleteClick = (id: string) => {
+  const handleOnDeleteClick = async (id: string) => {
     if (authUser) {
       setDeleteId(id);
-      deleteSticking(id, authUser.uid);
+      await deleteSticking(id, authUser.uid);
     }
   };
   const resetDeleteId = () => {
@@ -26,7 +27,6 @@ const SavedStickings = () => {
 
   useEffect(() => resetDeleteId(), []);
 
-  console.log(deleteId);
   return (
     <div className="saved-stickings-card">
       <Button
@@ -35,26 +35,13 @@ const SavedStickings = () => {
         onBtnClick={handleOnClick}
       />
       {!isLoading ? (
-        showStickings &&
-        (savedStickings ? (
-          savedStickings.map(
-            (sticking) =>
-              sticking.id !== deleteId && (
-                <div key={sticking.id}>
-                  {Object.values(sticking.sticking).toString()}
-                  <button
-                    onClick={() => {
-                      handleOnDeleteClick(sticking.id);
-                    }}
-                  >
-                    Delete
-                  </button>
-                </div>
-              )
-          )
-        ) : (
-          <div>You haven't saved any stickings yet!</div>
-        ))
+        showStickings && (
+          <SavedStickingsColumn
+            savedStickings={savedStickings}
+            deleteId={deleteId}
+            onDelete={handleOnDeleteClick}
+          />
+        )
       ) : (
         <div>Loading</div>
       )}
