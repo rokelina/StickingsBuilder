@@ -10,7 +10,7 @@ const SavedStickings = () => {
   const [deleteId, setDeleteId] = useState('');
   const [showStickings, setShowStickings] = useState(true);
   const { authUser } = useAuth();
-  const { savedStickings, isLoading } = useFetchStickings(authUser, deleteId);
+  const { savedStickings, isLoading } = useFetchStickings(authUser);
 
   const handleOnClick = () => {
     setShowStickings((prevState) => !prevState);
@@ -21,11 +21,11 @@ const SavedStickings = () => {
       await deleteSticking(id, authUser.uid);
     }
   };
-  const resetDeleteId = () => {
-    setDeleteId('');
-  };
+  // const resetDeleteId = () => {
+  //   setDeleteId('');
+  // };
 
-  useEffect(() => resetDeleteId(), []);
+  // useEffect(() => resetDeleteId(), []);
 
   return (
     <div className="saved-stickings-card">

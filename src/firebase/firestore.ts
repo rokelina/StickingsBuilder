@@ -10,6 +10,7 @@ import {
   where,
   DocumentData,
   deleteDoc,
+  onSnapshot,
 } from 'firebase/firestore';
 import { db } from './firebaseConfig';
 import { User } from 'firebase/auth';
@@ -54,30 +55,60 @@ export async function addSticking(
 }
 
 // Fetch stickings
-export async function getStickings(uid: string) {
+export async function getStickings(
+  uid: string,
+  setSavedStickings: React.Dispatch<
+    React.SetStateAction<DocumentData[] | undefined>
+  >,
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
+) {
   const stickingsQuery = query(
     collection(db, USERS_COLLECTION, uid, STICKINGS_COLLECTION),
     orderBy('dateCreated', 'desc')
   );
-  const stickingsSnapshot = await getDocs(stickingsQuery);
+  const unsubscribe = onSnapshot(
+    stickingsQuery,
+    async (snapshot) => {
+      let allStickings: DocumentData[] = [];
 
-  if (stickingsSnapshot.empty) {
-    return undefined;
-  }
-
-  let allStickings: DocumentData[] = [];
-
-  for (const documentSnapshot of stickingsSnapshot.docs) {
-    const data = documentSnapshot.data();
-    if (data && data['sticking']) {
-      allStickings = [
-        ...allStickings,
-        { id: documentSnapshot.id, sticking: data['sticking'] },
-      ];
+      for (const documentSnapshot of snapshot.docs) {
+        const data = documentSnapshot.data();
+        if (data && data['sticking']) {
+          allStickings = [
+            ...allStickings,
+            { id: documentSnapshot.id, sticking: data['sticking'] },
+          ];
+        }
+      }
+      setSavedStickings(allStickings);
+      setIsLoading(false);
+      console.log(allStickings);
+    },
+    (error) => {
+      console.log(error);
     }
-  }
+  );
+  return unsubscribe;
 
-  return allStickings;
+  // const stickingsSnapshot = await getDocs(stickingsQuery);
+
+  // if (stickingsSnapshot.empty) {
+  //   return undefined;
+  // }
+
+  // let allStickings: DocumentData[] = [];
+
+  // for (const documentSnapshot of stickingsSnapshot.docs) {
+  //   const data = documentSnapshot.data();
+  //   if (data && data['sticking']) {
+  //     allStickings = [
+  //       ...allStickings,
+  //       { id: documentSnapshot.id, sticking: data['sticking'] },
+  //     ];
+  //   }
+  // }
+
+  // return allStickings;
 }
 
 // Delete stickings

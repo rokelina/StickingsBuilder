@@ -3,6 +3,7 @@ import Button from '../Button/Button';
 import { useAuth } from '../../context/authContext/useAuth';
 import { addSticking, getStickings } from '../../firebase/firestore';
 import { checkDuplicateObject } from './checkDuplicateObject';
+import { useFetchStickings } from '../../hooks/useFetchStickings';
 
 //this should save the current sticking if there's a user logged in and show a
 // 'save successful' modal, or show the login modal if there isn't any user
@@ -13,6 +14,7 @@ type SaveBtnProps = {
 
 const SaveBtn = ({ currentSticking }: SaveBtnProps) => {
   const { authUser } = useAuth();
+  const { savedStickings } = useFetchStickings(authUser);
 
   const handleSave = async () => {
     //check if user is logged in
@@ -26,10 +28,10 @@ const SaveBtn = ({ currentSticking }: SaveBtnProps) => {
       return;
     }
 
-    const savedStickigns = await getStickings(authUser.uid);
+    // const savedStickigns = await getStickings(authUser.uid);
     //checks for duplicates
-    if (savedStickigns) {
-      for (const sticking of savedStickigns) {
+    if (savedStickings) {
+      for (const sticking of savedStickings) {
         const isDuplicate = checkDuplicateObject(
           sticking.sticking,
           currentSticking

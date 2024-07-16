@@ -13,7 +13,7 @@ const SavedStickingsColumn = ({
 }: Props) => {
   return (
     <div>
-      {savedStickings ? (
+      {savedStickings?.length ? (
         savedStickings.map(
           (sticking) =>
             sticking.id !== deleteId && (

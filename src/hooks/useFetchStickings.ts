@@ -3,7 +3,7 @@ import { AuthUser } from '../context/authContext/AuthUserContext';
 import { getStickings } from '../firebase/firestore';
 import { DocumentData } from 'firebase/firestore';
 
-export const useFetchStickings = (authUser: AuthUser, deleteId?: string) => {
+export const useFetchStickings = (authUser: AuthUser) => {
   const [isLoading, setIsLoading] = useState(true);
   const [savedStickings, setSavedStickings] = useState<
     DocumentData[] | undefined
@@ -11,17 +11,22 @@ export const useFetchStickings = (authUser: AuthUser, deleteId?: string) => {
 
   const fetchStickings = async (authUser: AuthUser) => {
     if (authUser) {
-      const stickings = await getStickings(authUser.uid);
-      setSavedStickings(stickings);
-      setIsLoading(false);
-      console.log(stickings);
+      const unsubscribe = await getStickings(
+        authUser.uid,
+        setSavedStickings,
+        setIsLoading
+      );
+      // setSavedStickings(stickings);
+      // setIsLoading(false);
+      // console.log(stickings);
+      return unsubscribe;
     }
   };
   useEffect(() => {
     if (authUser) {
       fetchStickings(authUser);
     }
-  }, [authUser, deleteId]);
+  }, [authUser]);
 
   return { savedStickings, isLoading };
 };
