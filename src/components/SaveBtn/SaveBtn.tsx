@@ -1,7 +1,7 @@
 import { RiSave3Line } from 'react-icons/ri';
 import Button from '../Button/Button';
 import { useAuth } from '../../context/authContext/useAuth';
-import { addSticking, getStickings } from '../../firebase/firestore';
+import { addSticking } from '../../firebase/firestore';
 import { checkDuplicateObject } from './checkDuplicateObject';
 import { useFetchStickings } from '../../hooks/useFetchStickings';
 
@@ -16,7 +16,7 @@ const SaveBtn = ({ currentSticking }: SaveBtnProps) => {
   const { authUser } = useAuth();
   const { savedStickings } = useFetchStickings(authUser);
 
-  const handleSave = async () => {
+  const handleOnSave = () => {
     //check if user is logged in
     if (!authUser) {
       alert('Log in to save stickings to your account');
@@ -27,8 +27,6 @@ const SaveBtn = ({ currentSticking }: SaveBtnProps) => {
       alert('Select all beats to save!');
       return;
     }
-
-    // const savedStickigns = await getStickings(authUser.uid);
     //checks for duplicates
     if (savedStickings) {
       for (const sticking of savedStickings) {
@@ -42,7 +40,7 @@ const SaveBtn = ({ currentSticking }: SaveBtnProps) => {
         }
       }
     }
-    await addSticking(currentSticking, authUser.uid);
+    addSticking(currentSticking, authUser.uid);
   };
   return (
     <div style={{ display: 'flex', justifyContent: 'center' }}>
@@ -53,7 +51,7 @@ const SaveBtn = ({ currentSticking }: SaveBtnProps) => {
             SAVE <RiSave3Line size="1rem" />
           </>
         }
-        onBtnClick={handleSave}
+        onBtnClick={handleOnSave}
       />
     </div>
   );

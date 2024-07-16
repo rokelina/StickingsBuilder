@@ -1,13 +1,12 @@
 import {
   collection,
   doc,
-  getDocs,
+  addDoc,
   getDoc,
   orderBy,
   query,
   setDoc,
   Timestamp,
-  where,
   DocumentData,
   deleteDoc,
   onSnapshot,
@@ -36,15 +35,9 @@ export async function addUserToDatabase(user: User) {
 //Delete user
 
 //Add Sticking
-export async function addSticking(
-  sticking: { [key: string]: string },
-  uid: string
-) {
+export function addSticking(sticking: { [key: string]: string }, uid: string) {
   try {
-    const stickingRef = doc(
-      collection(db, USERS_COLLECTION, uid, STICKINGS_COLLECTION)
-    );
-    await setDoc(stickingRef, {
+    addDoc(collection(db, USERS_COLLECTION, uid, STICKINGS_COLLECTION), {
       sticking: sticking,
       dateCreated: Timestamp.now(),
     });
@@ -54,7 +47,7 @@ export async function addSticking(
   }
 }
 
-// Fetch stickings
+// Get stickings
 export async function getStickings(
   uid: string,
   setSavedStickings: React.Dispatch<
@@ -89,31 +82,11 @@ export async function getStickings(
     }
   );
   return unsubscribe;
-
-  // const stickingsSnapshot = await getDocs(stickingsQuery);
-
-  // if (stickingsSnapshot.empty) {
-  //   return undefined;
-  // }
-
-  // let allStickings: DocumentData[] = [];
-
-  // for (const documentSnapshot of stickingsSnapshot.docs) {
-  //   const data = documentSnapshot.data();
-  //   if (data && data['sticking']) {
-  //     allStickings = [
-  //       ...allStickings,
-  //       { id: documentSnapshot.id, sticking: data['sticking'] },
-  //     ];
-  //   }
-  // }
-
-  // return allStickings;
 }
 
 // Delete stickings
-export async function deleteSticking(id: string, uid: string) {
-  await deleteDoc(doc(db, USERS_COLLECTION, uid, STICKINGS_COLLECTION, id));
+export function deleteSticking(id: string, uid: string) {
+  deleteDoc(doc(db, USERS_COLLECTION, uid, STICKINGS_COLLECTION, id));
 }
 
 // Create drill

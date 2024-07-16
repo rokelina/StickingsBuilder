@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { deleteSticking } from '../../../firebase/firestore';
 import Button from '../../Button/Button';
 import './SavedStickings.css';
@@ -15,17 +15,12 @@ const SavedStickings = () => {
   const handleOnClick = () => {
     setShowStickings((prevState) => !prevState);
   };
-  const handleOnDeleteClick = async (id: string) => {
+  const handleOnDeleteClick = (id: string) => {
     if (authUser) {
       setDeleteId(id);
-      await deleteSticking(id, authUser.uid);
+      deleteSticking(id, authUser.uid);
     }
   };
-  // const resetDeleteId = () => {
-  //   setDeleteId('');
-  // };
-
-  // useEffect(() => resetDeleteId(), []);
 
   return (
     <div className="saved-stickings-card">

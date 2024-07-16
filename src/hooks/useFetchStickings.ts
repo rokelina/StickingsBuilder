@@ -16,9 +16,6 @@ export const useFetchStickings = (authUser: AuthUser) => {
         setSavedStickings,
         setIsLoading
       );
-      // setSavedStickings(stickings);
-      // setIsLoading(false);
-      // console.log(stickings);
       return unsubscribe;
     }
   };
