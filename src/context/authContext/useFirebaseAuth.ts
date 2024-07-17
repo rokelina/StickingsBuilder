@@ -5,6 +5,7 @@ import {
   signOut as authSignOut,
 } from 'firebase/auth';
 import { auth } from '../../firebase/firebaseConfig';
+import { addUserToDatabase } from '../../firebase/firestore';
 
 export function useFirebaseAuth() {
   const [authUser, setAuthUser] = useState<{
@@ -28,6 +29,8 @@ export function useFirebaseAuth() {
     }
     setAuthUser({ uid: user.uid, email: user.email, name: user.displayName });
     setIsLoading(false);
+
+    await addUserToDatabase(user);
   };
 
   const signOut = () => authSignOut(auth).then(clear);

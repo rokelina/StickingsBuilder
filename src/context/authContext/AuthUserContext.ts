@@ -1,11 +1,13 @@
 import { createContext } from 'react';
 
+export type AuthUser = {
+  uid: string;
+  email: string | null;
+  name: string | null;
+} | null;
+
 type AuthUserContextType = {
-  authUser: {
-    uid: string;
-    email: string | null;
-    name: string | null;
-  } | null;
+  authUser: AuthUser;
   isLoading: boolean;
   signOut: () => Promise<void>;
 };

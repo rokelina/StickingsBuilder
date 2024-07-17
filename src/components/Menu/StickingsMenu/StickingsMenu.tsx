@@ -1,4 +1,3 @@
-import Button from '../../Button/Button';
 import SaveBtn from '../../SaveBtn/SaveBtn';
 import BeatForm from './MenuForms/BeatForm';
 import RowForm from './MenuForms/RowForm';
@@ -51,7 +50,7 @@ function StickingsMenu({
           selectedStickings={selectedStickings}
         />
       </div>
-      <SaveBtn />
+      <SaveBtn currentSticking={selectedStickings} />
     </div>
   );
 }

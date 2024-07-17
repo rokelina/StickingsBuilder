@@ -37,37 +37,39 @@ function MenuContainer({ displayMenu, samples }: Props) {
   const metronomeProps = useMetronome(displayMenu, currentStickings);
 
   return (
-    <div className="main-container">
-      <MetronomeControls
-        selectedStickings={currentStickings}
-        samples={samples}
-        isPlaying={metronomeProps.isPlaying}
-        bpm={metronomeProps.bpm}
-        addCountdown={metronomeProps.addCountdown}
-        onStartClick={metronomeProps.handleStartClick}
-        onBpmChange={metronomeProps.handleBpmChange}
-        onVolumeChange={metronomeProps.handleVolumeChange}
-        onCountdown={metronomeProps.handleCountdown}
-      />
-      {displayMenu === 'eighth-notes' && (
-        <EighthNotesMenu
-          stickingMenuProps={eighthsProps}
+    <main className="main-wrapper">
+      <div className="main-container">
+        <MetronomeControls
+          selectedStickings={currentStickings}
+          samples={samples}
           isPlaying={metronomeProps.isPlaying}
+          bpm={metronomeProps.bpm}
+          addCountdown={metronomeProps.addCountdown}
+          onStartClick={metronomeProps.handleStartClick}
+          onBpmChange={metronomeProps.handleBpmChange}
+          onVolumeChange={metronomeProps.handleVolumeChange}
+          onCountdown={metronomeProps.handleCountdown}
         />
-      )}
-      {displayMenu === 'triplet-notes' && (
-        <TripletNotesMenu
-          stickingMenuProps={tripletsProps}
-          isPlaying={metronomeProps.isPlaying}
-        />
-      )}
-      {displayMenu === 'random-stickings' && (
-        <RandomMenu
-          randomMenuProps={randomProps}
-          isPlaying={metronomeProps.isPlaying}
-        />
-      )}
-    </div>
+        {displayMenu === 'eighth-notes' && (
+          <EighthNotesMenu
+            stickingMenuProps={eighthsProps}
+            isPlaying={metronomeProps.isPlaying}
+          />
+        )}
+        {displayMenu === 'triplet-notes' && (
+          <TripletNotesMenu
+            stickingMenuProps={tripletsProps}
+            isPlaying={metronomeProps.isPlaying}
+          />
+        )}
+        {displayMenu === 'random-stickings' && (
+          <RandomMenu
+            randomMenuProps={randomProps}
+            isPlaying={metronomeProps.isPlaying}
+          />
+        )}
+      </div>
+    </main>
   );
 }
 export default MenuContainer;
