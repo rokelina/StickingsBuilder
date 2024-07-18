@@ -6,11 +6,7 @@ interface Props {
   deleteId: string;
   onDelete: (id: string) => void;
 }
-const SavedStickingsColumn = ({
-  savedStickings,
-  deleteId,
-  onDelete,
-}: Props) => {
+const SavedStickingsList = ({ savedStickings, deleteId, onDelete }: Props) => {
   return (
     <div>
       {savedStickings?.length ? (
@@ -30,4 +26,4 @@ const SavedStickingsColumn = ({
     </div>
   );
 };
-export default SavedStickingsColumn;
+export default SavedStickingsList;

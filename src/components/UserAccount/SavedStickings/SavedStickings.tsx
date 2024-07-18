@@ -4,7 +4,7 @@ import Button from '../../Button/Button';
 import './SavedStickings.css';
 import { useAuth } from '../../../context/authContext/useAuth';
 import { useFetchStickings } from '../../../hooks/useFetchStickings';
-import SavedStickingsColumn from './SavedStickingsColumn';
+import SavedStickingsList from './SavedStickingsColumn';
 
 const SavedStickings = () => {
   const [deleteId, setDeleteId] = useState('');
@@ -31,7 +31,7 @@ const SavedStickings = () => {
       />
       {!isLoading ? (
         showStickings && (
-          <SavedStickingsColumn
+          <SavedStickingsList
             savedStickings={savedStickings}
             deleteId={deleteId}
             onDelete={handleOnDeleteClick}
