@@ -4,6 +4,11 @@ import { Samples } from '../../hooks/useSamples';
 import { useSequence } from '../../hooks/useSequence';
 import { FaPlay } from 'react-icons/fa6';
 import { FaStop } from 'react-icons/fa6';
+import { PiMetronomeDuotone } from 'react-icons/pi';
+import { PiMetronomeFill } from 'react-icons/pi';
+import { PiClockCountdownFill } from 'react-icons/pi';
+import { HiVolumeUp } from 'react-icons/hi';
+
 import mapToSequence from '../../lib/utils/metronomeUtils/mapToSequence';
 import Button from '../Button/Button';
 import './MetronomeControls.css';
@@ -48,23 +53,38 @@ function MetronomeControls({
 
   return (
     <>
-      <div className="playback-controls">
-        <div>
+      <div className={'playback-controls metronome'}>
+        <div className="play-stop-btn">
           <Button
-            idName="play-pause"
+            idName="play-stop-btn"
             children={
               isPlaying ? (
                 <>
-                  <FaStop /> STOP
+                  <FaStop size={'1.5rem'} />
+                  <span
+                    style={{ paddingInlineStart: '0.5rem' }}
+                    aria-label="stop button"
+                  >
+                    STOP
+                  </span>
                 </>
               ) : (
                 <>
-                  <FaPlay /> PLAY
+                  <FaPlay size={'1.5rem'} />
+                  <span
+                    style={{ paddingInlineStart: '0.5rem' }}
+                    aria-label="play button"
+                  >
+                    PLAY
+                  </span>
                 </>
               )
             }
             onBtnClick={onStartClick}
           />
+        </div>
+        <div className="volume">
+          <HiVolumeUp size={'2rem'} />
           <label htmlFor="volume">
             <input
               aria-label="volume control"
@@ -80,7 +100,8 @@ function MetronomeControls({
             />
           </label>
         </div>
-        <div className="metronome">
+        <div className="bpm">
+          <PiMetronomeFill size={'2.5rem'} />
           <input
             aria-label="beats per minute value"
             type="number"
@@ -95,9 +116,14 @@ function MetronomeControls({
           <span aria-label="beats per minute">BPM</span>
         </div>
         <div className="countdown">
-          <span>ADD COUNTDOWN</span>
-          <input
+          <PiClockCountdownFill size={'2rem'} />
+          <span
+            style={{ paddingInlineEnd: '0.5rem' }}
             aria-label="add a countdown measure"
+          >
+            COUNTDOWN
+          </span>
+          <input
             name="countdown"
             type="checkbox"
             checked={addCountdown}

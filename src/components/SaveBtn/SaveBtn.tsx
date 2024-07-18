@@ -1,9 +1,13 @@
 import { RiSave3Line } from 'react-icons/ri';
+import { VscSave } from 'react-icons/vsc';
+import { LuSave } from 'react-icons/lu';
+import { FaSave } from 'react-icons/fa';
 import Button from '../Button/Button';
 import { useAuth } from '../../context/authContext/useAuth';
 import { addSticking } from '../../firebase/firestore';
 import { checkDuplicateObject } from './checkDuplicateObject';
 import { useFetchStickings } from '../../hooks/useFetchStickings';
+import './SaveBtn.css';
 
 //this should save the current sticking if there's a user logged in and show a
 // 'save successful' modal, or show the login modal if there isn't any user
@@ -44,12 +48,26 @@ const SaveBtn = ({ currentSticking }: SaveBtnProps) => {
   };
   return (
     <div style={{ display: 'flex', justifyContent: 'center' }}>
+      {/* <button
+        type="button"
+        className="save-btn"
+        id="save-btn"
+        onClick={handleOnSave}
+      >
+        <FaSave size="1.5rem" />
+      </button> */}
       <Button
         idName="save-btn"
         children={
-          <>
-            SAVE <RiSave3Line size="1rem" />
-          </>
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+            <FaSave size="1.5rem" />
+            <span
+              style={{ paddingInlineStart: '0.5rem' }}
+              aria-label="Save Sticking"
+            >
+              SAVE
+            </span>
+          </div>
         }
         onBtnClick={handleOnSave}
       />

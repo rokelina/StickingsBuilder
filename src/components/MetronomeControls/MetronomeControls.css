@@ -1,14 +1,14 @@
 .playback-controls {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   padding: 1rem;
+  margin: 0rem 8rem;
 }
 
 .playback-controls button {
   padding: 0.8rem 1rem;
-  height: 3rem;
 }
 
 .volume-controls {
@@ -28,7 +28,7 @@
   width: 4rem;
   border-radius: 5px;
   padding: 0.3rem;
-  margin-right: 0.5rem;
+  margin: 0rem 0.5rem;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
     'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
@@ -36,16 +36,31 @@
 .countdown {
   display: flex;
   align-items: center;
+}
+
+.play-stop-btn,
+.volume,
+.bpm,
+.countdown {
   padding: 0.5rem;
+  margin: 0rem 1rem;
+  display: flex;
+  align-items: center;
 }
 
 .countdown span {
   padding: 0.5em 0;
 }
 
-@media screen and (orientation: landscape) and (max-width: 991px) {
+@media screen and (max-width: 991px) {
   .playback-controls {
-    flex-direction: row;
+    /* flex-direction: row; */
     padding: 0;
+    margin: 0;
   }
 }
+/* @media screen and (min-width: 992px) {
+  .playback-controls {
+    margin: 0rem 6rem;
+  }
+} */
