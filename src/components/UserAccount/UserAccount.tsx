@@ -3,7 +3,7 @@ import { useAuth } from '../../context/authContext/useAuth';
 // import { Samples } from '../../hooks/useSamples';
 import Button from '../Button/Button';
 // import MetronomeControls from '../MetronomeControls/MetronomeControls';
-import SavedStickings from './SavedStickings/SavedStickings';
+import SavedStickings from './SavedStickings';
 // import { useFetchStickings } from '../../hooks/useFetchStickings';
 // import { MenuId } from '../../App';
 
