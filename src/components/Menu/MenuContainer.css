@@ -13,6 +13,15 @@
   overflow-x: auto;
 }
 
+.controls {
+  display: flex;
+  justify-content: center;
+}
+
+.controls button {
+  padding: 0.8rem 0.8rem;
+}
+
 .menu {
   display: flex;
   justify-content: center;

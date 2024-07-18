@@ -3,25 +3,12 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 1rem;
-  margin: 0rem 8rem;
-}
-
-.playback-controls button {
-  padding: 0.8rem 1rem;
 }
 
 .volume-controls {
   width: 5rem;
   margin-left: 0.5rem;
   margin-top: 0.5rem;
-}
-
-.metronome {
-  padding: 0.5rem;
-  color: black;
-  display: flex;
-  align-items: center;
 }
 
 .met-input {

@@ -1,6 +1,3 @@
-import { RiSave3Line } from 'react-icons/ri';
-import { VscSave } from 'react-icons/vsc';
-import { LuSave } from 'react-icons/lu';
 import { FaSave } from 'react-icons/fa';
 import Button from '../Button/Button';
 import { useAuth } from '../../context/authContext/useAuth';
@@ -47,19 +44,14 @@ const SaveBtn = ({ currentSticking }: SaveBtnProps) => {
     addSticking(currentSticking, authUser.uid);
   };
   return (
-    <div style={{ display: 'flex', justifyContent: 'center' }}>
-      {/* <button
-        type="button"
-        className="save-btn"
-        id="save-btn"
-        onClick={handleOnSave}
-      >
-        <FaSave size="1.5rem" />
-      </button> */}
+    <div
+      className="save-btn"
+      style={{ display: 'flex', justifyContent: 'center' }}
+    >
       <Button
         idName="save-btn"
         children={
-          <div style={{ display: 'flex', alignItems: 'center' }}>
+          <>
             <FaSave size="1.5rem" />
             <span
               style={{ paddingInlineStart: '0.5rem' }}
@@ -67,7 +59,7 @@ const SaveBtn = ({ currentSticking }: SaveBtnProps) => {
             >
               SAVE
             </span>
-          </div>
+          </>
         }
         onBtnClick={handleOnSave}
       />

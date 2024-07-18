@@ -40,7 +40,7 @@ function MenuContainer({ displayMenu, samples }: Props) {
   return (
     <main className="main-wrapper">
       <div className="main-container">
-        <div>
+        <div className="controls">
           <MetronomeControls
             selectedStickings={currentStickings}
             samples={samples}
