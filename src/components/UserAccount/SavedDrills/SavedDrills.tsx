@@ -9,7 +9,7 @@
 const SavedDrillsList = () => {
   return (
     <ul className="stickings-list">
-      <div>You haven't saved any drills yet!</div>
+      <div>In Progress...</div>
     </ul>
   );
 };
