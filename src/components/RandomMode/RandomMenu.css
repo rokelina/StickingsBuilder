@@ -13,6 +13,10 @@
   display: flex;
   padding: 0.5rem;
 }
+.random-controls {
+  display: flex;
+  padding: 0.5rem;
+}
 
 .subdivision-options {
   display: flex;

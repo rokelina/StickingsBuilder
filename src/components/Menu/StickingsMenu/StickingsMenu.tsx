@@ -1,7 +1,8 @@
+import SaveBtn from '../../SaveBtn/SaveBtn';
 import BeatForm from './MenuForms/BeatForm';
 import RowForm from './MenuForms/RowForm';
 
-interface MenuProps {
+interface StickingsMenuProps {
   permutations: { [key: string]: string };
   onFormChange: (beatName: string, children: string) => void;
   selectedStickings: { [key: string]: string };
@@ -11,7 +12,7 @@ function StickingsMenu({
   permutations,
   onFormChange,
   selectedStickings,
-}: MenuProps) {
+}: StickingsMenuProps) {
   return (
     <div className="menu-card">
       <div className="menu-container">

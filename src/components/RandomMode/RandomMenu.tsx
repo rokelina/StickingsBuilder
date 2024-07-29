@@ -6,7 +6,7 @@ import getRandomNotesArray from '../../lib/utils/staffUtils/getRandomNotesArray'
 import { RiAiGenerate } from 'react-icons/ri';
 import { isStickingsObjEmpty } from '../../lib/uiHelpers/menuHelpers';
 import { SubdivisionOption } from '../../hooks/useGenerateStickings';
-import '../Menu/Menu.css';
+import '../Menu/MenuContainer.css';
 import './RandomMenu.css';
 
 interface Props {
@@ -51,7 +51,13 @@ function RandomMenu({ randomMenuProps, isPlaying }: Props) {
               idName="generate-button"
               children={
                 <>
-                  GENERATE <RiAiGenerate size="1rem" />
+                  <RiAiGenerate size="1.5rem" />
+                  <span
+                    style={{ paddingInlineStart: '0.5rem' }}
+                    aria-label="generate stickings button"
+                  >
+                    GENERATE
+                  </span>
                 </>
               }
               onBtnClick={() => onGenerateStickings(selectedRandomOption)}

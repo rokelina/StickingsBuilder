@@ -1,0 +1,11 @@
+.saved-stickings-card {
+  margin-left: 5rem;
+  padding: 1rem;
+}
+
+.stickings-list {
+  list-style: none;
+  margin: 0;
+  padding: 1rem;
+  width: 25vw;
+}
