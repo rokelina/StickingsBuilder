@@ -40,13 +40,13 @@ function SideNavBar({ onNavClick }: Props) {
           spanText="Random Stickings"
           onNavClick={onNavClick}
         />
-        {/* <ListItem
+        <ListItem
           ariaLabel="account button"
           idName="user-account"
           icon={<MyAccountIcon />}
           spanText="My Account"
           onNavClick={onNavClick}
-        /> */}
+        />
       </ul>
       {/* <ul className="navbar-nav" style={{ flex: 0 }}>
         <ListItem
