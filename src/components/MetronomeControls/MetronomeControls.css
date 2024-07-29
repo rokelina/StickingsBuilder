@@ -24,6 +24,9 @@
   display: flex;
   align-items: center;
 }
+.flex-top {
+  display: flex;
+}
 
 .play-stop-btn,
 .volume,
@@ -41,11 +44,29 @@
 
 @media screen and (max-width: 991px) {
   .playback-controls {
-    /* flex-direction: row; */
+    flex-direction: row;
     padding: 0;
     margin: 0;
   }
+  .play-stop-btn,
+  .volume,
+  .bpm,
+  .countdown {
+    margin: 0rem 0.3rem;
+    padding: 0;
+    font-size: 12px;
+  }
 }
+
+@media only screen and (orientation: portrait) and (max-width: 991px) {
+  .flex-top {
+    flex-direction: row;
+  }
+  .playback-controls {
+    flex-direction: column;
+  }
+}
+
 /* @media screen and (min-width: 992px) {
   .playback-controls {
     margin: 0rem 6rem;
