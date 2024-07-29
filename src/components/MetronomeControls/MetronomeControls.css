@@ -24,6 +24,7 @@
   display: flex;
   align-items: center;
 }
+
 .flex-top {
   display: flex;
 }
@@ -48,6 +49,7 @@
     padding: 0;
     margin: 0;
   }
+
   .play-stop-btn,
   .volume,
   .bpm,
@@ -66,9 +68,3 @@
     flex-direction: column;
   }
 }
-
-/* @media screen and (min-width: 992px) {
-  .playback-controls {
-    margin: 0rem 6rem;
-  }
-} */
