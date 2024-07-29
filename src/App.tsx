@@ -29,7 +29,7 @@ function App() {
       <SideNavBar onNavClick={handleNavClick} />
       <TopNavBar />
       {displayMenu === 'user-account' ? (
-        <MyAccount samples={samples} />
+        <MyAccount />
       ) : (
         <MenuContainer displayMenu={displayMenu} samples={samples} />
       )}

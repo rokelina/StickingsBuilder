@@ -1,17 +1,17 @@
 .account-menu {
   display: flex;
+  justify-content: flex-end;
   margin-top: 4rem;
-  margin-left: 5rem;
-  padding: 1rem;
-  overflow-y: auto;
-  overflow-x: auto;
+  margin-right: 4rem;
+  /* overflow-y: auto;
+  overflow-x: auto; */
 }
 
 .welcome-message {
-  margin: 0;
+  margin: 0rem 1rem;
   font-weight: 300;
   display: flex;
-  flex: 1;
+  /* flex: 1; */
   align-items: center;
   justify-content: center;
 }

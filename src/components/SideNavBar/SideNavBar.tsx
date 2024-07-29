@@ -48,7 +48,7 @@ function SideNavBar({ onNavClick }: Props) {
           onNavClick={onNavClick}
         />
       </ul>
-      <ul className="navbar-nav" style={{ flex: 0 }}>
+      {/* <ul className="navbar-nav" style={{ flex: 0 }}>
         <ListItem
           ariaLabel="about this application"
           idName="about"
@@ -56,7 +56,7 @@ function SideNavBar({ onNavClick }: Props) {
           spanText="About"
           onNavClick={onNavClick}
         />
-      </ul>
+      </ul> */}
     </nav>
   );
 }

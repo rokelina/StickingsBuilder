@@ -6,13 +6,9 @@ interface Props {
   deleteId: string;
   onDelete: (id: string) => void;
 }
-const SavedStickingsColumn = ({
-  savedStickings,
-  deleteId,
-  onDelete,
-}: Props) => {
+const SavedStickingsList = ({ savedStickings, deleteId, onDelete }: Props) => {
   return (
-    <div>
+    <ul className="stickings-list">
       {savedStickings?.length ? (
         savedStickings.map(
           (sticking) =>
@@ -27,7 +23,7 @@ const SavedStickingsColumn = ({
       ) : (
         <div>You haven't saved any stickings yet!</div>
       )}
-    </div>
+    </ul>
   );
 };
-export default SavedStickingsColumn;
+export default SavedStickingsList;

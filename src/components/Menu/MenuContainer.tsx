@@ -6,6 +6,7 @@ import EighthNotesMenu from './EighthNotesMenu';
 import TripletNotesMenu from './TripletNotesMenu';
 import RandomMenu from '../RandomMode/RandomMenu';
 import MetronomeControls from '../MetronomeControls/MetronomeControls';
+import SaveBtn from '../SaveBtn/SaveBtn';
 import './MenuContainer.css';
 
 interface Props {
@@ -39,17 +40,20 @@ function MenuContainer({ displayMenu, samples }: Props) {
   return (
     <main className="main-wrapper">
       <div className="main-container">
-        <MetronomeControls
-          selectedStickings={currentStickings}
-          samples={samples}
-          isPlaying={metronomeProps.isPlaying}
-          bpm={metronomeProps.bpm}
-          addCountdown={metronomeProps.addCountdown}
-          onStartClick={metronomeProps.handleStartClick}
-          onBpmChange={metronomeProps.handleBpmChange}
-          onVolumeChange={metronomeProps.handleVolumeChange}
-          onCountdown={metronomeProps.handleCountdown}
-        />
+        <div className="controls">
+          <MetronomeControls
+            selectedStickings={currentStickings}
+            samples={samples}
+            isPlaying={metronomeProps.isPlaying}
+            bpm={metronomeProps.bpm}
+            addCountdown={metronomeProps.addCountdown}
+            onStartClick={metronomeProps.handleStartClick}
+            onBpmChange={metronomeProps.handleBpmChange}
+            onVolumeChange={metronomeProps.handleVolumeChange}
+            onCountdown={metronomeProps.handleCountdown}
+          />
+          <SaveBtn currentSticking={currentStickings} />
+        </div>
         {displayMenu === 'eighth-notes' && (
           <EighthNotesMenu
             stickingMenuProps={eighthsProps}
