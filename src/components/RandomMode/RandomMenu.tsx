@@ -8,7 +8,6 @@ import { isStickingsObjEmpty } from '../../lib/uiHelpers/menuHelpers';
 import { SubdivisionOption } from '../../hooks/useGenerateStickings';
 import '../Menu/MenuContainer.css';
 import './RandomMenu.css';
-import SaveBtn from '../SaveBtn/SaveBtn';
 
 interface Props {
   randomMenuProps: {
@@ -52,12 +51,17 @@ function RandomMenu({ randomMenuProps, isPlaying }: Props) {
               idName="generate-button"
               children={
                 <>
-                  GENERATE <RiAiGenerate size="1rem" />
+                  <RiAiGenerate size="1.5rem" />
+                  <span
+                    style={{ paddingInlineStart: '0.5rem' }}
+                    aria-label="generate stickings button"
+                  >
+                    GENERATE
+                  </span>
                 </>
               }
               onBtnClick={() => onGenerateStickings(selectedRandomOption)}
             />
-            <SaveBtn currentSticking={generatedStickings} />
           </div>
         </div>
       </div>
