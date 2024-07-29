@@ -28,11 +28,11 @@ function App() {
     <>
       <SideNavBar onNavClick={handleNavClick} />
       <TopNavBar />
-      {displayMenu === 'user-account' ? (
+      {/* {displayMenu === 'user-account' ? (
         <MyAccount />
-      ) : (
-        <MenuContainer displayMenu={displayMenu} samples={samples} />
-      )}
+      ) : ( */}
+      <MenuContainer displayMenu={displayMenu} samples={samples} />
+      {/* )} */}
     </>
   );
 }
