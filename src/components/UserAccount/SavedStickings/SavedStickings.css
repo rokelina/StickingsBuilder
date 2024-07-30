@@ -1,11 +1,23 @@
 .saved-stickings-card {
-  margin-left: 5rem;
   padding: 1rem;
+  width: fit-content;
 }
 
 .stickings-list {
   list-style: none;
   margin: 0;
-  padding: 1rem;
-  width: 25vw;
+  padding: 0rem;
+}
+
+.drills-bar {
+  display: flex;
+}
+
+@media only screen and (max-width: 768px) {
+  .saved-stickings-card {
+    margin: 0;
+  }
+  .stickings-list {
+    width: fit-content;
+  }
 }

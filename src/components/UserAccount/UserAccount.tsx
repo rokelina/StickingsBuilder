@@ -3,7 +3,8 @@ import { useAuth } from '../../context/authContext/useAuth';
 // import { Samples } from '../../hooks/useSamples';
 import Button from '../Button/Button';
 // import MetronomeControls from '../MetronomeControls/MetronomeControls';
-import SavedStickings from './SavedStickings';
+import SavedStickingsAndDrills from './SavedStickings';
+import { CircularProgress } from '@mui/material';
 // import { useFetchStickings } from '../../hooks/useFetchStickings';
 // import { MenuId } from '../../App';
 
@@ -12,10 +13,15 @@ import SavedStickings from './SavedStickings';
 // };
 
 const UserAccount = () => {
-  const { authUser, signOut } = useAuth();
+  const { authUser, isLoading, signOut } = useAuth();
 
-  return (
-    <>
+  return isLoading ? (
+    <CircularProgress
+      color="inherit"
+      sx={{ marginLeft: '50%', marginTop: '30%' }}
+    />
+  ) : (
+    <main>
       <div className="account-menu">
         <h4 className="welcome-message">Welcome, {authUser?.name}!</h4>
         <Button
@@ -24,8 +30,10 @@ const UserAccount = () => {
           onBtnClick={signOut}
         ></Button>
       </div>
-      <SavedStickings />
-    </>
+      <div className="account-content">
+        <SavedStickingsAndDrills />
+      </div>
+    </main>
   );
 };
 export default UserAccount;
