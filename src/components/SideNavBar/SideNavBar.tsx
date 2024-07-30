@@ -2,11 +2,10 @@ import MenuIcon from '../Icons/MenuIcon';
 import EightNotesIcon from '../Icons/EightNotesIcon';
 import RandomIcon from '../Icons/RandomIcon';
 import TripletsIcon from '../Icons/TripletsIcon';
-// import AboutIcon from '../Icons/AboutIcon';
-import MyAccountIcon from '../Icons/MyAccountIcon';
+import { MdAccountBox } from 'react-icons/md';
 import ListItem from './ListItem/ListItem';
-import './SideNavBar.css';
 import { MenuId } from '../../App';
+import './SideNavBar.css';
 
 interface Props {
   onNavClick: (id: MenuId) => void;
@@ -43,20 +42,11 @@ function SideNavBar({ onNavClick }: Props) {
         <ListItem
           ariaLabel="account button"
           idName="user-account"
-          icon={<MyAccountIcon />}
+          icon={<MdAccountBox size={'2.5rem'} opacity={'0'} color="white" />}
           spanText="My Account"
           onNavClick={onNavClick}
         />
       </ul>
-      {/* <ul className="navbar-nav" style={{ flex: 0 }}>
-        <ListItem
-          ariaLabel="about this application"
-          idName="about"
-          icon={<AboutIcon />}
-          spanText="About"
-          onNavClick={onNavClick}
-        />
-      </ul> */}
     </nav>
   );
 }
