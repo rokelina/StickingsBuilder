@@ -16,7 +16,7 @@ import { User } from 'firebase/auth';
 
 const USERS_COLLECTION = 'users';
 const STICKINGS_COLLECTION = 'stickings';
-const DRILLS_COLLECTION = 'drills';
+// const DRILLS_COLLECTION = 'drills';
 
 //Add user
 export async function addUserToDatabase(user: User) {

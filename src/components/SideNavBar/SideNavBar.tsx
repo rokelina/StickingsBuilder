@@ -2,7 +2,7 @@ import MenuIcon from '../Icons/MenuIcon';
 import EightNotesIcon from '../Icons/EightNotesIcon';
 import RandomIcon from '../Icons/RandomIcon';
 import TripletsIcon from '../Icons/TripletsIcon';
-import AboutIcon from '../Icons/AboutIcon';
+// import AboutIcon from '../Icons/AboutIcon';
 import MyAccountIcon from '../Icons/MyAccountIcon';
 import ListItem from './ListItem/ListItem';
 import './SideNavBar.css';
