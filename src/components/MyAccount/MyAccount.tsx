@@ -3,15 +3,25 @@ import { useAuth } from '../../context/authContext/useAuth';
 import Login from '../Login/Login';
 import UserAccount from '../UserAccount/UserAccount';
 import './MyAccount.css';
+import { CircularProgress } from '@mui/material';
 
 // type AccountProps = {
 //   samples: Samples;
 // };
 
 const MyAccount = () => {
-  const { authUser } = useAuth();
+  const { authUser, isLoading } = useAuth();
 
-  return authUser ? <UserAccount /> : <Login />;
+  return isLoading ? (
+    <CircularProgress
+      color="inherit"
+      sx={{ marginLeft: '50%', marginTop: '25%' }}
+    />
+  ) : authUser ? (
+    <UserAccount />
+  ) : (
+    <Login />
+  );
 };
 
 export default MyAccount;

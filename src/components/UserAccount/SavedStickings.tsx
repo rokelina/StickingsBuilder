@@ -6,6 +6,8 @@ import { useAuth } from '../../context/authContext/useAuth';
 import { useFetchStickings } from '../../hooks/useFetchStickings';
 import SavedStickingsList from './SavedStickings/SavedStickingsList';
 import SavedDrillsList from './SavedDrills/SavedDrills';
+import { LinearProgress } from '@mui/material';
+import { MdOutlineAdd } from 'react-icons/md';
 
 const SavedStickingsAndDrills = () => {
   const [deleteId, setDeleteId] = useState('');
@@ -28,13 +30,7 @@ const SavedStickingsAndDrills = () => {
   };
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        justifyContent: 'space-around',
-        margin: '4rem',
-      }}
-    >
+    <>
       <div className="saved-stickings-card">
         <Button
           idName={'show-saved-stickins'}
@@ -50,18 +46,29 @@ const SavedStickingsAndDrills = () => {
             />
           )
         ) : (
-          <div>Loading</div>
+          <LinearProgress sx={{ color: 'inherit', width: '50%' }} />
         )}
       </div>
       <div className="saved-stickings-card">
-        <Button
-          idName={'show-saved-drills'}
-          children={'View my saved Drills'}
-          onBtnClick={handleOnDrillsListClick}
-        />
+        <div className="drills-bar">
+          <Button
+            idName={'show-saved-drills'}
+            children={'View my saved Drills'}
+            onBtnClick={handleOnDrillsListClick}
+          />
+          <Button
+            idName="add-drill"
+            children={
+              <>
+                <MdOutlineAdd size={'1.5rem'} />
+                <span> Add Drill</span>
+              </>
+            }
+          ></Button>
+        </div>
         {!isLoading ? showDrills && <SavedDrillsList /> : <div>Loading</div>}
       </div>
-    </div>
+    </>
   );
 };
 export default SavedStickingsAndDrills;
