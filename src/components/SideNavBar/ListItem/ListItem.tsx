@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
 import { MenuId } from '../../../App';
+// import { NavLink } from 'react-router-dom';
 
 interface Props {
   ariaLabel: string;
@@ -12,6 +13,7 @@ interface Props {
 function ListItem({ ariaLabel, idName, icon, spanText, onNavClick }: Props) {
   return (
     <li className="nav-item" id={idName}>
+      {/* <NavLink to={idName}> */}
       <button
         className="nav-link"
         aria-label={ariaLabel}
@@ -20,6 +22,7 @@ function ListItem({ ariaLabel, idName, icon, spanText, onNavClick }: Props) {
         {icon}
         <span className="icon-text">{spanText}</span>
       </button>
+      {/* </NavLink> */}
     </li>
   );
 }

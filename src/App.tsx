@@ -16,8 +16,8 @@ export type MenuId =
 
 function App() {
   //"navigation" state variable
-  const [displayMenu, setDisplayMenu] = useState<MenuId>('eighth-notes');
-  const handleNavClick = (id: MenuId): void => {
+  const [displayMenu, setDisplayMenu] = useState<string>('eighth-notes');
+  const handleNavClick = (id: string): void => {
     setDisplayMenu(id);
   };
   // Load click and snare sound files

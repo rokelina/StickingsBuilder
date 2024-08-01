@@ -5,6 +5,7 @@ import TripletsIcon from '../Icons/TripletsIcon';
 import { MdAccountBox } from 'react-icons/md';
 import ListItem from './ListItem/ListItem';
 import { MenuId } from '../../App';
+import { NavLink } from 'react-router-dom';
 import './SideNavBar.css';
 
 interface Props {
@@ -39,13 +40,15 @@ function SideNavBar({ onNavClick }: Props) {
           spanText="Random Stickings"
           onNavClick={onNavClick}
         />
-        <ListItem
-          ariaLabel="account button"
-          idName="user-account"
-          icon={<MdAccountBox size={'2.5rem'} opacity={'0'} color="white" />}
-          spanText="My Account"
-          onNavClick={onNavClick}
-        />
+        <NavLink to="user-account">
+          <ListItem
+            ariaLabel="account button"
+            idName="user-account"
+            icon={<MdAccountBox size={'2.5rem'} opacity={'0'} color="white" />}
+            spanText="My Account"
+            onNavClick={onNavClick}
+          />
+        </NavLink>
       </ul>
     </nav>
   );
