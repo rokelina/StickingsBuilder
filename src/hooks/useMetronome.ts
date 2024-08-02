@@ -1,14 +1,13 @@
 import * as Tone from 'tone';
 import { useState, useEffect, ChangeEvent } from 'react';
+import { useLocation } from 'react-router';
 
 /** Metronome state and event handlers, returned as props */
-export function useMetronome(
-  displayMenu: string,
-  currentStickings: { [key: string]: string }
-) {
+export function useMetronome(currentStickings: { [key: string]: string }) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [bpm, setBpm] = useState('80');
   const [addCountdown, setAddCountdown] = useState(false);
+  const location = useLocation();
 
   const handleStartClick = async () => {
     if (Object.keys(currentStickings).length !== 4) {
@@ -57,7 +56,7 @@ export function useMetronome(
     //Stop the transport when changing between menus
     Tone.Transport.stop();
     setIsPlaying(false);
-  }, [displayMenu]);
+  }, [location]);
 
   return metronomeProps;
 }

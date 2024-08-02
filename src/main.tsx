@@ -1,20 +1,31 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App';
 import AuthUserProvider from './context/authContext/AuthUserProvider';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { RouterProvider } from 'react-router-dom';
 import './index.css';
-import MyAccount from './components/MyAccount/MyAccount';
-import ErrorPage from './pages/ErrorPage';
+import { router } from './router/router';
 
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <App />,
-    children: [{ path: 'account', element: <MyAccount /> }],
-    errorElement: <ErrorPage />,
-  },
-]);
+// const router = createBrowserRouter([
+//   {
+//     path: '/',
+//     element: <App />,
+//     errorElement: <ErrorPage />,
+//     children: [
+//       { path: 'eighth-notes', element: <EighthNotesMenu /> },
+//       { path: 'triplet-notes', element: <TripletNotesMenu /> },
+//       { path: 'random-stickings', element: <RandomNotesMenu /> },
+//       {
+//         path: 'user-account',
+//         element: <MyAccount />,
+//         children: [
+//           { path: 'login', element: <Login /> },
+//           { path: 'logged-user', element: <UserAccount /> },
+//         ],
+//       },
+//       { path: 'about', element: <About /> },
+//     ],
+//   },
+// ]);
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <>

@@ -1,3 +1,4 @@
+import { Link, Navigate, Outlet, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/authContext/useAuth';
 // import { Samples } from '../../hooks/useSamples';
 import Login from '../Login/Login';
@@ -11,6 +12,7 @@ import { CircularProgress } from '@mui/material';
 
 const MyAccount = () => {
   const { authUser, isLoading } = useAuth();
+  const navigate = useNavigate();
 
   return isLoading ? (
     <CircularProgress

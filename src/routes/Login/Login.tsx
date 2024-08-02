@@ -8,7 +8,7 @@ const Login = () => {
   useEffect(() => {
     const uiConfig = {
       signInFlow: 'popup',
-      signInSuccessUrl: '/',
+      signInSuccessUrl: '/user-account',
       signInOptions: [
         { provider: GoogleAuthProvider.PROVIDER_ID },
         {

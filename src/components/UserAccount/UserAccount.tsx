@@ -21,7 +21,7 @@ const UserAccount = () => {
       sx={{ marginLeft: '50%', marginTop: '30%' }}
     />
   ) : (
-    <main>
+    <>
       <div className="account-menu">
         <h4 className="welcome-message">Welcome, {authUser?.name}!</h4>
         <Button
@@ -33,7 +33,7 @@ const UserAccount = () => {
       <div className="account-content">
         <SavedStickingsAndDrills />
       </div>
-    </main>
+    </>
   );
 };
 export default UserAccount;

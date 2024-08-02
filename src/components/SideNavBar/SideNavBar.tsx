@@ -2,17 +2,19 @@ import MenuIcon from '../Icons/MenuIcon';
 import EightNotesIcon from '../Icons/EightNotesIcon';
 import RandomIcon from '../Icons/RandomIcon';
 import TripletsIcon from '../Icons/TripletsIcon';
-import { MdAccountBox } from 'react-icons/md';
+import AboutIcon from '../Icons/AboutIcon';
 import ListItem from './ListItem/ListItem';
 import { MenuId } from '../../App';
 import { NavLink } from 'react-router-dom';
 import './SideNavBar.css';
+import MyAccountIcon from '../Icons/MyAccountIcon';
+import { MdAccountBox } from 'react-icons/md';
 
-interface Props {
-  onNavClick: (id: MenuId) => void;
-}
+// interface Props {
+//   onNavClick: (id: MenuId) => void;
+// }
 
-function SideNavBar({ onNavClick }: Props) {
+function SideNavBar() {
   return (
     <nav className="navbar">
       <div className="menu-icon">
@@ -20,35 +22,40 @@ function SideNavBar({ onNavClick }: Props) {
       </div>
       <ul className="navbar-nav">
         <ListItem
-          ariaLabel="eight notes menu"
+          // ariaLabel="eight notes menu"
           idName="eighth-notes"
           icon={<EightNotesIcon />}
           spanText="8th Notes"
-          onNavClick={onNavClick}
+          // onNavClick={onNavClick}
         />
         <ListItem
-          ariaLabel="eight note triplets menu"
+          // ariaLabel="eight note triplets menu"
           idName="triplet-notes"
           icon={<TripletsIcon />}
           spanText="8th Notes Triplets"
-          onNavClick={onNavClick}
+          // onNavClick={onNavClick}
         />
         <ListItem
-          ariaLabel="random stickings menu"
+          // ariaLabel="random stickings menu"
           idName="random-stickings"
           icon={<RandomIcon />}
           spanText="Random Stickings"
-          onNavClick={onNavClick}
+          // onNavClick={onNavClick}
         />
-        <NavLink to="user-account">
-          <ListItem
-            ariaLabel="account button"
-            idName="user-account"
-            icon={<MdAccountBox size={'2.5rem'} opacity={'0'} color="white" />}
-            spanText="My Account"
-            onNavClick={onNavClick}
-          />
-        </NavLink>
+        <ListItem
+          // ariaLabel="account button"
+          idName="user-account"
+          icon={<MdAccountBox size={'2.5rem'} opacity={'0'} color="white" />}
+          spanText="My Account"
+          // onNavClick={onNavClick}
+        />
+        <ListItem
+          // ariaLabel="about this app"
+          idName="about"
+          icon={<AboutIcon />}
+          spanText="About"
+          // onNavClick={onNavClick}
+        />
       </ul>
     </nav>
   );

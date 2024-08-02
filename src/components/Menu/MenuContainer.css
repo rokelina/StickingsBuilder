@@ -1,9 +1,9 @@
-.main-wrapper {
+/* .main-wrapper {
   display: flex;
   flex-direction: column;
-}
+} */
 
-.main-container {
+/* .main-container {
   display: flex;
   flex-direction: column;
   margin-top: 4rem;
@@ -11,7 +11,7 @@
   padding: 1rem;
   overflow-y: auto;
   overflow-x: auto;
-}
+} */
 
 .controls {
   display: flex;
@@ -124,16 +124,16 @@
     padding: 0;
     margin-top: 1rem;
   }
-  .main-container {
+  /* .main-container {
     margin-top: 3rem;
-  }
+  } */
 }
 
 @media only screen and (orientation: portrait) and (max-width: 991px) {
-  .main-wrapper {
+  /* .main-wrapper {
     margin-bottom: 4rem;
     margin-left: 0;
-  }
+  } */
 
   .controls {
     flex-direction: column;

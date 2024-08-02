@@ -40,7 +40,7 @@ function MenuContainer({ displayMenu, samples }: Props) {
   return (
     <main className="main-wrapper">
       <div className="main-container">
-        {/* layout */}
+        {/* Layout */}
         <div className="controls">
           <MetronomeControls
             selectedStickings={currentStickings}
@@ -55,7 +55,7 @@ function MenuContainer({ displayMenu, samples }: Props) {
           />
           <SaveBtn currentSticking={currentStickings} />
         </div>
-        {/* outlet */}
+        {/* Outlet */}
         {displayMenu === 'eighth-notes' && (
           <EighthNotesMenu
             stickingMenuProps={eighthsProps}
