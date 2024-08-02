@@ -1,6 +1,6 @@
-import { useAuth } from '../../../context/authContext/useAuth';
-import SavedStickingsAndDrills from '../../../components/UserAccount/SavedStickings';
 import Button from '../../../components/Button/Button';
+import UserDashboard from '../../../components/UserDashboard/UserDashboard';
+import { useAuth } from '../../../context/authContext/useAuth';
 import { CircularProgress } from '@mui/material';
 
 const UserAccount = () => {
@@ -22,7 +22,7 @@ const UserAccount = () => {
         ></Button>
       </div>
       <div className="account-content">
-        <SavedStickingsAndDrills />
+        <UserDashboard />
       </div>
     </>
   );

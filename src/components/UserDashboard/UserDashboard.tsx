@@ -1,15 +1,17 @@
-import { useState } from 'react';
-import { deleteSticking } from '../../firebase/firestore';
 import Button from '../Button/Button';
-import './SavedStickings/SavedStickings.css';
-import { useAuth } from '../../context/authContext/useAuth';
-import { useFetchStickings } from '../../hooks/useFetchStickings';
-import SavedStickingsList from './SavedStickings/SavedStickingsList';
 import SavedDrillsList from './SavedDrills/SavedDrills';
+import SavedStickingsList from './SavedStickings/SavedStickingsList';
+
+import { useAuth } from '../../context/authContext/useAuth';
+import { deleteSticking } from '../../firebase/firestore';
+import { useState } from 'react';
+import { useFetchStickings } from '../../hooks/useFetchStickings';
+
 import { LinearProgress } from '@mui/material';
 import { MdOutlineAdd } from 'react-icons/md';
+import './SavedStickings/SavedStickings.css';
 
-const SavedStickingsAndDrills = () => {
+const UserDashboard = () => {
   const [deleteId, setDeleteId] = useState('');
   const [showStickings, setShowStickings] = useState(true);
   const [showDrills, setShowDrills] = useState(true);
@@ -71,4 +73,4 @@ const SavedStickingsAndDrills = () => {
     </>
   );
 };
-export default SavedStickingsAndDrills;
+export default UserDashboard;
