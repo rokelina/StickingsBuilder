@@ -4,7 +4,7 @@ import TopNavBar from './components/TopNavBar/TopNavBar';
 import SideNavBar from './components/SideNavBar/SideNavBar';
 import { Outlet } from 'react-router';
 
-export type MenuId =
+export type RouteId =
   | 'eighth-notes'
   | 'triplet-notes'
   | 'random-stickings'

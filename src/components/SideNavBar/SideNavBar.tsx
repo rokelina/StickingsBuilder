@@ -4,7 +4,7 @@ import RandomIcon from '../Icons/RandomIcon';
 import TripletsIcon from '../Icons/TripletsIcon';
 import AboutIcon from '../Icons/AboutIcon';
 import ListItem from './ListItem/ListItem';
-import { MenuId } from '../../App';
+import { RouteId } from '../../App';
 import { NavLink } from 'react-router-dom';
 import './SideNavBar.css';
 import MyAccountIcon from '../Icons/MyAccountIcon';

@@ -1,11 +1,11 @@
 import { ReactNode } from 'react';
-import { MenuId } from '../../../App';
+import { RouteId } from '../../../App';
 import { NavLink } from 'react-router-dom';
 // import { NavLink } from 'react-router-dom';
 
 interface Props {
   // ariaLabel: string;
-  idName: MenuId;
+  idName: RouteId;
   icon: ReactNode;
   spanText: string;
   // onNavClick: (id: MenuId) => void;
