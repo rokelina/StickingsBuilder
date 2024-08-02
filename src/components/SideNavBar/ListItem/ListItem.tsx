@@ -1,28 +1,20 @@
 import { ReactNode } from 'react';
-import { RouteId } from '../../../App';
+import { RouteId } from '../SideNavBar';
 import { NavLink } from 'react-router-dom';
-// import { NavLink } from 'react-router-dom';
 
 interface Props {
-  // ariaLabel: string;
-  idName: RouteId;
+  ariaLabel: string;
   icon: ReactNode;
+  idName: RouteId;
   spanText: string;
-  // onNavClick: (id: MenuId) => void;
 }
 
-function ListItem({ idName, icon, spanText }: Props) {
+function ListItem({ ariaLabel, icon, idName, spanText }: Props) {
   return (
     <li className="nav-item" id={idName}>
-      <NavLink to={idName} className={'nav-link'}>
-        {/* <button
-        className="nav-link"
-        aria-label={ariaLabel}
-        onClick={() => onNavClick(idName)}
-      > */}
+      <NavLink to={idName} className={'nav-link'} aria-label={ariaLabel}>
         {icon}
         <span className="icon-text">{spanText}</span>
-        {/* </button> */}
       </NavLink>
     </li>
   );

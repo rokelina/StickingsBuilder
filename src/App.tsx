@@ -1,19 +1,10 @@
-import { useLoadingSpinner } from './hooks/useLoadingSpinner';
-import { useSamples } from './hooks/useSamples';
 import TopNavBar from './components/TopNavBar/TopNavBar';
 import SideNavBar from './components/SideNavBar/SideNavBar';
+import { useLoadingSpinner } from './hooks/useLoadingSpinner';
+import { useSamples } from './hooks/useSamples';
 import { Outlet } from 'react-router';
-
-export type RouteId =
-  | 'eighth-notes'
-  | 'triplet-notes'
-  | 'random-stickings'
-  | 'user-account'
-  | 'saved-stickings'
-  | 'about';
-
 function App() {
-  // Load click and snare sound files
+  // Load 'click' and 'snare' sound files
   const samples = useSamples();
   useLoadingSpinner();
 
