@@ -1,5 +1,5 @@
 import App from '../App';
-import MyAccount from '../components/MyAccount/MyAccount';
+import MyAccount from '../routes/MyAccount/MyAccount';
 import ErrorPage from '../routes/ErrorPage/ErrorPage';
 import About from '../routes/About/About';
 import EighthNotesMenu from '../routes/EighthNotesMenu/EighthNotesMenu';

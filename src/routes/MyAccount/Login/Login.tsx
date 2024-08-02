@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
-import { auth } from '../../firebase/firebaseConfig';
+import { auth } from '../../../firebase/firebaseConfig';
 import { EmailAuthProvider, GoogleAuthProvider } from 'firebase/auth';
+
 import * as firebaseui from 'firebaseui';
 import 'firebaseui/dist/firebaseui.css';
 
@@ -8,7 +9,7 @@ const Login = () => {
   useEffect(() => {
     const uiConfig = {
       signInFlow: 'popup',
-      signInSuccessUrl: '/',
+      signInSuccessUrl: '/user-account',
       signInOptions: [
         { provider: GoogleAuthProvider.PROVIDER_ID },
         {
