@@ -8,9 +8,9 @@ import ListItem from './ListItem/ListItem';
 import './SideNavBar.css';
 
 export type RouteId =
-  | 'eighth-notes'
-  | 'triplet-notes'
-  | 'random-stickings'
+  | 'menu/eighth-notes'
+  | 'menu/triplet-notes'
+  | 'menu/random-stickings'
   | 'user-account'
   | 'about';
 
@@ -23,31 +23,31 @@ function SideNavBar() {
       <ul className="navbar-nav">
         <ListItem
           ariaLabel="eight notes menu"
-          idName="eighth-notes"
+          routeName="menu/eighth-notes"
           icon={<EightNotesIcon />}
           spanText="8th Notes"
         />
         <ListItem
           ariaLabel="eight note triplets menu"
-          idName="triplet-notes"
+          routeName="menu/triplet-notes"
           icon={<TripletsIcon />}
           spanText="8th Notes Triplets"
         />
         <ListItem
           ariaLabel="random stickings menu"
-          idName="random-stickings"
+          routeName="menu/random-stickings"
           icon={<RandomIcon />}
           spanText="Random Stickings"
         />
         <ListItem
           ariaLabel="sign in to your account"
-          idName="user-account"
+          routeName="user-account"
           icon={<MdAccountBox size={'2.5rem'} opacity={'0'} color="white" />}
           spanText="My Account"
         />
         <ListItem
           ariaLabel="about this app"
-          idName="about"
+          routeName="about"
           icon={<AboutIcon />}
           spanText="About"
         />
