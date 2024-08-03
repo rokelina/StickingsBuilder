@@ -1,10 +1,10 @@
 import App from '../App';
-import MyAccount from '../routes/MyAccount/MyAccount';
-import ErrorPage from '../routes/ErrorPage/ErrorPage';
-import About from '../routes/About/About';
-import EighthNotesMenu from '../routes/EighthNotesMenu/EighthNotesMenu';
-import TripletNotesMenu from '../routes/TripletNotesMenu/TripletNotesMenu';
-import RandomNotesMenu from '../routes/RandomNotesMenu/RandomNotesMenu';
+import MyAccount from '../pages/MyAccount/MyAccount';
+import ErrorPage from '../pages/ErrorPage/ErrorPage';
+import About from '../pages/About/About';
+import EighthNotesMenu from '../pages/EighthNotesMenu/EighthNotesMenu';
+import TripletNotesMenu from '../pages/TripletNotesMenu/TripletNotesMenu';
+import RandomNotesMenu from '../pages/RandomNotesMenu/RandomNotesMenu';
 import { createBrowserRouter } from 'react-router-dom';
 import { routes } from './routes';
 
