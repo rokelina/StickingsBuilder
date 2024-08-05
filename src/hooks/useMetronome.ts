@@ -2,6 +2,16 @@ import * as Tone from 'tone';
 import { useState, useEffect, ChangeEvent } from 'react';
 import { useLocation } from 'react-router';
 
+export type MetronomeProps = {
+  isPlaying: boolean;
+  bpm: string;
+  addCountdown: boolean;
+  handleStartClick: () => Promise<void>;
+  handleBpmChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  handleCountdown: () => void;
+  handleVolumeChange: (e: ChangeEvent<HTMLInputElement>) => void;
+};
+
 /** Metronome state and event handlers, returned as props */
 export function useMetronome(currentStickings: { [key: string]: string }) {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -43,7 +53,7 @@ export function useMetronome(currentStickings: { [key: string]: string }) {
     setAddCountdown(!addCountdown);
   };
 
-  const metronomeProps = {
+  const metronomeProps: MetronomeProps = {
     isPlaying,
     bpm,
     addCountdown,

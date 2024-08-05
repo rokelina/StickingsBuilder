@@ -4,11 +4,24 @@ import SaveBtn from '../../components/SaveBtn/SaveBtn';
 // import StickingsMenu from '../../components/Menu/StickingsMenu/StickingsMenu';
 // import { eightNotesPermutations } from '../../lib/utils/permutations';
 // import getEighthNotesArray from '../../lib/utils/staffUtils/getEighthNotesArray';
-import { useSelectStickings } from '../../hooks/useSelectStickings';
-import { useMetronome } from '../../hooks/useMetronome';
+import {
+  StickingsProps,
+  useSelectStickings,
+} from '../../hooks/useSelectStickings';
+import { MetronomeProps, useMetronome } from '../../hooks/useMetronome';
 import { Samples } from '../../hooks/useSamples';
 import { Outlet, useLocation, useOutletContext } from 'react-router';
-import { useGenerateStickings } from '../../hooks/useGenerateStickings';
+import {
+  RandomProps,
+  useGenerateStickings,
+} from '../../hooks/useGenerateStickings';
+
+export type MenuOutletProps = {
+  eighthsProps: StickingsProps;
+  tripletProps: StickingsProps;
+  randomProps: RandomProps;
+  metronomeProps: MetronomeProps;
+};
 
 function MenuLayout() {
   const samples = useOutletContext<Samples>();
@@ -53,7 +66,12 @@ function MenuLayout() {
         <SaveBtn currentSticking={currentStickings} />
       </div>
       <Outlet
-        context={{ eighthsProps, tripletProps, randomProps, metronomeProps }}
+        context={{
+          eighthsProps,
+          tripletProps,
+          randomProps,
+          metronomeProps,
+        }}
       />
       {/* <Staff
         stickings={selectedStickings}

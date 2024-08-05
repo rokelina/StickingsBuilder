@@ -6,19 +6,19 @@ import { eightNotesPermutations } from '../../lib/utils/permutations';
 import getEighthNotesArray from '../../lib/utils/staffUtils/getEighthNotesArray';
 import { useSelectStickings } from '../../hooks/useSelectStickings';
 import { useMetronome } from '../../hooks/useMetronome';
-import { Samples } from '../../hooks/useSamples';
 import { useOutletContext } from 'react-router';
-
+import { MenuOutletProps } from '../MenuLayout/MenuLayout';
+// import { Samples } from '../../hooks/useSamples';
 function EighthNotesMenu() {
-  const samples = useOutletContext<Samples>();
-  const eighthsProps = useSelectStickings();
-  const { selectedStickings, onFormChange } = eighthsProps;
-  const metronomeProps = useMetronome(selectedStickings);
+  const { eighthsProps, metronomeProps } = useOutletContext<MenuOutletProps>();
+  // const eighthsProps = useSelectStickings();
+  // const { selectedStickings, onFormChange } = eighthsProps;
+  // const metronomeProps = useMetronome(selectedStickings);
 
   return (
     <>
       {/* Layout */}
-      <div className="controls">
+      {/* <div className="controls">
         <MetronomeControls
           selectedStickings={selectedStickings}
           samples={samples}
@@ -31,17 +31,17 @@ function EighthNotesMenu() {
           onCountdown={metronomeProps.handleCountdown}
         />
         <SaveBtn currentSticking={selectedStickings} />
-      </div>
+      </div> */}
       <Staff
-        stickings={selectedStickings}
+        stickings={eighthsProps.selectedStickings}
         getNotesArrayFunction={getEighthNotesArray}
         isPlaying={metronomeProps.isPlaying}
       />
       <div className="menu">
         <StickingsMenu
           permutations={eightNotesPermutations}
-          onFormChange={onFormChange}
-          selectedStickings={selectedStickings}
+          onFormChange={eighthsProps.onFormChange}
+          selectedStickings={eighthsProps.selectedStickings}
         />
       </div>
     </>
