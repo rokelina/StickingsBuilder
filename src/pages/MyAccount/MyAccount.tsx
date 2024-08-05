@@ -1,13 +1,8 @@
+import Login from './Login/Login';
+import UserAccount from './UserAccount/UserAccount';
 import { useAuth } from '../../context/authContext/useAuth';
-// import { Samples } from '../../hooks/useSamples';
-import Login from '../Login/Login';
-import UserAccount from '../UserAccount/UserAccount';
-import './MyAccount.css';
 import { CircularProgress } from '@mui/material';
-
-// type AccountProps = {
-//   samples: Samples;
-// };
+import './MyAccount.css';
 
 const MyAccount = () => {
   const { authUser, isLoading } = useAuth();

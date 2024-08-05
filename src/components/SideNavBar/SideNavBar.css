@@ -36,6 +36,10 @@
 }
 
 .nav-link:hover {
+  background-color: #222;
+}
+
+a.active {
   background-color: black;
 }
 

@@ -1,16 +1,7 @@
-import { useAuth } from '../../context/authContext/useAuth';
-// import { useMetronome } from '../../hooks/useMetronome';
-// import { Samples } from '../../hooks/useSamples';
-import Button from '../Button/Button';
-// import MetronomeControls from '../MetronomeControls/MetronomeControls';
-import SavedStickingsAndDrills from './SavedStickings';
+import Button from '../../../components/Button/Button';
+import UserDashboard from '../../../components/UserDashboard/UserDashboard';
+import { useAuth } from '../../../context/authContext/useAuth';
 import { CircularProgress } from '@mui/material';
-// import { useFetchStickings } from '../../hooks/useFetchStickings';
-// import { MenuId } from '../../App';
-
-// type UserAccountProps = {
-//   samples: Samples;
-// };
 
 const UserAccount = () => {
   const { authUser, isLoading, signOut } = useAuth();
@@ -21,7 +12,7 @@ const UserAccount = () => {
       sx={{ marginLeft: '50%', marginTop: '30%' }}
     />
   ) : (
-    <main>
+    <>
       <div className="account-menu">
         <h4 className="welcome-message">Welcome, {authUser?.name}!</h4>
         <Button
@@ -31,9 +22,9 @@ const UserAccount = () => {
         ></Button>
       </div>
       <div className="account-content">
-        <SavedStickingsAndDrills />
+        <UserDashboard />
       </div>
-    </main>
+    </>
   );
 };
 export default UserAccount;
