@@ -1,14 +1,30 @@
 import TopNavBar from './components/TopNavBar/TopNavBar';
 import SideNavBar from './components/SideNavBar/SideNavBar';
-import { useLoadingSpinner } from './hooks/useLoadingSpinner';
-import { useSamples } from './hooks/useSamples';
+import { Samples, useSamples } from './hooks/useSamples';
+import { StickingsProps, useSelectStickings } from './hooks/useSelectStickings';
+import {
+  RandomProps,
+  useGenerateStickings,
+} from './hooks/useGenerateStickings';
+
 import { Outlet } from 'react-router';
 
+import { useLoadingSpinner } from './hooks/useLoadingSpinner';
 import './components/Menu/MenuContainer.css';
 import './components/RandomMode/RandomMenu.css';
+
+export type OutletContextProps = {
+  eighthsProps: StickingsProps;
+  tripletProps: StickingsProps;
+  randomProps: RandomProps;
+  samples: Samples;
+};
 function App() {
-  // Load 'click' and 'snare' sound files
   const samples = useSamples();
+  const eighthsProps = useSelectStickings();
+  const tripletProps = useSelectStickings();
+  const randomProps = useGenerateStickings();
+
   useLoadingSpinner();
 
   return (
@@ -16,7 +32,9 @@ function App() {
       <TopNavBar />
       <SideNavBar />
       <main>
-        <Outlet context={samples} />
+        <Outlet
+          context={{ samples, eighthsProps, tripletProps, randomProps }}
+        />
       </main>
     </>
   );

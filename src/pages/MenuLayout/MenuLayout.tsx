@@ -1,16 +1,10 @@
 import MetronomeControls from '../../components/MetronomeControls/MetronomeControls';
 import SaveBtn from '../../components/SaveBtn/SaveBtn';
-import {
-  StickingsProps,
-  useSelectStickings,
-} from '../../hooks/useSelectStickings';
-import {
-  RandomProps,
-  useGenerateStickings,
-} from '../../hooks/useGenerateStickings';
+import { StickingsProps } from '../../hooks/useSelectStickings';
+import { RandomProps } from '../../hooks/useGenerateStickings';
 import { MetronomeProps, useMetronome } from '../../hooks/useMetronome';
-import { Samples } from '../../hooks/useSamples';
 import { Outlet, useLocation, useOutletContext } from 'react-router';
+import { OutletContextProps } from '../../App';
 
 export type MenuOutletProps = {
   eighthsProps: StickingsProps;
@@ -20,10 +14,8 @@ export type MenuOutletProps = {
 };
 
 function MenuLayout() {
-  const samples = useOutletContext<Samples>();
-  const eighthsProps = useSelectStickings();
-  const tripletProps = useSelectStickings();
-  const randomProps = useGenerateStickings();
+  const { samples, eighthsProps, tripletProps, randomProps } =
+    useOutletContext<OutletContextProps>();
 
   let currentStickings: {
     [key: string]: string;
@@ -59,6 +51,7 @@ function MenuLayout() {
         />
         <SaveBtn currentSticking={currentStickings} />
       </div>
+      {/* Layout */}
       <Outlet
         context={{
           eighthsProps,
