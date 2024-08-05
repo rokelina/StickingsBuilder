@@ -8,6 +8,7 @@ import RandomNotesMenu from '../pages/RandomNotesMenu/RandomNotesMenu';
 import { createBrowserRouter } from 'react-router-dom';
 import { routes } from './routes';
 import MenuLayout from '../pages/MenuLayout/MenuLayout';
+import RedirectToEighths from '../pages/RedirectToEighths/RedirectToEighths';
 
 export const router = createBrowserRouter([
   {
@@ -15,6 +16,9 @@ export const router = createBrowserRouter([
     element: <App />,
     errorElement: <ErrorPage />,
     children: [
+      { path: '/', element: <RedirectToEighths /> },
+      { path: '*', element: <RedirectToEighths /> },
+      { path: '/menu', element: <RedirectToEighths /> },
       {
         path: routes.menu,
         element: <MenuLayout />,
