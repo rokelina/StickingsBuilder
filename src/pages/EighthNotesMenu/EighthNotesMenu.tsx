@@ -2,11 +2,12 @@ import Staff from '../../components/Staff/Staff';
 import StickingsMenu from '../../components/Menu/StickingsMenu/StickingsMenu';
 import { eightNotesPermutations } from '../../lib/utils/permutations';
 import getEighthNotesArray from '../../lib/utils/staffUtils/getEighthNotesArray';
-import { MenuOutletProps } from '../MenuLayout/MenuLayout';
+import { MenuOutletContextProps } from '../MenuLayout/MenuLayout';
 import { useOutletContext } from 'react-router';
 
 function EighthNotesMenu() {
-  const { eighthsProps, metronomeProps } = useOutletContext<MenuOutletProps>();
+  const { eighthsProps, metronomeProps } =
+    useOutletContext<MenuOutletContextProps>();
   const { selectedStickings, onFormChange } = eighthsProps;
   const { isPlaying } = metronomeProps;
 

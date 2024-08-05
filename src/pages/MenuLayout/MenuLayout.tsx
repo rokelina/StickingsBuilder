@@ -6,7 +6,7 @@ import { MetronomeProps, useMetronome } from '../../hooks/useMetronome';
 import { Outlet, useLocation, useOutletContext } from 'react-router';
 import { OutletContextProps } from '../../App';
 
-export type MenuOutletProps = {
+export type MenuOutletContextProps = {
   eighthsProps: StickingsProps;
   tripletProps: StickingsProps;
   randomProps: RandomProps;

@@ -4,13 +4,14 @@ import Options from '../../components/RandomMode/Options';
 import Staff from '../../components/Staff/Staff';
 import getRandomNotesArray from '../../lib/utils/staffUtils/getRandomNotesArray';
 import { isStickingsObjEmpty } from '../../lib/uiHelpers/menuHelpers';
-import { MenuOutletProps } from '../MenuLayout/MenuLayout';
+import { MenuOutletContextProps } from '../MenuLayout/MenuLayout';
 import { useOutletContext } from 'react-router';
 
 import { RiAiGenerate } from 'react-icons/ri';
 
 function RandomNotesMenu() {
-  const { randomProps, metronomeProps } = useOutletContext<MenuOutletProps>();
+  const { randomProps, metronomeProps } =
+    useOutletContext<MenuOutletContextProps>();
   const {
     generatedStickings,
     onGenerateStickings,
