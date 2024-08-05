@@ -1,20 +1,16 @@
 import MetronomeControls from '../../components/MetronomeControls/MetronomeControls';
 import SaveBtn from '../../components/SaveBtn/SaveBtn';
-// import Staff from '../../components/Staff/Staff';
-// import StickingsMenu from '../../components/Menu/StickingsMenu/StickingsMenu';
-// import { eightNotesPermutations } from '../../lib/utils/permutations';
-// import getEighthNotesArray from '../../lib/utils/staffUtils/getEighthNotesArray';
 import {
   StickingsProps,
   useSelectStickings,
 } from '../../hooks/useSelectStickings';
-import { MetronomeProps, useMetronome } from '../../hooks/useMetronome';
-import { Samples } from '../../hooks/useSamples';
-import { Outlet, useLocation, useOutletContext } from 'react-router';
 import {
   RandomProps,
   useGenerateStickings,
 } from '../../hooks/useGenerateStickings';
+import { MetronomeProps, useMetronome } from '../../hooks/useMetronome';
+import { Samples } from '../../hooks/useSamples';
+import { Outlet, useLocation, useOutletContext } from 'react-router';
 
 export type MenuOutletProps = {
   eighthsProps: StickingsProps;
@@ -28,9 +24,7 @@ function MenuLayout() {
   const eighthsProps = useSelectStickings();
   const tripletProps = useSelectStickings();
   const randomProps = useGenerateStickings();
-  // const { selectedStickings, onFormChange } = eighthsProps;
 
-  // Initialize currentStickings to an empty object
   let currentStickings: {
     [key: string]: string;
   } = {};
@@ -73,18 +67,6 @@ function MenuLayout() {
           metronomeProps,
         }}
       />
-      {/* <Staff
-        stickings={selectedStickings}
-        getNotesArrayFunction={getEighthNotesArray}
-        isPlaying={metronomeProps.isPlaying}
-      />
-      <div className="menu">
-        <StickingsMenu
-          permutations={eightNotesPermutations}
-          onFormChange={onFormChange}
-          selectedStickings={selectedStickings}
-        />
-      </div> */}
     </>
   );
 }

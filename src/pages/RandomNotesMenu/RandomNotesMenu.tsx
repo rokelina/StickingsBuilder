@@ -1,52 +1,34 @@
 import Button from '../../components/Button/Button';
 import EmptyStaff from '../../components/Staff/EmptyStaff';
-import MetronomeControls from '../../components/MetronomeControls/MetronomeControls';
 import Options from '../../components/RandomMode/Options';
-import SaveBtn from '../../components/SaveBtn/SaveBtn';
 import Staff from '../../components/Staff/Staff';
 import getRandomNotesArray from '../../lib/utils/staffUtils/getRandomNotesArray';
 import { isStickingsObjEmpty } from '../../lib/uiHelpers/menuHelpers';
-import { useGenerateStickings } from '../../hooks/useGenerateStickings';
-import { useMetronome } from '../../hooks/useMetronome';
+import { MenuOutletProps } from '../MenuLayout/MenuLayout';
 import { useOutletContext } from 'react-router';
-import { Samples } from '../../hooks/useSamples';
 
 import { RiAiGenerate } from 'react-icons/ri';
 
 function RandomNotesMenu() {
-  const samples = useOutletContext<Samples>();
+  const { randomProps, metronomeProps } = useOutletContext<MenuOutletProps>();
   const {
-    selectedRandomOption,
     generatedStickings,
-    onRandomOptionsChange,
     onGenerateStickings,
-  } = useGenerateStickings();
-  const metronomeProps = useMetronome(generatedStickings);
+    onRandomOptionsChange,
+    selectedRandomOption,
+  } = randomProps;
+
+  const { isPlaying } = metronomeProps;
 
   return (
     <>
-      {/* Layout */}
-      <div className="controls">
-        <MetronomeControls
-          selectedStickings={generatedStickings}
-          samples={samples}
-          isPlaying={metronomeProps.isPlaying}
-          bpm={metronomeProps.bpm}
-          addCountdown={metronomeProps.addCountdown}
-          onStartClick={metronomeProps.handleStartClick}
-          onBpmChange={metronomeProps.handleBpmChange}
-          onVolumeChange={metronomeProps.handleVolumeChange}
-          onCountdown={metronomeProps.handleCountdown}
-        />
-        <SaveBtn currentSticking={generatedStickings} />
-      </div>
       {isStickingsObjEmpty(generatedStickings) ? (
         <EmptyStaff />
       ) : (
         <Staff
           stickings={generatedStickings}
           getNotesArrayFunction={getRandomNotesArray}
-          isPlaying={metronomeProps.isPlaying}
+          isPlaying={isPlaying}
         />
       )}
       <div className="menu">
