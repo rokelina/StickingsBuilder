@@ -62,7 +62,7 @@ const UserDashboard = () => {
             idName="add-drill"
             children={
               <>
-                <MdOutlineAdd size={'1.5rem'} />
+                <MdOutlineAdd size={'1rem'} />
                 <span> Add Drill</span>
               </>
             }
