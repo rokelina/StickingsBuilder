@@ -1,38 +1,41 @@
-import { useState } from 'react';
-import { useLoadingSpinner } from './hooks/useLoadingSpinner';
-import { useSamples } from './hooks/useSamples';
 import TopNavBar from './components/TopNavBar/TopNavBar';
 import SideNavBar from './components/SideNavBar/SideNavBar';
-import MyAccount from './components/MyAccount/MyAccount';
-import MenuContainer from './components/Menu/MenuContainer';
+import { Samples, useSamples } from './hooks/useSamples';
+import { StickingsProps, useSelectStickings } from './hooks/useSelectStickings';
+import {
+  RandomProps,
+  useGenerateStickings,
+} from './hooks/useGenerateStickings';
 
-export type MenuId =
-  | 'eighth-notes'
-  | 'triplet-notes'
-  | 'random-stickings'
-  | 'user-account'
-  | 'saved-stickings'
-  | 'about';
+import { Outlet } from 'react-router';
 
+import { useLoadingSpinner } from './hooks/useLoadingSpinner';
+import './components/Menu/MenuContainer.css';
+import './components/RandomMode/RandomMenu.css';
+
+export type OutletContextProps = {
+  eighthsProps: StickingsProps;
+  tripletProps: StickingsProps;
+  randomProps: RandomProps;
+  samples: Samples;
+};
 function App() {
-  //"navigation" state variable
-  const [displayMenu, setDisplayMenu] = useState<MenuId>('eighth-notes');
-  const handleNavClick = (id: MenuId): void => {
-    setDisplayMenu(id);
-  };
-  // Load click and snare sound files
   const samples = useSamples();
+  const eighthsProps = useSelectStickings();
+  const tripletProps = useSelectStickings();
+  const randomProps = useGenerateStickings();
+
   useLoadingSpinner();
 
   return (
     <>
-      <SideNavBar onNavClick={handleNavClick} />
       <TopNavBar />
-      {displayMenu === 'user-account' ? (
-        <MyAccount />
-      ) : (
-        <MenuContainer displayMenu={displayMenu} samples={samples} />
-      )}
+      <SideNavBar />
+      <main>
+        <Outlet
+          context={{ samples, eighthsProps, tripletProps, randomProps }}
+        />
+      </main>
     </>
   );
 }

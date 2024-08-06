@@ -2,6 +2,14 @@ import { useState } from 'react';
 
 /** Stickings form control. Returns an object with the current selected stickings, and
  onFormChange handler */
+
+export type StickingsProps = {
+  selectedStickings: {
+    [key: string]: string;
+  };
+  onFormChange: (beatName: string, children: string) => void;
+};
+
 export function useSelectStickings() {
   const [selectedStickings, setSelectedStickings] = useState<{
     [key: string]: string;
@@ -23,7 +31,7 @@ export function useSelectStickings() {
     });
   };
 
-  const selectedStickingsProps = {
+  const selectedStickingsProps: StickingsProps = {
     selectedStickings: selectedStickings,
     onFormChange: handleStickingsChange,
   };
