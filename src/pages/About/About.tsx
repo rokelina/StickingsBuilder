@@ -15,11 +15,10 @@ const About = () => {
             <br />
             <br />
             Stickings Builder is a tool for drummers, percussionists and music
-            students, inspired by the legendary book
-            <span style={{ fontStyle: 'italic' }}>Stick Control</span>.
+            students.
             <br />
             <br />
-            It runs in the browser and can be installed in desktop and mobile
+            It runs in the browser and can be installed on desktop and mobile
             devices.
             <br />
             <br />

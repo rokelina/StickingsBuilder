@@ -8,7 +8,7 @@
 
 ## About
 
-Stickings Builder is a dynamic tool created for drummers and percussionists who are seeking to improve their technical dexterity through practicing various sticking combinations. Inspired by the legendary drum book 'Stick Control' written by George L. Stone, this application offers a modernized approach to honing drumming skills.
+Stickings Builder is a dynamic tool created for drummers and percussionists who are seeking to improve their technical dexterity through practicing various sticking combinations.
 
 Emphasizing user-friendly design principles, Stickings Builder boasts an interface that is both highly intuitive and interactive. Its layout is optimized for seamless functionality across desktop and mobile devices, ensuring a consistent user experience regardless of platform. This app is also installable and works offline, allowing users to conveniently access their practice routines.
 
