@@ -12,7 +12,13 @@ const UserAccount = () => {
       sx={{ marginLeft: '50%', marginTop: '30%' }}
     />
   ) : (
-    <>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        width: '100%',
+      }}
+    >
       <div className="account-menu">
         <h4 className="welcome-message">Welcome, {authUser?.name}!</h4>
         <Button
@@ -24,7 +30,7 @@ const UserAccount = () => {
       <div className="account-content">
         <UserDashboard />
       </div>
-    </>
+    </div>
   );
 };
 export default UserAccount;

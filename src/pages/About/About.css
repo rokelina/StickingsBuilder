@@ -1,0 +1,32 @@
+.about-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+  width: 60%;
+  margin: 3rem;
+}
+
+.about-page section p {
+  padding: 1rem;
+}
+
+.about-page button {
+  margin: 0rem 0.5rem;
+  padding: 0.5rem;
+  border: 1px solid;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.about-page span {
+  padding-left: 0.3rem;
+}
+
+@media only screen and (max-width: 991px) {
+  .about-page {
+    width: 90%;
+    margin: 2rem 0rem;
+  }
+}
