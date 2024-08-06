@@ -1,6 +1,15 @@
 import { useState } from 'react';
 import generateRandomStickings from '../lib/utils/randomModeUtils/generateRandomStickings';
 
+export type RandomProps = {
+  generatedStickings: {
+    [key: string]: string;
+  };
+  selectedRandomOption: SubdivisionOption[];
+  onGenerateStickings: (selectedOption: SubdivisionOption[]) => void;
+  onRandomOptionsChange: (id: SubdivisionOption, checked: boolean) => void;
+};
+
 export type SubdivisionOption =
   | 'select-all'
   | 'eighths'
@@ -58,7 +67,7 @@ export function useGenerateStickings() {
     setGeneratedStickings(generated);
   };
 
-  const randomProps = {
+  const randomProps: RandomProps = {
     generatedStickings: generatedStickings,
     selectedRandomOption: selectedRandomOption,
     onGenerateStickings: handleGenerateRandomStickings,

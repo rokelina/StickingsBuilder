@@ -10,7 +10,7 @@ export type Samples = {
   snareSampler: Sampler | null;
 };
 
-/** Loads sound files and creates Sampler objecs. Called on MainWrapper.tsx (parent wrapper)
+/** Loads sound files and creates Sampler objecs. Called at the top level
  to ensure files finished loading once the Metronome component is mounted
 */
 export function useSamples() {

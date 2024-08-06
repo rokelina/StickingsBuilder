@@ -1,18 +1,15 @@
+import Staff from '../../components/Staff/Staff';
+import StickingsMenu from '../../components/Menu/StickingsMenu/StickingsMenu';
 import { eightNotesPermutations } from '../../lib/utils/permutations';
-import StickingsMenu from './StickingsMenu/StickingsMenu';
 import getEighthNotesArray from '../../lib/utils/staffUtils/getEighthNotesArray';
-import Staff from '../Staff/Staff';
+import { MenuOutletContextProps } from '../MenuLayout/MenuLayout';
+import { useOutletContext } from 'react-router';
 
-interface Props {
-  stickingMenuProps: {
-    selectedStickings: { [key: string]: string };
-    onFormChange: (beatName: string, children: string) => void;
-  };
-  isPlaying: boolean;
-}
-
-function EighthNotesMenu({ stickingMenuProps, isPlaying }: Props) {
-  const { selectedStickings, onFormChange } = stickingMenuProps;
+function EighthNotesMenu() {
+  const { eighthsProps, metronomeProps } =
+    useOutletContext<MenuOutletContextProps>();
+  const { selectedStickings, onFormChange } = eighthsProps;
+  const { isPlaying } = metronomeProps;
 
   return (
     <>

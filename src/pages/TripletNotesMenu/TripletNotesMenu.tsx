@@ -1,18 +1,15 @@
+import Staff from '../../components/Staff/Staff';
+import StickingsMenu from '../../components/Menu/StickingsMenu/StickingsMenu';
 import { tripletPermutations } from '../../lib/utils/permutations';
-import StickingsMenu from './StickingsMenu/StickingsMenu';
-import Staff from '../Staff/Staff';
 import getTripletNotesArray from '../../lib/utils/staffUtils/getTripletNotesArray';
 
-interface Props {
-  stickingMenuProps: {
-    selectedStickings: { [key: string]: string };
-    onFormChange: (beatName: string, children: string) => void;
-  };
-  isPlaying: boolean;
-}
-
-function TripletNotesMenu({ stickingMenuProps, isPlaying }: Props) {
-  const { selectedStickings, onFormChange } = stickingMenuProps;
+import { MenuOutletContextProps } from '../MenuLayout/MenuLayout';
+import { useOutletContext } from 'react-router';
+function TripletNotesMenu() {
+  const { tripletProps, metronomeProps } =
+    useOutletContext<MenuOutletContextProps>();
+  const { selectedStickings, onFormChange } = tripletProps;
+  const { isPlaying } = metronomeProps;
 
   return (
     <>

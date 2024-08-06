@@ -1,33 +1,25 @@
-import Button from '../Button/Button';
-import EmptyStaff from '../Staff/EmptyStaff';
-import Options from './Options';
-import Staff from '../Staff/Staff';
+import Button from '../../components/Button/Button';
+import EmptyStaff from '../../components/Staff/EmptyStaff';
+import Options from '../../components/RandomMode/Options';
+import Staff from '../../components/Staff/Staff';
 import getRandomNotesArray from '../../lib/utils/staffUtils/getRandomNotesArray';
-import { RiAiGenerate } from 'react-icons/ri';
 import { isStickingsObjEmpty } from '../../lib/uiHelpers/menuHelpers';
-import { SubdivisionOption } from '../../hooks/useGenerateStickings';
-import '../Menu/MenuContainer.css';
-import './RandomMenu.css';
+import { MenuOutletContextProps } from '../MenuLayout/MenuLayout';
+import { useOutletContext } from 'react-router';
 
-interface Props {
-  randomMenuProps: {
-    generatedStickings: {
-      [key: string]: string;
-    };
-    selectedRandomOption: SubdivisionOption[];
-    onGenerateStickings: (selectedOption: SubdivisionOption[]) => void;
-    onRandomOptionsChange: (id: SubdivisionOption, checked: boolean) => void;
-  };
-  isPlaying: boolean;
-}
+import { RiAiGenerate } from 'react-icons/ri';
 
-function RandomMenu({ randomMenuProps, isPlaying }: Props) {
+function RandomNotesMenu() {
+  const { randomProps, metronomeProps } =
+    useOutletContext<MenuOutletContextProps>();
   const {
-    selectedRandomOption,
     generatedStickings,
-    onRandomOptionsChange,
     onGenerateStickings,
-  } = randomMenuProps;
+    onRandomOptionsChange,
+    selectedRandomOption,
+  } = randomProps;
+
+  const { isPlaying } = metronomeProps;
 
   return (
     <>
@@ -68,4 +60,4 @@ function RandomMenu({ randomMenuProps, isPlaying }: Props) {
     </>
   );
 }
-export default RandomMenu;
+export default RandomNotesMenu;

@@ -19,6 +19,17 @@ body {
   width: 100vw;
 }
 
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 4rem;
+  padding: 1rem 1rem 1rem 5rem;
+  overflow-y: auto;
+  overflow-x: auto;
+}
+
 button {
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
     'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
@@ -133,5 +144,16 @@ input[type='radio']:hover {
 @media only screen and (orientation: landscape) and (max-width: 991px) {
   :root {
     font-size: 14px;
+  }
+  main {
+    margin-top: 3rem;
+    padding: 1rem;
+  }
+}
+
+@media only screen and (orientation: portrait) and (max-width: 991px) {
+  main {
+    margin-bottom: 4rem;
+    padding: 1rem;
   }
 }
