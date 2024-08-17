@@ -1,5 +1,5 @@
 import Button from '../Button/Button';
-import SavedDrillsList from './SavedDrills/SavedDrills';
+// import SavedDrillsList from './SavedDrills/SavedDrills';
 import SavedStickingsList from './SavedStickings/SavedStickingsList';
 
 import { useAuth } from '../../context/authContext/useAuth';
@@ -8,22 +8,24 @@ import { useState } from 'react';
 import { useFetchStickings } from '../../hooks/useFetchStickings';
 
 import { LinearProgress } from '@mui/material';
-import { MdOutlineAdd } from 'react-icons/md';
+// import { MdOutlineAdd } from 'react-icons/md';
 import './SavedStickings/SavedStickings.css';
 
 const UserDashboard = () => {
   const [deleteId, setDeleteId] = useState('');
   const [showStickings, setShowStickings] = useState(true);
-  const [showDrills, setShowDrills] = useState(true);
+  // const [showDrills, setShowDrills] = useState(true);
   const { authUser } = useAuth();
   const { savedStickings, isLoading } = useFetchStickings(authUser);
 
   const handleOnStickingsListClick = () => {
     setShowStickings((prevState) => !prevState);
   };
-  const handleOnDrillsListClick = () => {
-    setShowDrills((prevState) => !prevState);
-  };
+
+  // const handleOnDrillsListClick = () => {
+  //   setShowDrills((prevState) => !prevState);
+  // };
+
   const handleOnDeleteClick = (id: string) => {
     if (authUser) {
       setDeleteId(id);
@@ -51,7 +53,7 @@ const UserDashboard = () => {
           <LinearProgress sx={{ color: 'inherit', width: '50%' }} />
         )}
       </div>
-      <div className="saved-stickings-card">
+      {/* <div className="saved-stickings-card">
         <div className="drills-bar">
           <Button
             idName={'show-saved-drills'}
@@ -69,7 +71,7 @@ const UserDashboard = () => {
           ></Button>
         </div>
         {!isLoading ? showDrills && <SavedDrillsList /> : <div>Loading</div>}
-      </div>
+      </div> */}
     </>
   );
 };
