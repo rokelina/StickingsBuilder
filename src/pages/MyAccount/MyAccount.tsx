@@ -3,6 +3,7 @@ import UserAccount from './UserAccount/UserAccount';
 import { useAuth } from '../../context/authContext/useAuth';
 import { CircularProgress } from '@mui/material';
 import './MyAccount.css';
+// import SingleSticking from '../../components/UserDashboard/SavedStickings/SingleSticking';
 
 const MyAccount = () => {
   const { authUser, isLoading } = useAuth();
@@ -15,6 +16,7 @@ const MyAccount = () => {
   ) : authUser ? (
     <UserAccount />
   ) : (
+    // <SingleSticking />
     <Login />
   );
 };
