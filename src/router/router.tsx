@@ -5,12 +5,14 @@ import EighthNotesMenu from '../pages/EighthNotesMenu/EighthNotesMenu';
 import TripletNotesMenu from '../pages/TripletNotesMenu/TripletNotesMenu';
 import RandomNotesMenu from '../pages/RandomNotesMenu/RandomNotesMenu';
 import MenuLayout from '../pages/MenuLayout/MenuLayout';
-import RedirectToEighths from '../pages/RedirectToEighths/RedirectToEighths';
+import Redirect from '../pages/Redirect/Redirect';
 import Login from '../pages/Login/Login';
 import Account from '../pages/Account/Account';
 
 import { createBrowserRouter } from 'react-router-dom';
 import { routes } from './routes';
+
+const index = `/${routes.menu}/${routes.eighths}`;
 
 export const router = createBrowserRouter([
   {
@@ -18,9 +20,9 @@ export const router = createBrowserRouter([
     element: <App />,
     errorElement: <ErrorPage />,
     children: [
-      { path: '/', element: <RedirectToEighths /> },
-      { path: '*', element: <RedirectToEighths /> },
-      { path: '/menu', element: <RedirectToEighths /> },
+      { path: '/', element: <Redirect to={index} /> },
+      { path: '*', element: <Redirect to={index} /> },
+      { path: '/menu', element: <Redirect to={index} /> },
       {
         path: routes.menu,
         element: <MenuLayout />,

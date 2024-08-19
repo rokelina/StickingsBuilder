@@ -1,5 +1,6 @@
 import Button from '../../components/Button/Button';
 import UserDashboard from '../../components/UserDashboard/UserDashboard';
+import Redirect from '../Redirect/Redirect';
 
 import { useAuth } from '../../context/authContext/useAuth';
 import { useNavigate } from 'react-router';
@@ -15,12 +16,13 @@ const Account = () => {
     navigate('/login', { replace: true });
     signOut();
   };
+
   return isLoading ? (
     <CircularProgress
       color="inherit"
       sx={{ marginLeft: '50%', marginTop: '30%' }}
     />
-  ) : (
+  ) : authUser ? (
     <div
       style={{
         display: 'flex',
@@ -40,6 +42,8 @@ const Account = () => {
         <UserDashboard />
       </div>
     </div>
+  ) : (
+    <Redirect to="/login" />
   );
 };
 export default Account;
