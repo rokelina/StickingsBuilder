@@ -1,13 +1,11 @@
-import { FaSave } from 'react-icons/fa';
 import Button from '../Button/Button';
 import { useAuth } from '../../context/authContext/useAuth';
 import { addSticking } from '../../firebase/firestore';
 import { checkDuplicateObject } from './checkDuplicateObject';
 import { useFetchStickings } from '../../hooks/useFetchStickings';
-import './SaveBtn.css';
 
-//this should save the current sticking if there's a user logged in and show a
-// 'save successful' modal, or show the login modal if there isn't any user
+import { FaSave } from 'react-icons/fa';
+import './SaveBtn.css';
 
 type SaveBtnProps = {
   currentSticking: { [key: string]: string };
