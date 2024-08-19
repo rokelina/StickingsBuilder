@@ -18,10 +18,7 @@ const Account = () => {
   };
 
   return isLoading ? (
-    <CircularProgress
-      color="inherit"
-      sx={{ marginLeft: '50%', marginTop: '30%' }}
-    />
+    <CircularProgress color="inherit" sx={{ marginTop: '25%' }} />
   ) : authUser ? (
     <div
       style={{
