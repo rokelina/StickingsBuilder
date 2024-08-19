@@ -21,7 +21,7 @@ interface Props {
   onStartClick: () => Promise<void>;
   onBpmChange: (e: ChangeEvent<HTMLInputElement>) => void;
   onVolumeChange: (e: ChangeEvent<HTMLInputElement>) => void;
-  onCountdown: () => void;
+  onCountdown: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
 function MetronomeControls({
@@ -118,13 +118,16 @@ function MetronomeControls({
         </div>
         <div className="countdown">
           <PiClockCountdownFill size={'2rem'} />
-          <span
-            style={{ paddingInlineEnd: '0.5rem' }}
-            aria-label="add a countdown measure"
-          >
-            COUNTDOWN
-          </span>
+          <label htmlFor="countdown">
+            <span
+              style={{ paddingInlineEnd: '0.5rem' }}
+              aria-label="add a countdown measure"
+            >
+              COUNTDOWN
+            </span>
+          </label>
           <input
+            id="countdown"
             name="countdown"
             type="checkbox"
             checked={addCountdown}

@@ -5,16 +5,15 @@ import TripletsIcon from '../Icons/TripletsIcon';
 import AboutIcon from '../Icons/AboutIcon';
 import { MdAccountBox } from 'react-icons/md';
 import ListItem from './ListItem/ListItem';
+
+import { useAuth } from '../../context/authContext/useAuth';
+import { routes } from '../../router/routes';
+
 import './SideNavBar.css';
 
-export type RouteId =
-  | 'menu/eighth-notes'
-  | 'menu/triplet-notes'
-  | 'menu/random-stickings'
-  | 'user-account'
-  | 'about';
-
 function SideNavBar() {
+  const { authUser } = useAuth();
+
   return (
     <nav className="navbar">
       <div className="menu-icon">
@@ -23,31 +22,31 @@ function SideNavBar() {
       <ul className="navbar-nav">
         <ListItem
           ariaLabel="eight notes menu"
-          routeName="menu/eighth-notes"
+          routeName={`${routes.menu}/${routes.eighths}`}
           icon={<EightNotesIcon />}
           spanText="8th Notes"
         />
         <ListItem
           ariaLabel="eight note triplets menu"
-          routeName="menu/triplet-notes"
+          routeName={`${routes.menu}/${routes.triplets}`}
           icon={<TripletsIcon />}
           spanText="8th Notes Triplets"
         />
         <ListItem
           ariaLabel="random stickings menu"
-          routeName="menu/random-stickings"
+          routeName={`${routes.menu}/${routes.random}`}
           icon={<RandomIcon />}
           spanText="Random Stickings"
         />
         <ListItem
           ariaLabel="sign in to your account"
-          routeName="user-account"
+          routeName={authUser ? `${routes.account}` : `${routes.login}`}
           icon={<MdAccountBox size={'2.5rem'} opacity={'0'} color="white" />}
           spanText="My Account"
         />
         <ListItem
           ariaLabel="about this app"
-          routeName="about"
+          routeName={`${routes.about}`}
           icon={<AboutIcon />}
           spanText="About"
         />

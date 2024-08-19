@@ -36,7 +36,6 @@ function MenuLayout() {
 
   return (
     <>
-      {/* Layout */}
       <div className="controls">
         <MetronomeControls
           selectedStickings={currentStickings}
@@ -51,7 +50,6 @@ function MenuLayout() {
         />
         <SaveBtn currentSticking={currentStickings} />
       </div>
-      {/* Layout */}
       <Outlet
         context={{
           eighthsProps,

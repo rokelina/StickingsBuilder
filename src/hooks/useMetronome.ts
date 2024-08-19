@@ -8,7 +8,7 @@ export type MetronomeProps = {
   addCountdown: boolean;
   handleStartClick: () => Promise<void>;
   handleBpmChange: (e: ChangeEvent<HTMLInputElement>) => void;
-  handleCountdown: () => void;
+  handleCountdown: (e: ChangeEvent<HTMLInputElement>) => void;
   handleVolumeChange: (e: ChangeEvent<HTMLInputElement>) => void;
 };
 
@@ -49,8 +49,8 @@ export function useMetronome(currentStickings: { [key: string]: string }) {
     Tone.Destination.volume.value = Tone.gainToDb(+inputValue);
   };
 
-  const handleCountdown = () => {
-    setAddCountdown(!addCountdown);
+  const handleCountdown = (e: ChangeEvent<HTMLInputElement>) => {
+    setAddCountdown(e.target.checked);
   };
 
   const metronomeProps: MetronomeProps = {
