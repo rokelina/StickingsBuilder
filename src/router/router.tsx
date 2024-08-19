@@ -9,6 +9,8 @@ import { createBrowserRouter } from 'react-router-dom';
 import { routes } from './routes';
 import MenuLayout from '../pages/MenuLayout/MenuLayout';
 import RedirectToEighths from '../pages/RedirectToEighths/RedirectToEighths';
+import Login from '../pages/MyAccount/Login/Login';
+import UserAccount from '../pages/MyAccount/UserAccount/UserAccount';
 
 export const router = createBrowserRouter([
   {
@@ -28,7 +30,16 @@ export const router = createBrowserRouter([
           { path: routes.random, element: <RandomNotesMenu /> },
         ],
       },
-      { path: routes.account, element: <MyAccount /> },
+      { path: routes.login, element: <Login /> },
+      { path: routes.account, element: <UserAccount /> },
+      // {
+      //   path: routes.account,
+      //   element: <MyAccount />,
+      //   children: [
+      //     { path: 'login', element: <Login /> },
+      //     { path: ':userId', element: <UserAccount /> },
+      //   ],
+      // },
       { path: routes.about, element: <About /> },
     ],
   },

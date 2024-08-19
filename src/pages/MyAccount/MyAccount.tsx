@@ -3,6 +3,7 @@ import UserAccount from './UserAccount/UserAccount';
 import { useAuth } from '../../context/authContext/useAuth';
 import { CircularProgress } from '@mui/material';
 import './MyAccount.css';
+// import { Outlet } from 'react-router';
 // import SingleSticking from '../../components/UserDashboard/SavedStickings/SingleSticking';
 
 const MyAccount = () => {

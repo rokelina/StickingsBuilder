@@ -6,15 +6,19 @@ import AboutIcon from '../Icons/AboutIcon';
 import { MdAccountBox } from 'react-icons/md';
 import ListItem from './ListItem/ListItem';
 import './SideNavBar.css';
+import { useAuth } from '../../context/authContext/useAuth';
 
-export type RouteId =
-  | 'menu/eighth-notes'
-  | 'menu/triplet-notes'
-  | 'menu/random-stickings'
-  | 'user-account'
-  | 'about';
+// export type RouteId =
+//   | 'menu/eighth-notes'
+//   | 'menu/triplet-notes'
+//   | 'menu/random-stickings'
+//   | 'user-account'
+//   | 'user-account'
+//   | 'about';
 
 function SideNavBar() {
+  const { authUser } = useAuth();
+
   return (
     <nav className="navbar">
       <div className="menu-icon">
@@ -41,7 +45,7 @@ function SideNavBar() {
         />
         <ListItem
           ariaLabel="sign in to your account"
-          routeName="user-account"
+          routeName={authUser ? 'user-account' : 'login'}
           icon={<MdAccountBox size={'2.5rem'} opacity={'0'} color="white" />}
           spanText="My Account"
         />

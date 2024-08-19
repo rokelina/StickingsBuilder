@@ -1,11 +1,11 @@
 import { ReactNode } from 'react';
-import { RouteId } from '../SideNavBar';
+// import { RouteId } from '../SideNavBar';
 import { NavLink } from 'react-router-dom';
 
 interface Props {
   ariaLabel: string;
   icon: ReactNode;
-  routeName: RouteId;
+  routeName: string;
   spanText: string;
 }
 

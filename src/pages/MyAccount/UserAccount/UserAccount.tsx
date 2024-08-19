@@ -2,10 +2,17 @@ import Button from '../../../components/Button/Button';
 import UserDashboard from '../../../components/UserDashboard/UserDashboard';
 import { useAuth } from '../../../context/authContext/useAuth';
 import { CircularProgress } from '@mui/material';
+import '../MyAccount.css';
+import { useNavigate } from 'react-router';
 
 const UserAccount = () => {
   const { authUser, isLoading, signOut } = useAuth();
+  const navigate = useNavigate();
 
+  const handleSignOut = () => {
+    navigate('/login', { replace: true });
+    signOut();
+  };
   return isLoading ? (
     <CircularProgress
       color="inherit"
@@ -24,7 +31,7 @@ const UserAccount = () => {
         <Button
           idName="sign-out-btn"
           children="Sign Out"
-          onBtnClick={signOut}
+          onBtnClick={handleSignOut}
         ></Button>
       </div>
       <div className="account-content">
