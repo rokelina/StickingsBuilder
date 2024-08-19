@@ -1,11 +1,13 @@
-import Button from '../../../components/Button/Button';
-import UserDashboard from '../../../components/UserDashboard/UserDashboard';
-import { useAuth } from '../../../context/authContext/useAuth';
-import { CircularProgress } from '@mui/material';
-import '../MyAccount.css';
+import Button from '../../components/Button/Button';
+import UserDashboard from '../../components/UserDashboard/UserDashboard';
+
+import { useAuth } from '../../context/authContext/useAuth';
 import { useNavigate } from 'react-router';
 
-const UserAccount = () => {
+import { CircularProgress } from '@mui/material';
+import './Account.css';
+
+const Account = () => {
   const { authUser, isLoading, signOut } = useAuth();
   const navigate = useNavigate();
 
@@ -40,4 +42,4 @@ const UserAccount = () => {
     </div>
   );
 };
-export default UserAccount;
+export default Account;

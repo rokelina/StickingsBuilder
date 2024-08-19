@@ -3,11 +3,12 @@ import EightNotesIcon from '../Icons/EightNotesIcon';
 import RandomIcon from '../Icons/RandomIcon';
 import TripletsIcon from '../Icons/TripletsIcon';
 import AboutIcon from '../Icons/AboutIcon';
+import { MdAccountBox } from 'react-icons/md';
 import ListItem from './ListItem/ListItem';
+
 import { useAuth } from '../../context/authContext/useAuth';
 import { routes } from '../../router/routes';
 
-import { MdAccountBox } from 'react-icons/md';
 import './SideNavBar.css';
 
 function SideNavBar() {
