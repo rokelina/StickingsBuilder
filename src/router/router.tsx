@@ -1,14 +1,19 @@
 import App from '../App';
-import MyAccount from '../pages/MyAccount/MyAccount';
 import ErrorPage from '../pages/ErrorPage/ErrorPage';
 import About from '../pages/About/About';
 import EighthNotesMenu from '../pages/EighthNotesMenu/EighthNotesMenu';
 import TripletNotesMenu from '../pages/TripletNotesMenu/TripletNotesMenu';
 import RandomNotesMenu from '../pages/RandomNotesMenu/RandomNotesMenu';
+import MenuLayout from '../pages/MenuLayout/MenuLayout';
+import Redirect from '../pages/Redirect/Redirect';
+import Login from '../pages/Login/Login';
+import Account from '../pages/Account/Account';
+
 import { createBrowserRouter } from 'react-router-dom';
 import { routes } from './routes';
-import MenuLayout from '../pages/MenuLayout/MenuLayout';
-import RedirectToEighths from '../pages/RedirectToEighths/RedirectToEighths';
+import SingleSticking from '../pages/SingleSticking/SingleSticking';
+
+const index = `/${routes.menu}/${routes.eighths}`;
 
 export const router = createBrowserRouter([
   {
@@ -16,9 +21,9 @@ export const router = createBrowserRouter([
     element: <App />,
     errorElement: <ErrorPage />,
     children: [
-      { path: '/', element: <RedirectToEighths /> },
-      { path: '*', element: <RedirectToEighths /> },
-      { path: '/menu', element: <RedirectToEighths /> },
+      { path: '/', element: <Redirect to={index} /> },
+      { path: '*', element: <Redirect to={index} /> },
+      { path: '/menu', element: <Redirect to={index} /> },
       {
         path: routes.menu,
         element: <MenuLayout />,
@@ -28,8 +33,14 @@ export const router = createBrowserRouter([
           { path: routes.random, element: <RandomNotesMenu /> },
         ],
       },
-      { path: routes.account, element: <MyAccount /> },
+      { path: routes.login, element: <Login /> },
+      {
+        path: routes.account,
+        element: <Account />,
+        // children: [{ path: 'single-sticking', element: <SingleSticking /> }],
+      },
       { path: routes.about, element: <About /> },
+      { path: 'user-account/single-sticking', element: <SingleSticking /> },
     ],
   },
 ]);

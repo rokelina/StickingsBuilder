@@ -6,6 +6,7 @@ interface Props {
   deleteId: string;
   onDelete: (id: string) => void;
 }
+
 const SavedStickingsList = ({ savedStickings, deleteId, onDelete }: Props) => {
   return (
     <ul className="stickings-list">

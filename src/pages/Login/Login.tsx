@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { auth } from '../../../firebase/firebaseConfig';
+import { auth } from '../../firebase/firebaseConfig';
 import { EmailAuthProvider, GoogleAuthProvider } from 'firebase/auth';
 
 import * as firebaseui from 'firebaseui';

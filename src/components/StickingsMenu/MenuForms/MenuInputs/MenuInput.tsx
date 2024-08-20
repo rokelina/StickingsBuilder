@@ -1,4 +1,4 @@
-import { isStickingChecked } from '../../../../../lib/uiHelpers/menuHelpers';
+import { isStickingChecked } from '../../../../lib/uiHelpers/menuHelpers';
 
 interface InputProps {
   children: string;
