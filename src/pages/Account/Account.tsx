@@ -1,6 +1,6 @@
-import Button from '../../components/Button/Button';
 import UserDashboard from '../../components/UserDashboard/UserDashboard';
 import Redirect from '../Redirect/Redirect';
+import AccountHeader from './AccountHeader/AccountHeader';
 
 import { useAuth } from '../../context/authContext/useAuth';
 import { useNavigate } from 'react-router';
@@ -27,14 +27,7 @@ const Account = () => {
         width: '100%',
       }}
     >
-      <div className="account-menu">
-        <h4 className="welcome-message">Welcome, {authUser?.name}!</h4>
-        <Button
-          idName="sign-out-btn"
-          children="Sign Out"
-          onBtnClick={handleSignOut}
-        ></Button>
-      </div>
+      <AccountHeader authUser={authUser} onSignOut={handleSignOut} />
       <div className="account-content">
         <UserDashboard />
       </div>

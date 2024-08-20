@@ -1,8 +1,8 @@
-.account-menu {
+/* .account-menu {
   display: flex;
   justify-content: flex-end;
   margin-right: 4rem;
-}
+} */
 
 .account-content {
   display: flex;
@@ -21,9 +21,9 @@
 }
 
 @media only screen and (max-width: 991px) {
-  .account-menu {
+  /* .account-menu {
     margin-right: 0;
-  }
+  } */
   .account-content {
     flex-direction: column;
     justify-content: center;
