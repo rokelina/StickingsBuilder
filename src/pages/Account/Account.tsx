@@ -20,17 +20,9 @@ const Account = () => {
   return isLoading ? (
     <CircularProgress color="inherit" sx={{ marginTop: '25%' }} />
   ) : authUser ? (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        width: '100%',
-      }}
-    >
+    <div className="account-container">
       <AccountHeader authUser={authUser} onSignOut={handleSignOut} />
-      <div className="account-content">
-        <UserDashboard />
-      </div>
+      <UserDashboard />
     </div>
   ) : (
     <Redirect to="/login" />

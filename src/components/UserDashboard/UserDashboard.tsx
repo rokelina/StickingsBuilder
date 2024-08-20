@@ -10,6 +10,7 @@ import { useFetchStickings } from '../../hooks/useFetchStickings';
 import { LinearProgress } from '@mui/material';
 // import { MdOutlineAdd } from 'react-icons/md';
 import './SavedStickings/SavedStickings.css';
+import './UserDashboard.css';
 
 const UserDashboard = () => {
   const [deleteId, setDeleteId] = useState('');
@@ -34,7 +35,7 @@ const UserDashboard = () => {
   };
 
   return (
-    <>
+    <div className="dashboard-container">
       <div className="saved-stickings-card">
         <Button
           idName={'show-saved-stickins'}
@@ -72,7 +73,7 @@ const UserDashboard = () => {
         </div>
         {!isLoading ? showDrills && <SavedDrillsList /> : <div>Loading</div>}
       </div> */}
-    </>
+    </div>
   );
 };
 export default UserDashboard;

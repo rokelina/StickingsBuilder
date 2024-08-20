@@ -1,0 +1,17 @@
+.dashboard-container {
+  display: flex;
+  justify-content: center;
+  /* justify-content: space-between; */
+  margin: 1rem 5rem;
+  padding: 1rem;
+}
+
+@media only screen and (max-width: 991px) {
+  .dashboard-container {
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    margin: 0;
+    padding: 0;
+  }
+}

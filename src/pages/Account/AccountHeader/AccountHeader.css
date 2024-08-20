@@ -4,6 +4,14 @@
   margin-right: 4rem;
 }
 
+.welcome-message {
+  margin: 0rem 1rem;
+  font-weight: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 @media only screen and (max-width: 991px) {
   .account-header {
     margin-right: 0;
