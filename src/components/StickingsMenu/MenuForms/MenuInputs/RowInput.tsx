@@ -1,4 +1,4 @@
-import { isRowChecked } from '../../../../../lib/uiHelpers/menuHelpers';
+import { isRowChecked } from '../../../../lib/uiHelpers/menuHelpers';
 
 interface RowInputProps {
   inputType: string;

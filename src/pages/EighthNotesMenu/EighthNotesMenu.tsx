@@ -1,5 +1,5 @@
 import Staff from '../../components/Staff/Staff';
-import StickingsMenu from '../../components/Menu/StickingsMenu/StickingsMenu';
+import StickingsMenu from '../../components/StickingsMenu/StickingsMenu';
 
 import { eightNotesPermutations } from '../../lib/utils/permutations';
 import getEighthNotesArray from '../../lib/utils/staffUtils/getEighthNotesArray';

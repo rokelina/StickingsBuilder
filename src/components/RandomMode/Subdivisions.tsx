@@ -1,4 +1,4 @@
-import OptionsInput from './OptionsInput';
+import SubdivisionsInput from './OptionsInput';
 import { SubdivisionOption } from '../../hooks/useGenerateStickings';
 
 interface Props {
@@ -6,13 +6,13 @@ interface Props {
   selectedOption: SubdivisionOption[];
 }
 
-function Options({ onOptionsChange, selectedOption }: Props) {
+function Subdivisions({ onOptionsChange, selectedOption }: Props) {
   const isSelectAll = selectedOption.includes('select-all');
 
   return (
     <div className="random-options">
       <div className="select-all">
-        <OptionsInput
+        <SubdivisionsInput
           onOptionsChange={onOptionsChange}
           id="select-all"
           children="Select All"
@@ -20,42 +20,42 @@ function Options({ onOptionsChange, selectedOption }: Props) {
         />
       </div>
       <div className="subdivision-options">
-        <OptionsInput
+        <SubdivisionsInput
           onOptionsChange={onOptionsChange}
           id="eighths"
           children="8th Notes"
           checked={selectedOption.includes('eighths')}
           disabled={isSelectAll}
         />
-        <OptionsInput
+        <SubdivisionsInput
           onOptionsChange={onOptionsChange}
           id="triplets"
           children="8th Note Triplets"
           checked={selectedOption.includes('triplets')}
           disabled={isSelectAll}
         />
-        <OptionsInput
+        <SubdivisionsInput
           onOptionsChange={onOptionsChange}
           id="sixteenths"
           children="16th Notes"
           checked={selectedOption.includes('sixteenths')}
           disabled={isSelectAll}
         />
-        <OptionsInput
+        <SubdivisionsInput
           onOptionsChange={onOptionsChange}
           id="quintuplets"
           children="Quintuplets"
           checked={selectedOption.includes('quintuplets')}
           disabled={isSelectAll}
         />
-        <OptionsInput
+        <SubdivisionsInput
           onOptionsChange={onOptionsChange}
           id="sextuplets"
           children="Sextuplets"
           checked={selectedOption.includes('sextuplets')}
           disabled={isSelectAll}
         />
-        <OptionsInput
+        <SubdivisionsInput
           onOptionsChange={onOptionsChange}
           id="septuplets"
           children="Septuplets"
@@ -66,4 +66,4 @@ function Options({ onOptionsChange, selectedOption }: Props) {
     </div>
   );
 }
-export default Options;
+export default Subdivisions;

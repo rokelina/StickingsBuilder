@@ -1,6 +1,6 @@
 import Button from '../../components/Button/Button';
 import EmptyStaff from '../../components/Staff/EmptyStaff';
-import Options from '../../components/RandomMode/Options';
+import Subdivisions from '../../components/RandomMode/Subdivisions';
 import Staff from '../../components/Staff/Staff';
 import getRandomNotesArray from '../../lib/utils/staffUtils/getRandomNotesArray';
 import { isStickingsObjEmpty } from '../../lib/uiHelpers/menuHelpers';
@@ -36,7 +36,7 @@ function RandomNotesMenu() {
       )}
       <div className="menu">
         <div className="random-menu">
-          <Options
+          <Subdivisions
             selectedOption={selectedRandomOption}
             onOptionsChange={onRandomOptionsChange}
           />
