@@ -1,7 +1,9 @@
 import Staff from '../../components/Staff/Staff';
 import StickingsMenu from '../../components/Menu/StickingsMenu/StickingsMenu';
+
 import { eightNotesPermutations } from '../../lib/utils/permutations';
 import getEighthNotesArray from '../../lib/utils/staffUtils/getEighthNotesArray';
+
 import { MenuOutletContextProps } from '../MenuLayout/MenuLayout';
 import { useOutletContext } from 'react-router';
 

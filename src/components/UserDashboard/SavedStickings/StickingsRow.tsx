@@ -24,7 +24,7 @@ const StickingsRow = ({ sticking, onDelete }: Props) => {
           />
         </div>
       </li>
-      <Divider variant="middle" component="li" />
+      <Divider variant="fullWidth" component="li" />
     </>
   );
 };
