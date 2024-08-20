@@ -1,6 +1,6 @@
-import Button from '../../components/Button/Button';
 import UserDashboard from '../../components/UserDashboard/UserDashboard';
 import Redirect from '../Redirect/Redirect';
+import AccountHeader from './AccountHeader/AccountHeader';
 
 import { useAuth } from '../../context/authContext/useAuth';
 import { useNavigate } from 'react-router';
@@ -20,24 +20,9 @@ const Account = () => {
   return isLoading ? (
     <CircularProgress color="inherit" sx={{ marginTop: '25%' }} />
   ) : authUser ? (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        width: '100%',
-      }}
-    >
-      <div className="account-menu">
-        <h4 className="welcome-message">Welcome, {authUser?.name}!</h4>
-        <Button
-          idName="sign-out-btn"
-          children="Sign Out"
-          onBtnClick={handleSignOut}
-        ></Button>
-      </div>
-      <div className="account-content">
-        <UserDashboard />
-      </div>
+    <div className="account-container">
+      <AccountHeader authUser={authUser} onSignOut={handleSignOut} />
+      <UserDashboard />
     </div>
   ) : (
     <Redirect to="/login" />

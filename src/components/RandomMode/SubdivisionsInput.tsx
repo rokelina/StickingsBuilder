@@ -8,7 +8,7 @@ interface Props {
   onOptionsChange: (id: SubdivisionOption, checked: boolean) => void;
 }
 
-function OptionsInput({
+function SubdivisionsInput({
   children,
   checked,
   disabled,
@@ -30,4 +30,4 @@ function OptionsInput({
   );
 }
 
-export default OptionsInput;
+export default SubdivisionsInput;
