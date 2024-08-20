@@ -11,6 +11,7 @@ import Account from '../pages/Account/Account';
 
 import { createBrowserRouter } from 'react-router-dom';
 import { routes } from './routes';
+import SingleSticking from '../pages/SingleSticking/SingleSticking';
 
 const index = `/${routes.menu}/${routes.eighths}`;
 
@@ -33,8 +34,13 @@ export const router = createBrowserRouter([
         ],
       },
       { path: routes.login, element: <Login /> },
-      { path: routes.account, element: <Account /> },
+      {
+        path: routes.account,
+        element: <Account />,
+        // children: [{ path: 'single-sticking', element: <SingleSticking /> }],
+      },
       { path: routes.about, element: <About /> },
+      { path: 'user-account/single-sticking', element: <SingleSticking /> },
     ],
   },
 ]);

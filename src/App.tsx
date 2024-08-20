@@ -6,12 +6,8 @@ import {
   RandomProps,
   useGenerateStickings,
 } from './hooks/useGenerateStickings';
-
 import { Outlet } from 'react-router';
-
 import { useLoadingSpinner } from './hooks/useLoadingSpinner';
-import './components/Menu/MenuContainer.css';
-import './components/RandomMode/RandomMenu.css';
 
 export type OutletContextProps = {
   eighthsProps: StickingsProps;

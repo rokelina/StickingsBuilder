@@ -1,10 +1,14 @@
 import MetronomeControls from '../../components/MetronomeControls/MetronomeControls';
 import SaveBtn from '../../components/SaveBtn/SaveBtn';
+
 import { StickingsProps } from '../../hooks/useSelectStickings';
 import { RandomProps } from '../../hooks/useGenerateStickings';
 import { MetronomeProps, useMetronome } from '../../hooks/useMetronome';
+
 import { Outlet, useLocation, useOutletContext } from 'react-router';
 import { OutletContextProps } from '../../App';
+
+import './MenuLayout.css';
 
 export type MenuOutletContextProps = {
   eighthsProps: StickingsProps;

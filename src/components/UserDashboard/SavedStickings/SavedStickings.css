@@ -1,6 +1,10 @@
 .saved-stickings-card {
   padding: 1rem;
-  width: fit-content;
+  width: 75%;
+}
+
+.saved-stickings-title {
+  margin-bottom: 1rem;
 }
 
 .stickings-list {
@@ -13,11 +17,8 @@
   display: flex;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 640px) {
   .saved-stickings-card {
-    margin: 0;
-  }
-  .stickings-list {
-    width: fit-content;
+    width: 100%;
   }
 }
