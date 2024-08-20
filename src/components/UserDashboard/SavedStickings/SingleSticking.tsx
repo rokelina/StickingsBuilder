@@ -1,9 +1,11 @@
 import MetronomeControls from '../../MetronomeControls/MetronomeControls';
+import Staff from '../../Staff/Staff';
+import getRandomNotesArray from '../../../lib/utils/staffUtils/getRandomNotesArray';
+
 import { useMetronome } from '../../../hooks/useMetronome';
 import { useSamples } from '../../../hooks/useSamples';
-import Staff from '../../Staff/Staff';
+
 import { IoReturnUpBack } from 'react-icons/io5';
-import getRandomNotesArray from '../../../lib/utils/staffUtils/getRandomNotesArray';
 import './SingleSticking.css';
 
 const SingleSticking = () => {

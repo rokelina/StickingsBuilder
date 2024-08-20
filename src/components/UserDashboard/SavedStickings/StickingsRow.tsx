@@ -13,7 +13,9 @@ const StickingsRow = ({ sticking, onDelete }: Props) => {
     <>
       <li style={{ padding: '0.5rem' }}>
         <div style={{ display: 'flex', alignItems: 'center' }}>
-          <span style={{ flex: '1', padding: '0.5rem' }}>{stickingText}</span>
+          <span style={{ flex: '1', padding: '0.5rem 0rem' }}>
+            {stickingText}
+          </span>
           <Button idName="play-sticking-btn" children={<FaPlay />} />
           <Button
             idName="delete-sticking-btn"
