@@ -1,4 +1,4 @@
-import SubdivisionsInput from './OptionsInput';
+import SubdivisionsInput from './SubdivisionsInput';
 import { SubdivisionOption } from '../../hooks/useGenerateStickings';
 
 interface Props {
