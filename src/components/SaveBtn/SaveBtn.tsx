@@ -41,6 +41,7 @@ const SaveBtn = ({ currentSticking }: SaveBtnProps) => {
     }
     addSticking(currentSticking, authUser.uid);
   };
+
   return (
     <div
       className="save-btn"
