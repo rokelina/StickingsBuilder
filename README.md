@@ -18,7 +18,9 @@ This project is the outcome of my self-directed study in programming and web dev
 
 - Typescript
 - React
-- Vite
+- Firebase Auth / Firebase UI
+- Firebase Firestore
+- Netlify CI/CD
 - Progressive Web App
 - Vexflow.js [link](https://github.com/0xfe/vexflow)
 - Tone.js [link](https://github.com/Tonejs/Tone.js)
